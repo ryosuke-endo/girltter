@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
 gem 'sqlite3'
+gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
@@ -30,6 +31,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'view_source_map'
+  gem 'sass-rails-source-maps'
 end
 
 group :production do
