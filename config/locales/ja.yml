@@ -200,3 +200,12 @@ ja:
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
     pm: 午後
+
+  cheating: 浮気
+  complex: コンプレックス
+  couple: カップル
+  divorce: 離婚
+  love: 恋愛
+  love_quotations: 恋愛名言
+  love_psychology: 恋愛心理
+  marriage: 結婚
