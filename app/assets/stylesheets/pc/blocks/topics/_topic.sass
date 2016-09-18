@@ -3,32 +3,81 @@
     display: flex
     justify-content: space-between
     li.topic-new
-      background: $b-pink
-      border-radius: 5px
-      height: 46px
-      line-height: 46px
-      list-style: none
-      width: 49%
+      +topic-list-tab-li($b-pink)
       a
-        color: $b-white
-        display: block
-        text-align: center
-        text-decoration: none
-        &:hover
-          background: $b-l-pink
-          border-radius: 5px
+        +topic-list-tab-a($b-l-pink)
     li.topic-rank
-      background: $b-blue
-      border-radius: 5px
-      height: 46px
-      line-height: 46px
-      list-style: none
-      width: 49%
+      +topic-list-tab-li($b-blue)
       a
-        color: $b-white
-        display: block
-        text-align: center
-        text-decoration: none
-        &:hover
-          background: $b-l-blue
-          border-radius: 5px
+        +topic-list-tab-a($b-l-blue)
+
+.topic-list
+  margin-top: 24px
+  ul
+    li
+      display: flex
+      list-style: none
+
+.topic-picture
+  img
+    width: 35px
+
+.topic-list-box
+  border: 1px solid $b-gray
+  border-radius: 10px
+  margin-left: 20px
+  padding: 20px 0 10px 0
+  position: relative
+  span.category-list
+    background: $b-pink
+    border-radius: 10px
+    color: $b-white
+    font-size: 1.2rem
+    left: 10px
+    min-width: 100px
+    padding: 3px 0
+    position: absolute
+    text-align: center
+    top: -8px
+
+.topic-list-body
+  margin: 0 20px
+
+.topic-title
+  font-size: 1.6rem
+
+.topic-body
+  display: block
+
+.topic-tag-lists
+  border-top: 1px dotted $b-gray
+  display: flex
+  margin-top: 10px
+  padding-top: 10px
+
+.topic-tag-list
+  align-items: baseline
+  border: 1px solid $b-gray
+  border-radius: 5px
+  margin-left: 5px
+  padding: 0 5px
+.topic-tag-list:first-child
+  margin-left: 20px
+
+.topic-tag-name
+  margin-left: 3px
+
+.topic-information
+  display: flex
+  justify-content: flex-end
+  padding-right: 20px
+  li
+    align-items: baseline
+    padding-left: 10px
+
+.topic-owner
+  color: $b-pink
+
+.topic-comment-count
+  color: $b-d-gray
+  padding-left: 3px
