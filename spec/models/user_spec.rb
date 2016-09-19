@@ -34,5 +34,26 @@ RSpec.describe User, type: :model do
         end
       end
     end
+
+    context 'email' do
+      context '半角英数字' do
+        it '登録できる' do
+          other_user = build(:user, email: 'mrennai@example.com')
+          expect(other_user).to be_valid
+        end
+
+        it '_を含むものを登録できる' do
+          other_user = build(:user, email: 'mrennai_2@example.com')
+          expect(other_user).to be_valid
+        end
+      end
+
+      context '半角英数字以外' do
+        it '登録できない' do
+          other_user = build(:user, email: 'みんなの恋愛@example.com')
+          expect(other_user).not_to be_valid
+        end
+      end
+    end
   end
 end
