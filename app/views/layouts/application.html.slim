@@ -8,5 +8,9 @@ html
     = csrf_meta_tags
   body
     = render "header"
-    = yield
+    .l__content
+      .l__main
+        = yield
+      .l__side
+        = render "side_column"
     = render "footer"
