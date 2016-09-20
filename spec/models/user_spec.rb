@@ -49,9 +49,16 @@ RSpec.describe User, type: :model do
       end
 
       context '半角英数字以外' do
-        it '登録できない' do
+        it '日本語は登録できない' do
           other_user = build(:user, email: 'みんなの恋愛@example.com')
           expect(other_user).not_to be_valid
+        end
+      end
+
+      context '大文字' do
+        it '小文字に変換して登録される' do
+          other_user = create(:user, email: 'Mrennai@example.com')
+          expect(other_user.email).to eq other_user.email.downcase
         end
       end
     end
