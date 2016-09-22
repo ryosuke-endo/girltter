@@ -210,7 +210,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_email_validation (0.1.0)
+    simple_email_validation (0.2.0)
       activemodel
     slim (3.0.7)
       temple (~> 0.7.6)
