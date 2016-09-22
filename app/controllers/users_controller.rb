@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout 'one_column'
   skip_before_action :require_login, only: %i(new create)
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -17,16 +18,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    @user = User.new(user_params)
 
     respond_to do |format|
-      if user.save
+      if @user.save
         auto_login(user)
-        format.html { redirect_to user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: user }
       else
         format.html { render :new }
-        format.json { render json: user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

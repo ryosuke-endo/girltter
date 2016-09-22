@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title
+      | みんなの恋愛
+    = stylesheet_link_tag    'pc/application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    = render "header"
+    .l__content
+      = yield
+    = render "footer"

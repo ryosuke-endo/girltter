@@ -7,6 +7,17 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+
+    models:
+      user: ユーザー
+
+    attributes:
+      user:
+        login: ログインID
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+
   date:
     abbr_day_names:
     - 日
@@ -209,3 +220,4 @@ ja:
   love_quotations: 恋愛名言
   love_psychology: 恋愛心理
   marriage: 結婚
+  sending: 送信中
