@@ -4,64 +4,120 @@ RSpec.describe User, type: :model do
   describe 'validation' do
     let(:user) { create(:user) }
 
-    context 'login' do
-      context '登録できる' do
-        context '半角英数字' do
-          it '_を含むもの' do
-            other_user = build(:user, login: 'mrennai_2')
-            expect(other_user).to be_valid
+    shared_examples_for 'alphanumeric' do |column_name, min_len, max_len|
+      let(:factory_name) { described_class.name.underscore }
+      let(:record) { build(factory_name) }
+
+      context "#{column_name}" do
+        context '登録できる' do
+          context '半角英数字' do
+            it '_を含むもの' do
+              value = 'mrennai_2'
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).to be_truthy
+              else
+                record[column_name] = value
+                expect(record).to be_valid
+              end
+            end
+
+            it '-を含むもの' do
+              value = 'mrennai_2'
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).to be_truthy
+              else
+                record[column_name] = value
+                expect(record).to be_valid
+              end
+            end
           end
 
-          it '-を含むもの' do
-            other_user = build(:user, login: 'mrennai-2')
-            expect(other_user).to be_valid
+          context '文字列の長さ' do
+            it "#{min_len}文字" do
+              value = 'a' * min_len
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).to be_truthy
+              else
+                record[column_name] = value
+                expect(record).to be_valid
+              end
+            end
+
+            it "#{max_len}文字" do
+              value = 'a' * max_len
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).to be_truthy
+              else
+                record[column_name] = 'a' * max_len
+                expect(record).to be_valid
+              end
+            end
           end
         end
 
-        context '文字列の長さ' do
-          it '4文字' do
-            name = 'a' * 4
-            other_user = build(:user, login: name)
-            expect(other_user).to be_valid
+        context '登録できない' do
+          context '文字列の長さ' do
+            it "#{min_len}文字未満" do
+              value = 'a' * (min_len - 1)
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).not_to be_truthy
+              else
+                record[column_name] = value
+                expect(record).not_to be_valid
+              end
+            end
+
+            it "#{max_len + 1}文字以上" do
+              value = 'a' * (max_len + 1)
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).not_to be_truthy
+              else
+                record[column_name] = value
+                expect(record).not_to be_valid
+              end
+            end
           end
 
-          it '20文字' do
-            name = 'a' * 20
-            other_user = build(:user, login: name)
-            expect(other_user).to be_valid
+          context '文字の種類' do
+            it '半角英数字以外' do
+              value = 'みんなの恋愛'
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).not_to be_truthy
+              else
+                record[column_name] = value
+                expect(record).not_to be_valid
+              end
+            end
+
+            it '全角を含む' do
+              value =  '🅰aaaaaaa'
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).not_to be_truthy
+              else
+                record[column_name] = value
+                expect(record).not_to be_valid
+              end
+            end
           end
         end
       end
+    end
 
-      context '登録できない' do
-        it '同一loginID' do
-          other_user = build(:user, login: user.login)
-          expect(other_user).not_to be_valid
-        end
+    it_behaves_like 'alphanumeric', :login, 3, 20
+    it_behaves_like 'alphanumeric', :password, 8, 20
 
-        context '文字の種類' do
-          it '半角英数字以外' do
-            other_user = build(:user, login: 'みんなの恋愛')
-            expect(other_user).not_to be_valid
-          end
-
-          it '全角を含む' do
-            other_user = build(:user, login: '🅰aaaaaaa')
-            expect(other_user).not_to be_valid
-          end
-        end
-
-        context '文字列の長さ' do
-          it '4文字未満' do
-            user.login = 'a' * 3
-            expect(user).not_to be_valid
-          end
-
-          it '21文字以上' do
-            user.login = 'a' * 21
-            expect(user).not_to be_valid
-          end
-        end
+    context '登録できない' do
+      it '同一loginID' do
+        other_user = build(:user, login: user.login)
+        expect(other_user).not_to be_valid
       end
     end
 

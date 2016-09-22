@@ -1,18 +1,20 @@
 require 'nkf'
 class User < ActiveRecord::Base
+  ALPHANUMERIC_REG = /\A[a-z\d\_\-]+\z/i
   authenticates_with_sorcery!
   before_save :normalize_value
 
-  validates :password, length: { minimum: 8 },
-                       confirmation: true,
+  validates :password, confirmation: true,
+                       format: { with: ALPHANUMERIC_REG , message: 'は半角英数字で入力してください'},
+                       length: { minimum: 8, maximum: 20 },
                        presence: true
   validates :password_confirmation, presence: true
   validates :email, uniqueness: true,
                     email: { message: 'は半角英数字で入力してください' },
                     presence: true
   validates :login, uniqueness: true,
-                    format: { with: /\A[a-z\d\_\-]+\z/i , message: 'は半角英数字で入力してください'},
-                    length: { minimum: 4, maximum: 20 },
+                    format: { with: ALPHANUMERIC_REG , message: 'は半角英数字で入力してください'},
+                    length: { minimum: 3, maximum: 20 },
                     presence: true
 
   def normalize_value
