@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
                        presence: true
   validates :password_confirmation, presence: true
   validates :email, uniqueness: true,
-                    email: { message: 'は半角英数字で入力してください' },
+                    email: { message: 'の入力が正しくありません' },
                     presence: true
   validates :login, uniqueness: true,
                     format: { with: ALPHANUMERIC_REG , message: 'は半角英数字で入力してください'},
