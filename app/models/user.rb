@@ -5,15 +5,17 @@ class User < ActiveRecord::Base
   before_save :normalize_value
 
   validates :password, confirmation: true,
-                       format: { with: ALPHANUMERIC_REG , message: 'は半角英数字で入力してください'},
+                       format: { with: ALPHANUMERIC_REG,
+                                 message: I18n.t('errors.messages.alphanumeric') },
                        length: { minimum: 8, maximum: 20 },
                        presence: true
   validates :password_confirmation, presence: true
   validates :email, uniqueness: true,
-                    email: { message: 'の入力が正しくありません' },
+                    email: { message: I18n.t('errors.messages.invalid') },
                     presence: true
   validates :login, uniqueness: true,
-                    format: { with: ALPHANUMERIC_REG , message: 'は半角英数字で入力してください'},
+                    format: { with: ALPHANUMERIC_REG,
+                              message: I18n.t('errors.messages.alphanumeric') },
                     length: { minimum: 3, maximum: 20 },
                     presence: true
 
