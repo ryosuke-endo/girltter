@@ -1,9 +1,24 @@
 = form_tag user_sessions_path
-  .field
-    = label_tag :email
-    = text_field_tag :email
-  .field
-    = label_tag :password
-    = password_field_tag :password
-  .actions
-    = submit_tag "ログイン"
+  - if flash.present?
+    .c-error_explanation
+      h2 = flash[:alert]
+
+  .p-form-member-login
+    .p-form-member-login__left
+      p.p-form-member-login__title = t("login")
+      .p-form-member-login-items
+        = label :email, 'メールアドレス', class: "p-form-member__input-label"
+        = text_field_tag :email, '', class: "c-form__input", placeholder: 'メールアドレスを入力してください'
+      .p-form-member-login-items
+        = label :passowrd, 'パスワード', class: "p-form-member__input-label"
+        = password_field_tag :passoword, '',class: "c-form__input", placeholder: 'パスワードを入力してください'
+      .p-form-member-login__container
+        .text-center
+          = submit_tag t("login"), class: "p-form-member-registration__btn", data: { disable_with: t("sending") }
+    .p-form-member-login__right
+      p.p-form-member-login__title
+        | アカウントをお持ちでない方はこちら
+      p.p-form-member-login__content
+        | みんなの恋愛に会員登録すると恋愛相談の投稿ができるようになります！
+      .c-btn__container
+        = link_to "会員登録", new_user_path, class: "c-btn c-btn--md c-btn--white c-link__text--c-b"
