@@ -111,15 +111,17 @@ RSpec.describe User, type: :model do
       end
     end
 
-    it_behaves_like 'alphanumeric', :login, 3, 20
-    it_behaves_like 'alphanumeric', :password, 8, 20
+    context 'login' do
+      it_behaves_like 'alphanumeric', :login, 3, 20
 
-    context '登録できない' do
-      it '同一loginID' do
+      it '同一IDは登録できない' do
         other_user = build(:user, login: user.login)
         expect(other_user).not_to be_valid
       end
     end
+
+
+    it_behaves_like 'alphanumeric', :password, 8, 20
 
     context 'email' do
       context '登録できる' do
