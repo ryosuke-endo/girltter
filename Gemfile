@@ -15,16 +15,24 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
+gem 'sorcery'
+gem 'simple_email_validation'
 gem 'mysql2'
 gem 'unicorn'
 
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
-  gem 'launchy'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 group :development do

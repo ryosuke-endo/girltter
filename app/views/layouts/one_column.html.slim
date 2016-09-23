@@ -9,8 +9,5 @@ html
   body
     = render "header"
     .l__content
-      .l__main
-        = yield
-      .l__side
-        = render "side_column"
+      = yield
     = render "footer"

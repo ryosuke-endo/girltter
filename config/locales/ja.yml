@@ -7,6 +7,17 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+
+    models:
+      user: ユーザー
+
+    attributes:
+      user:
+        login: ログインID
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+
   date:
     abbr_day_names:
     - 日
@@ -107,6 +118,7 @@ ja:
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
+      alphanumeric: は半角英数字で入力してください
       blank: を入力してください
       present: は入力しないでください
       confirmation: と%{attribute}の入力が一致しません
@@ -209,3 +221,8 @@ ja:
   love_quotations: 恋愛名言
   love_psychology: 恋愛心理
   marriage: 結婚
+  sending: 送信中
+
+  user_was_successfully_created: 会員登録ありがとうございます
+  user_was_successfully_updated: プロフィールを更新しました
+  user_was_successfully_deleted: 会員を削除しました
