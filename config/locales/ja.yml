@@ -226,3 +226,6 @@ ja:
   user_was_successfully_created: 会員登録ありがとうございます
   user_was_successfully_updated: プロフィールを更新しました
   user_was_successfully_deleted: 会員を削除しました
+  login_was_successfully_created: ログインに成功しました
+  login_was_failed: ログインに失敗しました
+  login_was_successfully_deleted: ログアウトしました
