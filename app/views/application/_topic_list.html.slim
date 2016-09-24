@@ -1,31 +1,30 @@
-.topic-list
-  ul
-    - threads.each do |thread|
-      li.topic-list-content
-        .topic-picture
-          = image_tag('woman-face.png')
-        .topic-list-box
-          .topic-list-body
-            span.category-list = thread.category.name
-            span.topic-title = thread.title
-            span.topic-body = simple_format(thread.short_body)
-          ul.topic-tag-lists
-            li.topic-tag-list
-              i.fa.fa-tag.icon-c-pink
-              span.topic-tag-name
-                | 恋愛
-            li.topic-tag-list
-              i.fa.fa-tag.icon-c-pink
-              span.topic-tag-name
-              | イライラ
-            li.topic-tag-list
-              i.fa.fa-tag.icon-c-pink
-              span.topic-tag-name
-              | 浮気
-          ul.topic-information
-            li.topic-owner
-              = thread.user.login
-            li.topic-comment
-              i.fa.fa-comment.icon-c-pink
-              span.topic-comment-count
-                | 2
+ul
+  - threads.each do |thread|
+    li.topic-list-content
+      .topic-picture
+        = image_tag('woman-face.png')
+      .topic-list-box
+        .topic-list-body
+          span.category-list = thread.category.name
+          span.topic-title = thread.title
+          span.topic-body = simple_format(thread.short_body)
+        ul.topic-tag-lists
+          li.topic-tag-list
+            i.fa.fa-tag.icon-c-pink
+            span.topic-tag-name
+              | 恋愛
+          li.topic-tag-list
+            i.fa.fa-tag.icon-c-pink
+            span.topic-tag-name
+            | イライラ
+          li.topic-tag-list
+            i.fa.fa-tag.icon-c-pink
+            span.topic-tag-name
+            | 浮気
+        ul.topic-information
+          li.topic-owner
+            = thread.user.login
+          li.topic-comment
+            i.fa.fa-comment.icon-c-pink
+            span.topic-comment-count
+              | 2

@@ -1,17 +1,20 @@
 - content_for :sub_nav do
   = render "sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
 
-.c-heading--section
+.c-heading--section.c-container
   h1
     | 恋愛掲示板
-.c-frame.c-frame-border
   .c-heading--lead
     | 恋愛に関する相談を行う場所です。恋愛についての相談を男性・女性問わず相談してみましょう。みんなに聞いて回答を得ることで、恋愛が一歩進みます。
 
+.c-container.text-center
+  = link_to "質問をする", new_love_path, class: "c-btn c-btn--pink c-btn--w-50 c-btn--h-large"
+
 .l__main-border.l__main-padding
-  ul.topic-list-tab
-    li.topic-new = link_to "新着トピック", '#'
-    li.topic-rank = link_to "今日の人気トピック", '#'
+  .c-container
+    ul.topic-list-tab
+      li.topic-new = link_to "新着トピック", '#'
+      li.topic-rank = link_to "今日の人気トピック", '#'
 
   = render "topic_list", threads: @loves
 

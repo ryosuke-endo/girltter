@@ -11,7 +11,6 @@ class LovesController < ApplicationController
   end
 
   def new
-
   end
 
   private
