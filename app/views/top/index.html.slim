@@ -1,4 +1,5 @@
 - content_for :sub_nav do
-  = render "sub_nav", top_name: "恋愛トップ", top_path: root_path, categories: @love_categories
+  = render "sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
 
-= render "topic"
+.l__main-border.l__main-padding
+  = render "topic"
