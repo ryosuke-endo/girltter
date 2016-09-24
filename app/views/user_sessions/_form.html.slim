@@ -7,11 +7,11 @@
     .p-form-member-login__left
       p.p-form-member-login__title = t("login")
       .p-form-member-login-items
-        = label_tag :email, 'メールアドレス', class: "p-form-member__input-label"
-        = text_field_tag :email, '', class: "c-form__input", placeholder: 'メールアドレスを入力してください'
+        = label_tag :email, 'ユーザーID または メールアドレス', class: "p-form-member__input-label"
+        = text_field_tag :email, '', class: "c-form__input", placeholder: 'ユーザーIDまたはメールアドレスを入力してください'
       .p-form-member-login-items
-        = label_tag :passowrd, 'パスワード', class: "p-form-member__input-label"
-        = password_field_tag :passoword, '',class: "c-form__input", placeholder: 'パスワードを入力してください'
+        = label_tag :password, 'パスワード', class: "p-form-member__input-label"
+        = password_field_tag :password, '',class: "c-form__input", placeholder: 'パスワードを入力してください'
       .p-form-member-login__container
         .text-center
           = submit_tag t("login"), class: "p-form-member-registration__btn", data: { disable_with: t("sending") }
