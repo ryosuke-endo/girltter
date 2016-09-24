@@ -217,6 +217,7 @@ ja:
   complex: コンプレックス
   couple: カップル
   divorce: 離婚
+  login: ログイン
   love: 恋愛
   love_quotations: 恋愛名言
   love_psychology: 恋愛心理
@@ -226,3 +227,6 @@ ja:
   user_was_successfully_created: 会員登録ありがとうございます
   user_was_successfully_updated: プロフィールを更新しました
   user_was_successfully_deleted: 会員を削除しました
+  login_was_successfully_created: ログインに成功しました
+  login_was_failed: ユーザーIDかパスワードが違います
+  login_was_successfully_deleted: ログアウトしました

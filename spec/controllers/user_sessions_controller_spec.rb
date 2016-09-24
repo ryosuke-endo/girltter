@@ -1,19 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
+  describe "POST #create" do
+    let(:user) { create(:user) }
 
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+    context '成功する' do
+      it "email" do
+        post :create, { email: user.email,
+                        password: 'password' }
+        expect(login?).to be_truthy
+      end
+
+      it "login" do
+        post :create, { email: user.login,
+                        password: 'password' }
+        expect(login?).to be_truthy
+      end
     end
   end
-
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end
