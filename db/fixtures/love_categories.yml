@@ -1,0 +1,14 @@
+love_category_1: &default
+  id: 1
+  name: 恋愛相談
+  type: LoveCategory
+
+love_category_2:
+  <<: *default
+  id: 2
+  name: 男性に相談
+
+love_category_3:
+  <<: *default
+  id: 2
+  name: 女性に相談
