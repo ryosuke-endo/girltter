@@ -3,7 +3,7 @@ class LovesController < ApplicationController
   before_action :set_categories
 
   def index
-
+    @loves = Love.page(params[:page])
   end
 
   def show
