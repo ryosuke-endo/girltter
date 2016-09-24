@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160924043154) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "categories", ["type"], name: "index_categories_on_type", using: :btree
+
   create_table "loves", force: :cascade do |t|
     t.string   "title",       limit: 255,   null: false
     t.text     "body",        limit: 65535, null: false
