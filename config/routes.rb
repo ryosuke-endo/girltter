@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'top#index'
+
+  resources :loves
   resources :user_sessions
   resources :users
 
