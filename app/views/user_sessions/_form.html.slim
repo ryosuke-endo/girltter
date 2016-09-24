@@ -7,10 +7,10 @@
     .p-form-member-login__left
       p.p-form-member-login__title = t("login")
       .p-form-member-login-items
-        = label :email, 'メールアドレス', class: "p-form-member__input-label"
+        = label_tag :email, 'メールアドレス', class: "p-form-member__input-label"
         = text_field_tag :email, '', class: "c-form__input", placeholder: 'メールアドレスを入力してください'
       .p-form-member-login-items
-        = label :passowrd, 'パスワード', class: "p-form-member__input-label"
+        = label_tag :passowrd, 'パスワード', class: "p-form-member__input-label"
         = password_field_tag :passoword, '',class: "c-form__input", placeholder: 'パスワードを入力してください'
       .p-form-member-login__container
         .text-center

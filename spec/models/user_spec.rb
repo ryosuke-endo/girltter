@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
             end
 
             it '-を含むもの' do
-              value = 'mrennai_2'
+              value = 'mrennai-2'
               if column_name == :password
                 expect(record.update(password: value,
                                      password_confirmation: value)).to be_truthy
@@ -98,6 +98,17 @@ RSpec.describe User, type: :model do
 
             it '全角を含む' do
               value =  '🅰aaaaaaa'
+              if column_name == :password
+                expect(record.update(password: value,
+                                     password_confirmation: value)).not_to be_truthy
+              else
+                record[column_name] = value
+                expect(record).not_to be_valid
+              end
+            end
+
+            it '@を含む' do
+              value = 'mrennai@'
               if column_name == :password
                 expect(record.update(password: value,
                                      password_confirmation: value)).not_to be_truthy
