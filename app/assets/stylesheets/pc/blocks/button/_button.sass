@@ -1,20 +1,50 @@
 .c-btn
+  border: none
   border-radius: 4px
+  cursor: pointer
   display: inline-block
+  line-height: 1.6
   padding: 7px 9px
+  text-decoration: none
+  &:hover
+    opacity: 0.8
+    text-decoration: none
+
+.c-btn__container
+  margin-top: 10px
+  text-align: center
+
+// ボタンが隣接する場合
+.c-btn+.c-btn
+  margin-left: 6px
 
 .c-btn--md
   width: 100px
 
+.c-btn--w-275
+  width: 275px
+
+.c-btn--h-large
+  height: 46px
+  line-height: 2.4
+
 .c-btn--gray
   background: $b-gray
+
+.c-btn--pink
+  color: $b-white
+  background: $b-pink
+  &:hover
+    color: $b-white
+
+.c-btn--blue
+  color: $b-white
+  background: $b-blue
+  &:hover
+    color: $b-white
 
 .c-btn--white
   background: $b-white
   border: 1px solid $b-black
   &:hover
     background: $b-l-gray
-
-.c-btn__container
-  margin-top: 10px
-  text-align: center

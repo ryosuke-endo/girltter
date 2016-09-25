@@ -1,10 +1,5 @@
 = form_for @user do |f|
-  - if @user.errors.any?
-    .c-error_explanation
-      h2 = "#{@user.errors.count} つの入力エラーがあります。"
-      ul.c-flash-message__messages
-        - @user.errors.full_messages.each do |message|
-          li.c-flash-message__message = message
+  = render "error_messages", object: @user
 
   .p-form-member-registration
     .p-form-member-registration__left

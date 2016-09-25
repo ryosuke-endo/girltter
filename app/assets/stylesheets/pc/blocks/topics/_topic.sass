@@ -1,24 +1,21 @@
 .topic-list-tab
-  ul
-    display: flex
-    justify-content: space-between
-    li.topic-new
-      +topic-list-tab-li($b-pink)
-      a
-        +topic-list-tab-a($b-l-pink)
-    li.topic-rank
-      +topic-list-tab-li($b-blue)
-      a
-        +topic-list-tab-a($b-l-blue)
+  display: flex
+  justify-content: space-between
+  .topic-new
+    +topic-list-tab-li($b-pink)
+    a
+      +topic-list-tab-a($b-l-pink)
+  .topic-rank
+    +topic-list-tab-li($b-blue)
+    a
+      +topic-list-tab-a($b-l-blue)
 
 .topic-list
   margin-top: 24px
-  ul
-    li
-      display: flex
-      list-style: none
 
-li.topic-list-content
+.topic-list-content
+  display: flex
+  list-style: none
   padding-top: 20px
   &:first-child
     padding-top: 0
@@ -47,12 +44,15 @@ li.topic-list-content
 
 .topic-list-body
   margin: 0 20px
+  width: 461px
 
 .topic-title
   font-size: 1.6rem
 
 .topic-body
   display: block
+  margin-top: 6px
+  line-height: 1.6
 
 .topic-tag-lists
   border-top: 1px dotted $b-gray

@@ -18,6 +18,11 @@ ja:
         password: パスワード
         password_confirmation: パスワード確認
 
+      love:
+        body: 本文
+        category_id: カテゴリー名
+        title: タイトル
+
   date:
     abbr_day_names:
     - 日
@@ -230,3 +235,4 @@ ja:
   login_was_successfully_created: ログインに成功しました
   login_was_failed: ユーザーIDかパスワードが違います
   login_was_successfully_deleted: ログアウトしました
+  love_was_successfully_created: 投稿ありがとうございます

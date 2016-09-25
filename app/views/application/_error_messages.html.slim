@@ -1,0 +1,6 @@
+- if object.errors.any?
+  .c-error_explanation
+    h2 = "#{object.errors.count} つの入力エラーがあります。"
+    ul.c-flash-message__messages
+      - object.errors.full_messages.each do |message|
+        li.c-flash-message__message = message

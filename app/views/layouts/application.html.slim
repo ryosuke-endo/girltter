@@ -8,6 +8,8 @@ html
     = csrf_meta_tags
   body
     = render "header"
+    = render "global_nav"
+    = yield :sub_nav
     .l__content
       .l__main
         = yield
