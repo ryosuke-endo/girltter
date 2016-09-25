@@ -7,12 +7,12 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = render "header"
-    = render "global_nav"
+    = render "application/common/header"
+    = render "application/common/global_nav"
     = yield :sub_nav
     .l__content
       .l__main
         = yield
       .l__side
-        = render "side_column"
-    = render "footer"
+        = render "application/common/side_column"
+    = render "application/common/footer"

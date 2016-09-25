@@ -7,9 +7,9 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = render "header"
-    = render "global_nav"
+    = render "application/common/header"
+    = render "application/common/global_nav"
     = yield :sub_nav
     .l__content
       = yield
-    = render "footer"
+    = render "application/common/footer"
