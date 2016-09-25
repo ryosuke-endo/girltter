@@ -7,12 +7,7 @@
       | 質問をする
 
   = form_for @love do |f|
-    - if @love.errors.any?
-      .c-error_explanation
-        h2 = "#{@love.errors.count} つの入力エラーがあります。"
-        ul.c-flash-message__messages
-          - @love.errors.full_messages.each do |message|
-            li.c-flash-message__message = message
+    = render "error_messages", object: @love
 
     .c-container
       = f.label :category_id, class: "c-form__select-label"

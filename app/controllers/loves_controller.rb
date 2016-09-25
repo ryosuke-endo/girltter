@@ -1,13 +1,13 @@
 class LovesController < ApplicationController
   skip_before_action :require_login, only: %i(index show)
-  before_action :set_categories, only: %i(index new)
+  before_action :set_categories, only: %i(index show new)
+  before_action :set_love, only: %i(show edit update destroy)
   before_action :set_loves, only: :index
 
   def index
   end
 
   def show
-
   end
 
   def new
@@ -27,6 +27,10 @@ class LovesController < ApplicationController
 
   def set_categories
     @categories = LoveCategory.all
+  end
+
+  def set_love
+    @love = Love.find(params[:id])
   end
 
   def set_loves
