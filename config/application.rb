@@ -26,7 +26,11 @@ module Mrennai
     config.sass.preferred_syntax :sass
     config.generators do |g|
       g.template_engine :slim
-      g.test_framework :rspec, view_specs: false, helper_space: false
+      g.test_framework :rspec,
+                       fixtures: true,
+                       view_specs: false,
+                       helper_space: false
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
       g.stylesheets false
       g.javascripts false
       g.helper false
