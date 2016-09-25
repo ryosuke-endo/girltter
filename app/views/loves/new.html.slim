@@ -16,7 +16,7 @@
 
     .c-container
       = f.label :category_id, class: "c-form__select-label"
-      = f.select :category_id, @love_categories, {}, class: "c-form__select"
+      = f.collection_select :category_id, @categories, :id, :name,  {}, class: "c-form__select"
     .c-container
       = f.label :title, class: "c-form__label--inline"
       = f.text_field :title, class: "c-form__input c-form-w-100 ", placeholder: 'タイトルを書いてください'
