@@ -8,13 +8,12 @@
     | 恋愛に関する相談を行う場所です。恋愛についての相談を男性・女性問わず相談してみましょう。みんなに聞いて回答を得ることで、恋愛が一歩進みます。
 
 .c-container.text-center
-  = link_to "質問をする", new_love_path, class: "c-btn c-btn--pink c-btn--w-50 c-btn--h-large"
+  = link_to "質問をする", new_love_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
 
 .l__main-border.l__main-padding
-  .c-container
-    ul.topic-list-tab
-      li.topic-new = link_to "新着トピック", '#'
-      li.topic-rank = link_to "今日の人気トピック", '#'
+  .c-container.text-center
+    = link_to "新着トピック", "#", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+    = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
 
   = render "topic_list", threads: @loves
 
