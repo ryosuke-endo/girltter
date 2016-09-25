@@ -11,6 +11,8 @@ class LovesController < ApplicationController
   end
 
   def new
+    @love_categories = LoveCategory.all.pluck(:name, :id)
+    @love = Love.new
   end
 
   private
