@@ -38,8 +38,8 @@ class LovesController < ApplicationController
   end
 
   def love_params
-    params.require(:love).permit(:category_id,
-                                 :body,
+    params.require(:love).permit(:body,
+                                 :category_id,
                                  :title)
   end
 end

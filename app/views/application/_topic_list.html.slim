@@ -6,7 +6,7 @@ ul
       .topic-list-box
         .topic-list-body
           span.category-list = thread.category.name
-          span.topic-title = thread.title
+          span.topic-title = link_to thread.title, thread
           span.topic-body = simple_format(thread.short_body)
         ul.topic-tag-lists
           li.topic-tag-list
