@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   ALPHANUMERIC_REG = /\A[a-z\d\_\-]+\z/i
   authenticates_with_sorcery!
   before_save :normalize_value
+  has_many :loves, dependent: :destroy
 
   validates :password, confirmation: true,
                        format: { with: ALPHANUMERIC_REG,

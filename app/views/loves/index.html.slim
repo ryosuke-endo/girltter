@@ -12,7 +12,7 @@
 
 .l__main-border.l__main-padding
   .c-container.text-center
-    = link_to "新着トピック", "#", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+    = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
     = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
 
   = render "topic_list", threads: @loves
