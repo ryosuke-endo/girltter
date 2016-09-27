@@ -10,8 +10,8 @@
         .c-grid__content.c-container--sm.c-border--bottom-dotted
           .c--label = @love.category.name
           .c-grid__title = link_to @love.title, @love
-          .c-grid-lead = simple_format(@love.short_body)
-        ul.c-tags
+          .c-grid-lead = simple_format(@love.body)
+        ul.c-tags.c-container--sm
           li.c-tag
             i.fa.fa-tag.icon-c-pink
             span.c-tag--name
@@ -25,9 +25,17 @@
             span.c-tag--name
             | 浮気
         ul.p-post-information
+          - if current_user == @love.user
+            ul.p-post-information__edit
+              li
+                i.fa.fa-trash-o.icon-c-d-gray
+              li.c-frame__icon
+                i.fa.fa-pencil.icon-c-d-gray
+                .c-icon__value
+                  = link_to "編集", edit_love_path(@love)
           li
             = @love.user.login
           li
             i.fa.fa-comment.icon-c-pink
-            span.p-post-information__comment
+            .c-icon__value
               | 2
