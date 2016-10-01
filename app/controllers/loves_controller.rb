@@ -23,6 +23,9 @@ class LovesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def set_categories

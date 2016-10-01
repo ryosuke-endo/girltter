@@ -1,0 +1,29 @@
+- content_for :sub_nav do
+  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
+
+.c-frame.c-frame--gray
+  .c-heading--page.c-container
+    h1
+      | 補足説明をする
+
+  = render "error_messages", object: @supplemental
+
+  .c-container
+    p
+      | カテゴリー名
+    = @love.category.name
+  .c-container
+    p
+      | タイトル
+    = @love.title
+  .c-container
+    p
+      | 本文
+    = simple_format(@love.body)
+
+  = form_for([@love, @supplemental]) do |f|
+    .c-container
+      = f.label :body, class: "c-form__label--inline"
+      = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100", placeholder: '補足説明を入力してください'
+    .text-center
+      = f.submit "補足説明を投稿する", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { disable_with: t("sending") }

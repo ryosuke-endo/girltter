@@ -1,30 +1,30 @@
 ul
   - threads.each do |thread|
-    li.topic-list-content
-      .topic-picture
+    li.c-container.c-flex
+      .c-main-grid__img--xs
         = image_tag('woman-face.png')
-      .topic-list-box
-        .topic-list-body
-          span.category-list = thread.category.name
-          span.topic-title = link_to thread.title, thread
-          span.topic-body = simple_format(thread.short_body)
-        ul.topic-tag-lists
-          li.topic-tag-list
+      .c-frame.c-frame--gray.c-main-grid
+        .c-grid__content.c-container--sm.c-border--bottom-dotted
+          .c--label = thread.category.name
+          .c-grid__title = link_to thread.title, thread
+          .c-grid-lead = simple_format(thread.short_body)
+        ul.c-tags.c-container--sm
+          li.c-tag
             i.fa.fa-tag.icon-c-pink
-            span.topic-tag-name
+            span.c-tag--name
               | 恋愛
-          li.topic-tag-list
+          li.c-tag
             i.fa.fa-tag.icon-c-pink
-            span.topic-tag-name
+            span.c-tag--name
             | イライラ
-          li.topic-tag-list
+          li.c-tag
             i.fa.fa-tag.icon-c-pink
-            span.topic-tag-name
+            span.c-tag--name
             | 浮気
-        ul.topic-information
-          li.topic-owner
+        ul.p-post-information
+          li
             = thread.user.login
-          li.topic-comment
+          li
             i.fa.fa-comment.icon-c-pink
-            span.topic-comment-count
+            span.p-post-information__comment
               | 2
