@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'top#index'
 
-  resources :loves
+  resources :loves do
+    scope module: :loves do
+      resources :supplementals, only: %i(new create destroy)
+    end
+  end
   resources :user_sessions
   resources :users
 

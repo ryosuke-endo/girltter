@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :supplemental do
-    body "MyText"
+    sequence(:body) { |n| "MyText_#{n}"}
     supplementable_id 1
-    supplementable_type "MyString"
+    supplementable_type "Love"
   end
 end
