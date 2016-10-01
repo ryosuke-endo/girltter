@@ -2,4 +2,10 @@
   = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
 
 .c-frame.c-frame--gray
-  = render "topic"
+  .c-container.text-center
+    = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+    = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
+
+  = render "topic_list", threads: @loves
+
+= paginate @loves
