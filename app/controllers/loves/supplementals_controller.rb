@@ -9,10 +9,13 @@ class Loves::SupplementalsController < ApplicationController
   def create
     @supplemental = @love.supplementals.build(supplemental_params)
     if @supplemental.save
-      redirect_to @love, notice: t('supplemental')
+      redirect_to @love, notice: t('supplemental_was_successfully_created')
     else
       render :new
     end
+  end
+
+  def destroy
   end
 
   private
