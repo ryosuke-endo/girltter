@@ -6,7 +6,7 @@
   .c-heading--lead = @category.description
 
 .c-container.text-center
-  = link_to "質問をする", new_love_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+  = link_to "質問をする", new_love_path(category_id: params[:id]), class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
 
 .c-frame.c-frame--gray
   .c-container.text-center

@@ -1,8 +1,8 @@
 .l__sub-nav
   .sub-nav
     ul
-      li class=("is-active" if params[:id].blank?)
+      li class=("is-active" unless params[:id].present? || params[:category_id].present?)
         = link_to top_name, top_path
       - categories.each do |category|
-        li class=("is-active" if category.id == params[:id].to_i && category?)
+        li class=("is-active" if (category.id == params[:id].to_i && category?) || (category.id == params[:category_id].to_i) )
           = link_to category.name, category_path(category)
