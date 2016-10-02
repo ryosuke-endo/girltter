@@ -4,3 +4,4 @@ user_1:
   email: mikami@mrennai.com
   crypted_password: '$2a$10$Hse8ifmx9Ci3iu4EEQVaSeqnyqr1W1JC4NVUuREfWEnn0cf1iDpfe'
   salt: 'gSYfBcJBWLemZAKeTkfx'
+  type: Member

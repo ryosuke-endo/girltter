@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002043428) do
+ActiveRecord::Schema.define(version: 20161002055813) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255, null: false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161002043428) do
     t.string   "email",            limit: 255, null: false
     t.string   "crypted_password", limit: 255
     t.string   "salt",             limit: 255
+    t.string   "type",             limit: 255, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "login",            limit: 255, null: false
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161002043428) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
+  add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
   add_foreign_key "loves", "users"
 end
