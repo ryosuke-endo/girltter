@@ -7,6 +7,11 @@
       list-style: none
       width: 100%
       border-right: 1px dotted $b-gray
+      &.is-active
+        a
+          border-bottom: 3px solid $b-pink
+          margin-bottom: -3px
+          color: $b-pink
       a
         color: $b-black
         display: block
@@ -19,4 +24,4 @@
           color: $b-pink
           margin-bottom: -3px
     li:last-child
-      border: none
+      border-right: none

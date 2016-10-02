@@ -1,14 +1,17 @@
 category_1:
   id: 1
   name: 恋愛相談
+  description: 恋愛に関する相談を行う場所です。恋愛についての相談を男性・女性問わず相談してみましょう。みんなに聞いて回答を得ることで、恋愛が一歩進みます。
   type: LoveCategory
 
 category_2:
   id: 2
   name: 男性に相談
+  description: 恋に悩む女性の相談を、男性目線の回答をします。男心の本音を掴み、心理を把握しましょう。
   type: LoveCategory
 
 category_3:
   id: 3
   name: 女性に相談
+  description: 男性にはわからない、女性の女心を聞いてみましょう。女心のサイン・駆け引きは聞いてみないとわからないことがあります。女心を知り、恋愛上手になりましょう。
   type: LoveCategory
