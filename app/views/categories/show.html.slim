@@ -1,0 +1,19 @@
+- content_for :sub_nav do
+  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
+
+.c-heading--section.c-container
+  h1 = @category.name
+  .c-heading--lead
+    | 恋愛に関する相談を行う場所です。恋愛についての相談を男性・女性問わず相談してみましょう。みんなに聞いて回答を得ることで、恋愛が一歩進みます。
+
+.c-container.text-center
+  = link_to "質問をする", new_love_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+
+.c-frame.c-frame--gray
+  .c-container.text-center
+    = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+    = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
+
+  = render "topic_list", threads: @threads
+
+= paginate @threads

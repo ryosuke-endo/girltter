@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :supplementals, only: %i(new create destroy)
     end
   end
+  resources :categories, only: :show
   resources :user_sessions
   resources :users
 
