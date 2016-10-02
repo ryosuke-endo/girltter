@@ -33,7 +33,8 @@
           - if current_user == @love.user
             ul.p-post-information__edit
               li
-                i.fa.fa-trash-o.icon-c-d-gray
+                = link_to love_path(@love), data: { confirm: "削除してもよろしいですか？" }, method: :delete
+                  i.fa.fa-trash-o.icon-c-d-gray
               li.c-frame__icon
                 i.fa.fa-pencil.icon-c-d-gray
                 .c-icon__value

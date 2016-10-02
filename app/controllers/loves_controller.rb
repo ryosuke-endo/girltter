@@ -26,6 +26,11 @@ class LovesController < ApplicationController
   def edit
   end
 
+  def destroy
+    @love.destroy
+    redirect_to loves_path, notice: t('love_was_successfully_deleted')
+  end
+
   private
 
   def set_categories
