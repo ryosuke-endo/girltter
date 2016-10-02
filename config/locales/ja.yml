@@ -237,6 +237,7 @@ ja:
   login_was_failed: ユーザーIDかパスワードが違います
   login_was_successfully_deleted: ログアウトしました
   love_was_successfully_created: 投稿ありがとうございます
+  love_was_successfully_deleted: 投稿を削除しました
   supplemental_was_successfully_created: 補足説明を投稿しました
   user_was_successfully_created: 会員登録ありがとうございます
   user_was_successfully_updated: プロフィールを更新しました
