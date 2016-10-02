@@ -17,6 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_decorator'
 gem 'kaminari'
+gem 'acts-as-taggable-on'
 gem 'sorcery'
 gem 'simple_email_validation'
 gem 'mysql2'
