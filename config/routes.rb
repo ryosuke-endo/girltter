@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :categories, only: :show
   resources :user_sessions
   resources :members
+  resources :admin, only: :index
 
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout

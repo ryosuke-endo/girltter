@@ -1,7 +1,15 @@
-user_1:
+member_1:
   id: 1
   login: mikami
   email: mikami@mrennai.com
   crypted_password: '$2a$10$Hse8ifmx9Ci3iu4EEQVaSeqnyqr1W1JC4NVUuREfWEnn0cf1iDpfe'
   salt: 'gSYfBcJBWLemZAKeTkfx'
-  type: Member
+  type: "Member"
+
+member_2:
+  id: 2
+  login: ayu
+  email: ayu@mrennai.com
+  crypted_password: '$2a$10$Hse8ifmx9Ci3iu4EEQVaSeqnyqr1W1JC4NVUuREfWEnn0cf1iDpfe'
+  salt: 'gSYfBcJBWLemZAKeTkfx'
+  type: "Member"
