@@ -1,38 +1,38 @@
 require "rails_helper"
 
-RSpec.describe UsersController, type: :routing do
+RSpec.describe Member, type: :routing do
   describe "routing" do
 
     it "routes to #index" do
-      expect(:get => "/users").to route_to("users#index")
+      expect(:get => "/members").to route_to("members#index")
     end
 
     it "routes to #new" do
-      expect(:get => "/users/new").to route_to("users#new")
+      expect(:get => "/members/new").to route_to("members#new")
     end
 
     it "routes to #show" do
-      expect(:get => "/users/1").to route_to("users#show", :id => "1")
+      expect(:get => "/members/1").to route_to("members#show", :id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/users/1/edit").to route_to("users#edit", :id => "1")
+      expect(:get => "/members/1/edit").to route_to("members#edit", :id => "1")
     end
 
     it "routes to #create" do
-      expect(:post => "/users").to route_to("users#create")
+      expect(:post => "/members").to route_to("members#create")
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/users/1").to route_to("users#update", :id => "1")
+      expect(:put => "/members/1").to route_to("members#update", :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/users/1").to route_to("users#update", :id => "1")
+      expect(:patch => "/members/1").to route_to("members#update", :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/users/1").to route_to("users#destroy", :id => "1")
+      expect(:delete => "/members/1").to route_to("members#destroy", :id => "1")
     end
 
   end

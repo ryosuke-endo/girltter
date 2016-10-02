@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, notice: I18n.t('login_was_successfully_deleted'))
+    redirect_to root_url, notice: I18n.t('login_was_successfully_deleted')
   end
 end
