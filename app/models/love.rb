@@ -1,4 +1,5 @@
 class Love < ActiveRecord::Base
+  acts_as_taggable
   belongs_to :user
   belongs_to :category
   has_many :supplementals, as: :supplementable, dependent: :destroy
