@@ -7,4 +7,4 @@ end
 
 import_fixture(:categories)
 import_fixture(:loves)
-import_fixture(:users)
+import_fixture(:members)

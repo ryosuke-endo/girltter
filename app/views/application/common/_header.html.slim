@@ -9,8 +9,8 @@
     .header__right
       ul
         - if current_user
-          li = link_to "マイページ", edit_user_path(current_user)
+          li = link_to "マイページ", edit_member_path(current_user)
           li = link_to "ログアウト", :logout, method: :post
         - else
           li = link_to "ログイン", :login
-          li = link_to "会員登録", new_user_path
+          li = link_to "会員登録", new_member_path

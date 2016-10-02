@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :categories, only: :show
   resources :user_sessions
-  resources :users
+  resources :members
 
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
