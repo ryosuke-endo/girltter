@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user do
+  factory :member do
     sequence :login do |n|
       "mrennai_#{n}"
     end
@@ -8,5 +8,6 @@ FactoryGirl.define do
     password_confirmation 'password'
     crypted_password '5f4dcc3b5aa765d61d8327deb882cf99'
     salt "6RNPcfPsyUUe5QkEQfp8"
+    type Member
   end
 end

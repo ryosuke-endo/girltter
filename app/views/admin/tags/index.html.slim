@@ -1,0 +1,9 @@
+ul
+  li.c-container.c-flex
+    .c-frame.c-frame--gray.c-main-grid
+      .c-grid__content.c-container--sm.c-border--bottom-dotted
+        ul.c-tags.c-container--sm
+          - @tags.each do |tag|
+            li.c-tag
+              i.fa.fa-tag.icon-c-pink
+              span.c-tag--name = tag.name

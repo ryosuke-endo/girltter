@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password])
     if user
-      redirect_back_or_to(:users, notice: I18n.t('login_was_successfully_created'))
+      redirect_back_or_to(:members, notice: I18n.t('login_was_successfully_created'))
     else
       flash.now[:alert] = I18n.t('login_was_failed')
       render 'new'
@@ -18,6 +18,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, notice: I18n.t('login_was_successfully_deleted'))
+    redirect_to root_url, notice: I18n.t('login_was_successfully_deleted')
   end
 end

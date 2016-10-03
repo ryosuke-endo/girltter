@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Supplemental, type: :model do
   describe 'validation' do
-    describe 'Userが投稿する件数' do
-      let!(:love) { create(:love, :with_user) }
+    describe 'Memberが投稿する件数' do
+      let!(:love) { create(:love, :with_member) }
       let!(:supplemental) { create(:supplemental) }
       let!(:other_supplemental) { create(:supplemental) }
 

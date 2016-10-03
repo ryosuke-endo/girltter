@@ -17,20 +17,12 @@
             - @love.supplementals.each do |supplemental|
               .c-grid-lead = simple_format(supplemental.body)
         ul.c-tags.c-container--sm
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-              | 恋愛
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-            | イライラ
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-            | 浮気
+          - @love.tag_list.each do |tag|
+            li.c-tag
+              i.fa.fa-tag.icon-c-pink
+              span.c-tag--name = tag
         ul.p-post-information
-          - if current_user == @love.user
+          - if current_user == @love.member
             ul.p-post-information__edit
               li
                 = link_to love_path(@love), data: { confirm: "削除してもよろしいですか？" }, method: :delete
@@ -40,7 +32,7 @@
                 .c-icon__value
                   = link_to "質問に追記", new_love_supplemental_path(@love)
           li
-            = @love.user.login
+            = @love.member.login
           li
             i.fa.fa-comment.icon-c-pink
             .c-icon__value

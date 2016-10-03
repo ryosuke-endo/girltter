@@ -1,0 +1,21 @@
+h1 Listing members
+
+table
+  thead
+    tr
+      th Email
+      th
+      th
+      th
+
+  tbody
+    - @members.each do |member|
+      tr
+        td = member.email
+        td = link_to 'Show', member
+        td = link_to 'Edit', edit_member_path(member)
+        td = link_to 'Destroy', member, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New member', new_member_path
