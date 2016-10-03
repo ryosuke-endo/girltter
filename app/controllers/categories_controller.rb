@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
     @threads =
       case @category
       when LoveCategory
-        @category.loves.order(created_at: :desc).page(params[:page])
+        @category.loves.includes(:category, :taggings, :member)
+          .order(created_at: :desc).page(params[:page])
       end
   end
 end

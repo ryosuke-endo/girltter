@@ -17,18 +17,10 @@
             - @love.supplementals.each do |supplemental|
               .c-grid-lead = simple_format(supplemental.body)
         ul.c-tags.c-container--sm
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-              | 恋愛
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-            | イライラ
-          li.c-tag
-            i.fa.fa-tag.icon-c-pink
-            span.c-tag--name
-            | 浮気
+          - @love.tag_list.each do |tag|
+            li.c-tag
+              i.fa.fa-tag.icon-c-pink
+              span.c-tag--name = tag
         ul.p-post-information
           - if current_user == @love.member
             ul.p-post-information__edit
