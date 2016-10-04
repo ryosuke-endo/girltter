@@ -3,7 +3,7 @@ class CreateLoves < ActiveRecord::Migration
     create_table :loves do |t|
       t.string :title, null: false
       t.text :body, null: false
-      t.integer :user, index: true, null: false
+      t.integer :member_id, index: true, null: false
 
       t.timestamps null: false
     end

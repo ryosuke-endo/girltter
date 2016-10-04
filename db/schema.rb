@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161002063357) do
+ActiveRecord::Schema.define(version: 20161002055813) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255, null: false
@@ -87,5 +87,4 @@ ActiveRecord::Schema.define(version: 20161002063357) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
   add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
-  add_foreign_key "loves", "users", column: "member_id"
 end
