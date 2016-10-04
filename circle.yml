@@ -3,3 +3,7 @@ machine:
     Asia/Tokyo
   ruby:
     version: 2.3.1
+
+dependencies:
+  override:
+    - mv config/secrets.ci.yml config/secrets.yml
