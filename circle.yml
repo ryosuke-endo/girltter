@@ -6,3 +6,10 @@ machine:
 dependencies:
   pre:
     - mv config/secrets.ci.yml config/secrets.yml
+
+deployment:
+  deploy:
+    branch: master
+    commands:
+      - bundle exec cap production deploy:
+          timeout: 1200
