@@ -6,6 +6,6 @@ def import_fixture(fixture)
 end
 
 import_fixture(:categories)
-import_fixture(:loves)
 import_fixture(:members)
 import_fixture(:tags)
+import_fixture(:loves)

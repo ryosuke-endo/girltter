@@ -1,0 +1,8 @@
+machine:
+  timezone: Asia/Tokyo
+  ruby:
+    version: 2.3.1
+
+dependencies:
+  pre:
+    - mv config/secrets.ci.yml config/secrets.yml
