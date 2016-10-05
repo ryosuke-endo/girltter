@@ -11,5 +11,6 @@ deployment:
   deploy:
     branch: master
     commands:
+      - sh ./script/production_deploy.sh
       - bundle exec cap production deploy:
           timeout: 1200
