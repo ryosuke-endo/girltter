@@ -1,2 +1,7 @@
-sed -i -e "14i User $USER" $HOME/.ssh/config
-sed -i -e "15i Port $PORT" $HOME/.ssh/config
+cat <<EOF >> $HOME/.ssh/config
+Host sakura
+    HostName       $IP
+    IdentityFile   ~/.ssh/id_$IP
+    User           id_$USER
+    Port           $PORT
+EOF
