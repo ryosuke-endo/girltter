@@ -9,3 +9,5 @@ import_fixture(:categories)
 import_fixture(:members)
 import_fixture(:tags)
 import_fixture(:loves)
+
+Love.update_tags!

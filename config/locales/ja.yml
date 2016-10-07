@@ -26,6 +26,9 @@ ja:
       supplemental:
         body: 補足説明
 
+      acts_as_taggable_on/tag:
+        name: タグ名
+
   date:
     abbr_day_names:
     - 日
@@ -238,7 +241,9 @@ ja:
   login_was_successfully_deleted: ログアウトしました
   love_was_successfully_created: 投稿ありがとうございます
   love_was_successfully_deleted: 投稿を削除しました
-  supplemental_was_successfully_created: 補足説明を投稿しました
   member_was_successfully_created: 会員登録ありがとうございます
   member_was_successfully_updated: プロフィールを更新しました
   member_was_successfully_deleted: 会員を削除しました
+  supplemental_was_successfully_created: 補足説明を投稿しました
+  tag_was_successsfully_deleted: タグを削除しました
+  admin_tags_associate_with_models_was_successfully_created: タグをモデルに関連づけしました

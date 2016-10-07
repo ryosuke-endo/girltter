@@ -1,0 +1,13 @@
+- content_for :sub_nav do
+  = render "sub_nav"
+
+= form_tag admin_tags_path
+  - if @tag.errors.present?
+    = render "error_messages", object: @tag
+
+  .c-container
+    = label_tag :name, '', class: "c-form__label--inline"
+    = text_field_tag :name, '', class: "c-form__input c-form-w-100 ", placeholder: 'タグ名を入力してください'
+  .c-btn__container
+    .text-center
+      = submit_tag "タグを登録する", class: "c-btn c-btn--md c-btn--pink", data: { disable_with: t("sending") }
