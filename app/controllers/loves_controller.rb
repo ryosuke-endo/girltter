@@ -3,6 +3,7 @@ class LovesController < ApplicationController
   before_action :set_categories, only: %i(index show new)
   before_action :set_love, only: %i(show edit update destroy)
   before_action :set_loves, only: :index
+  before_action :set_tag_ranking
 
   def index
   end
@@ -44,6 +45,12 @@ class LovesController < ApplicationController
   def set_loves
     @loves = Love.includes(:category, :taggings, :member)
       .order(created_at: :desc).page(params[:page])
+  end
+
+  def set_tag_ranking
+    ranking_ids = ActsAsTaggableOn::Tagging.where(taggable_type: "Love").
+      group(:tag_id).order('count(tag_id) desc').limit(20).pluck(:tag_id)
+    @tag_ranking = ActsAsTaggableOn::Tag.find(ranking_ids)
   end
 
   def love_params
