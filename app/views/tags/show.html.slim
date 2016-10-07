@@ -1,0 +1,7 @@
+.c-heading--section.c-container
+  h1 = "「#{@tag.name}」の検索結果"
+
+.c-frame.c-frame--gray
+  .c-container.text-center
+
+  = render "topic_list", threads: @threads.first
