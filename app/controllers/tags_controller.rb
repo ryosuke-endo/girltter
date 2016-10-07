@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  skip_before_action :require_login
   before_action :set_tag
 
   def show
