@@ -19,7 +19,6 @@ class TopController < ApplicationController
   end
 
   def set_tag_ranking
-    @tag_ranking = ActsAsTaggableOn::Tag.select(:name)
-      .order(taggings_count: :desc).limit(20)
+    @tag_ranking = ActsAsTaggableOn::Tag.most_used
   end
 end

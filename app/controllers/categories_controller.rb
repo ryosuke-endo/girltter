@@ -15,8 +15,7 @@ class CategoriesController < ApplicationController
   private
 
   def set_tag_ranking
-    ranking_ids = ActsAsTaggableOn::Tagging.where(taggable_type: "Love").
-      group(:tag_id).order('count(tag_id) desc').limit(20).pluck(:tag_id)
+    ranking_ids = Tagging.ranking_ids("Love", 20)
     @tag_ranking = ActsAsTaggableOn::Tag.find(ranking_ids)
   end
 end
