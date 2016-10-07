@@ -1,5 +1,7 @@
 - content_for :sub_nav do
   = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
+- content_for :tag_ranking do
+  = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 
 .c-frame.c-frame--gray
   ul
