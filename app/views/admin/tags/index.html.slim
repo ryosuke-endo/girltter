@@ -1,9 +1,20 @@
-ul
-  li.c-container.c-flex
-    .c-frame.c-frame--gray.c-main-grid
-      .c-grid__content.c-container--sm.c-border--bottom-dotted
-        ul.c-tags.c-container--sm
-          - @tags.each do |tag|
-            li.c-tag
-              i.fa.fa-tag.icon-c-pink
-              span.c-tag--name = tag.name
+- content_for :sub_nav do
+  = render "sub_nav"
+
+table.c-table.c-table--border
+  thead.c-table__thead
+    tr.c-table__tr
+      th.c-table__th.c-table__th--w40p
+        | タグ名
+      th.c-table__th
+        | 使用回数
+      th.c-table__th
+        | 編集
+  tbody
+    - @tags.each do |tag|
+      tr.c-table__tr
+        td.c-table__td.text--c = tag.name
+        td.c-table__td.text--c = tag.taggings_count
+        td.c-table__td.text--c
+          | 編集
+

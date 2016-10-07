@@ -4,6 +4,16 @@ class Admin::TagsController < AdminController
   def index
   end
 
+  def show
+  end
+
+  def new
+    @tag = ActsAsTaggableOn::Tag.new
+  end
+
+  def create
+  end
+
   private
 
   def set_tags
