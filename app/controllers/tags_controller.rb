@@ -10,5 +10,6 @@ class TagsController < ApplicationController
         @threads << Love.tagged_with(@tag.name)
       end
     end
+    @threads.flatten!
   end
 end
