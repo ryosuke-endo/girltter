@@ -18,6 +18,6 @@ table.c-table.c-table--border
       tr.c-table__tr
         td.c-table__td.text--c = tag.name
         td.c-table__td.text--c = tag.taggings_count
-        td.c-table__td.text--c
-          | 編集
+        td.c-table__td.text--c = link_to "削除", admin_tag_path(tag), data: { confirm: "削除してもよろしいですか？" }, method: :delete
 
+= paginate @tags

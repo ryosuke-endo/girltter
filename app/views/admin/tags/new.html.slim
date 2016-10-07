@@ -1,0 +1,10 @@
+= form_tag admin_tags_path
+  - if @tag.errors.present?
+    = render "error_messages", object: @tag
+
+  .c-container
+    = label_tag :name, '', class: "c-form__label--inline"
+    = text_field_tag :name, '', class: "c-form__input c-form-w-100 ", placeholder: 'タイトルを書いてください'
+  .c-btn__container
+    .text-center
+      = submit_tag t("login"), class: "c-btn c-btn--md c-btn--pink", data: { disable_with: t("sending") }
