@@ -1,6 +1,9 @@
 - content_for :sub_nav do
   = render "sub_nav"
 
+ul
+  li = link_to "新規作成", new_admin_tag_path
+
 table.c-table.c-table--border
   thead.c-table__thead
     tr.c-table__tr
