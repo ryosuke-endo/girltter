@@ -19,5 +19,15 @@ RSpec.describe Love, type: :model do
       love.save
       expect(love.tag_list).to include(tag.name)
     end
+
+    context 'update_tags' do
+      it '新しく追加される' do
+        love.save
+        tag.name = 'bar'
+        tag.save
+        Love.update_tags!
+        expect(love.tag_list).to include(tag.name)
+      end
+    end
   end
 end

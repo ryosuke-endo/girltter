@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :love do
-    title 'foo'
-    body 'bar'
+    sequence :title do |n|
+      "foo_#{n}"
+    end
+    sequence :body do |n|
+      "bar_#{n}"
+    end
     category_id 1
     member_id 1
 
