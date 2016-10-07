@@ -246,3 +246,4 @@ ja:
   member_was_successfully_deleted: 会員を削除しました
   supplemental_was_successfully_created: 補足説明を投稿しました
   tag_was_successsfully_deleted: タグを削除しました
+  admin_tags_associate_with_models_was_successfully_created: タグをモデルに関連づけしました

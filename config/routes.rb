@@ -16,5 +16,8 @@ Rails.application.routes.draw do
   resources :admin, only: :index
   namespace :admin do
     resources :tags
+    namespace :tags do
+      resource :associate_with_model, only: %i(new create)
+    end
   end
 end
