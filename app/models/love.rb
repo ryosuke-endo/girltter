@@ -17,4 +17,15 @@ class Love < ActiveRecord::Base
       end
     end
   end
+
+  class << self
+    def update_tags!
+      tags = ActsAsTaggableOn::Tag.pluck(:name)
+      tags.each do |tag|
+        if !!(body.match(tag))
+          tag_list << tag
+        end
+      end
+    end
+  end
 end
