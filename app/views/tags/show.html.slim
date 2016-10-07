@@ -1,0 +1,11 @@
+.c-heading--section.c-container
+  .c-container--sm
+    h1 = "「#{@tag.name}」の検索結果"
+  p.text--r = "件数は#{@threads.count}件あります"
+
+.c-frame.c-frame--gray
+  .c-container.text-center
+
+  = render "topic_list", threads: @threads
+
+= paginate @threads

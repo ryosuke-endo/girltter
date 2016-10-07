@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :categories, only: :show
   resources :user_sessions
   resources :members
+  resources :tags, only: :show
 
   resources :admin, only: :index
   namespace :admin do

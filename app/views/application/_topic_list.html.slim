@@ -9,10 +9,10 @@ ul
           .c-grid__title = link_to thread.title, thread
           .c-grid-lead = simple_format(thread.short_body)
         ul.c-tags.c-container--sm
-          - thread.tag_list.each do |tag|
+          - thread.tags.each do |tag|
             li.c-tag
               i.fa.fa-tag.icon-c-pink
-              span.c-tag--name = tag
+              span.c-tag--name = link_to tag.name, tag_path(tag)
         ul.p-post-information
           li
             = thread.member.login
