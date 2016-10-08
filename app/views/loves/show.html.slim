@@ -40,8 +40,5 @@
             .c-icon__value
               | 2
 
-  - unless current_user
-    = render "application/common/attension_comment"
-
   = render "comments/form", comment: @comment
-  = render "comments/comment", comments: @comments
+  = render "comments/comment", comments: @comments, thread: @love
