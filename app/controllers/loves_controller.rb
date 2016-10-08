@@ -9,7 +9,7 @@ class LovesController < ApplicationController
   end
 
   def show
-    @comment = @love.comments.new
+    @comment = @love.comments.build
   end
 
   def new
@@ -41,6 +41,7 @@ class LovesController < ApplicationController
 
   def set_love
     @love = Love.find(params[:id])
+    @comments = @love.comments.includes(:member)
   end
 
   def set_loves
