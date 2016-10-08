@@ -39,3 +39,6 @@
             i.fa.fa-comment.icon-c-pink
             .c-icon__value
               | 2
+
+  - unless current_user
+    = render "application/common/attension_comment"
