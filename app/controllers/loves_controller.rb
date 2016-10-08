@@ -9,6 +9,7 @@ class LovesController < ApplicationController
   end
 
   def show
+    @comment = @love.comments.new
   end
 
   def new

@@ -1,0 +1,12 @@
+= form_for comment do |f|
+  = render "error_messages", object: comment
+
+  ul
+    li.c-container.c-flex
+      .c-main-grid__img--xs
+        = image_tag('woman-face.png')
+      .c-main-grid
+        .c-grid__content.c-container--sm
+           = f.text_area :body, class: "p-form__text_area-comment c-form__text_area-h-200 c-form-w-100", placeholder: 'アドバイスを書いてください'
+  .text-center
+    = f.submit "コメントを投稿する", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { disable_with: t("sending") }
