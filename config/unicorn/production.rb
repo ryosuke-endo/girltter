@@ -10,7 +10,7 @@ listen "/tmp/unicorn-#{app_name}.sock", backlog: 64
 pid "#{app_path}/current/tmp/pids/unicorn.pid"
 
 # ワーカーの数を指定する
-worker_processes 2
+worker_processes 4
 
 # リクエストのタイムアウトの秒数を指定する
 timeout 15
