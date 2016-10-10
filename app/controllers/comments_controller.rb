@@ -2,7 +2,12 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      content = render_to_string partial: 'comment',
+                                 locals: { comment: @comment,
+                                           thread: @comment.commentable }
+      render text: content
     else
+
     end
   end
 
