@@ -1,7 +1,7 @@
-ul
+ul data-comments=true
   - comments.each_with_index do |comment, index|
     - if thread.member == comment.member
-      li class="c-container c-flex comment-no-#{index}"
+      li class="c-container c-flex" data-comment-no="#{index + 1}"
         .c-frame__comment.c-frame--gray.c-main-grid
           .c-main-grid
             .c-grid__content.c-container--sm
@@ -10,7 +10,7 @@ ul
           = image_tag('woman-face.png')
           = comment.member.login
     - else
-      li class="c-container c-flex comment-no-#{index}"
+      li class="c-container c-flex" data-comment-no="#{index + 1}"
         .c-main-grid__img--xs
           = image_tag('woman-face.png')
         .c-frame__comment.c-frame--gray.c-main-grid
