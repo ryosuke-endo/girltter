@@ -38,7 +38,7 @@
           li
             i.fa.fa-comment.icon-c-pink
             .c-icon__value
-              | 2
+              = @love.comments.count
 
   = render "comments/form", comment: @comment
   = render "comments/comments", comments: @comments, thread: @love

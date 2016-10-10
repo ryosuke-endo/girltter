@@ -22,17 +22,18 @@ document.addEventListener("turbolinks:load", () => {
       });
     }
 
-    static form() {
-      return document.querySelector("[data-form-submit-comment]");
-    }
-
-    static comments() {
-      return document.querySelector("[data-comments]");
-    }
   }
-  Comment.form().addEventListener('click', (event) => {
+  function commentForm() {
+    return document.querySelector("[data-form-submit-comment]");
+  }
+
+  function getComments() {
+    return document.querySelector("[data-comments]");
+  }
+
+  commentForm().addEventListener('click', (event) => {
     event.preventDefault();
-    comment = new Comment(Comment.comments());
+    comment = new Comment(getComments());
     comment.send();
   })
 });
