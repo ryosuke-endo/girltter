@@ -13,11 +13,12 @@
                 data: { 'parsley-trigger' => 'keyup',
                         'parsley-focus' => 'first',
                         'parsley-required' => 'required',
+                        'parsley-required-message' => t('activerecord.models.comment') + t('errors.messages.blank'),
                         'form-text-area-comment' => true }
               = f.hidden_field :commentable_id
               = f.hidden_field :commentable_type
               = f.hidden_field :member_id, value: current_user.id
       .text-center
-        = f.submit "コメントを投稿する", class: "foo c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' true }
+        = f.submit "コメントを投稿する", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
 - else
   = render "application/common/attension_comment"

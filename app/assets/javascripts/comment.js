@@ -41,7 +41,5 @@ commentSubmit().addEventListener('click', (event) => {
     comment = new Comment(getComments());
     event.preventDefault();
     comment.send();
-  }else{
-    console.log('foo');
   }
 });
