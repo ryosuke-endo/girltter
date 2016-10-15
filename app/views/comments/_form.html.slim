@@ -1,6 +1,6 @@
 - if current_user
   .c-container
-    = form_for comment do |f|
+    = form_for comment, html: { "data-parsley-validate" => "" } do |f|
       = render "error_messages", object: comment
       ul
         li.c-container.c-flex
@@ -8,11 +8,16 @@
             = image_tag('woman-face.png')
           .c-main-grid
             .c-grid__content.c-container--sm
-              = f.text_area :body, class: "p-form__text_area-comment c-form__text_area-h-200 c-form-w-100", data: {form_text_area_comment: true}, placeholder: 'アドバイスを書いてください'
+              = f.text_area :body, class: "p-form__text_area-comment c-form__text_area-h-200 c-form-w-100",
+                placeholder: 'アドバイスを書いてください',
+                data: { 'parsley-trigger' => 'keyup',
+                        'parsley-focus' => 'first',
+                        'parsley-required' => 'required',
+                        'form-text-area-comment' => true }
               = f.hidden_field :commentable_id
               = f.hidden_field :commentable_type
               = f.hidden_field :member_id, value: current_user.id
       .text-center
-        = f.submit "コメントを投稿する", class: "foo c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { disable_with: t("sending"), form_submit_comment: true }
+        = f.submit "コメントを投稿する", class: "foo c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' true }
 - else
   = render "application/common/attension_comment"
