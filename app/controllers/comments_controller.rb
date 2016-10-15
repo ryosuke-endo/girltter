@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
                                            thread: @comment.commentable }
       render text: content
     else
-
+      render text: (@comment.errors.full_messages.each { |m| m } )
     end
   end
 
