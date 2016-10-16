@@ -42,6 +42,7 @@ class LovesController < ApplicationController
   def set_love
     @love = Love.find(params[:id])
     @comments = @love.comments.includes(:member)
+      .order(created_at: :desc)
   end
 
   def set_loves

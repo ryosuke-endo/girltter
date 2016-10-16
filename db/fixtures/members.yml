@@ -13,3 +13,11 @@ member_2:
   crypted_password: '$2a$10$7EiNBtxWCrczW5q0LGcht.iT71pWQMey4qNYpU4nPiUNv19Or2G/m'
   salt: "eiAnDs18ybQoh8GgcALn"
   type: "Admin"
+
+member_3:
+  id: 3
+  login: yagami
+  email: yagami@mrennai.com
+  crypted_password: '$2a$10$Hse8ifmx9Ci3iu4EEQVaSeqnyqr1W1JC4NVUuREfWEnn0cf1iDpfe'
+  salt: 'gSYfBcJBWLemZAKeTkfx'
+  type: "Member"
