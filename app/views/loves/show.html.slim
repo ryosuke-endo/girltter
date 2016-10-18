@@ -43,4 +43,5 @@
               = @love.comments.count
 
   = render "comments/form", comment: @comment
-  = render "comments/comments", comments: @comments, thread: @love
+  ul data-comments=true
+    = render "comments/comments", comments: @comments, thread: @love

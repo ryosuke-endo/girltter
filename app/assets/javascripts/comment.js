@@ -1,6 +1,6 @@
 class Comment {
   constructor(comments) {
-    this.target_id = comments.childElementCount;
+    this.target_id = getTargetID(comments)
     this.body = document.querySelector("[data-form-text-area-comment]").value;
     this.commentable_id = document.getElementById('comment_commentable_id').value;
     this.commentable_type = document.getElementById('comment_commentable_type').value;
@@ -17,7 +17,7 @@ class Comment {
                          member_id: this.member_id } }
     }).done((data) => {
       console.log(data);
-      $(`[data-comment-no=${this.target_id}]`).after(data);
+      this.target_id.after(data);
     }).fail((data) => {
       console.log("fail");
     });
@@ -34,6 +34,15 @@ function getComments() {
 
 function getComment() {
   return document.querySelector("[data-form-text-area-comment]").value;
+}
+
+function getTargetID(comments) {
+  if (comments.childElementCount === 0){
+    return $(`[data-comments]`)
+  }else{
+    count = comments.childElementCount
+    return $(`[data-comment-no=${count}]`)
+  }
 }
 
 commentSubmit().addEventListener('click', (event) => {
