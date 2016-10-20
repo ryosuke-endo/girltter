@@ -16,7 +16,6 @@ class Comment {
                          commentable_type: this.commentable_type,
                          member_id: this.member_id } }
     }).done((data) => {
-      console.log(data);
       this.target_id.after(data);
     }).fail((data) => {
       console.log("fail");
