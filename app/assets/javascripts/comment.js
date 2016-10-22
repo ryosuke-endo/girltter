@@ -45,8 +45,7 @@ function getTargetID(comments) {
   if (comments.childElementCount === 0){
     return $(`[data-comments]`)
   }else{
-    count = comments.childElementCount
-    return $(`[data-comment-no=${count}]`)
+    return $(`[data-comments]`).find("li").filter(":last")
   }
 }
 
@@ -54,9 +53,7 @@ function modalOpen(){
   centaringModal();
   $("#c-modal__content").fadeIn("slow");
   setTimeout(() => {
-    $("#c-modal__content").fadeOut("slow",() => {
-      $("#c-modal__content").remove();
-    });
+    $("#c-modal__content").fadeOut("slow");
   },3000);
 }
 

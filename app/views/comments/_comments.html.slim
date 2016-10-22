@@ -1,6 +1,6 @@
-- comments.each_with_index do |comment, index|
+- comments.each do |comment|
   - if thread.member == comment.member
-    li class="c-container" data-comment-no="#{index}"
+    li class="c-container"
       p.c-main-grid__name-r.text--r = comment.member.login
       .c-flex
         .c-frame__comment.c-frame--gray.c-main-grid
@@ -10,7 +10,7 @@
         .c-main-grid__img-r--xs
           = image_tag('woman-face.png')
   - else
-    li class="c-container" data-comment-no="#{index}"
+    li class="c-container"
       p.c-main-grid__name = comment.member.login
       .c-flex
         .c-main-grid__img--xs
