@@ -51,3 +51,34 @@ commentSubmit().addEventListener('click', (event) => {
     comment.send();
   }
 });
+
+$(function(){
+  $("#modal-open").click(function() {
+    $(this).blur();
+    if ($("#modal-overlay")[0]) {
+      return false;
+    }
+    $("body").append('<div id="c-modal__overlay"></div>');
+    $("#c-modal__overlay").fadeIn("slow");
+    centaringModal();
+    $("#c-modal__content").fadeIn("slow");
+    $("#c-modal__overlay,#modal-close").unbind().click(function(){
+      $("#c-modal__content,#c-modal__overlay").fadeOut("slow",function(){
+        $("#c-modal__overlay").remove();
+      });
+    });
+  });
+});
+
+function centaringModal() {
+  let w = $(window).width();
+  let h = $(window).height();
+  // let cw = $("#c-modal__content").outerWidth({margin:true});
+  // let ch = $("#c-modal__content").outerHeight({margin:true});
+  let cw = $("#c-modal__content").outerWidth();
+  let ch = $("#c-modal__content").outerHeight();
+  let pxleft = ((w - cw)/2);
+  let pxtop = ((h - ch)/2);
+  $("#c-modal__content").css({"left": pxleft + "px"});
+  $("#c-modal__content").css({"top": pxleft + "px"});
+}

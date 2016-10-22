@@ -22,3 +22,12 @@
         = f.submit "コメントを投稿する", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
 - else
   = render "application/common/attension_comment"
+
+#c-modal__content style="display:none;"
+  p
+    | コメントを受け付けました。
+  p
+    a id="modal-close" class="button-link" "閉じる"
+
+p#modal-open
+  | クリックするとモーダルウィンドウが開きます
