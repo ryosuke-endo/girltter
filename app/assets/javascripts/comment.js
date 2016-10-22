@@ -54,19 +54,13 @@ commentSubmit().addEventListener('click', (event) => {
 
 $(function(){
   $("#modal-open").click(function() {
-    $(this).blur();
-    if ($("#modal-overlay")[0]) {
-      return false;
-    }
-    $("body").append('<div id="c-modal__overlay"></div>');
-    $("#c-modal__overlay").fadeIn("slow");
     centaringModal();
     $("#c-modal__content").fadeIn("slow");
-    $("#c-modal__overlay,#modal-close").unbind().click(function(){
-      $("#c-modal__content,#c-modal__overlay").fadeOut("slow",function(){
-        $("#c-modal__overlay").remove();
+    setTimeout(function(){
+      $("#c-modal__content").fadeOut("slow",function(){
+        $("#c-modal__content").remove();
       });
-    });
+    },3000);
   });
 });
 
