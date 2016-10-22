@@ -56,11 +56,11 @@ $(function(){
   $("#modal-open").click(function() {
     centaringModal();
     $("#c-modal__content").fadeIn("slow");
-    setTimeout(function(){
-      $("#c-modal__content").fadeOut("slow",function(){
-        $("#c-modal__content").remove();
-      });
-    },3000);
+    // setTimeout(function(){
+    //   $("#c-modal__content").fadeOut("slow",function(){
+    //     $("#c-modal__content").remove();
+    //   });
+    // },3000);
   });
 });
 
