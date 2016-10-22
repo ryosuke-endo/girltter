@@ -27,6 +27,9 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+# Capybara Configuration
+Capybara.javascript_driver = :webkit
+
 RSpec.configure do |config|
   # factory_girls syntax
   config.include FactoryGirl::Syntax::Methods
