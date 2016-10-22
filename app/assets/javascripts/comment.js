@@ -77,8 +77,5 @@ function centaringModal() {
   // let ch = $("#c-modal__content").outerHeight({margin:true});
   let cw = $("#c-modal__content").outerWidth();
   let ch = $("#c-modal__content").outerHeight();
-  let pxleft = ((w - cw)/2);
-  let pxtop = ((h - ch)/2);
-  $("#c-modal__content").css({"left": pxleft + "px"});
-  $("#c-modal__content").css({"top": pxleft + "px"});
+  $("#c-modal__content").css({"left": ((w - cw)/2) + "px","top": ((h - ch)/2)+ "px"});
 }
