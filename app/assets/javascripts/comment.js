@@ -43,7 +43,7 @@ function deleteComment() {
 
 function getTargetID(comments) {
   if (comments.childElementCount === 0){
-    return $(`[data-comments]`)
+    return document.querySelector("[data-comments]");
   }else{
     return $(`[data-comments]`).find("li").filter(":last")
   }
