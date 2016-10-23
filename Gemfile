@@ -28,7 +28,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'faker'
-  gem 'spring'
 end
 
 group :test do
@@ -47,6 +46,8 @@ group :development do
   gem 'view_source_map'
   gem 'bullet'
   gem 'rack-mini-profiler'
+  gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :production do
