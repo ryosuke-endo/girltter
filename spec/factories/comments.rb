@@ -3,6 +3,6 @@ FactoryGirl.define do
     body "MyText"
     member_id 1
     commentable_id 1
-    commentable_type "MyString"
+    commentable_type "Love"
   end
 end
