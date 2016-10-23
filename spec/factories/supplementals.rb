@@ -1,7 +1,9 @@
 FactoryGirl.define do
-  factory :supplemental do
+  factory :supplemental do |supplemental|
     sequence(:body) { |n| "MyText_#{n}"}
-    supplementable_id 1
-    supplementable_type "Love"
+
+    trait :with_love do
+      supplemental.supplementable { |s| s.association(:love) }
+    end
   end
 end
