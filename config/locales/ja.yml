@@ -10,6 +10,7 @@ ja:
 
     models:
       user: ユーザー
+      comment: コメント
 
     attributes:
       user:

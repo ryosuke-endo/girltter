@@ -2,6 +2,8 @@
   = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
+- content_for :javascript do
+  = javascript_include_tag "comment"
 
 .c-frame.c-frame--gray
   ul
@@ -38,4 +40,8 @@
           li
             i.fa.fa-comment.icon-c-pink
             .c-icon__value
-              | 2
+              = @love.comments.count
+
+  = render "comments/form", comment: @comment
+  ul data-comments=true
+    = render "comments/comments", comments: @comments, thread: @love

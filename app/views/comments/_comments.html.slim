@@ -1,0 +1,21 @@
+- comments.each do |comment|
+  - if thread.member == comment.member
+    li class="c-container"
+      p.c-main-grid__name-r.text--r = comment.member.login
+      .c-flex
+        .c-frame__comment.c-frame--gray.c-main-grid
+          .c-main-grid
+            .c-grid__content.c-container--sm
+               = simple_format(comment.body)
+        .c-main-grid__img-r--xs
+          = image_tag('woman-face.png')
+  - else
+    li class="c-container"
+      p.c-main-grid__name = comment.member.login
+      .c-flex
+        .c-main-grid__img--xs
+          = image_tag('woman-face.png')
+        .c-frame__comment.c-frame--gray.c-main-grid
+          .c-main-grid
+            .c-grid__content.c-container--sm
+               = simple_format(comment.body)

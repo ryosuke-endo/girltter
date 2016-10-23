@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :members
   resources :tags, only: :show
+  resources :comments, only: %i(create destroy)
 
   resources :admin, only: :index
   namespace :admin do

@@ -3,6 +3,7 @@ class Love < ActiveRecord::Base
   belongs_to :member
   belongs_to :category
   has_many :supplementals, as: :supplementable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   before_validation :set_tags
   validates :body, presence: true

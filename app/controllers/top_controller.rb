@@ -10,7 +10,7 @@ class TopController < ApplicationController
   private
 
   def set_loves
-    @loves = Love.includes(:category, :taggings, :member)
+    @loves = Love.includes(:category, :tags, :member)
       .order(created_at: :desc).page(params[:page])
   end
 

@@ -9,6 +9,7 @@ class LovesController < ApplicationController
   end
 
   def show
+    @comment = @love.comments.build
   end
 
   def new
@@ -40,10 +41,11 @@ class LovesController < ApplicationController
 
   def set_love
     @love = Love.find(params[:id])
+    @comments = @love.comments.includes(:member)
   end
 
   def set_loves
-    @loves = Love.includes(:category, :taggings, :member)
+    @loves = Love.includes(:category, :tags, :member)
       .order(created_at: :desc).page(params[:page])
   end
 
