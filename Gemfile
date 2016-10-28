@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
-gem 'sprockets'
+gem 'sprockets', git: 'git@github.com:rails/sprockets.git', branch: 'master'
 gem 'babel-transpiler'
 gem 'slim-rails'
 gem 'sass-rails'
