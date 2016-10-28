@@ -2,6 +2,9 @@ require 'nkf'
 class User < ActiveRecord::Base
   ALPHANUMERIC_REG = /\A[a-z\d\_\-]+\z/i
   authenticates_with_sorcery!
+
+  enum sex: %i(unselected male female)
+
   before_save :normalize_value
 
   validates :password, confirmation: true,
