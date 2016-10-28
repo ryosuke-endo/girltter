@@ -2,7 +2,7 @@ ul
   - threads.each do |thread|
     li.c-container.c-flex
       .c-main-grid__img--xs
-        /= image_tag('woman-face.png')
+        = image_tag('woman-face.png')
       .c-frame.c-frame--gray.c-main-grid
         .c-grid__content.c-container--sm.c-border--bottom-dotted
           .c--label = thread.category.name
