@@ -27,6 +27,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+Capybara::SwitchDriver.default = :webkit
 RSpec.configure do |config|
   # factory_girls syntax
   config.include FactoryGirl::Syntax::Methods
@@ -40,11 +41,6 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
-    if ENV['CHROME_DRIVER'].present?
-      Capybara.javascript_driver = :chrome
-    else
-      Capybara.javascript_driver = :webkit
-    end
   end
 
   config.before(:each, type: :feature) do
@@ -90,5 +86,4 @@ RSpec.configure do |config|
 
   # include helper
   config.include LoginSpecHelper
-  config.include CapybaraSpecHelper
 end
