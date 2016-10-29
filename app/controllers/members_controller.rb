@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
-  layout 'one_column'
+  layout 'one_column', only: %i(new edit)
+  layout 'my_page', only: :show
   skip_before_action :require_login, only: %i(new create)
   before_action :set_member, only: %i(show edit update destroy)
 
