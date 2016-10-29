@@ -23,6 +23,7 @@ gem 'simple_email_validation'
 gem 'parsley-rails'
 gem 'mysql2'
 gem 'unicorn'
+gem 'capybara_switch_driver'
 
 group :development, :test do
   gem 'pry-rails'
