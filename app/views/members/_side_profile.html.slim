@@ -1,0 +1,7 @@
+.l__side__container
+  .c-frame.c-frame--pink
+    .c-grid__thumb.text--c
+      = image_tag('woman-face.png')
+    p.text--c = @member.login
+    = link_to "プロフィール編集", edit_member_path(@member),
+      class: "c-btn c-btn--w-100p c-btn--gray text--c text--s-md"
