@@ -38,6 +38,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
   gem 'launchy'
+  gem 'capybara_switch_driver'
 end
 
 group :development do
