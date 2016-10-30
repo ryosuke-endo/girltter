@@ -43,8 +43,8 @@ class MembersController < ApplicationController
 
   private
     def set_member
-      @member = Member.find(params[:id])
       @threads = @member.loves
+      @member = current_user
     end
 
     def member_params
