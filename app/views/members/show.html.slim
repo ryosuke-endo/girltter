@@ -6,10 +6,17 @@ ul.c-tabs
   li.c-tab
     = link_to "共感", "", class: "c-tab__link"
 
-p
-  strong Email:
-  = @member.email
-
-= link_to 'Edit', edit_member_path(@member)
-'|
-= link_to 'Back', members_path
+.c-frame
+  ul
+    - @threads.each do |thread|
+      li.c-container.c-flex
+        .c-frame.c-frame--gray.c-main-grid
+          .c-grid__content.c-container--sm.c-border--bottom-dotted
+            .c--label = thread.category.name
+            .c-grid__title = link_to thread.title, thread
+            .c-grid-lead = simple_format(thread.short_body)
+          ul.c-tags.c-container--sm
+            - thread.tags.each do |tag|
+              li.c-tag
+                i.fa.fa-tag.icon-c-pink
+                span.c-tag--name = link_to tag.name, tag_path(tag)
