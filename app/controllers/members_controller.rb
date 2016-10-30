@@ -43,8 +43,9 @@ class MembersController < ApplicationController
 
   private
     def set_member
-      @threads = @member.loves
       @member = current_user
+      @threads = @member.loves.order(created_at: :desc)
+        .includes(:category, :tags)
     end
 
     def member_params
