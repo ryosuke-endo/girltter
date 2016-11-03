@@ -9,6 +9,10 @@ class MembersController < ApplicationController
   end
 
   def show
+    @threads = @member.loves.order(created_at: :desc)
+      .includes(:category, :tags)
+    answer_ids = @member.comments.answer_ids - @member.loves.pluck(:id)
+    @answers = Love.where(id: answer_ids)
   end
 
   def new
@@ -44,10 +48,6 @@ class MembersController < ApplicationController
   private
     def set_member
       @member = current_user
-      @threads = @member.loves.order(created_at: :desc)
-        .includes(:category, :tags)
-      answer_ids = @member.comments.answer_ids - @member.loves.pluck(:id)
-      @answers = Love.where(id: answer_ids)
     end
 
     def member_params
