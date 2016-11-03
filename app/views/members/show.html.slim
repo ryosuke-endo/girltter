@@ -1,13 +1,13 @@
 ul.c-tabs
   li.c-tab
-    = link_to "質問", "", class: "c-tab__link"
+    = link_to "質問", "#", class: "c-tab__link is-active", data: { tab: "question" }
   li.c-tab
-    = link_to "回答", "", class: "c-tab__link"
+    = link_to "回答", "#", class: "c-tab__link", data: { tab: "answer" }
   li.c-tab
-    = link_to "共感", "", class: "c-tab__link"
+    = link_to "共感", "#", class: "c-tab__link", data: { tab: "sympathy" }
 
 .c-frame
-  ul
+  ul data-home-tab-contents="question"
     - @threads.each do |thread|
       li.c-container.c-flex
         .c-frame.c-frame--gray.c-main-grid
@@ -20,3 +20,8 @@ ul.c-tabs
               li.c-tag
                 i.fa.fa-tag.icon-c-pink
                 span.c-tag--name = link_to tag.name, tag_path(tag)
+  ul data-home-tab-contents="answer" style="display: none;"
+  ul data-home-tab-contents="sympathy" style="display: none;"
+
+javascript:
+  new Tab
