@@ -14,10 +14,12 @@ ja:
 
     attributes:
       user:
-        login: ログインID
         email: メールアドレス
+        login: ログインID
+        name: ユーザー名
         password: パスワード
         password_confirmation: パスワード確認
+        sex: 性別
 
       love:
         body: 本文

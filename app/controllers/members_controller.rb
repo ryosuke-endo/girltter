@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
-  layout 'one_column', only: %i(new edit)
-  layout 'my_page', only: :show
+  layout 'my_page', only: %i(edit show)
   skip_before_action :require_login, only: %i(new create)
   before_action :set_member, only: %i(show edit update destroy)
 
@@ -17,6 +16,7 @@ class MembersController < ApplicationController
 
   def new
     @member = Member.new
+    render layout: 'one_column'
   end
 
   def edit
@@ -34,9 +34,9 @@ class MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to @member, notice: t('member_was_succesfully_updated')
+      redirect_to @member, notice: t('member_was_successfully_updated')
     else
-      render :edit
+      render :edit, layout: 'my_page'
     end
   end
 
@@ -53,7 +53,9 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:email,
                                      :login,
+                                     :name,
                                      :password,
-                                     :password_confirmation)
+                                     :password_confirmation,
+                                     :sex)
     end
 end

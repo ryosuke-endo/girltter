@@ -1,3 +1,7 @@
+- content_for :side_menu do
+  = render "side_profile"
+= render "success_messages"
+
 ul.c-tabs
   li.c-tab
     = link_to "質問", "#", class: "c-tab__link is-active", data: { tab: "question" }

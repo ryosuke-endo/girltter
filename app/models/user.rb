@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   ALPHANUMERIC_REG = /\A[a-z\d\_\-]+\z/i
   authenticates_with_sorcery!
 
-  enum sex: %i(unselected male female)
+  enum sex: %i(unselected man woman)
 
   before_save :normalize_value
 
@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
                        format: { with: ALPHANUMERIC_REG,
                                  message: I18n.t('errors.messages.alphanumeric') },
                        length: { minimum: 8, maximum: 20 },
-                       presence: true
-  validates :password_confirmation, presence: true
+                       presence: true, unless: :create, on: :create
+  validates :password_confirmation, presence: true, on: :create
   validates :email, uniqueness: true,
                     email: { message: I18n.t('errors.messages.invalid') },
                     presence: true
