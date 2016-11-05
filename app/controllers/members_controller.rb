@@ -1,7 +1,12 @@
 class MembersController < ApplicationController
-  layout 'my_page', only: %i(edit show)
+  layout 'my_page', only: %i(edit show email)
   skip_before_action :require_login, only: %i(new create)
-  before_action :set_member, only: %i(show edit update destroy)
+  before_action :set_member, only: %i(show
+                                      edit
+                                      update
+                                      destroy
+                                      email
+                                      update_email)
 
   def index
     @members = Member.all
@@ -37,6 +42,14 @@ class MembersController < ApplicationController
       redirect_to @member, notice: t('member_was_successfully_updated')
     else
       render :edit, layout: 'my_page'
+    end
+  end
+
+  def update_email
+    if @member.update(member_params)
+      redirect_to @member, notice: t('member_was_successfully_updated_email')
+    else
+      render :email, layout: 'my_page'
     end
   end
 

@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   end
   resources :categories, only: :show
   resources :user_sessions
-  resources :members
+  resources :members do
+    get :email
+    get :password
+    patch :update_email
+    patch :update_password
+  end
   resources :tags, only: :show
   resources :comments, only: %i(create destroy)
 
