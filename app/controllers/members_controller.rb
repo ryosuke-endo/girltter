@@ -1,12 +1,14 @@
 class MembersController < ApplicationController
-  layout 'my_page', only: %i(edit show email)
+  layout 'my_page', only: %i(edit show email password)
   skip_before_action :require_login, only: %i(new create)
   before_action :set_member, only: %i(show
                                       edit
                                       update
                                       destroy
                                       email
-                                      update_email)
+                                      password
+                                      update_email
+                                      update_password)
 
   def index
     @members = Member.all
@@ -46,10 +48,19 @@ class MembersController < ApplicationController
   end
 
   def update_email
+    @member.skip_validate_password = true
     if @member.update(member_params)
       redirect_to @member, notice: t('member_was_successfully_updated_email')
     else
       render :email, layout: 'my_page'
+    end
+  end
+
+  def update_password
+    if @member.update(member_params)
+      redirect_to @member, notice: t('member_was_successfully_updated_password')
+    else
+      render :password, layout: 'my_page'
     end
   end
 

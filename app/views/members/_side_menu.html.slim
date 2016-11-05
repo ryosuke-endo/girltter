@@ -2,4 +2,4 @@ ul.c-side-list
   li = link_to "マイページ", member_path(@member), class: "c-side-list__item"
   li = link_to "プロフィールを変更する", edit_member_path(@member), class: "c-side-list__item"
   li = link_to "メールアドレスを変更する", member_email_path(@member), class: "c-side-list__item"
-  li = link_to "パスワードを変更する", class: "c-side-list__item"
+  li = link_to "パスワードを変更する", member_password_path(@member), class: "c-side-list__item"
