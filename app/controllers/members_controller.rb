@@ -23,7 +23,7 @@ class MembersController < ApplicationController
     @member = Member.new(member_params)
     if @member.save
       auto_login(@member)
-      redirect_to @member, notice: t('member_was_successfully_created')
+      redirect_to home_url, notice: t('member_was_successfully_created')
     else
       render :new
     end
