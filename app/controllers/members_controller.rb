@@ -1,14 +1,7 @@
 class MembersController < ApplicationController
-  layout 'home', only: %i(edit show email password)
+  layout 'home', only: :show
   skip_before_action :require_login, only: %i(new create)
-  before_action :set_member, only: %i(show
-                                      edit
-                                      update
-                                      destroy
-                                      email
-                                      password
-                                      update_email
-                                      update_password)
+  before_action :set_member, only: %i(show destroy)
 
   def index
     @members = Member.all
@@ -26,9 +19,6 @@ class MembersController < ApplicationController
     render layout: 'one_column'
   end
 
-  def edit
-  end
-
   def create
     @member = Member.new(member_params)
     if @member.save
@@ -39,47 +29,21 @@ class MembersController < ApplicationController
     end
   end
 
-  def update
-    if @member.update(member_params)
-      redirect_to @member, notice: t('member_was_successfully_updated')
-    else
-      render :edit, layout: 'home'
-    end
-  end
-
-  def update_email
-    @member.skip_validate_password = true
-    if @member.update(member_params)
-      redirect_to @member, notice: t('member_was_successfully_updated_email')
-    else
-      render :email, layout: 'home'
-    end
-  end
-
-  def update_password
-    if @member.update(member_params)
-      redirect_to @member, notice: t('member_was_successfully_updated_password')
-    else
-      render :password, layout: 'home'
-    end
-  end
-
   def destroy
     @member.destroy
     redirect_to members_url, notice: t('member_was_successfully_deleted')
   end
 
   private
-    def set_member
-      @member = current_user
-    end
 
-    def member_params
-      params.require(:member).permit(:email,
-                                     :login,
-                                     :name,
-                                     :password,
-                                     :password_confirmation,
-                                     :sex)
-    end
+  def set_member
+    @member = Member.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:email,
+                                   :login,
+                                   :password,
+                                   :password_confirmation)
+  end
 end
