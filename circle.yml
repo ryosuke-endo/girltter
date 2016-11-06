@@ -7,6 +7,10 @@ dependencies:
   pre:
     - mv config/secrets.ci.yml config/secrets.yml
 
+test:
+  post:
+    - bash <(curl -s https://codecov.io/bash)
+
 deployment:
   deploy:
     branch: master
