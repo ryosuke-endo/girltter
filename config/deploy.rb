@@ -32,6 +32,13 @@ set :rbenv_path, '~/.rbenv'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
+# nodebrew
+set :nodebrew_type, :system # or :system, depends on your nodebrew setup
+set :nodebrew_node, 'v7.0.0'
+
+set :nodebrew_map_bins, %w{npm node iojs} # default values
+set :nodebrew_roles, :all # default value
+
 # ssh
 set :ssh_options, {
   user: fetch(:user),
