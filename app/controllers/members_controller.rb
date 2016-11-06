@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  layout 'my_page', only: %i(edit show email password)
+  layout 'home', only: %i(edit show email password)
   skip_before_action :require_login, only: %i(new create)
   before_action :set_member, only: %i(show
                                       edit
@@ -43,7 +43,7 @@ class MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to @member, notice: t('member_was_successfully_updated')
     else
-      render :edit, layout: 'my_page'
+      render :edit, layout: 'home'
     end
   end
 
@@ -52,7 +52,7 @@ class MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to @member, notice: t('member_was_successfully_updated_email')
     else
-      render :email, layout: 'my_page'
+      render :email, layout: 'home'
     end
   end
 
@@ -60,7 +60,7 @@ class MembersController < ApplicationController
     if @member.update(member_params)
       redirect_to @member, notice: t('member_was_successfully_updated_password')
     else
-      render :password, layout: 'my_page'
+      render :password, layout: 'home'
     end
   end
 
