@@ -1,11 +1,11 @@
 - content_for :side_menu do
-  = render "side_menu"
+  = render "application/common/side_menu"
 
 .c-frame.c-frame--gray
   .c-heading--page
     h1
       | プロフィールを変更する
-  = form_for @member do |f|
+  = form_for @member, url: { action: :update } do |f|
     = render "error_messages", object: @member
 
     .c-form__item

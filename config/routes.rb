@@ -9,14 +9,15 @@ Rails.application.routes.draw do
       resources :supplementals, only: %i(new create destroy)
     end
   end
-  resources :categories, only: :show
-  resources :user_sessions
-  resources :members do
+  resource :home, only: %i(show edit update) do
     get :email
     get :password
     patch :update_email
     patch :update_password
   end
+  resources :categories, only: :show
+  resources :user_sessions
+  resources :members, only: %i(index show new create destroy)
   resources :tags, only: :show
   resources :comments, only: %i(create destroy)
 
