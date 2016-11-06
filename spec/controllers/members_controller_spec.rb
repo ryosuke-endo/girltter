@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
+  describe 'GET #index' do
+    let(:member) { create(:member)}
+    context 'redirect to root' do
+      it 'not logged in user' do
+        get :index
+        expect(response).to redirect_to root_path
+      end
+
+      it 'logged in member' do
+        login_as(member)
+        get :index
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
+
   describe "POST #create" do
     let(:member) { build(:member)}
     let(:params) { { login: member.login,
