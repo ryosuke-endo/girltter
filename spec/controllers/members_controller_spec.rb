@@ -15,7 +15,7 @@ RSpec.describe MembersController, type: :controller do
         }.to change(Member, :count).by(1)
         expect(login?).to be_truthy
         id = session[:user_id]
-        expect(response).to redirect_to member_path(id)
+        expect(response).to redirect_to home_path
       end
     end
   end
