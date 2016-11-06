@@ -12,7 +12,7 @@
           li = link_to "管理画面にいく", admin_index_path
           li = link_to "ログアウト", :logout, method: :post
         - elsif current_user
-          li = link_to "マイページ", member_path(current_user)
+          li = link_to "マイページ", home_path
           li = link_to "ログアウト", :logout, method: :post
         - else
           li = link_to "ログイン", :login
