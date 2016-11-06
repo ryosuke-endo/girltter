@@ -6,8 +6,10 @@ class User < ActiveRecord::Base
 
   enum sex: %i(unselected man woman)
 
+  before_validation :set_name, on: :create
   before_save :normalize_value
 
+  validates :name, presence: true
   validates :email, uniqueness: true,
                     email: { message: I18n.t('errors.messages.invalid') },
                     presence: true
@@ -32,6 +34,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def set_name
+    self.name = login
+  end
 
   def skip_validate_password?
     skip_validate_password == true

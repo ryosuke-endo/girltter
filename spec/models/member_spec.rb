@@ -131,6 +131,13 @@ RSpec.describe Member, type: :model do
       end
     end
 
+    context 'name' do
+      context 'create' do
+        it '初期値はlogin' do
+          expect(member.name).to eq member.login
+        end
+      end
+    end
 
     it_behaves_like 'alphanumeric', :password, 8, 20
 
