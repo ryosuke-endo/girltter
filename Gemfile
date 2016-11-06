@@ -56,5 +56,6 @@ group :production do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+  gem 'capistrano-yarn'
   gem 'capistrano3-unicorn'
 end
