@@ -1,8 +1,32 @@
-h1 Editing member
+- content_for :side_menu do
+  = render "side_menu"
 
-== render 'form'
+.c-frame.c-frame--gray
+  .c-heading--page
+    h1
+      | プロフィールを変更する
+  = form_for @member do |f|
+    = render "error_messages", object: @member
 
-= link_to 'Show', @member
-'|
-= link_to 'Back', members_path
+    .c-form__item
+      = f.label :login, class: "c-form__input-label"
+      = f.text_field :login, class: "c-form__input c-form-w-50p"
 
+    .c-form__item
+      = f.label :name, class: "c-form__input-label"
+      = f.text_field :name, class: "c-form__input c-form-w-50p"
+
+    .c-form__item
+      = f.label :sex, class: "c-form__input-label"
+      .c-form__radio__item
+        = f.label :man, class: "c-form__label"
+          = f.radio_button :sex, :man, class: "c-form__radio"
+          span.c-form__word
+            | 男性
+        = f.label :woman, class: "c-form__label"
+          = f.radio_button :sex, :woman, class: "c-form__radio"
+          span.c-form__word
+            | 女性
+
+    .text-center
+      = f.submit "変更する", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"

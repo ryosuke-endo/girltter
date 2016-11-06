@@ -1,0 +1,33 @@
+.c-tabs
+  display: table
+  margin-bottom: 0
+  table-layout: fixed
+  width: 100%
+
+.c-tab
+  display: table-cell
+
+.c-tab__link
+  background-color: $b-brown
+  border-right: 1px solid white
+  border-bottom: 1px solid $b-d-brown
+  border-left: 1px solid white
+  border-radius: 5px 5px 0 0
+  cursor: pointer
+  display: block
+  padding: 6px 0
+  text-align: center
+  text-decoration: none
+  &:hover
+    color: $b-black
+    opacity: 0.8
+    text-decoration: none
+  &.is-active
+    background-color: $b-white
+    border-top: 1px solid $b-d-brown
+    border-right: 1px solid $b-d-brown
+    border-bottom: 1px solid $b-white
+    border-left: 1px solid $b-d-brown
+    &:focus
+      color: $b-black
+      text-decoration: none

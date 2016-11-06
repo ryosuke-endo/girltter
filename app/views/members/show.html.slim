@@ -1,9 +1,45 @@
-p#notice = notice
+- content_for :side_menu do
+  = render "side_profile"
+= render "success_messages"
 
-p
-  strong Email:
-  = @member.email
+ul.c-tabs
+  li.c-tab
+    = link_to "質問", "#", class: "c-tab__link is-active", data: { tab: "question" }
+  li.c-tab
+    = link_to "回答", "#", class: "c-tab__link", data: { tab: "answer" }
+  li.c-tab
+    = link_to "共感", "#", class: "c-tab__link", data: { tab: "sympathy" }
 
-= link_to 'Edit', edit_member_path(@member)
-'|
-= link_to 'Back', members_path
+.c-frame
+  ul data-home-tab-contents="question"
+    - @threads.each do |thread|
+      li.c-container.c-flex
+        .c-frame.c-frame--gray.c-main-grid
+          .c-grid__content.c-container--sm.c-border--bottom-dotted
+            .c--label = thread.category.name
+            .c-grid__title = link_to thread.title, thread
+            .c-grid-lead = simple_format(thread.short_body)
+          ul.c-tags.c-container--sm
+            - thread.tags.each do |tag|
+              li.c-tag
+                i.fa.fa-tag.icon-c-pink
+                span.c-tag--name = link_to tag.name, tag_path(tag)
+
+  ul data-home-tab-contents="answer" style="display: none;"
+    - @answers.each do |thread|
+      li.c-container.c-flex
+        .c-frame.c-frame--gray.c-main-grid
+          .c-grid__content.c-container--sm.c-border--bottom-dotted
+            .c--label = thread.category.name
+            .c-grid__title = link_to thread.title, thread
+            .c-grid-lead = simple_format(thread.short_body)
+          ul.c-tags.c-container--sm
+            - thread.tags.each do |tag|
+              li.c-tag
+                i.fa.fa-tag.icon-c-pink
+                span.c-tag--name = link_to tag.name, tag_path(tag)
+
+  ul data-home-tab-contents="sympathy" style="display: none;"
+
+javascript:
+  new Tab

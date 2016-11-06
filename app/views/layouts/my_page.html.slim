@@ -9,6 +9,9 @@ html
   body
     = render "application/common/header"
     = render "application/common/global_nav"
-    .l__one-column-content
-      = yield
+    .l__content
+      .l__my_page_side
+        = yield :side_menu
+      .l__my_page_main
+        = yield
     = render "application/common/footer"
