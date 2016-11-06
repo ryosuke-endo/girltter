@@ -1,7 +1,7 @@
 - comments.each do |comment|
   - if thread.member == comment.member
     li class="c-container"
-      p.c-main-grid__name-r.text--r = comment.member.login
+      p.c-main-grid__name-r.text--r = comment.member.name
       .c-flex
         .c-frame__comment.c-frame--gray.c-main-grid
           .c-main-grid
@@ -11,7 +11,7 @@
           = image_tag('woman-face.png')
   - else
     li class="c-container"
-      p.c-main-grid__name = comment.member.login
+      p.c-main-grid__name = comment.member.name
       .c-flex
         .c-main-grid__img--xs
           = image_tag('woman-face.png')
