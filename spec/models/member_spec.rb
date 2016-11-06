@@ -134,6 +134,21 @@ RSpec.describe Member, type: :model do
 
     it_behaves_like 'alphanumeric', :password, 8, 20
 
+    context 'password' do
+      context 'skip_validate_password' do
+        context 'true' do
+          it 'validation skip' do
+            member.skip_validate_password = true
+            short_pw = "pass"
+            expect(
+              member.update(password: "#{short_pw}",
+                            password_confirmation: "#{short_pw}")
+            ).to be_truthy
+          end
+        end
+      end
+    end
+
     context 'email' do
       context '登録できる' do
         context '文字の種類' do
