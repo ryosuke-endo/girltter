@@ -2,6 +2,7 @@ class MembersController < ApplicationController
   layout 'home', only: :show
   skip_before_action :require_login, only: %i(new create)
   before_action :set_member, only: %i(show destroy)
+  before_action :authenticate_admin!, only: :index
 
   def index
     @members = Member.all
