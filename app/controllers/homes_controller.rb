@@ -3,8 +3,9 @@ class HomesController < ApplicationController
   before_action :set_member
 
   def show
-    @threads = @member.loves.order(created_at: :desc)
-      .includes(:category, :tags)
+    @threads = @member.loves.order(created_at: :desc).
+      includes(:category, :tags).
+      page(params[:page])
     answer_ids = @member.comments.answer_ids - @member.loves.pluck(:id)
     @answers = Love.where(id: answer_ids)
   end
