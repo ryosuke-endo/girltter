@@ -26,7 +26,7 @@ class MembersController < ApplicationController
       auto_login(@member)
       redirect_to home_url, notice: t('member_was_successfully_created')
     else
-      render :new
+      render :new, layout: 'one_column'
     end
   end
 
