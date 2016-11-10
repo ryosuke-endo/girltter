@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require parsley
-//= require jquery-ujs/src/rails
+//= require jquery-ujs
 //= require tabs
