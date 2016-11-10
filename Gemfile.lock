@@ -7,6 +7,14 @@ GIT
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
 
+GIT
+  remote: https://github.com/Liceth/sprockets-commonjs
+  revision: 86a34e7f5b4d463012fa532764127ea06328ec67
+  branch: sprockets-4
+  specs:
+    sprockets-commonjs (0.0.7)
+      sprockets (>= 2.10.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -368,6 +376,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sprockets!
+  sprockets-commonjs!
   therubyracer
   uglifier (>= 1.3.0)
   unicorn

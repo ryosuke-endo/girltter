@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.7.1'
 
 gem 'sprockets', git: 'git@github.com:rails/sprockets.git', branch: 'master'
+gem 'sprockets-commonjs', git: 'https://github.com/Liceth/sprockets-commonjs', branch: 'sprockets-4'
 gem 'babel-transpiler'
 
 # DB
