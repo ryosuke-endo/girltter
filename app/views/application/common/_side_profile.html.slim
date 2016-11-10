@@ -3,6 +3,8 @@
     .c-grid__thumb.text--c
       = image_tag('woman-face.png')
     p.text--c = @member.name
+    - unless @member.unselected?
+      p.text--c = @member.sex_i18n
     - if current_user == @member
       = link_to "プロフィール編集", edit_home_path,
         class: "c-btn c-btn--w-100p c-btn--gray text--c text--s-md"

@@ -32,6 +32,12 @@ ja:
       acts_as_taggable_on/tag:
         name: タグ名
 
+  enums:
+    user:
+      sex:
+        man: 男性
+        woman: 女性
+
   date:
     abbr_day_names:
     - 日
