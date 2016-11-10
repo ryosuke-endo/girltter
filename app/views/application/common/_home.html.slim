@@ -37,6 +37,8 @@ ul.c-tabs
                 i.fa.fa-tag.icon-c-pink
                 span.c-tag--name = link_to tag.name, tag_path(tag)
 
+    = paginate answers, param_name: "answer_page"
+
   ul data-home-tab-contents="sympathy" style="display: none;"
 
 javascript:

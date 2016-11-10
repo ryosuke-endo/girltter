@@ -13,7 +13,7 @@ class MembersController < ApplicationController
       .includes(:category, :tags)
       .page(params[:page])
     answer_ids = @member.comments.answer_ids - @member.loves.pluck(:id)
-    @answers = Love.where(id: answer_ids)
+    @answers = Love.where(id: answer_ids).page(params[:answer_page])
   end
 
   def new
