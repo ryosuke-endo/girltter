@@ -21,7 +21,7 @@ ul.c-tabs
                 i.fa.fa-tag.icon-c-pink
                 span.c-tag--name = link_to tag.name, tag_path(tag)
 
-    = paginate threads
+    = paginate threads, params_name: "thread_page"
 
   ul data-home-tab-contents="answer" style="display: none;"
     - answers.each do |thread|
