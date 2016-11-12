@@ -48,7 +48,7 @@ class HomesController < ApplicationController
   private
 
   def set_member
-    @member = Member.find(current_user)
+    @member = Member.find(current_user.id)
   end
 
   def member_params
