@@ -12,7 +12,7 @@ RSpec.feature 'comment', js: true do
       it 'コメント本文が表示される' do
         visit love_path(love)
         find('#comment_body').set('出直し')
-        find('#comment-btn').click
+        find('#js-comment-btn').click
         expect(page).to have_selector 'p', text: '出直し'
       end
     end
