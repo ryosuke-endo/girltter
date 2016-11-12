@@ -23,7 +23,7 @@
               = f.fields_for :commentable do |t|
                 = t.hidden_field :category_id
       .text-center
-        = f.submit "コメントを投稿する", id: "comment-btn", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
+        = f.submit "コメントを投稿する", id: "js-comment-btn", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
         = render "comments/modal"
 - else
   = render "application/common/attension_comment"
