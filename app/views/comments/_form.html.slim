@@ -19,9 +19,6 @@
               = f.hidden_field :commentable_id
               = f.hidden_field :commentable_type
               = f.hidden_field :member_id, value: current_user.id
-              = f.hidden_field :sex, value: current_user.sex
-              = f.fields_for :commentable do |t|
-                = t.hidden_field :category_id
       .text-center
         = f.submit "コメントを投稿する", id: "js-comment-btn", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
         = render "comments/modal"
