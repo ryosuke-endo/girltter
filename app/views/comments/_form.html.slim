@@ -1,4 +1,5 @@
 - if current_user
+  = render "comments/caution", comment: comment
   .c-container
     = form_for comment, html: { "data-parsley-validate" => "" } do |f|
       = render "error_messages", object: comment
@@ -19,7 +20,7 @@
               = f.hidden_field :commentable_type
               = f.hidden_field :member_id, value: current_user.id
       .text-center
-        = f.submit "コメントを投稿する", id: "comment-btn", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
+        = f.submit "コメントを投稿する", id: "js-comment-btn", class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large", data: { 'form-submit-comment' => true }
         = render "comments/modal"
 - else
   = render "application/common/attension_comment"

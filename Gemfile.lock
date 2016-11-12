@@ -7,6 +7,14 @@ GIT
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
 
+GIT
+  remote: https://github.com/Liceth/sprockets-commonjs
+  revision: 86a34e7f5b4d463012fa532764127ea06328ec67
+  branch: sprockets-4
+  specs:
+    sprockets-commonjs (0.0.7)
+      sprockets (>= 2.10.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -123,6 +131,7 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    enum_help (0.0.16)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -344,6 +353,7 @@ DEPENDENCIES
   codecov
   coffee-rails (~> 4.1.0)
   database_cleaner
+  enum_help
   factory_girl_rails
   faker
   font-awesome-rails
@@ -366,6 +376,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   sprockets!
+  sprockets-commonjs!
   therubyracer
   uglifier (>= 1.3.0)
   unicorn
