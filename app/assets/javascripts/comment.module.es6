@@ -11,7 +11,7 @@ export default class {
   }
 
   insertComment(data) {
-    let comments = document.querySelector("[data-comments]");
+    const comments = document.querySelector("[data-comments]");
     if (comments.childElementCount === 0){
       return $(`[data-comments]`).after(data);
     }else{

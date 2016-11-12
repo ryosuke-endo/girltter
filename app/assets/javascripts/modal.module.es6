@@ -8,10 +8,10 @@ export default class {
   }
 
   centaring() {
-    let w = $(window).width();
-    let h = $(window).height();
-    let cw = $("#c-modal__content").outerWidth();
-    let ch = $("#c-modal__content").outerHeight();
+    const w = $(window).width();
+    const h = $(window).height();
+    const cw = $("#c-modal__content").outerWidth();
+    const ch = $("#c-modal__content").outerHeight();
     $("#c-modal__content").css({"left": ((w - cw)/2) + "px","top": ((h - ch)/2)+ "px"});
   }
 }
