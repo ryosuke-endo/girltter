@@ -1,4 +1,5 @@
 - if current_user
+  = render "comments/caution", comment: comment
   .c-container
     = form_for comment, html: { "data-parsley-validate" => "" } do |f|
       = render "error_messages", object: comment
