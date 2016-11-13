@@ -1,6 +1,4 @@
-//=require modal.module
-
-import Modal from 'modal.module'
+import Modal from './modal'
 
 export default class {
   constructor() {
@@ -34,7 +32,7 @@ export default class {
     }).done((data) => {
       this.insertComment(data);
       this.deleteComment();
-      modal = new Modal()
+      const modal = new Modal()
       modal.open();
     }).fail((data) => {
       console.log("fail");

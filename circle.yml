@@ -2,10 +2,23 @@ machine:
   timezone: Asia/Tokyo
   ruby:
     version: 2.3.1
+  node:
+    version: 4.6.0
+
+  post:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
 
 dependencies:
+  cache_directories:
+    - "~/.yarn-cache"
+
   pre:
     - mv config/secrets.ci.yml config/secrets.yml
+    - yarn --version
+    - bundle install
+
+  override:
+    - yarn install
 
 test:
   post:

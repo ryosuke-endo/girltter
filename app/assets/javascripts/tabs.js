@@ -9,7 +9,7 @@ class Tab {
   changeTab(event) {
     this.clearContents()
     this.clearActive()
-    a = $(event.target).closest("a")
+    const a = $(event.target).closest("a")
     a.addClass("is-active")
     this.showContent(a.data("tab"))
   }
@@ -31,3 +31,4 @@ class Tab {
   }
 }
 
+new Tab;

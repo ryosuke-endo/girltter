@@ -1,4 +1,3 @@
-source .bashrc
 cat <<EOF >> $HOME/.ssh/config
 Host sakura
     HostName       $IP
