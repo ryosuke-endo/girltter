@@ -1,20 +1,3 @@
-GIT
-  remote: git@github.com:rails/sprockets.git
-  revision: a62c02556216ac7e3b0f09257b02cace439e280b
-  branch: master
-  specs:
-    sprockets (4.0.0.beta4)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-
-GIT
-  remote: https://github.com/Liceth/sprockets-commonjs
-  revision: 86a34e7f5b4d463012fa532764127ea06328ec67
-  branch: sprockets-4
-  specs:
-    sprockets-commonjs (0.0.7)
-      sprockets (>= 2.10.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,10 +43,6 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.4.1.1)
       execjs
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -152,6 +131,10 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-rails (4.2.1)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
     kaminari (0.17.0)
@@ -261,6 +244,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    schmooze (0.1.6)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -292,6 +276,12 @@ GEM
     spring (1.7.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
+    sprockets (3.7.0)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+    sprockets-commoner (0.6.3)
+      schmooze (~> 0.1.6)
+      sprockets (>= 3, < 5)
     sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -334,7 +324,6 @@ DEPENDENCIES
   active_decorator
   acts-as-taggable-on
   autoprefixer-rails
-  babel-transpiler
   bcrypt (~> 3.1.7)
   better_errors
   binding_of_caller
@@ -358,6 +347,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   jbuilder (~> 2.0)
+  jquery-rails
   kaminari
   launchy
   mysql2
@@ -375,8 +365,7 @@ DEPENDENCIES
   sorcery
   spring
   spring-commands-rspec
-  sprockets!
-  sprockets-commonjs!
+  sprockets-commoner
   therubyracer
   uglifier (>= 1.3.0)
   unicorn

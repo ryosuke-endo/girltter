@@ -1,10 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.7.1'
-
-gem 'sprockets', git: 'git@github.com:rails/sprockets.git', branch: 'master'
-gem 'sprockets-commonjs', git: 'https://github.com/Liceth/sprockets-commonjs', branch: 'sprockets-4'
-gem 'babel-transpiler'
+gem 'sprockets-commoner'
 
 # DB
 gem 'mysql2'
@@ -33,6 +30,7 @@ gem 'font-awesome-rails'
 # javascript
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
+gem 'jquery-rails'
 
 # library
 gem 'parsley-rails'
