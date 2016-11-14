@@ -110,7 +110,6 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    enum_help (0.0.16)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
@@ -342,7 +341,6 @@ DEPENDENCIES
   codecov
   coffee-rails (~> 4.1.0)
   database_cleaner
-  enum_help
   factory_girl_rails
   faker
   font-awesome-rails
