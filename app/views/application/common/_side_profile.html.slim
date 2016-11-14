@@ -4,7 +4,7 @@
       = image_tag('woman-face.png')
     p.text--c = @member.name
     - unless @member.unselected?
-      p.text--c = @member.sex_i18n
+      p.text--c = t("enums.user.sex.#{@member.sex}")
     - if current_user == @member
       = link_to "プロフィール編集", edit_home_path,
         class: "c-btn c-btn--w-100p c-btn--gray text--c text--s-md"

@@ -52,9 +52,6 @@ gem 'acts-as-taggable-on'
 # validation
 gem 'simple_email_validation'
 
-# enum i18n helper
-gem 'enum_help'
-
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
