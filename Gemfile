@@ -76,6 +76,9 @@ group :test do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'capybara_switch_driver'
+
+  # helper
+  gem 'active_decorator-rspec'
 end
 
 group :development do
