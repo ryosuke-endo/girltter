@@ -19,6 +19,9 @@ gem 'slim-rails'
 # Application server
 gem 'unicorn'
 
+# unicorn automatically reset
+gem 'unicorn-worker-killer'
+
 # css
 gem 'sass-rails'
 gem 'autoprefixer-rails'
