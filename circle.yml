@@ -11,6 +11,7 @@ machine:
 dependencies:
   cache_directories:
     - "~/.yarn-cache"
+    - "vendor/bundle"
 
   pre:
     - mv config/secrets.ci.yml config/secrets.yml
@@ -19,6 +20,7 @@ dependencies:
 
   override:
     - yarn install
+    - bundle -j4 --path=vendor/bundle
 
 test:
   post:
