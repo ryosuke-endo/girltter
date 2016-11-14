@@ -16,11 +16,10 @@ dependencies:
   pre:
     - mv config/secrets.ci.yml config/secrets.yml
     - yarn --version
-    - bundle install
+    - bundle -j4 --path=vendor/bundle
 
   override:
     - yarn install
-    - bundle -j4 --path=vendor/bundle
 
 test:
   post:
