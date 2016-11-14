@@ -1,6 +1,6 @@
 # coding: utf-8
 module LoveDecorator
   def short_body
-    body.slice(0, 100).strip << '...'
+    body.length <= 100 ? body : truncate(body, length: 100, omission: '...')
   end
 end
