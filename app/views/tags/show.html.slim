@@ -6,6 +6,6 @@
 .c-frame.c-frame--gray
   .c-container.text-center
 
-  = render "topic_list", threads: @threads
+  = render partial: "topic_list", collection: @loves, as: :thread
 
 = paginate @threads

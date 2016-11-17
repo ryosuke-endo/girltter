@@ -22,6 +22,9 @@ gem 'unicorn'
 # unicorn automatically reset
 gem 'unicorn-worker-killer'
 
+# memcached
+gem 'dalli'
+
 # css
 gem 'sass-rails'
 gem 'autoprefixer-rails'
