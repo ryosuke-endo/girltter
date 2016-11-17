@@ -19,6 +19,9 @@ gem 'slim-rails'
 # Application server
 gem 'unicorn'
 
+# memcached
+gem 'dalli'
+
 # css
 gem 'sass-rails'
 gem 'autoprefixer-rails'

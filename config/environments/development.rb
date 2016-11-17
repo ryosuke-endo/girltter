@@ -6,6 +6,13 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # memcached
+  config.cache_store = :dalli_store, '127.0.0.1:11211', {
+    namespace: 'mrennai',
+    expires_in: 1.day,
+    compress: true
+  }
+
   config.sass.inline_source_maps = true
   # Do not eager load code on boot.
   config.eager_load = false
