@@ -15,6 +15,6 @@
     = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
     = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
 
-  = render partial: "topic_list", collection: @loves, as: :thread
+  = render partial: "topic_list", collection: @threads, as: :thread
 
 = paginate @threads
