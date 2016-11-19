@@ -1,0 +1,8 @@
+- breadcrumbs.tap do |links|
+  - if links.any?
+    ul.c-breadcrumbs
+      - links.each do |link|
+        - if link.current?
+          li.c-breadcrumb = link.text
+        -else
+          li.c-breadcrumb = link_to link.text, link.url

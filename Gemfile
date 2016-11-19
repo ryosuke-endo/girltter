@@ -30,6 +30,9 @@ gem 'sass-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 
+# breadcrumbs
+gem 'gretel'
+
 # icon
 gem 'font-awesome-rails'
 

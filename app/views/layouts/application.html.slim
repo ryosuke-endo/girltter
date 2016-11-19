@@ -3,6 +3,7 @@ html
   head
     title
       | みんなの恋愛
+    meta name="robots" content="noindex, nofollow"
     = stylesheet_link_tag    'pc/application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -10,6 +11,8 @@ html
     = render "application/common/header"
     = render "application/common/global_nav"
     = yield :sub_nav
+    .l__breadcrumbs
+      = render "breadcrumbs"
     .l__content
       .l__main
         = yield

@@ -1,0 +1,13 @@
+.c-breadcrumbs
+  display: flex
+  li
+    &:after
+      content: ">"
+      color: $b-d-gray
+      display: inline-block
+      font-size: 1.1rem
+      padding: 0 6px
+      position: relative
+      top: -2px
+    &:last-child:after
+      content: none
