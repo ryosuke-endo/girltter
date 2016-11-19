@@ -11,6 +11,8 @@ html
     = render "application/common/header"
     = render "application/common/global_nav"
     = yield :sub_nav
+    .l__breadcrumbs
+      = render "breadcrumbs"
     .l__content
       .l__main
         = yield

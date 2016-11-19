@@ -4,6 +4,7 @@
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - content_for :javascript do
   = javascript_include_tag "loves/love"
+- breadcrumb :thread, @love
 = render "success_messages"
 
 .c-frame.c-frame--gray
