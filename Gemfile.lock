@@ -222,6 +222,9 @@ GEM
     rake (11.3.0)
     rdoc (4.2.2)
       json (~> 1.4)
+    redis (3.3.2)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
@@ -369,6 +372,8 @@ DEPENDENCIES
   pry-rails
   rack-mini-profiler
   rails (= 4.2.7.1)
+  redis
+  redis-namespace
   rspec-rails
   sass-rails
   sdoc (~> 0.4.0)

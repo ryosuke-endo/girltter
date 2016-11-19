@@ -5,6 +5,10 @@ gem 'sprockets-commoner'
 
 # DB
 gem 'mysql2'
+gem 'redis'
+
+# redis
+gem 'redis-namespace'
 
 # Authentication library
 gem 'sorcery'
