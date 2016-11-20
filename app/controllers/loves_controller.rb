@@ -10,6 +10,7 @@ class LovesController < ApplicationController
 
   def show
     @comment = @love.comments.build
+    @love.daily_counter
   end
 
   def new

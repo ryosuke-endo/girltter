@@ -10,6 +10,11 @@ class Love < ActiveRecord::Base
   validates :category_id, presence: true
   validates :title, presence: true
 
+  def daily_counter
+    name = self.class.name.tableize
+    RedisService.count_up(id, name)
+  end
+
   class << self
     def update_tags!
       tags = ActsAsTaggableOn::Tag.pluck(:name)
