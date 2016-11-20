@@ -68,6 +68,7 @@ RSpec.configure do |config|
 
   config.append_after(:each) do
     DatabaseCleaner.clean
+    DatabaseCleaner[:redis].clean
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests

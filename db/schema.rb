@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161120024222) do
+ActiveRecord::Schema.define(version: 20161120024934) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255, null: false
@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(version: 20161120024222) do
   add_index "comments", ["member_id"], name: "index_comments_on_member_id", using: :btree
 
   create_table "loves", force: :cascade do |t|
-    t.string   "title",       limit: 255,   null: false
-    t.text     "body",        limit: 65535, null: false
-    t.integer  "member_id",   limit: 4,     null: false
-    t.integer  "category_id", limit: 4,     null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",       limit: 255,               null: false
+    t.text     "body",        limit: 65535,             null: false
+    t.integer  "member_id",   limit: 4,                 null: false
+    t.integer  "category_id", limit: 4,                 null: false
+    t.integer  "read_count",  limit: 4,     default: 0, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "loves", ["category_id"], name: "index_loves_on_category_id", using: :btree

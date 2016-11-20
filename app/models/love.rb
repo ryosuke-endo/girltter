@@ -11,10 +11,19 @@ class Love < ActiveRecord::Base
   validates :body, presence: true
   validates :category_id, presence: true
   validates :title, presence: true
+  validates :read_count, numericality: { only_integer: true }
 
   def daily_counter
     name = self.class.name.tableize
     RedisService.count_up(id, name)
+  end
+
+  def update_read_count
+    name = self.class.name.tableize
+    today_count = RedisService.count(id, name)
+    up_to_now_count = read_count
+    total_count = today_count + up_to_now_count
+    update(read_count: total_count)
   end
 
   def self.update_tags!

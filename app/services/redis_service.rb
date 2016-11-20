@@ -8,6 +8,12 @@ class RedisService
     redis.expire(key, Constants::REDIS_DAY_COUNTER_EXPIRES) unless redis.ttl(key)
   end
 
+  def self.count(id, name)
+    key = new.key(name, Date.yesterday)
+    daily_ranking = new.daily_ranking(key)
+    daily_ranking.assoc(id.to_s)&.last.to_i
+  end
+
   def key(name, date)
     "#{TERM[0]}/#{name}/#{date}"
   end

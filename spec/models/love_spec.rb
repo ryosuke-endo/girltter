@@ -30,4 +30,28 @@ RSpec.describe Love, type: :model do
       end
     end
   end
+
+  describe '#update_read_count' do
+    context 'love exists read_count' do
+      before do
+        Timecop.freeze(Date.yesterday) do
+          name = love.class.name.tableize
+          RedisService.count_up(love.id, name)
+        end
+        Timecop.return
+      end
+
+      it '前日の日付分が追加される' do
+        love.update_read_count
+        expect(love.read_count).to eq 1
+      end
+    end
+
+    context 'love not exists read_count' do
+      it '値が追加されない' do
+        love.update_read_count
+        expect(love.read_count).to eq 0
+      end
+    end
+  end
 end
