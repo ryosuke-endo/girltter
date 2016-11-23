@@ -10,6 +10,9 @@ gem 'redis'
 # redis
 gem 'redis-namespace'
 
+# memcached
+gem 'dalli'
+
 # Authentication library
 gem 'sorcery'
 gem 'bcrypt', '~> 3.1.7'
@@ -26,8 +29,6 @@ gem 'unicorn'
 # unicorn automatically reset
 gem 'unicorn-worker-killer'
 
-# memcached
-gem 'dalli'
 
 # css
 gem 'sass-rails'
