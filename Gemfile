@@ -29,6 +29,8 @@ gem 'unicorn'
 # unicorn automatically reset
 gem 'unicorn-worker-killer'
 
+# cron
+gem 'whenever', require: false
 
 # css
 gem 'sass-rails'
