@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124134824) do
+ActiveRecord::Schema.define(version: 20161125142507) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        limit: 255, null: false
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20161124134824) do
   end
 
   add_index "rankings", ["rankable_id", "rankable_type"], name: "index_rankings_on_rankable_id_and_rankable_type", using: :btree
+
+  create_table "reads", force: :cascade do |t|
+    t.integer "readable_id",    limit: 4,   null: false
+    t.string  "readable_type",  limit: 255, null: false
+    t.integer "read_count",     limit: 4,   null: false
+    t.date    "recording_date",             null: false
+  end
+
+  add_index "reads", ["readable_id", "readable_type"], name: "index_reads_on_readable_id_and_readable_type", using: :btree
 
   create_table "supplementals", force: :cascade do |t|
     t.text     "body",                limit: 65535, null: false
