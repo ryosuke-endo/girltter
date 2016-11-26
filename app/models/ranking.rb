@@ -9,12 +9,13 @@ class Ranking < ActiveRecord::Base
   def self.yesterday_ranking
     date = DateTime.yesterday
     top_ranking = calculate_ranking(CALCULATING_COUNT, date)
-    top_ranking.each do |r|
-      create(rankable_id: r.readable_id,
-             rankable_type: r.readable_type,
-             read_count: r.read_count,
-             start_date: r.recording_date)
+    rankings = top_ranking.map do |r|
+      new(rankable_id: r.readable_id,
+          rankable_type: r.readable_type,
+          read_count: r.read_count,
+          start_date: r.recording_date)
     end
+    import rankings
   end
 
   def self.calculate_ranking(count, date)

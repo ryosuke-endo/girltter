@@ -36,6 +36,8 @@ GEM
       activemodel (= 4.2.7.1)
       activesupport (= 4.2.7.1)
       arel (~> 6.0)
+    activerecord-import (0.16.2)
+      activerecord (>= 3.2)
     activesupport (4.2.7.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -341,6 +343,7 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   active_decorator-rspec
+  activerecord-import
   acts-as-taggable-on
   autoprefixer-rails
   bcrypt (~> 3.1.7)
