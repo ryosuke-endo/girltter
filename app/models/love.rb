@@ -21,7 +21,8 @@ class Love < ActiveRecord::Base
 
   def update_read_count
     name = self.class.name.tableize
-    today_count = RedisService.count(id, name)
+    date = Date.yesterday
+    today_count = RedisService.count(id, name, date)
     up_to_now_count = read_count
     total_count = today_count + up_to_now_count
     update(read_count: total_count)
