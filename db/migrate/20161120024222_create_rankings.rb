@@ -4,7 +4,7 @@ class CreateRankings < ActiveRecord::Migration
       t.string :type, null: false
       t.integer :rankable_id, null: false
       t.string :rankable_type, null: false
-      t.integer :read_count, null: false
+      t.integer :read_count, null: false, default: 0
       t.datetime :start_on, null: false
 
       t.timestamps null: false

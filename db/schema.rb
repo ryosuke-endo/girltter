@@ -49,21 +49,21 @@ ActiveRecord::Schema.define(version: 20161126040100) do
   add_index "loves", ["member_id"], name: "index_loves_on_member_id", using: :btree
 
   create_table "rankings", force: :cascade do |t|
-    t.integer  "rankable_id",   limit: 4,   null: false
-    t.string   "rankable_type", limit: 255, null: false
-    t.integer  "read_count",    limit: 4,   null: false
-    t.date     "start_date",                null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "rankable_id",   limit: 4,               null: false
+    t.string   "rankable_type", limit: 255,             null: false
+    t.integer  "read_count",    limit: 4,   default: 0, null: false
+    t.date     "start_date",                            null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "rankings", ["rankable_id", "rankable_type"], name: "index_rankings_on_rankable_id_and_rankable_type", using: :btree
 
   create_table "reads", force: :cascade do |t|
-    t.integer "readable_id",    limit: 4,   null: false
-    t.string  "readable_type",  limit: 255, null: false
-    t.integer "read_count",     limit: 4,   null: false
-    t.date    "recording_date",             null: false
+    t.integer "readable_id",    limit: 4,               null: false
+    t.string  "readable_type",  limit: 255,             null: false
+    t.integer "read_count",     limit: 4,   default: 0, null: false
+    t.date    "recording_date",                         null: false
   end
 
   add_index "reads", ["readable_id", "readable_type"], name: "index_reads_on_readable_id_and_readable_type", using: :btree
