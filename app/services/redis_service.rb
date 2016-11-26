@@ -5,7 +5,7 @@ class RedisService
     key = new.key(name, Date.today)
     redis = new.redis
     redis.zincrby(key, 1, id)
-    redis.expire(key, Constants::REDIS_DAY_COUNTER_EXPIRES) unless redis.ttl(key)
+    redis.expire(key, Constants::Redis::DAY_COUNTER_EXPIRES) unless redis.ttl(key)
   end
 
   def self.count(id, name, date)

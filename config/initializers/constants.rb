@@ -1,3 +1,5 @@
 module Constants
-  REDIS_DAY_COUNTER_EXPIRES = 604800
+  module Redis
+    DAY_COUNTER_EXPIRES = 129600
+  end
 end
