@@ -1,32 +1,13 @@
 .l__side__container
-  .love-all-ranking
-    h3.love-all-ranking__title
-      | 全ての相談ランキング
-    p
+  .c-frame.c-frame--pink
+    h3.c-side-title
+      | 前日の相談ランキング
+    p.c-side-description
       | 全ての質問の中での人気ランキング
     ul
-      li
-        .love-all-ranking-thumb
-          = image_tag('woman-face.png')
-        span.love-all-ranking-list-title
-          | 浮気をされた時の話の切り出し方
-      li
-        .love-all-ranking-thumb
-          = image_tag('woman-face.png')
-        span.love-all-ranking-list-title
-          | 彼女といて一番幸せを感じるのはスーパーでの買い物でした
-      li
-        .love-all-ranking-thumb
-          = image_tag('woman-face.png')
-        span.love-all-ranking-list-title
-          | 彼女といて一番幸せを感じるのはスーパーでの買い物でした
-      li
-        .love-all-ranking-thumb
-          = image_tag('woman-face.png')
-        span.love-all-ranking-list-title
-          | 彼女といて一番幸せを感じるのはスーパーでの買い物でした
-      li
-        .love-all-ranking-thumb
-          = image_tag('woman-face.png')
-        span.love-all-ranking-list-title
-          | 彼女といて一番幸せを感じるのはスーパーでの買い物でした
+      - rankings.each do |thread|
+        li.c-flex.c-side-list__item
+          .c-side-grid__img--xs
+            = image_tag('woman-face.png')
+          span.love-all-ranking-list-title
+            = link_to thread.rankable.title, love_path(thread.rankable.id)
