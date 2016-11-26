@@ -20,13 +20,13 @@ class Love < ActiveRecord::Base
     RedisService.count_up(id, name)
   end
 
-  def update_read_count
+  def update_read_count(date)
     name = self.class.name.tableize
-    date = Date.yesterday
     today_count = RedisService.count(id, name, date)
     up_to_now_count = read_count
     total_count = today_count + up_to_now_count
     update(read_count: total_count)
+    RedisService.zrem(id, name, date)
   end
 
   def self.update_tags!

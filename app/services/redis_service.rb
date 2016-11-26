@@ -14,6 +14,12 @@ class RedisService
     daily_ranking.assoc(id.to_s)&.last.to_i
   end
 
+  def self.zrem(id, name, date)
+    key = new.key(name, date)
+    redis = new.redis
+    redis&.zrem(key, id)
+  end
+
   def key(name, date)
     "#{TERM[0]}/#{name}/#{date}"
   end
