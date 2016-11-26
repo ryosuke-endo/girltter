@@ -5,6 +5,7 @@ class Love < ActiveRecord::Base
 
   has_many :supplementals, as: :supplementable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :reads, as: :readable, dependent: :destroy
 
   before_validation :set_tags
 
