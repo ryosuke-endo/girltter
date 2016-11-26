@@ -12,7 +12,8 @@ class Love < ActiveRecord::Base
   validates :body, presence: true
   validates :category_id, presence: true
   validates :title, presence: true
-  validates :read_count, numericality: { only_integer: true }
+  validates :read_count, presence: true,
+                         numericality: { only_integer: true }
 
   def daily_counter
     name = self.class.name.tableize
