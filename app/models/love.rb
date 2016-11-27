@@ -20,7 +20,7 @@ class Love < ActiveRecord::Base
     RedisService.count_up(id, name)
   end
 
-  def update_read_count(date)
+  def update_read_count!(date)
     name = self.class.name.tableize
     total_count = RedisService.count(id, name, date) + read_count
     update!(read_count: total_count)
