@@ -10,8 +10,10 @@ module Mrennai
 
     def self.update_read_count(model, date)
       model.each do |name|
-        name.constantize.find_each do |klass|
-          klass.update_read_count(date)
+        ActiveRecord::Base.trnsaction do
+          name.constantize.find_each do |klass|
+            klass.update_read_count(date)
+          end
         end
       end
     end
