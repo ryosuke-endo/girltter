@@ -1,18 +1,23 @@
 module Mrennai
   class Ranking
-    MODEL_NAME = %w(Love)
+    MODEL = %w(Love)
 
-    def self.update_read_count
-      MODEL_NAME.each do |name|
+    def self.run
+      yesterday = Date.yesterday
+      update_read_count(MODEL, yesterday)
+      import_read(MODEL, yesterday)
+    end
+
+    def self.update_read_count(model, date)
+      model.each do |name|
         name.constantize.find_each do |klass|
-          klass.update_read_count
+          klass.update_read_count(date)
         end
       end
     end
 
-    def self.import_read
-      date = DateTime.yesterday
-      MODEL_NAME.each do |name|
+    def self.import_read(model, date)
+      model.each do |name|
         Read.import_data(name.constantize, date)
       end
     end
