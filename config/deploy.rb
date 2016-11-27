@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'mrennai'
-set :repo_url, 'git@github.com:ryosuke-endo/mrennai.git'
+set :application, 'kijochannel'
+set :repo_url, 'git@github.com:ryosuke-endo/kijochannel.git'
 set :user, 'mikami'
 
 set :user_sudo, false
