@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :member do
     sequence :login do |n|
-      "mrennai_#{n}"
+      "kijochannel_#{n}"
     end
     email { "#{SecureRandom.uuid}@example.com" }
     password 'password'

@@ -1,4 +1,4 @@
-module Mrennai
+module Kijochannel
   class BatchJob
     MODEL = %w(Love)
 

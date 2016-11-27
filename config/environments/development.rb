@@ -8,7 +8,7 @@ Rails.application.configure do
 
   # memcached
   config.cache_store = :dalli_store, '127.0.0.1:11211', {
-    namespace: 'mrennai',
+    namespace: 'kijochannel',
     expires_in: 1.day,
     compress: true
   }

@@ -12,7 +12,7 @@ RSpec.describe Member, type: :model do
         context '登録できる' do
           context '半角英数字' do
             it '_を含むもの' do
-              value = 'mrennai_2'
+              value = 'kijochannel_2'
               if column_name == :password
                 expect(record.update(password: value,
                                      password_confirmation: value)).to be_truthy
@@ -23,7 +23,7 @@ RSpec.describe Member, type: :model do
             end
 
             it '-を含むもの' do
-              value = 'mrennai-2'
+              value = 'kijochannel-2'
               if column_name == :password
                 expect(record.update(password: value,
                                      password_confirmation: value)).to be_truthy
@@ -108,7 +108,7 @@ RSpec.describe Member, type: :model do
             end
 
             it '@を含む' do
-              value = 'mrennai@'
+              value = 'kijochannel@'
               if column_name == :password
                 expect(record.update(password: value,
                                      password_confirmation: value)).not_to be_truthy
@@ -160,19 +160,19 @@ RSpec.describe Member, type: :model do
       context '登録できる' do
         context '文字の種類' do
           it '半角英数字' do
-            other_member = build(:member, email: 'mrennai@example.com')
+            other_member = build(:member, email: 'kijochannel@example.com')
             expect(other_member).to be_valid
           end
 
           it '_を含むものを登録できる' do
-            other_member = build(:member, email: 'mrennai_2@example.com')
+            other_member = build(:member, email: 'kijochannel_2@example.com')
             expect(other_member).to be_valid
           end
         end
 
         context '変換する' do
           it '大文字を小文字' do
-            other_member = create(:member, email: 'Mrennai@example.com')
+            other_member = create(:member, email: 'kijochannel@example.com')
             expect(other_member.email).to eq other_member.email.downcase
           end
         end
