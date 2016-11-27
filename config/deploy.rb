@@ -39,6 +39,9 @@ set :nodebrew_node, 'v7.0.0'
 set :nodebrew_map_bins, %w{npm node iojs} # default values
 set :nodebrew_roles, :all # default value
 
+# whenever cron update
+set :whenever_identifier, defer { "#{application}_#{stage}" }
+
 # ssh
 set :ssh_options, {
   user: fetch(:user),

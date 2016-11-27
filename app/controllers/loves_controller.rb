@@ -4,12 +4,14 @@ class LovesController < ApplicationController
   before_action :set_love, only: %i(show edit update destroy)
   before_action :set_loves, only: :index
   before_action :set_tag_ranking
+  before_action :set_ranking
 
   def index
   end
 
   def show
     @comment = @love.comments.build
+    @love.daily_counter
   end
 
   def new
@@ -52,6 +54,12 @@ class LovesController < ApplicationController
   def set_tag_ranking
     ids = Tagging.ranking_ids("Love", 20)
     @tag_ranking = ActsAsTaggableOn::Tag.find(ids)
+  end
+
+  def set_ranking
+    @rankings = Ranking.where(start_date: DateTime.yesterday).
+      order(read_count: :desc).
+      limit(5)
   end
 
   def love_params

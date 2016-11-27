@@ -3,6 +3,7 @@ class TopController < ApplicationController
   before_action :set_categories
   before_action :set_loves
   before_action :set_tag_ranking
+  before_action :set_ranking
 
   def index
   end
@@ -10,8 +11,8 @@ class TopController < ApplicationController
   private
 
   def set_loves
-    @loves = Love.includes(:category, :tags, :member)
-      .order(created_at: :desc).page(params[:page])
+    @loves = Love.includes(:category, :tags, :member).
+      order(created_at: :desc).page(params[:page])
   end
 
   def set_categories
@@ -20,5 +21,11 @@ class TopController < ApplicationController
 
   def set_tag_ranking
     @tag_ranking = ActsAsTaggableOn::Tag.most_used
+  end
+
+  def set_ranking
+    @rankings = Ranking.where(start_date: DateTime.yesterday).
+      order(read_count: :desc).
+      limit(5)
   end
 end

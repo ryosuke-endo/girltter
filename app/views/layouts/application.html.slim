@@ -17,7 +17,7 @@ html
       .l__main
         = yield
       .l__side
-        = render "application/common/side_column"
+        = yield :ranking
         = yield :tag_ranking
     = render "application/common/footer"
     = yield :javascript

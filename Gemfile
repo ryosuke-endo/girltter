@@ -5,6 +5,16 @@ gem 'sprockets-commoner'
 
 # DB
 gem 'mysql2'
+gem 'redis'
+
+# bulk insert
+gem 'activerecord-import'
+
+# redis
+gem 'redis-namespace'
+
+# memcached
+gem 'dalli'
 
 # Authentication library
 gem 'sorcery'
@@ -22,8 +32,8 @@ gem 'unicorn'
 # unicorn automatically reset
 gem 'unicorn-worker-killer'
 
-# memcached
-gem 'dalli'
+# cron
+gem 'whenever', require: false
 
 # css
 gem 'sass-rails'
@@ -75,6 +85,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'timecop'
 
   # driver
   gem 'capybara'
