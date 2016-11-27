@@ -40,7 +40,7 @@ set :nodebrew_map_bins, %w{npm node iojs} # default values
 set :nodebrew_roles, :all # default value
 
 # whenever cron update
-set :whenever_identifier, defer { "#{application}_#{stage}" }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 # ssh
 set :ssh_options, {
