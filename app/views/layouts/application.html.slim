@@ -14,9 +14,11 @@ html
     .l__breadcrumbs
       = render "breadcrumbs"
     .l__content
+      .l__l-side
+        = render "application/common/side_menu_left"
       .l__main
         = yield
-      .l__side
+      .l__r-side
         = yield :ranking
         = yield :tag_ranking
     = render "application/common/footer"

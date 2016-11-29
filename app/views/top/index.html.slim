@@ -5,11 +5,27 @@
 - content_for :eyecatch do
   = render "eyecatch"
 
-.c-frame.c-frame--gray
-  .c-container.text-center
-    = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
-    = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
+.c-heading--title
+  | 新着トピック
 
-  = render partial: "topic_list", collection: @loves, as: :thread
-
-= paginate @loves
+ul.c-list
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('top_left.jpeg')
+    .c-grid__content
+      .c-grid__title
+        |【実況・感想】「逃げるは恥だが役に立つ」第7話
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('top_right.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 新垣結衣の胸がないから？「逃げ恥」原作の超重要シーンがカットされたワケ
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
