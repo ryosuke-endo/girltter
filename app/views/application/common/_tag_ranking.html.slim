@@ -1,10 +1,9 @@
 .l__side__container
-  .c-frame.c-frame--pink
-    h3.c-side-title = title
-    p.c-side-description
-      | みんなの恋愛で話題になっているタグ
-    ul.c-tags
-      - tags.each do |tag|
-        li.c-tag
-          i.fa.fa-tag.icon-c-pink
-          span.c-tag--name = link_to tag.name, tag_path(tag)
+  h3.c-side-title = title
+  p.c-side-description
+    | よく使われているキーワードです
+  ul.c-tags
+    - tags.each do |tag|
+      li.c-tag
+        i.fa.fa-tag.icon-c-pink
+        span.c-tag--name = link_to tag.name, tag_path(tag)

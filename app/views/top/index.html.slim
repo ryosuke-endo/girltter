@@ -1,5 +1,3 @@
-- content_for :ranking do
-  = render "application/common/side_column", rankings: @rankings
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "人気タグ", tags: @tag_ranking
 - content_for :eyecatch do
@@ -15,6 +13,56 @@ ul.c-list
     .c-grid__content
       .c-grid__title
         |【実況・感想】「逃げるは恥だが役に立つ」第7話
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('top_right.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 新垣結衣の胸がないから？「逃げ恥」原作の超重要シーンがカットされたワケ
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('sample7.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 男の世界は怖いと思ったエピソード
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('sample8.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 突っ込みたいのをこらえたエピソード
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('sample9.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 思い出してのたうちまわったエピソード
+      .c-grid__info
+        i.fa.fa-commenting.icon-c-gray
+        .c-icon__value
+          | 10コメント
+  li.c-list__item.c-flex
+    .c-grid__thumb.c-border__img-r-10
+      = image_tag('sample.jpeg')
+    .c-grid__content
+      .c-grid__title
+        | 当てはまったら➕を、当てはまらなかったら➖を押すトピ
       .c-grid__info
         i.fa.fa-commenting.icon-c-gray
         .c-icon__value
