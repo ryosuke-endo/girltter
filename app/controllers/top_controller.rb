@@ -1,4 +1,6 @@
 class TopController < ApplicationController
+  layout 'top'
+
   skip_before_action :require_login
   before_action :set_categories
   before_action :set_loves
