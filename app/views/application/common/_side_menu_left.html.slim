@@ -1,15 +1,8 @@
 .l-side__container
   nav.p-side-navi
     ul
-      li.p-side-selected
-        = link_to "カテゴリー"
-      li
-        = link_to "ニュース"
-      li
-        = link_to "芸能人"
-      li
-        = link_to "生活"
-      li
-        = link_to "ファッション"
-      li
-        = link_to "恋愛・結婚"
+      li class=("is-active" if request.url == root_url)
+        = link_to "ホーム", root_path
+      - @categories.each do |category|
+        li class=("is-active" if (category.id == params[:id].to_i && category?) || (category.id == params[:category_id].to_i) )
+          = link_to category.name, category_path(category)

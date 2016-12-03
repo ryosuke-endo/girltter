@@ -1,23 +1,8 @@
-- content_for :sub_nav do
-  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
-- content_for :ranking do
-  = render "application/common/side_column", rankings: @rankings
+- breadcrumb :category, @category
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
-- breadcrumb :category, @category
-
-.c-heading--section.c-container
-  h1 = @category.name
-  .c-heading--lead = @category.description
+- content_for :description do
+  = render "description", category: @category
 
 .c-container.text-center
   = link_to "質問をする", new_love_path(category_id: params[:id]), class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
-
-.c-frame.c-frame--gray
-  .c-container.text-center
-    = link_to "新着トピック", loves_path, class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
-    = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
-
-  = render partial: "topic_list", collection: @threads, as: :thread
-
-= paginate @threads

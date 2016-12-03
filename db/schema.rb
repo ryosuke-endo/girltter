@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126040100) do
+ActiveRecord::Schema.define(version: 20161203071202) do
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name",        limit: 255, null: false
-    t.string   "description", limit: 255, null: false
-    t.string   "type",        limit: 255, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",               limit: 255, null: false
+    t.string   "description",        limit: 255, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "image_file_name",    limit: 255, null: false
+    t.string   "image_content_type", limit: 255, null: false
+    t.integer  "image_file_size",    limit: 4,   null: false
+    t.datetime "image_updated_at",               null: false
   end
-
-  add_index "categories", ["type"], name: "index_categories_on_type", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",             limit: 65535, null: false
