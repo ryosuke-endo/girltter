@@ -19,6 +19,7 @@ config/database.yml
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+public/system/
 coverage/
 /log/*
 !/log/.keep
