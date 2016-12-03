@@ -1,7 +1,3 @@
-- content_for :sub_nav do
-  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
-- content_for :ranking do
-  = render "application/common/side_column", rankings: @rankings
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - breadcrumb :category, @category
@@ -19,5 +15,3 @@
     = link_to "今日の人気トピック", "#", class: "c-btn c-btn--blue c-btn--w-275 c-btn--h-large"
 
   = render partial: "topic_list", collection: @threads, as: :thread
-
-= paginate @threads
