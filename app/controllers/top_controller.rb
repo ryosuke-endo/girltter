@@ -18,7 +18,7 @@ class TopController < ApplicationController
   end
 
   def set_categories
-    @categories = LoveCategory.all
+    @categories = Category.all
   end
 
   def set_tag_ranking
