@@ -10,8 +10,9 @@ html
   body
     = render "application/common/header"
     = yield :sub_nav
-    .l__breadcrumbs
-      = render "breadcrumbs"
+    .c-bg-lll-gray.c-border--bottom-solid
+      .l__breadcrumbs
+        = render "breadcrumbs"
     .l__content
       .l__l-side
         = render "application/common/side_menu_left"
