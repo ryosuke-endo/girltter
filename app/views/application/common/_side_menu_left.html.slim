@@ -4,5 +4,5 @@
       li class=("is-active" if request.url == root_url)
         = link_to "ホーム", root_path
       - @categories.each do |category|
-        li class=("is-active" if (category.id == params[:id].to_i && category?) || (category.id == params[:category_id].to_i) )
+        li class=("is-active" if (category.id == params[:id].to_i && category?))
           = link_to category.name, category_path(category)
