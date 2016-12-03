@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  layout 'category'
   skip_before_action :require_login
 
   before_action :set_category

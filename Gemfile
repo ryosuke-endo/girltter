@@ -16,6 +16,9 @@ gem 'redis-namespace'
 # memcached
 gem 'dalli'
 
+# image
+gem 'paperclip'
+
 # Authentication library
 gem 'sorcery'
 gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title
+      | Girls Playground
+    meta name="robots" content="noindex, nofollow"
+    = stylesheet_link_tag    'pc/application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    = render "application/common/header"
+    .c-border--bottom-solid
+      .l__breadcrumbs
+        = render "breadcrumbs"
+    .c-container.c-bg-lll-gray.c-border--bottom-solid
+      .l__category__description
+        = yield :description
+    .l__content
+      .l__l-side
+        = render "application/common/side_menu_left"
+      .l__main
+        = yield
+      .l__r-side
+        = yield :ranking
+        = yield :tag_ranking
+    = render "application/common/footer"
+    = yield :javascript

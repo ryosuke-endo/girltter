@@ -1,10 +1,8 @@
+- breadcrumb :category, @category
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
-- breadcrumb :category, @category
-
-.c-heading--section.c-container
-  h1 = @category.name
-  .c-heading--lead = @category.description
+- content_for :description do
+  = render "description", category: @category
 
 .c-container.text-center
   = link_to "質問をする", new_love_path(category_id: params[:id]), class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
