@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     patch :update_email
     patch :update_password
   end
-  resources :categories, only: :show
+  resources :categories, only: :show, path: 'category'
   resources :user_sessions
   resources :members, only: %i(index show new create destroy)
   resources :tags, only: :show
