@@ -13,13 +13,8 @@ ja:
       comment: コメント
 
     attributes:
-      user:
-        email: メールアドレス
-        login: ログインID
-        name: ユーザー名
-        password: パスワード
-        password_confirmation: パスワード確認
-        sex: 性別
+      acts_as_taggable_on/tag:
+        name: タグ名
 
       love:
         body: 本文
@@ -29,8 +24,16 @@ ja:
       supplemental:
         body: 補足説明
 
-      acts_as_taggable_on/tag:
-        name: タグ名
+      topic:
+        thumbnail: 画像
+
+      user:
+        email: メールアドレス
+        login: ログインID
+        name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード確認
+        sex: 性別
 
   enums:
     user:
