@@ -1,0 +1,25 @@
+.l__topic__form.c-border-2
+  .c-container
+    h1.c-heading--title.text--s-lg
+     | トピック投稿
+  .c-container
+    .c-flex
+      .c-grid__thumb--form.c-container
+        = image_tag('no_image.png')
+        .c-btn__container
+          i.fa.fa-camera.icon-c-d-gray
+            | 画像を選択
+      .c-form
+        = form_for @topic do |f|
+          .c-container
+            = f.collection_select :category_id, @categories, :id, :name,
+              { selected: params[:category_id] }, class: "c-form__select"
+          .c-container
+            = f.text_field :title, class: "c-form__input c-form-w-100",
+              placeholder: "タイトルを入力してください"
+          .c-container
+            = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100",
+              placeholder: "本文を入力してください"
+          .text-center
+            = f.submit "トピックを投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
+              data: { 'form-submit-comment' => true }
