@@ -1,3 +1,6 @@
+- content_for :javascript do
+  = javascript_include_tag "file_upload"
+
 .l__topic__form.c-border-2
   .c-container
     h1.c-heading--title.text--s-lg
@@ -5,14 +8,16 @@
   .c-container
     = form_for @topic do |f|
       .c-flex
-        .c-grid__thumb--form.c-container
-          = image_tag('no_image.png')
+        .c-grid__thumb--form.c-container data-form-topic-preview=true
+          = image_tag('no_image.png', data: { "form-topic-image": true })
           .c-btn__container
             .c-form__file.c-border
               i.fa.fa-camera.icon-c-d-gray.c-margin-r-10.text--s-lg
               = f.label :thumbnail
                 | 画像を選択する
-                = f.file_field :thumbnail, class: "c-form__file__upload"
+                = f.file_field :thumbnail,
+                  class: "c-form__file__upload",
+                  accept: 'image/jpg,image/jpeg,image/png,image/gif'
         .c-form
           .c-container
             = f.collection_select :category_id, @categories, :id, :name,
