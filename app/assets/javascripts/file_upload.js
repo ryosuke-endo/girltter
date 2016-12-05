@@ -1,25 +1,36 @@
-$(() => {
-  $('.c-form__file').on('change', 'input[type="file"]', (e) => {
-    const content_type = ['image/jpg',
-                          'image/jpeg',
-                          'image/png',
-                          'image/gif']
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    const $image = $(`[data-form-topic-image]`)
+class FileUpload {
+  constructor() {
+    $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
+      const content_type = ['image/jpg',
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif']
+      this.file = e.target.files[0];
+      this.reader = new FileReader();
+      this.image = $(`[data-form-topic-image]`)
 
-    if(content_type.indexOf(file.type) === -1) {
+      this.isContent(content_type, this.file)
+      this.previewImage(this.file)
+    });
+  }
+
+  isContent(type, file) {
+    if(type.indexOf(file.type) === -1) {
       return false;
     }
+  }
 
-    reader.readAsDataURL(file);
+  previewImage(file) {
+    this.reader.readAsDataURL(file);
 
-    reader.onload = (file) => {
-      $image.replaceWith($('<img>').attr({
+    this.reader.onload = (file) => {
+      this.image.replaceWith($('<img>').attr({
         src: file.target.result,
         title: file.name,
         'data-form-topic-image': true
       }));
     }
-  });
-});
+  }
+}
+
+new FileUpload;
