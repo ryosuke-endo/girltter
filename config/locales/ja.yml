@@ -25,6 +25,8 @@ ja:
         body: 補足説明
 
       topic:
+        title: タイトル
+        body: 本文
         thumbnail: 画像
 
       user:

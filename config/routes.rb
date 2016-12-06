@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
 
-  resources :topics
+  resources :topics do
+    collection do
+      post :confirm
+    end
+  end
   resources :loves do
     scope module: :loves do
       resources :supplementals, only: %i(new create destroy)

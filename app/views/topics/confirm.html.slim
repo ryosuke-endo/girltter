@@ -4,21 +4,19 @@
 .l__topic__form.c-border-2
   .c-container
     h1.c-heading--title.text--s-lg
-     | トピック投稿
+     | トピック確認
   .c-container.c-flex__content-sb
-    .c-arrow__pointing-current.text--c
+    .c-arrow__pointing.text--c
       span
         | ①トピック作成
-    .c-arrow__pointing.text--c
+    .c-arrow__pointing-current.text--c
       span
         | ②トピック確認
     .c-arrow__pointing.text--c
       span
         | ③投稿完了
   .c-container
-    = form_for @topic, url: { action: :confirm } do |f|
-      = render "error_messages", object: @topic
-
+    = form_for @topic do |f|
       .c-flex
         .c-grid__thumb--form.c-container
           = image_tag('no_image.png', data: { "form-topic-image": true })
