@@ -25,9 +25,10 @@ ja:
         body: 補足説明
 
       topic:
-        title: タイトル
         body: 本文
+        name: 名前
         thumbnail: 画像
+        title: タイトル
 
       user:
         email: メールアドレス

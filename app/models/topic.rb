@@ -4,6 +4,7 @@ class Topic < ActiveRecord::Base
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :name, presence: true
   validates_attachment :thumbnail,
                        content_type: { content_type: ['image/jpg',
                                                       'image/jpeg',

@@ -23,6 +23,7 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:title,
                                   :body,
                                   :category_id,
+                                  :name,
                                   :temp_file,
                                   :thumbnail)
   end
