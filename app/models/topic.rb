@@ -9,4 +9,21 @@ class Topic < ActiveRecord::Base
                                                       'image/jpeg',
                                                       'image/png',
                                                       'image/gif'] }
+
+  def temp_file
+    if @temp_file_id.present?
+      TempFile.find(@temp_file_id)
+    end
+  end
+
+  def temp_file=(temp_file)
+    file = TempFile.new
+    file.temp = temp_file
+    file.save
+    @temp_file_id = file.id
+  end
+
+  def temp_file_id
+    @temp_file_id
+  end
 end

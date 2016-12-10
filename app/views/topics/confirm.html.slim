@@ -19,7 +19,10 @@
     = form_for @topic do |f|
       .c-flex
         .c-grid__thumb--form.c-container
-          = image_tag('no_image.png', data: { "form-topic-image": true })
+          - if @topic.temp_file_id.present?
+            = image_tag(@topic.temp_file.temp.url(:thumb))
+          - else
+            = image_tag('no_image.png')
           .c-btn__container
             .c-form__file.c-border data-form-file=true
               i.fa.fa-camera.icon-c-d-gray.c-margin-r-10.text--s-lg
