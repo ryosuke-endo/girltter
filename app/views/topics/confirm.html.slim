@@ -15,32 +15,21 @@
     .c-arrow__pointing.text--c
       span
         | ③投稿完了
+  .c-container--sm
+    h1.c-heading--title.text--s-lg
+      = @topic.title
   .c-container
-    = form_for @topic do |f|
-      .c-flex
-        .c-grid__thumb--form.c-container
-          - if @topic.temp_file_id.present?
-            = image_tag(@topic.temp_file.temp.url(:thumb))
-          - else
-            = image_tag('no_image.png')
-          .c-btn__container
-            .c-form__file.c-border data-form-file=true
-              i.fa.fa-camera.icon-c-d-gray.c-margin-r-10.text--s-lg
-              = f.label :thumbnail
-                | 画像を選択する
-                = f.file_field :thumbnail,
-                  class: "c-form__file__upload",
-                  accept: 'image/jpg,image/jpeg,image/png,image/gif'
-        .c-form
-          .c-container
-            = f.collection_select :category_id, @categories, :id, :name,
-              { selected: params[:category_id] }, class: "c-form__select"
-          .c-container
-            = f.text_field :title, class: "c-form__input c-form-w-100",
-              placeholder: "タイトルを入力してください"
-          .c-container
-            = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100",
-              placeholder: "本文を入力してください"
-          .text-center
-            = f.submit "トピックを投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
-              data: { 'form-submit-comment' => true }
+    .c-flex.c-flex--al-c
+      i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
+      .text--b
+        = @topic.category.name
+  - if @topic.temp_file_id.present?
+    .c-container
+      .p-topic__image
+        = image_tag(@topic.temp_file.temp.url(:original))
+  .c-container
+    | 1:
+    = @topic.name
+    = Time.new.to_s(:YmdnHM)
+  .c-container
+    = @topic.body
