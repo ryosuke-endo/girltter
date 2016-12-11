@@ -39,9 +39,15 @@ class Topic < ActiveRecord::Base
 
   def process_body
     urls = URI.extract(body, URL_SCHEMES)
-    image_urls, site_urls = urls.partition { |url| url.match(/\.(jpg|jpeg|png|gif|bmp)/) }
-    process_image(image_urls)
+    image_urls, site_urls = urls.partition { |url| url.match(/.*\.([^.]+$)/) }
+    process_image(image_urls) unless invalid_extension?(image_urls)
     process_link(site_urls)
+  end
+
+  def invalid_extension?(urls)
+    if urls.map { |x| !!(x.match(/\.(jpg|jpeg|png|gif|bmp)/)) }.include?(false)
+      errors.add(:body, "拡張子が不正です")
+    end
   end
 
   def process_image(urls)

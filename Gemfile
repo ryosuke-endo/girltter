@@ -102,6 +102,9 @@ group :test do
 
   # helper
   gem 'active_decorator-rspec'
+
+  # mock
+  gem 'webmock'
 end
 
 group :development do
