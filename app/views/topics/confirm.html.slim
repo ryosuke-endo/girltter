@@ -18,7 +18,7 @@
   .c-container--sm
     h1.c-heading--title.text--s-lg
       = @topic.title
-  .c-container
+  .c-container--sm
     .c-flex.c-flex--al-c
       i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
       .text--b
@@ -27,9 +27,9 @@
     .c-container
       .p-topic__image
         = image_tag(@topic.temp_file.temp.url(:original))
-  .c-container
+  .c-container--sm
     | 1:
     = @topic.name
     = Time.new.to_s(:YmdnHM)
   .c-container
-    = @topic.body
+    = @topic.body.html_safe

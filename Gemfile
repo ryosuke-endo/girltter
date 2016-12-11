@@ -46,6 +46,9 @@ gem 'bootstrap-sass'
 # breadcrumbs
 gem 'gretel'
 
+# thumbnail link
+gem 'link_thumbnailer'
+
 # icon
 gem 'font-awesome-rails'
 

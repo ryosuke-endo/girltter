@@ -1,6 +1,9 @@
 class Topic < ActiveRecord::Base
+  URL_SCHEMES = %w(http https)
+
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
+  before_validation :extract_url
 
   validates :title, presence: true
   validates :body, presence: true
@@ -10,6 +13,46 @@ class Topic < ActiveRecord::Base
                                                       'image/jpeg',
                                                       'image/png',
                                                       'image/gif'] }
+
+  def extract_url
+    urls = URI.extract(body, URL_SCHEMES)
+    return unless urls.present?
+    urls.each do |url|
+      site = LinkThumbnailer.generate(url)
+      title = site.title
+      description = site.description
+      image_url =
+        if site.images.first.src.to_s
+          site.images.first.src.to_s
+        else
+          'no_image.png'
+        end
+      image_tag = ActionController::Base.helpers.image_tag(image_url)
+      text = <<~"EOS"
+      <a href=#{url} target="_blank" class="c-grid__quotation--link">
+        <div class="c-grid__quotation text--s-md p-topic__quotation__border c-border-r-5">
+          <div class="c-flex">
+            <div class="c-grid__quotation--main">
+              #{image_tag}
+            </div>
+            <div class="c-grid__quotation--side">
+              <div class="c-grid__quotation--side-title text--b">
+                #{title}
+              </div>
+              <div class="c-grid__quotation--side-description">
+                #{description}
+              </div>
+              <div class="c-grid__quotation--side-url">
+                #{site.url.host}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      EOS
+      body.gsub!(url, text)
+    end
+  end
 
   def temp_file
     if @temp_file_id.present?
