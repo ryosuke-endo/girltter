@@ -40,67 +40,13 @@ class Topic < ActiveRecord::Base
   def process_body
     urls = URI.extract(body, URL_SCHEMES)
     image_urls, site_urls = urls.partition { |url| url.match(/.*\.([^.]+$)/) }
-    process_image(image_urls) unless invalid_extension?(image_urls)
-    process_link(site_urls)
+    TopicsView.process_image(body, image_urls) unless invalid_extension?(image_urls)
+    TopicsView.process_link(body, site_urls)
   end
 
   def invalid_extension?(urls)
     if urls.map { |x| !!(x.match(/\.(jpg|jpeg|png|gif|bmp)/)) }.include?(false)
       errors.add(:body, "拡張子が不正です")
-    end
-  end
-
-  def process_image(urls)
-    urls.each do |url|
-      image_tag = ActionController::Base.helpers.image_tag(url)
-      host_name = URI.parse(url).hostname
-      text = <<~"EOS"
-        <div class="c-grid__quotation-image">
-          #{image_tag}
-          <a href=#{url} target="_blank">
-            出典：#{host_name}
-          </a>
-        </div>
-      EOS
-      body.gsub!(url, text)
-    end
-  end
-
-  def process_link(urls)
-    urls.each do |url|
-      site = LinkThumbnailer.generate(url)
-      title = site.title
-      description = site.description
-      image_url =
-        if site.images.present?
-          site.images.first.src.to_s
-        else
-          'no_image.png'
-        end
-      image_tag = ActionController::Base.helpers.image_tag(image_url)
-      text = <<~"EOS"
-      <a href=#{url} target="_blank" class="c-grid__quotation--link">
-        <div class="c-grid__quotation text--s-md p-topic__quotation__border c-border-r-5">
-          <div class="c-flex">
-            <div class="c-grid__quotation--main">
-              #{image_tag}
-            </div>
-            <div class="c-grid__quotation--side">
-              <div class="c-grid__quotation--side-title text--b">
-                #{title}
-              </div>
-              <div class="c-grid__quotation--side-description">
-                #{description}
-              </div>
-              <div class="c-grid__quotation--side-url">
-                #{site.url.host}
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
-      EOS
-      body.gsub!(url, text)
     end
   end
 end
