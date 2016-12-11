@@ -3,7 +3,7 @@ class Topic < ActiveRecord::Base
 
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
-  before_validation :extract_url
+  before_validation :process_body, if: :exist_url?
 
   validates :title, presence: true
   validates :body, presence: true
@@ -14,16 +14,59 @@ class Topic < ActiveRecord::Base
                                                       'image/png',
                                                       'image/gif'] }
 
-  def extract_url
+  def temp_file
+    if @temp_file_id.present?
+      TempFile.find(@temp_file_id)
+    end
+  end
+
+  def temp_file=(temp_file)
+    file = TempFile.new
+    file.temp = temp_file
+    file.save
+    @temp_file_id = file.id
+  end
+
+  def temp_file_id
+    @temp_file_id
+  end
+
+  private
+
+  def exist_url?
+    URI.extract(body, URL_SCHEMES).present?
+  end
+
+  def process_body
     urls = URI.extract(body, URL_SCHEMES)
-    return unless urls.present?
-    image_urls, site_urls = urls.partition { |url| url.match(/\.(jpg|jpeg|png|gif)/) }
-    site_urls.each do |url|
+    image_urls, site_urls = urls.partition { |url| url.match(/\.(jpg|jpeg|png|gif|bmp)/) }
+    process_image(image_urls)
+    process_link(site_urls)
+  end
+
+  def process_image(urls)
+    urls.each do |url|
+      image_tag = ActionController::Base.helpers.image_tag(url)
+      host_name = URI.parse(url).hostname
+      text = <<~"EOS"
+        <div class="c-grid__quotation-image">
+          #{image_tag}
+          <a href=#{url} target="_blank">
+            出典：#{host_name}
+          </a>
+        </div>
+      EOS
+      body.gsub!(url, text)
+    end
+  end
+
+  def process_link(urls)
+    urls.each do |url|
       site = LinkThumbnailer.generate(url)
       title = site.title
       description = site.description
       image_url =
-        if site.images.first.src.to_s
+        if site.images.present?
           site.images.first.src.to_s
         else
           'no_image.png'
@@ -53,35 +96,5 @@ class Topic < ActiveRecord::Base
       EOS
       body.gsub!(url, text)
     end
-    image_urls.each do |image_url|
-      image_tag = ActionController::Base.helpers.image_tag(image_url)
-      host_name = URI.parse(image_url).hostname
-      text = <<~"EOS"
-        <div class="c-grid__quotation-image">
-          #{image_tag}
-          <a href=#{image_url} target="_blank">
-            出典：#{host_name}
-          </a>
-        </div>
-      EOS
-      body.gsub!(image_url, text)
-    end
-  end
-
-  def temp_file
-    if @temp_file_id.present?
-      TempFile.find(@temp_file_id)
-    end
-  end
-
-  def temp_file=(temp_file)
-    file = TempFile.new
-    file.temp = temp_file
-    file.save
-    @temp_file_id = file.id
-  end
-
-  def temp_file_id
-    @temp_file_id
   end
 end
