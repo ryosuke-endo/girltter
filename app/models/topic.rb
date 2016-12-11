@@ -17,7 +17,8 @@ class Topic < ActiveRecord::Base
   def extract_url
     urls = URI.extract(body, URL_SCHEMES)
     return unless urls.present?
-    urls.each do |url|
+    image_urls, site_urls = urls.partition { |url| url.match(/\.(jpg|jpeg|png|gif)/) }
+    site_urls.each do |url|
       site = LinkThumbnailer.generate(url)
       title = site.title
       description = site.description
@@ -51,6 +52,19 @@ class Topic < ActiveRecord::Base
       </a>
       EOS
       body.gsub!(url, text)
+    end
+    image_urls.each do |image_url|
+      image_tag = ActionController::Base.helpers.image_tag(image_url)
+      host_name = URI.parse(image_url).hostname
+      text = <<~"EOS"
+        <div class="c-grid__quotation-image">
+          #{image_tag}
+          <a href=#{image_url} target="_blank">
+            出典：#{host_name}
+          </a>
+        </div>
+      EOS
+      body.gsub!(image_url, text)
     end
   end
 
