@@ -4,7 +4,7 @@ class Topic < ActiveRecord::Base
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
 
-  validate :invalid_extension, if: :exist_url?
+  validate :invalid_extension
   validates :title, presence: true
   validates :body, presence: true
   validates :name, presence: true
@@ -32,10 +32,6 @@ class Topic < ActiveRecord::Base
   end
 
   private
-
-  def exist_url?
-    URI.extract(body, Constants::URL_SCHEMES).present?
-  end
 
   def invalid_extension
     urls = URI.extract(body, Constants::URL_SCHEMES)
