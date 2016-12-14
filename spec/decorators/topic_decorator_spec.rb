@@ -13,11 +13,7 @@ describe TopicDecorator do
 
     it 'image_tagに変換される' do
       url = 'http://www.example.com/sample.jpg'
-      body = <<~"EOS"
-      画像テスト
-
-      #{url}
-      EOS
+      body = "画像テスト\r\n#{url}"
       topic.body = body
       expect(!!(topic.send(:image, [url]).match(/<img src.*>/))).to be_truthy
     end
