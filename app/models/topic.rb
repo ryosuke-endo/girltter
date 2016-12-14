@@ -3,8 +3,8 @@ class Topic < ActiveRecord::Base
 
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
-  before_validation :process_body, if: :exist_url?
 
+  validate :invalid_extension, if: :exist_url?
   validates :title, presence: true
   validates :body, presence: true
   validates :name, presence: true
@@ -37,14 +37,8 @@ class Topic < ActiveRecord::Base
     URI.extract(body, URL_SCHEMES).present?
   end
 
-  def process_body
+  def invalid_extension
     urls = URI.extract(body, URL_SCHEMES)
-    image_urls, site_urls = urls.partition { |url| url.match(/.*\.([^.]+$)/) }
-    TopicsView.process_image(body, image_urls) unless invalid_extension?(image_urls)
-    TopicsView.process_link(body, site_urls)
-  end
-
-  def invalid_extension?(urls)
     if urls.map { |x| !!(x.match(/\.(jpg|jpeg|png|gif|bmp)/)) }.include?(false)
       errors.add(:body, "拡張子が不正です")
     end
