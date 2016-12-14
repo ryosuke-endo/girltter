@@ -1,9 +1,7 @@
 # coding: utf-8
 module TopicDecorator
-  URL_SCHEMES = %w(http https)
-
   def process_body
-    urls = URI.extract(body, URL_SCHEMES)
+    urls = URI.extract(body, Constants::URL_SCHEMES)
     if urls.present?
       image_urls, link_urls = urls.partition { |url| url.match(/.*\.([^.]+$)/) }
       image(image_urls) if image_urls.present?

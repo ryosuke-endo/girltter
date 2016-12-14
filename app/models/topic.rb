@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  URL_SCHEMES = %w(http https)
+  IMAGE_EXTENSIONS_REG = /\.(jpg|jpeg|png|gif|bmp)/
 
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
@@ -34,12 +34,12 @@ class Topic < ActiveRecord::Base
   private
 
   def exist_url?
-    URI.extract(body, URL_SCHEMES).present?
+    URI.extract(body, Constants::URL_SCHEMES).present?
   end
 
   def invalid_extension
-    urls = URI.extract(body, URL_SCHEMES)
-    if urls.map { |x| !!(x.match(/\.(jpg|jpeg|png|gif|bmp)/)) }.include?(false)
+    urls = URI.extract(body, Constants::URL_SCHEMES)
+    if urls.map { |x| !!(x.match(IMAGE_EXTENSIONS_REG)) }.include?(false)
       errors.add(:body, "拡張子が不正です")
     end
   end
