@@ -1,6 +1,7 @@
 # coding: utf-8
 require 'rails_helper'
 require 'webmock/rspec'
+WebMock.allow_net_connect!
 
 describe TopicDecorator do
   describe 'process_body' do
@@ -27,6 +28,16 @@ describe TopicDecorator do
         body = "画像テスト\r\n#{url}\r\n#{image_url}"
         topic.body = body
         expect(!!(topic.process_body).match(/<img src.*>/)).to be_truthy
+      end
+
+      context '正規表現' do
+        context '?が含まれる場合' do
+          it 'サムネイルが生成される' do
+            url = 'http://headlines.yahoo.co.jp/hl?a=20161216-00000540-san-pol'
+            topic.body = url
+            expect(!!(topic.process_body).match(/<img src.*>/)).to be_truthy
+          end
+        end
       end
     end
   end

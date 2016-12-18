@@ -1,4 +1,5 @@
 require 'rails_helper'
+WebMock.allow_net_connect!
 
 RSpec.feature 'comment', js: true do
   let(:member) { create(:member) }
