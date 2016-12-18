@@ -1,10 +1,7 @@
 class Topic < ActiveRecord::Base
-  IMAGE_EXTENSIONS_REG = /\.(jpg|jpeg|png|gif|bmp)/
-
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumb: '140x140>' }
   belongs_to :category
 
-  validate :invalid_extension
   validates :title, presence: true
   validates :body, presence: true
   validates :name, presence: true
@@ -29,14 +26,5 @@ class Topic < ActiveRecord::Base
 
   def temp_file_id
     @temp_file_id
-  end
-
-  private
-
-  def invalid_extension
-    urls = URI.extract(body, Constants::URL_SCHEMES)
-    if urls.map { |x| !!(x.match(IMAGE_EXTENSIONS_REG)) }.include?(false)
-      errors.add(:body, "拡張子が不正です")
-    end
   end
 end
