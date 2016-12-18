@@ -10,7 +10,11 @@ class TopicsController < ApplicationController
 
   def confirm
     @topic = Topic.new(topic_params)
-    render :new if @topic.invalid?
+    if @topic.invalid?
+      render :new
+    else
+      @contents = ContentsView.new(@topic.body, view_context)
+    end
   end
 
   private
