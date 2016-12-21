@@ -18,8 +18,4 @@ module TempFileable
       end
     end
   end
-
-  def temp_file_id
-    temp_file.id
-  end
 end
