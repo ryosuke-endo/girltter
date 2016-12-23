@@ -9,3 +9,23 @@
   transition: all  0.3s ease
   &:hover
     border-color: $b-dd-gray
+
+.p-topic-icon__item
+  border: 1px solid $b-d-gray
+  border-collapse: collapse
+  cursor: pointer
+  padding: 0 10px
+  &:first-child
+    padding: 0 10px 0 8px
+    border-radius: 8px 0 0 8px
+  &:last-child
+    border-left: none
+    border-radius: 0 8px 8px 0
+
+.p-topic-icon__smile
+  &:before
+    content: "+"
+    display: inline-block
+    position: relative
+    top: -2px
+    left: 4px

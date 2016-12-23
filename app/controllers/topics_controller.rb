@@ -3,7 +3,8 @@ class TopicsController < ApplicationController
   skip_before_action :require_login
 
   before_action :set_categories
-  before_action :set_topic
+  before_action :set_tag_ranking
+  before_action :set_topic, only: :show
 
   def new
     @topic = Topic.new
@@ -41,13 +42,18 @@ class TopicsController < ApplicationController
   end
 
   def show
-    render layout: 'application'
+    @contents = ContentsView.new(@topic.body, view_context)
+    render layout: 'topic'
   end
 
   private
 
   def set_categories
     @categories = Category.all
+  end
+
+  def set_tag_ranking
+    @tag_ranking = ActsAsTaggableOn::Tag.most_used
   end
 
   def set_topic

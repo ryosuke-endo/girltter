@@ -1,0 +1,34 @@
+- content_for :tag_ranking do
+  = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
+- breadcrumb :thread, @topic
+
+
+.c-container--sm
+  h1.c-heading--title.text--s-lg
+    = @topic.title
+
+.c-container--sm
+  .c-flex.c-flex--al-c
+    i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
+    .text--b
+      = @topic.category.name
+
+- if @topic.thumbnail?
+  .c-container
+    .p-topic__image
+      = image_tag(@topic.thumbnail.url(:original))
+
+.c-container--sm
+  | 1:
+  = @topic.name
+  = Time.new.to_s(:YmdnHM)
+
+.c-container
+  = @contents.processing_display
+  .p-topic-icon.text--s-x-lg
+    ul.c-flex.c-flex__jc-end
+      li.p-topic-icon__item.p-topic-icon__smile
+        i.fa.fa-smile-o
+      li.p-topic-icon__item
+        i.fa.fa-reply
+
