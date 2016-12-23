@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   skip_before_action :require_login
 
   before_action :set_categories
+  before_action :set_topic
 
   def new
     @topic = Topic.new
@@ -39,10 +40,18 @@ class TopicsController < ApplicationController
   def complete
   end
 
+  def show
+    render layout: 'application'
+  end
+
   private
 
   def set_categories
     @categories = Category.all
+  end
+
+  def set_topic
+    @topic = Topic.find(params[:id])
   end
 
   def topic_params
