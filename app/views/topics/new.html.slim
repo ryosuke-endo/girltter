@@ -45,4 +45,4 @@
               placeholder: "本文を入力してください"
       .text-center
         = f.submit "トピックを投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
-          data: { 'form-submit-comment' => true }
+          data: { 'form-submit-comment' => true, disable_with: '処理中...' }
