@@ -8,6 +8,25 @@ class TopicsController < ApplicationController
     @topic = Topic.new
   end
 
+  def create
+    @topic = Topic.new(topic_params.except(:thumbnail))
+    if params[:back]
+      render :new
+      return
+    end
+
+    if params[:topic][:thumbnail]
+      temp = TempFile.find(params[:topic][:thumbnail])
+      @topic.thumbnail = temp.temp
+    end
+
+    if @topic.save
+      render :complete
+    else
+      render :new
+    end
+  end
+
   def confirm
     @topic = Topic.new(topic_params)
     if @topic.invalid?
@@ -15,6 +34,9 @@ class TopicsController < ApplicationController
     else
       @contents = ContentsView.new(@topic.body, view_context)
     end
+  end
+
+  def complete
   end
 
   private

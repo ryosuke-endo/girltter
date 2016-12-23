@@ -15,21 +15,32 @@
     .c-arrow__pointing.text--c
       span
         | ③投稿完了
-  .c-container--sm
-    h1.c-heading--title.text--s-lg
-      = @topic.title
-  .c-container--sm
-    .c-flex.c-flex--al-c
-      i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
-      .text--b
-        = @topic.category.name
-  - if @topic.temp_file.present?
+  = form_for @topic do |f|
+    .c-container--sm
+      h1.c-heading--title.text--s-lg
+        = @topic.title
+        = f.hidden_field :title
+    .c-container--sm
+      .c-flex.c-flex--al-c
+        i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
+        .text--b
+          = @topic.category.name
+          = f.hidden_field :category_id
+    - if @topic.temp_file.present?
+      .c-container
+        .p-topic__image
+          = image_tag(@topic.temp_file.temp.url(:original))
+          = f.hidden_field :thumbnail, value: @topic.temp_file.id
+    .c-container--sm
+      | 1:
+      = @topic.name
+      = f.hidden_field :name
+      = Time.new.to_s(:YmdnHM)
     .c-container
-      .p-topic__image
-        = image_tag(@topic.temp_file.temp.url(:original))
-  .c-container--sm
-    | 1:
-    = @topic.name
-    = Time.new.to_s(:YmdnHM)
-  .c-container
-    = @contents.processing_display
+      = @contents.processing_display
+      = f.hidden_field :body
+    .text-center
+      = f.submit "編集する", name: 'back', class: "c-btn c-btn--white c-btn--h-large",
+        data: { disable_with: '処理中...'}
+      = f.submit "トピックを投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
+        data: { disable_with: '処理中...'}

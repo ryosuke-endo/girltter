@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :topics do
     collection do
       post :confirm
+      get :complete
     end
   end
   resources :loves do
