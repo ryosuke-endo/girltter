@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
     end
 
     if @topic.save
-      render :complete
+      redirect_to complete_topics_url
     else
       render :new
     end
