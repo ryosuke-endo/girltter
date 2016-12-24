@@ -15,7 +15,17 @@ class Topic < ActiveRecord::Base
                                                       'image/png',
                                                       'image/gif'] }
 
+  def thumbnails_first
+    thumbnails_urls.first
+  end
+
   private
+
+  def thumbnails_urls
+    URI.extract(body, Constants::URL_SCHEMES).select do |url|
+      url.match(/\.(jpg|jpeg|png|gif|bmp)/)
+    end
+  end
 
   def set_topic_view
     self.body = ContentsView.new(body).processing_display

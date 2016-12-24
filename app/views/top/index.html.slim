@@ -11,7 +11,9 @@ ul.c-list
         .c-grid__thumb.c-border__img-r-10
           - if topic.thumbnail?
             = image_tag topic.thumbnail.url(:thumbnail)
-          -else
+          - elsif topic.thumbnails_first
+            = image_tag topic.thumbnails_first
+          - else
             = image_tag('no_image.png')
         .c-grid__content
           .c-grid__title

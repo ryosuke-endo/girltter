@@ -7,6 +7,8 @@
     .c-flex--column
       - if @topic.thumbnail?
         = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
+      - elsif @topic.thumbnails_first
+        = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
       -else
         = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
       .p-topic--comment.text--s-sm
