@@ -19,15 +19,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def confirm
-    @topic = Topic.new(topic_params)
-    if @topic.invalid?
-      render :new
-    else
-      @contents = ContentsView.new(@topic.body)
-    end
-  end
-
   def complete
   end
 
