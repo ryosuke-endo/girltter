@@ -22,8 +22,7 @@
                   accept: 'image/jpg,image/jpeg,image/png,image/gif'
         .c-form
           .c-container
-            = f.collection_select :category_id, @categories, :id, :name,
-              { selected: params[:category_id] }, class: "c-form__select"
+            = f.select :category_id, [@category.name], {}, class: "c-form__select"
           .c-container
             = f.text_field :name, value: '匿子さん', class: "c-form__input c-form-w-100",
               placeholder: "名前を入力してください"

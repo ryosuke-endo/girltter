@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   layout 'one_column'
   skip_before_action :require_login
 
-  before_action :set_categories
+  before_action :set_category, only: :new
   before_action :set_tag_ranking
   before_action :set_topic, only: :show
 
@@ -28,8 +28,8 @@ class TopicsController < ApplicationController
 
   private
 
-  def set_categories
-    @categories = Category.all
+  def set_category
+    @category = Category.find(params[:category_id])
   end
 
   def set_tag_ranking
