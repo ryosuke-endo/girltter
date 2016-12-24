@@ -5,18 +5,8 @@
   .c-container
     h1.c-heading--title.text--s-lg
      | トピック投稿
-  .c-container.c-flex__content-sb
-    .c-arrow__pointing-current.text--c
-      span
-        | ①トピック作成
-    .c-arrow__pointing.text--c
-      span
-        | ②プレビュー
-    .c-arrow__pointing.text--c
-      span
-        | ③投稿完了
   .c-container
-    = form_for @topic, url: { action: :confirm } do |f|
+    = form_for @topic do |f|
       = render "error_messages", object: @topic
 
       .c-flex
@@ -25,9 +15,9 @@
           .c-btn__container
             .c-form__file.c-border data-form-file=true
               i.fa.fa-camera.icon-c-d-gray.c-margin-r-10.text--s-lg
-              = f.label :temp_file
+              = f.label :thumbnail
                 | 画像を選択する
-                = f.file_field :temp_file,
+                = f.file_field :thumbnail,
                   class: "c-form__file__upload",
                   accept: 'image/jpg,image/jpeg,image/png,image/gif'
         .c-form
@@ -43,6 +33,7 @@
           .c-container
             = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100",
               placeholder: "本文を入力してください"
+
       .text-center
-        = f.submit "プレビューを見る",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
+        = f.submit "投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
           data: { 'form-submit-comment' => true, disable_with: '処理中...' }

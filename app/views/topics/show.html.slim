@@ -2,16 +2,25 @@
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - breadcrumb :thread, @topic
 
-
 .c-container--sm
-  h1.c-heading--title.text--s-lg
-    = @topic.title
-
-.c-container--sm
-  .c-flex.c-flex--al-c
-    i.fa.fa-folder.icon-c-d-gray.c-margin-r-10
-    .text--b
-      = @topic.category.name
+  .c-flex.p-topic--title__border
+    .c-flex--column
+      - if @topic.thumbnail?
+        = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
+      -else
+        = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
+      .p-topic--comment.text--s-sm
+        span.text--s-lg.text__c--pink.text--b
+          | 10
+        | コメ
+    .c-flex--column.c-flex__jc-sb
+      .c-flex__content-sb
+        .text--s-sm.text__c--d-gray
+          = @topic.created_at.to_s(:Ymd)
+      h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
+        = @topic.title
+      .text--b.c-category--item.c-margin-reset
+        = @topic.category.name
 
 - if @topic.thumbnail?
   .c-container
@@ -19,9 +28,12 @@
       = image_tag(@topic.thumbnail.url(:original))
 
 .c-container--sm
-  | 1:
-  = @topic.name
-  = Time.new.to_s(:YmdnHM)
+  .c-flex
+    div
+      | 1:
+      = @topic.name
+    .c-margin-l-10
+      = @topic.created_at.to_s(:YmdnHM)
 
 .c-container.p-topic-font
   = @topic.body.gsub(/\R/, "<br>").gsub(/>(<br><br>|<br>)</, '><').html_safe

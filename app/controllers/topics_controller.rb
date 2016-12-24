@@ -11,17 +11,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params.except(:thumbnail))
-    if params[:back]
-      render :new
-      return
-    end
-
-    if params[:topic][:thumbnail]
-      temp = TempFile.find(params[:topic][:thumbnail])
-      @topic.thumbnail = temp.temp
-    end
-
+    @topic = Topic.new(topic_params)
     if @topic.save
       redirect_to complete_topics_url(id: @topic)
     else
