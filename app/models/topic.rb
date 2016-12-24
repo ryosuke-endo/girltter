@@ -23,7 +23,7 @@ class Topic < ActiveRecord::Base
 
   def thumbnails_urls
     URI.extract(body, Constants::URL_SCHEMES).select do |url|
-      url.match(/\.(jpg|jpeg|png|gif|bmp)/)
+      url.match(/\.(jpg|jpeg|png|gif|bmp)$/)
     end
   end
 
