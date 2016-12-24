@@ -1,9 +1,9 @@
 class ContentsView
-  attr_reader :contents, :view_context, :urls, :image_urls, :link_urls
+  attr_reader :contents, :action_view, :urls, :image_urls, :link_urls
 
-  def initialize(contents, view_context)
+  def initialize(contents)
     @contents = contents
-    @view_context = view_context
+    @action_view = Renderer.new.renderer
     @urls = URI.extract(contents, Constants::URL_SCHEMES)
     set_urls if urls
   end
@@ -12,16 +12,16 @@ class ContentsView
     if urls.present?
       link_thumbnail_description if link_urls.present?
       image if image_urls.present?
-      return view_context.simple_format(sanitize_content)
+      return sanitize_content
     end
-    view_context.simple_format(contents)
+    contents
   end
 
   private
 
   def sanitize_content
-    view_context.sanitize(contents,
-                          tags: %w(a div img p),
+    action_view.sanitize(contents,
+                          tags: %w(a div img p br),
                           attributes: %w(alt class href src target))
   end
 
@@ -34,7 +34,7 @@ class ContentsView
   def image
     image_urls.uniq.each do |url|
       host_name = URI.parse(url).hostname
-      html = view_context.render 'topics/image', url: url, host_name: host_name
+      html = action_view.render 'topics/image', url: url, host_name: host_name
       convert_url_to_html!(url, html)
     end
   end
@@ -44,7 +44,7 @@ class ContentsView
       site = LinkThumbnailer.generate(url)
       image_url = site.images.present? ?
         site.images.first.src.to_s : 'no_image.png'
-      html = view_context.render 'topics/link_thumbnail_description',
+      html = action_view.render 'topics/link_thumbnail_description',
                                  site: site,
                                  url: image_url
       convert_url_to_html!(url, html)
@@ -52,6 +52,7 @@ class ContentsView
   end
 
   def convert_url_to_html!(url, html)
+    html.gsub!(/(?<=>)\s+|\s+(?=<)/, '')
     reg_url = Regexp.escape(url.to_s)
     contents.gsub!(/(#{reg_url}$|#{reg_url}[\W\/])/) { html.to_s }
   end

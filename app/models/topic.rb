@@ -4,6 +4,8 @@ class Topic < ActiveRecord::Base
   has_attached_file :thumbnail, styles: { medium: '300x300>', thumbnail: '140x140>' }
   belongs_to :category
 
+  after_create :set_topic_view
+
   validates :title, presence: true
   validates :body, presence: true
   validates :name, presence: true
@@ -13,4 +15,10 @@ class Topic < ActiveRecord::Base
                                                       'image/png',
                                                       'image/gif'] }
 
+  private
+
+  def set_topic_view
+    self.body = ContentsView.new(body).processing_display
+    save
+  end
 end

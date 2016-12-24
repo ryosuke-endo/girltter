@@ -36,8 +36,8 @@
       = @topic.name
       = f.hidden_field :name
       = Time.new.to_s(:YmdnHM)
-    .c-container.p-topic-font
-      = @contents.processing_display
+    .c-container
+      = @contents.processing_display.gsub(/\R/, "<br>").gsub(/>(<br><br>|<br>)</, '><').html_safe
       = f.hidden_field :body
     .text-center
       = f.submit "編集する", name: 'back', class: "c-btn c-btn--white c-btn--h-large",

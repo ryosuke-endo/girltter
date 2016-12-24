@@ -24,11 +24,10 @@
   = Time.new.to_s(:YmdnHM)
 
 .c-container.p-topic-font
-  = @contents.processing_display
+  = @topic.body.gsub(/\R/, "<br>").gsub(/>(<br><br>|<br>)</, '><').html_safe
   .p-topic-icon.text--s-x-lg
     ul.c-flex.c-flex__jc-end
       li.p-topic-icon__item.p-topic-icon__smile
         i.fa.fa-smile-o
       li.p-topic-icon__item
         i.fa.fa-reply
-

@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
     if @topic.invalid?
       render :new
     else
-      @contents = ContentsView.new(@topic.body, view_context)
+      @contents = ContentsView.new(@topic.body)
     end
   end
 
@@ -42,7 +42,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @contents = ContentsView.new(@topic.body, view_context)
     render layout: 'topic'
   end
 
