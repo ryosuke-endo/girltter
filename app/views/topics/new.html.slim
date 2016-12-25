@@ -1,5 +1,6 @@
 - content_for :javascript do
   = javascript_include_tag "file_upload"
+  = javascript_include_tag "topic"
 
 .l__topic__form.c-border-2
   .c-container
@@ -34,7 +35,14 @@
           .c-container
             = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100",
               placeholder: "本文を入力してください"
-
-      .text-center
-        = f.submit "投稿する",  class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large",
-          data: { 'form-submit-comment' => true, disable_with: '処理中...' }
+            .c-flex__content-sb
+              .c-icon__items
+                i.fa.fa-link.icon-c-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item"
+                  .p-topic--icon__description.text--s-sm.text--c.text--b data="icon-description"
+                    | 引用URL/画像URLを追加
+                i.fa.fa-twitter.icon-c-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item"
+                  .p-topic--icon__description.text--s-sm.text--c.text--b data="icon-description"
+                    | twitterのURLを追加
+              div
+                = f.submit "投稿する",  class: "c-btn c-btn--pink c-btn--md",
+                  data: { 'form-submit-comment': true, disable_with: '処理中...' }
