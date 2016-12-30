@@ -1,10 +1,17 @@
 export default class {
+  constructor(fadeout, time = 3000) {
+    this.time = time;
+    this.fadeout = fadeout
+  }
+
   open(){
     this.centaring();
     $("#c-modal__content").fadeIn("slow");
-    setTimeout(() => {
-        $("#c-modal__content").fadeOut("slow");
-        },3000);
+    if (this.fadeout === true) {
+      setTimeout(() => {
+          $("#c-modal__content").fadeOut("slow");
+          },this.time);
+    }
   }
 
   centaring() {
