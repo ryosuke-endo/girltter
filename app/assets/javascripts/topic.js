@@ -1,9 +1,14 @@
 $("[data=icon-item]")
-  .mouseover(function() {
+  .mouseenter(function() {
     const $this = $(this);
     $this.find("[data=icon-description]").show();
   })
-  .mouseout(function() {
+  .mouseleave(function(){
     const $this = $(this);
     $this.find("[data=icon-description]").hide();
+  });
+
+$("[data=icon-item]")
+  .click(function() {
+    $("[data=search__form]").show();
   });
