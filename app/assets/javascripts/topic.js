@@ -1,3 +1,5 @@
+import Modal from './modal'
+
 $("[data=icon-item]")
   .mouseenter(function() {
     const $this = $(this);
@@ -8,7 +10,7 @@ $("[data=icon-item]")
     $this.find("[data=icon-description]").hide();
   });
 
-$("[data=icon-item]")
-  .click(function() {
-    $("[data=search__form]").show();
-  });
+$("[data=icon-item]").click(function() {
+  const modal = new Modal(this, false)
+  modal.open()
+});
