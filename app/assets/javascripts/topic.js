@@ -13,4 +13,8 @@ $("[data=icon-item]")
 $("[data=icon-item]").click(function() {
   const modal = new Modal(this, false)
   modal.open()
+
+  $('[data-modal-close], #p-topic-modal-bg').click(() => {
+    modal.close();
+  });
 });

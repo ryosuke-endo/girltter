@@ -37,11 +37,8 @@ export default class {
     }
   }
 
-  close(){
-  }
-
   scrollFix() {
-    $('body').css('overflow', 'hidden');
+    $('body').addClass('p-topic-modal-is-overflow-hidden')
   }
 
   addBackground() {
@@ -54,5 +51,12 @@ export default class {
     const $cw = this.target.outerWidth();
     const $ch = this.target.outerHeight();
     this.target.css({"left": (($w - $cw)/2) + "px","top": (($h - $ch)/2)+ "px"});
+  }
+
+  close(){
+    $('[data-modal__contents], #p-topic-modal-bg').fadeOut("slow", function(){
+      $('#p-topic-modal-bg').remove();
+      $('body').removeClass('p-topic-modal-is-overflow-hidden');
+    });
   }
 }
