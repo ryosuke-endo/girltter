@@ -1,6 +1,10 @@
 import Modal from './modal'
+import Tab from './topic/modal/tab'
+import Form from './topic/modal/form'
 
 const modal = new Modal($("[data=icon-item]"), false)
+const tab = new Tab
+const form = new Form
 
 $("[data=icon-item]")
   .mouseenter(function() {
@@ -14,10 +18,14 @@ $("[data=icon-item]")
 
 $("[data=icon-item]").click(function() {
   modal.open();
+  tab.addActive();
 });
 
 $('[data-modal-submit]').click(() => {
-  modal.submit();
+  form.submit();
+  if(form.isSuccess()) {
+    modal.close();
+  }
 });
 
 $('[data=modal-input]').keyup(() => {
