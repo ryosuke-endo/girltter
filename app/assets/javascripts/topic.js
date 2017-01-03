@@ -18,6 +18,7 @@ $("[data=icon-item]")
 
 $("[data=icon-item]").click(function() {
   modal.open();
+  form.cleanText();
   tab.addActive();
 });
 

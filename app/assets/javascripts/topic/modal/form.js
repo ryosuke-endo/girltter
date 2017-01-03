@@ -34,6 +34,10 @@ export default class {
     $('[data-modal-submit-error]').remove();
   }
 
+  cleanText() {
+    return $('[data="modal-input"]').val('')
+  }
+
   urlSubmit() {
     const url = this.getUrl();
     if(url.hostname().length !== 0) {
