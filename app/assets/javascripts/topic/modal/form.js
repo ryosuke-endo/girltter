@@ -2,35 +2,60 @@ import URI from 'urijs'
 
 export default class {
   constructor() {
-    this.error = true
+    this.submit_error = true
   }
 
-  submit() {
-    const url = URI($('[data=modal-input]').val())
+  getUrl() {
+    return URI($('[data=modal-input]').val());
+  }
+
+  getInputText(){
+    return $('textarea[name="topic[body]"]');
+  }
+
+  setSubmitError(bool) {
+    return this.submit_error = bool
+  }
+
+  setDsiplayError() {
+    return $('[data=modal-input]').
+      after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
+  }
+
+  isSubmitSuccess() {
+    return this.submit_error === false
+  }
+
+  isDisplayError() {
+    return !($('[data-modal-submit-error]').size())
+  }
+
+  removeDisplayError() {
+    $('[data-modal-submit-error]').remove();
+  }
+
+  urlSubmit() {
+    const url = this.getUrl();
     if(url.hostname().length !== 0) {
-      const $text = $('textarea[name="topic[body]"]')
-      this.addUrl($text, url)
-      return this.error = false
+      this.addUrl(url);
+      return this.setSubmitError(false);
     }
 
-    if($('[data-modal-submit-error]').size()) {
-      console.log("false")
-    } else {
-      $('[data=modal-input]').
-        after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
+    this.setSubmitError(true);
+
+    if(this.isDisplayError()) {
+      this.setDsiplayError();
     }
   }
 
-  addUrl($text, url) {
-    const $getText = $text.val()
-    if($text.val().length === 0) {
-      $text.val($getText + url);
-    } else {
-      $text.val($getText + '\n\n' + url);
-    }
-  }
+  addUrl(url) {
+    const $inputText = this.getInputText();
+    const $text = $inputText.val()
 
-  isSuccess() {
-    return this.error === false
+    if($text.length === 0) {
+      $inputText.val(url);
+    } else {
+      $inputText.val(`${$text}\n\n${url}`);
+    }
   }
 }

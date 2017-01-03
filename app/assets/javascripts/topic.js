@@ -22,14 +22,14 @@ $("[data=icon-item]").click(function() {
 });
 
 $('[data-modal-submit]').click(() => {
-  form.submit();
-  if(form.isSuccess()) {
+  form.urlSubmit();
+  if(form.isSubmitSuccess()) {
     modal.close();
   }
 });
 
 $('[data=modal-input]').keyup(() => {
-  $('[data-modal-submit-error]').remove();
+  form.removeDisplayError();
 });
 
 $('[data-modal-close], #p-topic-modal-bg').click(() => {
