@@ -1,3 +1,5 @@
+import URI from 'urijs'
+
 export default class {
   constructor(object, fadeout, time = 3000) {
     this.tab = $(object)
@@ -22,6 +24,31 @@ export default class {
       case "fa-twitter":
         $('[data-fa-twitter]').addClass('is-active')
         break;
+    }
+  }
+
+  submit() {
+    const url = URI($('[data=modal-input]').val())
+    if(url.hostname().length !== 0) {
+      const $text = $('textarea[name="topic[body]"]')
+      this.addUrl($text, url)
+      return this.close()
+    }
+
+    if($('[data-modal-submit-error]').size()) {
+      console.log("false")
+    } else {
+      $('[data=modal-input]').
+        after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
+    }
+  }
+
+  addUrl($text, url) {
+    const $getText = $text.val()
+    if($text.val().length === 0) {
+      $text.val($getText + url);
+    } else {
+      $text.val($getText + '\n\n' + url);
     }
   }
 

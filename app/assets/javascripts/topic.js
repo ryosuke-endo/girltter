@@ -20,6 +20,10 @@ $('[data-modal-submit]').click(() => {
   modal.submit();
 });
 
+$('[data=modal-input]').keyup(() => {
+  $('[data-modal-submit-error]').remove();
+});
+
 $('[data-modal-close], #p-topic-modal-bg').click(() => {
   modal.close();
 });

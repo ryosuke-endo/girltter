@@ -12,8 +12,8 @@
       .p-topic-modal__contents.c-flex--column.c-flex--al-c.c-flex--jc-c
         p
           | 画像記事URLを貼り付けてください
-        = text_field_tag 'quote[url]', '', class: "c-form__input c-form-w-100"
+        = text_field_tag 'quote[url]', '', class: "c-form__input c-form-w-100", data: "modal-input"
 
       .p-topic-modal__form.c-flex.c-flex__jc-end
-        .c-btn.c-btn--pink.c-btn--md.text--c
+        .c-btn.c-btn--pink.c-btn--md.text--c data-modal-submit=true
           | 貼り付け
