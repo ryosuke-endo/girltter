@@ -1,5 +1,7 @@
 import Modal from './modal'
 
+const modal = new Modal($("[data=icon-item]"), false)
+
 $("[data=icon-item]")
   .mouseenter(function() {
     const $this = $(this);
@@ -11,10 +13,13 @@ $("[data=icon-item]")
   });
 
 $("[data=icon-item]").click(function() {
-  const modal = new Modal(this, false)
-  modal.open()
+  modal.open();
+});
 
-  $('[data-modal-close], #p-topic-modal-bg').click(() => {
-    modal.close();
-  });
+$('[data-modal-submit]').click(() => {
+  modal.submit();
+});
+
+$('[data-modal-close], #p-topic-modal-bg').click(() => {
+  modal.close();
 });
