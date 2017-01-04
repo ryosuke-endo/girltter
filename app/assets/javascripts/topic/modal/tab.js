@@ -6,7 +6,7 @@ export default class {
 
   addActive() {
     const list = this.tab.attr('class').split(/\s/)
-    const check_list = ["fa-link", "fa-twitter"]
+    const check_list = ["fa-link"]
     const target = list.filter((item) => {
       if ($.inArray(item, check_list) >= 0) {
         return item;
@@ -15,9 +15,6 @@ export default class {
     switch(target[0]) {
       case "fa-link":
         $('[data-fa-link]').addClass('is-active')
-        break;
-      case "fa-twitter":
-        $('[data-fa-twitter]').addClass('is-active')
         break;
     }
   }
