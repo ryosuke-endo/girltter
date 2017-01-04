@@ -1,15 +1,15 @@
 export default class {
-  constructor(fadeout, time = 3000) {
-    this.time = time;
-    this.fadeout = fadeout;
-    this.target = $('[data-modal__contents]');
+  constructor(target, args = new Map()) {
+    this.time = args.get('time') || 3000;
+    this.fadeout = args.has('fadeout') ? args.get('fadeout') : true
+    this.$target = target;
   }
 
   open(){
-    this.addBackground();
     this.centaring();
+    this.addBackground();
     this.scrollFix();
-    $(`[data-modal__contents], #p-topic-modal-bg`).fadeIn("slow");
+    $(`${this.$target.selector}, #p-topic-modal-bg`).fadeIn("slow");
     if (this.fadeout === true) {
       setTimeout(() => {
           $("#c-modal__content").fadeOut("slow");
@@ -28,9 +28,9 @@ export default class {
   centaring() {
     const $w = $(window).width();
     const $h = $(window).height();
-    const $cw = this.target.outerWidth();
-    const $ch = this.target.outerHeight();
-    this.target.css({"left": (($w - $cw)/2) + "px","top": (($h - $ch)/2)+ "px"});
+    const $cw = this.$target.outerWidth();
+    const $ch = this.$target.outerHeight();
+    this.$target.css({"left": (($w - $cw)/2) + "px","top": (($h - $ch)/2)+ "px"});
   }
 
   close(){

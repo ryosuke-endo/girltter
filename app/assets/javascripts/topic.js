@@ -2,7 +2,9 @@ import Modal from './modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
 
-const modal = new Modal($("[data=icon-item]"), false)
+const target = $('[data-modal__contents]');
+const modal = new Modal(target, getParams())
+
 const tab = new Tab
 const form = new Form
 
@@ -36,3 +38,9 @@ $('[data=modal-input]').keyup(() => {
 $('[data-modal-close], #p-topic-modal-bg').click(() => {
   modal.close();
 });
+
+function getParams() {
+  const map = new Map();
+  map.set('fadeout', false);
+  return map;
+}
