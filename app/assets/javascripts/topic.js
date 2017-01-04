@@ -1,4 +1,4 @@
-import Modal from './modal'
+import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
 
