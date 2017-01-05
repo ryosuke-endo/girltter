@@ -21,8 +21,10 @@
           = @topic.created_at.to_s(:Ymd)
       h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
         = @topic.title
-      .text--b.c-category--item.c-margin-reset
-        = @topic.category.name
+      .c-flex__content-sb
+        .c-category--item
+          .text--b.c-margin-reset.text--c
+            = @topic.category.name
 
 - if @topic.thumbnail?
   .c-container
