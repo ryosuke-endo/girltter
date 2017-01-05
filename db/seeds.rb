@@ -7,8 +7,9 @@ def import_fixture(fixture)
   ActiveRecord::FixtureSet.create_fixtures(PATH, fixture)
 end
 
-categories = YAML.load(File.open("#{PATH}/categories.yml"))
+# categoryの画像を保存するために、importしない
 puts 'import category'
+categories = YAML.load(File.open("#{PATH}/categories.yml"))
 categories.each do |_, category|
   id = category['id']
   name = category['name']
@@ -19,9 +20,22 @@ categories.each do |_, category|
                   image: open(image_path))
 end
 
+# URL変換されないため、直接createする
+puts 'import topics'
+topics = YAML.load(File.open("#{PATH}/topics.yml"))
+topics.each do |_, topic|
+  category_id = topic['category_id']
+  title = topic['title']
+  name = topic['name']
+  body = topic['body']
+  Topic.create(category_id: category_id,
+               title: title,
+               name: name,
+               body: body)
+end
+
 import_fixture(:members)
 import_fixture(:tags)
 import_fixture(:loves)
-import_fixture(:topics)
 
 Love.update_tags!
