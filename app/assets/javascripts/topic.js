@@ -3,8 +3,8 @@ import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
 import FileUpload from './file_upload'
 
-const target = $('[data-modal__contents]');
-const modal = new Modal(target, getParams());
+const $target = $('[data-modal__contents]');
+const modal = new Modal($target, getParams());
 
 const tab = new Tab;
 const form = new Form;

@@ -13,11 +13,11 @@ export default class {
     return type.indexOf(file.type) !== -1
   }
 
-  previewImage(image, file) {
+  previewImage($image, file) {
     this.reader.readAsDataURL(file);
 
     this.reader.onload = (file) => {
-      image.replaceWith($('<img>').attr({
+      $image.replaceWith($('<img>').attr({
         src: file.target.result,
         title: file.name,
         'data-form-topic-image': true
@@ -27,10 +27,10 @@ export default class {
 
   upload(e) {
     const file = e.target.files[0];
-    const image = $(`[data-form-topic-image]`);
+    const $image = $(`[data-form-topic-image]`);
 
     if(this.isContent(CONTENT_TYPE, file)) {
-      this.previewImage(image, file);
+      this.previewImage($image, file);
     }
   }
 }
