@@ -106,15 +106,6 @@ ActiveRecord::Schema.define(version: 20161210051305) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "temp_files", force: :cascade do |t|
-    t.string   "temp_file_name",    limit: 255, null: false
-    t.integer  "temp_file_size",    limit: 4,   null: false
-    t.string   "temp_content_type", limit: 255, null: false
-    t.datetime "temp_updated_at",               null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
   create_table "topics", force: :cascade do |t|
     t.string   "title",                  limit: 255,   null: false
     t.text     "body",                   limit: 65535, null: false
