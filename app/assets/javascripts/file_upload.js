@@ -4,20 +4,20 @@ class FileUpload {
       const content_type = ['image/jpg',
                             'image/jpeg',
                             'image/png',
-                            'image/gif']
+                            'image/gif',
+                            'image/bmp']
       this.file = e.target.files[0];
       this.reader = new FileReader();
-      this.image = $(`[data-form-topic-image]`)
+      this.image = $(`[data-form-topic-image]`);
 
-      this.isContent(content_type, this.file)
-      this.previewImage(this.file)
+      if(this.isContent(content_type, this.file)) {
+        this.previewImage(this.file);
+      }
     });
   }
 
   isContent(type, file) {
-    if(type.indexOf(file.type) === -1) {
-      return false;
-    }
+    return type.indexOf(file.type) !== -1
   }
 
   previewImage(file) {
