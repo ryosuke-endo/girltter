@@ -46,7 +46,5 @@ $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
 });
 
 function getParams() {
-  const map = new Map();
-  map.set('fadeout', false);
-  return map;
+  return new Map().set('fadeout', false);
 }
