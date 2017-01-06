@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   skip_before_action :require_login
 
   before_action :set_category, only: :new
-  before_action :set_tag_ranking
+  before_action :set_tag_ranking, only: :show
   before_action :set_topic, only: :show
 
   def new
