@@ -5,8 +5,8 @@ import FileUpload from './file_upload'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
-const modal = new Modal($target, params);
 
+const modal = new Modal($target, params);
 const tab = new Tab;
 const form = new Form;
 const file_upload = new FileUpload;
