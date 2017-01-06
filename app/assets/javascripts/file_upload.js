@@ -1,3 +1,9 @@
+const CONTENT_TYPE = ['image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp']
+
 export default class {
   constructor() {
     this.reader = new FileReader();
@@ -20,15 +26,10 @@ export default class {
   }
 
   upload(e) {
-    const content_type = ['image/jpg',
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/bmp']
     const file = e.target.files[0];
     const image = $(`[data-form-topic-image]`);
 
-    if(this.isContent(content_type, file)) {
+    if(this.isContent(CONTENT_TYPE, file)) {
       this.previewImage(image, file);
     }
   }
