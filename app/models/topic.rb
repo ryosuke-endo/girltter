@@ -1,6 +1,4 @@
 class Topic < ActiveRecord::Base
-  include TempFileable
-
   has_attached_file :thumbnail,
     styles: { normal: '500x500>',
               thumbnail: '140x140>' }
