@@ -13,11 +13,11 @@ export default class {
     return $('textarea[name="topic[body]"]');
   }
 
-  setSubmitError(bool) {
+  submitError(bool) {
     return this.submit_error = bool
   }
 
-  setDisplayError() {
+  displayError() {
     return $('[data=modal-input]').
       after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
   }
@@ -42,13 +42,13 @@ export default class {
     const url = this.getUrl();
     if(url.hostname().length !== 0) {
       this.addUrl(url);
-      return this.setSubmitError(false);
+      return this.submitError(false);
     }
 
-    this.setSubmitError(true);
+    this.submitError(true);
 
     if(this.isDisplayError()) {
-      this.setDisplayError();
+      this.displayError();
     }
   }
 
