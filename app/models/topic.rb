@@ -5,7 +5,7 @@ class Topic < ActiveRecord::Base
 
   belongs_to :category
 
-  after_create :set_topic_view
+  before_create :set_topic_view
 
   validates :title, presence: true
   validates :body, presence: true
@@ -32,6 +32,5 @@ class Topic < ActiveRecord::Base
 
   def set_topic_view
     self.body = ContentsView.new(body).processing_display
-    save
   end
 end
