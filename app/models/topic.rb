@@ -10,10 +10,12 @@ class Topic < ActiveRecord::Base
   validates :body, presence: true
   validates :name, presence: true
   validates_attachment :thumbnail,
-                       content_type: { content_type: ['image/jpg',
-                                                      'image/jpeg',
-                                                      'image/png',
-                                                      'image/gif'] }
+    content_type: { content_type: ['image/jpg',
+                                   'image/jpeg',
+                                   'image/png',
+                                   'image/gif',
+                                   'image/bmp'] },
+    less_than: 20.megabytes
 
   def thumbnails_first
     thumbnails_urls.first
