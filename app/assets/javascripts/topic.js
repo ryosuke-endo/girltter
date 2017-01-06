@@ -4,7 +4,8 @@ import Form from './topic/modal/form'
 import FileUpload from './file_upload'
 
 const $target = $('[data-modal__contents]');
-const modal = new Modal($target, getParams());
+const params = new Map().set('fadeout', false)
+const modal = new Modal($target, params);
 
 const tab = new Tab;
 const form = new Form;
@@ -20,7 +21,7 @@ $("[data=icon-item]")
     $this.find("[data=icon-description]").hide();
   });
 
-$("[data=icon-item]").click(function() {
+$("[data=icon-item]").click(() => {
   modal.open();
   form.cleanText();
   tab.addActive();
@@ -44,7 +45,3 @@ $('[data-modal-close], #p-topic-modal-bg').click(() => {
 $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
   file_upload.upload(e);
 });
-
-function getParams() {
-  return new Map().set('fadeout', false);
-}
