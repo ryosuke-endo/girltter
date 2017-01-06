@@ -1,36 +1,35 @@
-class FileUpload {
+export default class {
   constructor() {
-    $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
-      const content_type = ['image/jpg',
-                            'image/jpeg',
-                            'image/png',
-                            'image/gif',
-                            'image/bmp']
-      this.file = e.target.files[0];
-      this.reader = new FileReader();
-      this.image = $(`[data-form-topic-image]`);
-
-      if(this.isContent(content_type, this.file)) {
-        this.previewImage(this.file);
-      }
-    });
+    this.reader = new FileReader();
   }
 
   isContent(type, file) {
     return type.indexOf(file.type) !== -1
   }
 
-  previewImage(file) {
+  previewImage(image, file) {
     this.reader.readAsDataURL(file);
 
     this.reader.onload = (file) => {
-      this.image.replaceWith($('<img>').attr({
+      image.replaceWith($('<img>').attr({
         src: file.target.result,
         title: file.name,
         'data-form-topic-image': true
       }));
     }
   }
-}
 
-new FileUpload;
+  upload(e) {
+    const content_type = ['image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp']
+    const file = e.target.files[0];
+    const image = $(`[data-form-topic-image]`);
+
+    if(this.isContent(content_type, file)) {
+      this.previewImage(image, file);
+    }
+  }
+}

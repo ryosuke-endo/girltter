@@ -1,12 +1,14 @@
 import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
+import FileUpload from './file_upload'
 
 const target = $('[data-modal__contents]');
-const modal = new Modal(target, getParams())
+const modal = new Modal(target, getParams());
 
-const tab = new Tab
-const form = new Form
+const tab = new Tab;
+const form = new Form;
+const file_upload = new FileUpload;
 
 $("[data=icon-item]")
   .mouseenter(function() {
@@ -37,6 +39,10 @@ $('[data=modal-input]').keyup(() => {
 
 $('[data-modal-close], #p-topic-modal-bg').click(() => {
   modal.close();
+});
+
+$('[data-form-file]').on('change', 'input[type="file"]', (e) => {
+  file_upload.upload(e);
 });
 
 function getParams() {
