@@ -15,7 +15,6 @@ html
       .l__topic_main.c-border.c-border-r-10
         = yield
       .l__r-side
-        = yield :ranking
-        = yield :tag_ranking
+        = render "application/column/right"
     = render "application/common/footer"
     = yield :javascript
