@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
   before_action :set_tag_ranking
 
   def show
+    @topics = @category.topics
   end
 
   private

@@ -1,8 +1,4 @@
 - breadcrumb :category, @category
-- content_for :tag_ranking do
-  = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
-- content_for :description do
-  = render "description", category: @category
 
-.c-container.text-center
-  = link_to "トピックを投稿する", new_topic_path(category_id: params[:id]), class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"
+ul.c-list
+  = render partial: "application/common/topics", collection: @topics, as: :topic

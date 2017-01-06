@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   class_attribute :cached_map
 
   has_attached_file :image, styles: { medium: '300x300>', thumb: '140x140>' }
+  has_many :topics
 
   validates :name, presence: true
   validates :description, presence: true
