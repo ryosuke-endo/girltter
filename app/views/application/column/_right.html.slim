@@ -2,4 +2,4 @@
   .c-container.text-center
     = link_to "トピックを投稿する", new_topic_path(category_id: params[:id]), class: "c-btn c-btn--pink c-btn--w-100p c-btn--h-large"
 
-= render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
+= yield :tag_ranking

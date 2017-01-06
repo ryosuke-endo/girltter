@@ -1,3 +1,5 @@
+- content_for :tag_ranking do
+  = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - breadcrumb :category, @category
 
 ul.c-list
