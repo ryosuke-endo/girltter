@@ -29,7 +29,7 @@
 - if @topic.thumbnail?
   .c-container
     .p-topic__image
-      = image_tag(@topic.thumbnail.url(:original))
+      = image_tag(@topic.thumbnail.url(:normal))
 
 .c-container--sm
   .c-flex
