@@ -17,7 +17,7 @@ export default class {
     return this.submit_error = bool
   }
 
-  setDsiplayError() {
+  setDisplayError() {
     return $('[data=modal-input]').
       after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
   }
@@ -48,7 +48,7 @@ export default class {
     this.setSubmitError(true);
 
     if(this.isDisplayError()) {
-      this.setDsiplayError();
+      this.setDisplayError();
     }
   }
 
