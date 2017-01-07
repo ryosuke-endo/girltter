@@ -22,14 +22,14 @@ export default class {
       $image.replaceWith($('<img>').attr({
         src: file.target.result,
         title: file.name,
-        'data-form-topic-image': true
+        'data-form-image': true
       }));
     }
   }
 
   upload(e) {
     const file = e.target.files[0];
-    const $image = $(`[data-form-topic-image]`);
+    const $image = $(`[data-form-image]`);
 
     if(this.isContent(CONTENT_TYPE, file)) {
       this.previewImage($image, file);
