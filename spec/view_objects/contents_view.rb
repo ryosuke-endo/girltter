@@ -2,8 +2,6 @@ require 'rails_helper'
 require 'webmock/rspec'
 
 describe ContentsView do
-  include ActionView::TestCase::Behavior
-
   OG_BODY = <<-"EOS"
 <html xmlns:og="http://opengraphprotocol.org/schema/">
   <head>
