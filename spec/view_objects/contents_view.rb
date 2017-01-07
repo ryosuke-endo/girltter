@@ -40,6 +40,30 @@ describe ContentsView do
   EOS
 
   describe '#processing_display' do
+    context 'brタグ変換' do
+      context '文字列だけ' do
+        it '変換される' do
+          contents = "fpp\r\nbar\r\n\r\n\r\nbaz"
+          contents_view = ContentsView.new(contents)
+          expect(contents_view.processing_display.scan(/<br>/).size).to eq 4
+        end
+      end
+
+      context '引用URLを含む' do
+        before do
+          stub_request(:get, 'http://www.example.com/').
+            to_return(status: 200, body: OG_BODY, headers: {})
+        end
+
+        it '変換される' do
+          url = 'http://www.example.com/'
+          contents = "fpp\r\nbar\r\n\r\n\r\nbaz#{url}"
+          contents_view = ContentsView.new(contents)
+          expect(contents_view.processing_display.scan(/<br>/).size).to eq 4
+        end
+      end
+    end
+
     it 'script_tagを許可しない' do
       contents_view = ContentsView.new(SCRIPT_TAG)
       expect(!!(contents_view.processing_display.match(/<script>/))).to be_falsey
