@@ -2,14 +2,13 @@ doctype html
 html
   head
     title
-      | Girls Playground
+      = t('site_title')
     meta name="robots" content="noindex, nofollow"
     = stylesheet_link_tag    'pc/application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
     = render "application/common/header"
-    = yield :sub_nav
     .c-bg-lll-gray.c-border--bottom-solid
       .l__breadcrumbs
         = render "breadcrumbs"

@@ -46,6 +46,9 @@ gem 'bootstrap-sass'
 # breadcrumbs
 gem 'gretel'
 
+# thumbnail link
+gem 'link_thumbnailer'
+
 # icon
 gem 'font-awesome-rails'
 
@@ -99,6 +102,9 @@ group :test do
 
   # helper
   gem 'active_decorator-rspec'
+
+  # mock
+  gem 'webmock'
 end
 
 group :development do

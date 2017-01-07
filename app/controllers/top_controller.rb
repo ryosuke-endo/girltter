@@ -3,7 +3,7 @@ class TopController < ApplicationController
 
   skip_before_action :require_login
   before_action :set_categories
-  before_action :set_loves
+  before_action :set_topics
   before_action :set_tag_ranking
   before_action :set_ranking
 
@@ -12,9 +12,8 @@ class TopController < ApplicationController
 
   private
 
-  def set_loves
-    @loves = Love.includes(:category, :tags, :member).
-      order(created_at: :desc).page(params[:page])
+  def set_topics
+    @topics = Topic.order(created_at: :desc).page(params[:page])
   end
 
   def set_categories

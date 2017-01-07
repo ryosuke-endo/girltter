@@ -1,20 +1,39 @@
 require 'active_record/fixtures'
 
+PATH = "#{Rails.root}/db/fixtures".freeze
+
 def import_fixture(fixture)
   puts "import #{fixture}"
-  ActiveRecord::FixtureSet.create_fixtures("#{Rails.root}/db/fixtures", fixture)
+  ActiveRecord::FixtureSet.create_fixtures(PATH, fixture)
 end
 
-categories = YAML.load(File.open("db/fixtures/categories.yml"))
-categories.each do |category|
-  id = category.last['id']
-  name = category.last['name']
-  description = category.last['description']
-  image_path = "#{Rails.root}/db/fixtures/categories/image/#{id}.jpg"
+# categoryの画像を保存するために、importしない
+puts 'import category'
+categories = YAML.load(File.open("#{PATH}/categories.yml"))
+categories.each do |_, category|
+  id = category['id']
+  name = category['name']
+  description = category['description']
+  image_path = "#{PATH}/categories/image/#{id}.jpg"
   Category.create(name: name,
                   description: description,
                   image: open(image_path))
 end
+
+# URL変換されないため、直接createする
+puts 'import topics'
+topics = YAML.load(File.open("#{PATH}/topics.yml"))
+topics.each do |_, topic|
+  category_id = topic['category_id']
+  title = topic['title']
+  name = topic['name']
+  body = topic['body']
+  Topic.create(category_id: category_id,
+               title: title,
+               name: name,
+               body: body)
+end
+
 import_fixture(:members)
 import_fixture(:tags)
 import_fixture(:loves)

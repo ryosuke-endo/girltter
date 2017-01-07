@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      = t('site_title')
+    meta name="robots" content="noindex, nofollow"
+    = stylesheet_link_tag    'pc/application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    = render "application/common/header"
+    .l__breadcrumbs
+      = render "breadcrumbs"
+    .l__content
+      .l__topic_main.c-border.c-border-r-10
+        = yield
+      .l__r-side
+        = render "application/column/right"
+    = render "application/common/footer"
+    = yield :javascript

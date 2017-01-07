@@ -13,13 +13,8 @@ ja:
       comment: コメント
 
     attributes:
-      user:
-        email: メールアドレス
-        login: ログインID
-        name: ユーザー名
-        password: パスワード
-        password_confirmation: パスワード確認
-        sex: 性別
+      acts_as_taggable_on/tag:
+        name: タグ名
 
       love:
         body: 本文
@@ -29,8 +24,19 @@ ja:
       supplemental:
         body: 補足説明
 
-      acts_as_taggable_on/tag:
-        name: タグ名
+      topic:
+        body: 本文
+        name: 名前
+        thumbnail: 画像
+        title: タイトル
+
+      user:
+        email: メールアドレス
+        login: ログインID
+        name: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード確認
+        sex: 性別
 
   enums:
     user:
@@ -244,6 +250,7 @@ ja:
   love_psychology: 恋愛心理
   marriage: 結婚
   sending: 送信中
+  site_title: 'Girls Playground'
 
   login_was_successfully_created: ログインに成功しました
   login_was_failed: ユーザーIDかパスワードが違います

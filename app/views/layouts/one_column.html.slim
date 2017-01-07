@@ -2,14 +2,14 @@ doctype html
 html
   head
     title
-      | みんなの恋愛
+      = t('site_title')
     meta name="robots" content="noindex, nofollow"
     = stylesheet_link_tag    'pc/application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
     = render "application/common/header"
-    = render "application/common/global_nav"
     .l__one-column-content
       = yield
     = render "application/common/footer"
+    = yield :javascript
