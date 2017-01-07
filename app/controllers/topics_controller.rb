@@ -45,7 +45,6 @@ class TopicsController < ApplicationController
                                   :body,
                                   :category_id,
                                   :name,
-                                  :temp_file,
                                   :thumbnail)
   end
 end
