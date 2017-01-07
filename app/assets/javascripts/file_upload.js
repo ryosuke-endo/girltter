@@ -1,8 +1,10 @@
-const CONTENT_TYPE = ['image/jpg',
-      'image/jpeg',
-      'image/png',
-      'image/gif',
-      'image/bmp']
+const CONTENT_TYPE = [
+  'image/jpg',
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/bmp',
+]
 
 export default class {
   constructor() {
