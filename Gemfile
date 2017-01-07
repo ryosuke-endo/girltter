@@ -43,6 +43,9 @@ gem 'sass-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 
+# emoji
+gem 'gemoji'
+
 # breadcrumbs
 gem 'gretel'
 
