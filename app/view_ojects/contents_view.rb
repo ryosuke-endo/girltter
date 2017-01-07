@@ -12,23 +12,21 @@ class ContentsView
     if urls.present?
       link_thumbnail_description if link_urls.present?
       image if image_urls.present?
-      return sanitize_content
     end
-    contents
+    convert_br_tag!
+    sanitize_content
   end
 
   private
 
-  def sanitize_content
-    action_view.sanitize(contents,
-                          tags: %w(a div img p br),
-                          attributes: %w(alt class href src target))
+  def convert_br_tag!
+    contents.gsub!(/\R/, '<br>')&.gsub!(/>(<br><br>|<br>)</, '><')
   end
 
-  def set_urls
-    @image_urls, @link_urls = urls.partition do |url|
-      url.match(/\.(jpg|jpeg|png|gif|bmp)/)
-    end
+  def convert_url_to_html!(url, html)
+    html.gsub!(/(?<=>)\s+|\s+(?=<)/, '')
+    reg_url = Regexp.escape(url.to_s)
+    contents.gsub!(/(#{reg_url}$|#{reg_url}[\W\/])/) { html.to_s }
   end
 
   def image
@@ -51,9 +49,15 @@ class ContentsView
     end
   end
 
-  def convert_url_to_html!(url, html)
-    html.gsub!(/(?<=>)\s+|\s+(?=<)/, '')
-    reg_url = Regexp.escape(url.to_s)
-    contents.gsub!(/(#{reg_url}$|#{reg_url}[\W\/])/) { html.to_s }
+  def sanitize_content
+    action_view.sanitize(contents,
+                          tags: %w(a div img p br),
+                          attributes: %w(alt class href src target))
+  end
+
+  def set_urls
+    @image_urls, @link_urls = urls.partition do |url|
+      url.match(/\.(jpg|jpeg|png|gif|bmp)/)
+    end
   end
 end
