@@ -2,23 +2,28 @@ category_1:
   id: 1
   name: ニュース
   description: 政治的な話題から日常的な話題のニュースをについて取り扱っております。
+  position: 1
 
 category_2:
   id: 2
   name: 芸能人
   description: 芸能人のニュースについて、噂や裏話などで盛り上ろう
+  position: 2
 
 category_3:
   id: 3
   name: 生活
   description: 生活に関わるニュース
+  position: 3
 
 category_4:
   id: 4
-  name: ファッション
-  description: ファッション
+  name: 恋愛・結婚
+  description: 恋愛・結婚
+  position: 4
 
 category_5:
   id: 5
-  name: 恋愛・結婚
-  description: 恋愛・結婚
+  name: 雑談
+  description: 雑談
+  position: 5
