@@ -12,6 +12,8 @@ class Category < ActiveRecord::Base
                                                       'image/png',
                                                       'image/gif'] }
 
+  scope :ordered_position, -> { order(position: :asc) }
+
   def self.cached
     fetch_cached_map
   end

@@ -14,9 +14,11 @@ categories.each do |_, category|
   id = category['id']
   name = category['name']
   description = category['description']
+  position =  category['position']
   image_path = "#{PATH}/categories/image/#{id}.jpg"
   Category.create(name: name,
                   description: description,
+                  position: position,
                   image: open(image_path))
 end
 

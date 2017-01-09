@@ -17,7 +17,7 @@ class TopController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.all.ordered_position
   end
 
   def set_tag_ranking
