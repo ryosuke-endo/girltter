@@ -1,6 +1,3 @@
-- content_for :sub_nav do
-  = render "sub_nav"
-
 = form_tag admin_tags_path
   - if @tag.errors.present?
     = render "error_messages", object: @tag
