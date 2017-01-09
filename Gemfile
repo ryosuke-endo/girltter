@@ -77,9 +77,6 @@ gem 'active_decorator'
 # tags
 gem 'acts-as-taggable-on'
 
-# list sort
-gem 'acts_as_list'
-
 # validation
 gem 'simple_email_validation'
 
