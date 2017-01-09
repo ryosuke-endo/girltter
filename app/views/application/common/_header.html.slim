@@ -2,18 +2,18 @@
   .l__header
     header.c-flex.c-flex__jc-sb.c-flex--al-c.c-header--h-100p
       .c-flex.c-flex__jc-sb.c-flex--al-c.c-header__left-w
-        h1.p-site-title = link_to "Girls Playground", root_path, class: "c-link__text--c-w"
+        h1.p-site-title = link_to "Girls Playground", root_path, class: "c-link--c-w"
         form
           input class="c-form__search" placeholder="スレ検索"
           button
             i.fa.fa-search.c-icon__search
       ul.c-flex.c-flex__jc-sb.c-flex--al-c.c-header__right-w.c-margin-reset
         - if admin?
-          li = link_to "管理画面にいく", admin_index_path, class: "c-link__text--c-w"
-          li = link_to "ログアウト", :logout, method: :post, class: "c-link__text--c-w"
+          li = link_to "管理画面にいく", admin_index_path, class: "c-link--c-w"
+          li = link_to "ログアウト", :logout, method: :post, class: "c-link--c-w"
         - elsif current_user
-          li = link_to "マイページ", home_path, class: "c-link__text--c-w"
-          li = link_to "ログアウト", :logout, method: :post, class: "c-link__text--c-w"
+          li = link_to "マイページ", home_path, class: "c-link--c-w"
+          li = link_to "ログアウト", :logout, method: :post, class: "c-link--c-w"
         - else
-          li = link_to "ログイン", :login, class: "c-link__text--c-w"
-          li = link_to "会員登録", new_member_path, class: "c-link__text--c-w"
+          li = link_to "ログイン", :login, class: "c-link--c-w"
+          li = link_to "会員登録", new_member_path, class: "c-link--c-w"
