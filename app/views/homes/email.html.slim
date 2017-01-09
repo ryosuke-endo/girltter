@@ -8,7 +8,7 @@
   = form_for @member, url: { action: :update_email } do |f|
     = render "error_messages", object: @member
 
-    .c-form__item
+    .c-flex--column
       = f.label :email, class: "c-form__input-label"
       = f.text_field :email, class: "c-form__input c-form-w-50p"
 
