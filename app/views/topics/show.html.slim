@@ -6,11 +6,11 @@
   .c-flex.p-topic--title__border
     .c-flex--column
       - if @topic.thumbnail?
-        = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
+        = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border--r-10")
       - elsif @topic.thumbnails_first
-        = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
+        = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border--r-10")
       -else
-        = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
+        = image_tag('no_image.png', class: "p-topic__thumbnail c-border--r-10")
       .p-topic--comment.text--s-sm
         span.text--s-lg.text__c--pink.text--b
           | 10

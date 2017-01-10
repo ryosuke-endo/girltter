@@ -11,12 +11,12 @@
       .c-main-grid__img--xs
         = image_tag('woman-face.png')
       .c-frame.c-border.c-main-grid
-        .c-grid__content.c-container--sm.c-border--bottom-dotted
+        .c-grid__content.c-container--sm.c-border.c-border--dotted
           .c--label = @love.category.name
-          .c-grid__title.c-border--bottom-dotted = link_to @love.title, @love
+          .c-grid__title.c-border.c-border--dotted = link_to @love.title, @love
           .c-grid-lead = simple_format(@love.body)
           - if @love.supplementals.present?
-            .c-grid__title.c-border--bottom-dotted
+            .c-grid__title.c-border.c-border--dotted
               | 補足説明
             - @love.supplementals.each do |supplemental|
               .c-grid-lead = simple_format(supplemental.body)
