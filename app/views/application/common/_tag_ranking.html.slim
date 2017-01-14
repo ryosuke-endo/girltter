@@ -1,9 +1,9 @@
-.l__side__container
+.c-container
   h3.c-side-title = title
   p.c-side-description
     | よく使われているキーワードです
   ul.c-tags
     - tags.each do |tag|
       li.c-tag
-        i.fa.fa-tag.icon-c-pink
+        i.fa.fa-tag.c-icon--c-pink
         span.c-tag--name = link_to tag.name, tag_path(tag)

@@ -1,7 +1,3 @@
-- content_for :sub_nav do
-  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
-- content_for :ranking do
-  = render "application/common/side_column", rankings: @rankings
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - content_for :javascript do
@@ -9,40 +5,40 @@
 - breadcrumb :thread, @love
 = render "success_messages"
 
-.c-frame.c-frame--gray
+.c-frame.c-border
   ul
     li.c-container.c-flex
       .c-main-grid__img--xs
         = image_tag('woman-face.png')
-      .c-frame.c-frame--gray.c-main-grid
-        .c-grid__content.c-container--sm.c-border--bottom-dotted
+      .c-frame.c-border.c-main-grid
+        .c-grid__content.c-container--sm.c-border.c-border--dotted
           .c--label = @love.category.name
-          .c-grid__title.c-border--bottom-dotted = link_to @love.title, @love
+          .c-grid__title.c-border.c-border--dotted = link_to @love.title, @love
           .c-grid-lead = simple_format(@love.body)
           - if @love.supplementals.present?
-            .c-grid__title.c-border--bottom-dotted
+            .c-grid__title.c-border.c-border--dotted
               | 補足説明
             - @love.supplementals.each do |supplemental|
               .c-grid-lead = simple_format(supplemental.body)
         ul.c-tags.c-container--sm
           - @love.tag_list.each do |tag|
             li.c-tag
-              i.fa.fa-tag.icon-c-pink
+              i.fa.fa-tag.c-icon--c-pink
               span.c-tag--name = tag
         ul.p-post-information
           - if current_user == @love.member
             ul.p-post-information__edit
               li
                 = link_to love_path(@love), data: { confirm: "削除してもよろしいですか？" }, method: :delete
-                  i.fa.fa-trash-o.icon-c-d-gray
+                  i.fa.fa-trash-o.c-icon--c-d-gray
               li.c-frame__icon
-                i.fa.fa-pencil.icon-c-d-gray
+                i.fa.fa-pencil.c-icon--c-d-gray
                 .c-icon__value
                   = link_to "質問に追記", new_love_supplemental_path(@love)
           li
             = @love.member.name
           li
-            i.fa.fa-comment.icon-c-pink
+            i.fa.fa-comment.c-icon--c-pink
             .c-icon__value
               = @love.comments.count
 

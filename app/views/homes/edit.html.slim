@@ -1,24 +1,24 @@
 - content_for :side_menu do
-  = render "application/common/side_menu"
+  = render "application/column/my_page/menu"
 
-.c-frame.c-frame--gray
+.c-frame.c-border
   .c-heading--page
     h1
       | プロフィールを変更する
   = form_for @member, url: { action: :update } do |f|
     = render "error_messages", object: @member
 
-    .c-form__item
+    .c-flex--column
       = f.label :login, class: "c-form__input-label"
       = f.text_field :login, class: "c-form__input c-form-w-50p"
 
-    .c-form__item
+    .c-flex--column
       = f.label :name, class: "c-form__input-label"
       = f.text_field :name, class: "c-form__input c-form-w-50p"
 
-    .c-form__item
+    .c-flex--column
       = f.label :sex, class: "c-form__input-label"
-      .c-form__radio__item
+      .c-flex
         = f.label :man, class: "c-form__label"
           = f.radio_button :sex, :man, class: "c-form__radio"
           span.c-form__word
