@@ -11,7 +11,7 @@ ul.c-tabs
     - threads.each do |thread|
       li.c-container.c-flex
         .c-frame.c-frame--gray.c-main-grid
-          .c-grid__content.c-container--sm.c-border--bottom-dotted
+          .c-grid__content.c-container--sm.c-border--bottom-1.c-border--dotted
             .c--label = thread.category.name
             .c-grid__title = link_to thread.title, thread
             .c-grid-lead = simple_format(thread.short_body)
@@ -27,7 +27,7 @@ ul.c-tabs
     - answers.each do |thread|
       li.c-container.c-flex
         .c-frame.c-frame--gray.c-main-grid
-          .c-grid__content.c-container--sm.c-border--bottom-dotted
+          .c-grid__content.c-container--sm.c-border--bottom-1.c-border--dotted
             .c--label = thread.category.name
             .c-grid__title = link_to thread.title, thread
             .c-grid-lead = simple_format(thread.short_body)

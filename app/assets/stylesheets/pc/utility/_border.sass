@@ -4,26 +4,27 @@
   border: 1px solid $b-gray
 
 @for $width from 2 through 5
-  .c-boder-#{$width}
+  .c-border-#{$width}
     border: #{$width}px solid $b-gray
-
-.c-border--bottom-dotted
-  border-bottom: 1px dotted $b-gray
 
 .c-border--bottom-1
   border-bottom: 1px solid $b-gray
 
-.c-border__dotted
+// style
+
+.c-border--dotted
   border-style: dotted
+
+// color
 
 .c-border__c-p
   border-color: $b-pink
 
-.c-border-r-5
-  border-radius: 5px
+// radius
 
-.c-border-r-10
-  border-radius: 10px
+@for $width from 1 through 10
+  .c-border-r-#{$width}
+    border-radius: #{$width}px
 
 .c-border__img-r-10
   img

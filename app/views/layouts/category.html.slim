@@ -9,10 +9,10 @@ html
     = csrf_meta_tags
   body
     = render "application/common/header"
-    .c-border--bottom-solid
+    .c-border--bottom-1
       .l__breadcrumbs
         = render "breadcrumbs"
-    .c-container.u-bg-lll-gray.c-border--bottom-solid
+    .c-container.u-bg-lll-gray.c-border--bottom-1
       .l__category__description
         = render "description", category: @category
     .l__content
