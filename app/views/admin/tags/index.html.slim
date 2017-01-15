@@ -17,8 +17,8 @@ table.c-table.c-table--border
   tbody
     - @tags.each do |tag|
       tr.c-table__tr
-        td.c-table__td.u-text--c = tag.name
-        td.c-table__td.u-text--c = tag.taggings_count
-        td.c-table__td.u-text--c = link_to "削除", admin_tag_path(tag), data: { confirm: "削除してもよろしいですか？" }, method: :delete
+        td.c-table__td.text--c = tag.name
+        td.c-table__td.text--c = tag.taggings_count
+        td.c-table__td.text--c = link_to "削除", admin_tag_path(tag), data: { confirm: "削除してもよろしいですか？" }, method: :delete
 
 = paginate @tags

@@ -1,4 +1,7 @@
-.c-frame.c-border
+- content_for :sub_nav do
+  = render "application/common/sub_nav", top_name: "恋愛トップ", top_path: loves_path, categories: @categories
+
+.c-frame.c-frame--gray
   .c-heading--page.c-container
     h1
       | 補足説明をする

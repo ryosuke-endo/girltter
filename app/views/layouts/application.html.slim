@@ -9,12 +9,12 @@ html
     = csrf_meta_tags
   body
     = render "application/common/header"
-    .u-bg-lll-gray.c-border--bottom-1
+    .c-bg-lll-gray.c-border--bottom-solid
       .l__breadcrumbs
         = render "breadcrumbs"
-    .l__content.c-flex
+    .l__content
       .l__l-side
-        = render "application/column/left"
+        = render "application/common/side_menu_left"
       .l__main
         = yield
       .l__r-side

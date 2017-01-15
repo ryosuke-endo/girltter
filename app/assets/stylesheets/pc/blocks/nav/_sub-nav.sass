@@ -1,0 +1,27 @@
+.sub-nav
+  ul
+    display: flex
+    justify-content: flex-start
+    li
+      flex-basis: 100px
+      list-style: none
+      width: 100%
+      border-right: 1px dotted $b-gray
+      &.is-active
+        a
+          border-bottom: 3px solid $b-pink
+          margin-bottom: -3px
+          color: $b-pink
+      a
+        color: $b-black
+        display: block
+        padding: 10px 0
+        text-align: center
+        text-decoration: none
+        width: 100%
+        &:hover
+          border-bottom: 3px solid $b-pink
+          color: $b-pink
+          margin-bottom: -3px
+    li:last-child
+      border-right: none
