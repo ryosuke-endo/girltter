@@ -9,12 +9,12 @@
 - breadcrumb :thread, @love
 = render "success_messages"
 
-.c-frame.c-border
+.c-frame.c-frame--gray
   ul
     li.c-container.c-flex
       .c-main-grid__img--xs
         = image_tag('woman-face.png')
-      .c-frame.c-border.c-main-grid
+      .c-frame.c-frame--gray.c-main-grid
         .c-grid__content.c-container--sm.c-border--bottom-1.c-border--dotted
           .c--label = @love.category.name
           .c-grid__title.c-border--bottom-1.c-border--dotted = link_to @love.title, @love
@@ -27,22 +27,22 @@
         ul.c-tags.c-container--sm
           - @love.tag_list.each do |tag|
             li.c-tag
-              i.fa.fa-tag.c-icon-pink
+              i.fa.fa-tag.icon-c-pink
               span.c-tag--name = tag
         ul.p-post-information
           - if current_user == @love.member
             ul.p-post-information__edit
               li
                 = link_to love_path(@love), data: { confirm: "削除してもよろしいですか？" }, method: :delete
-                  i.fa.fa-trash-o.c-icon-d-gray
+                  i.fa.fa-trash-o.icon-c-d-gray
               li.c-frame__icon
-                i.fa.fa-pencil.c-icon-d-gray
+                i.fa.fa-pencil.icon-c-d-gray
                 .c-icon__value
                   = link_to "質問に追記", new_love_supplemental_path(@love)
           li
             = @love.member.name
           li
-            i.fa.fa-comment.c-icon-pink
+            i.fa.fa-comment.icon-c-pink
             .c-icon__value
               = @love.comments.count
 

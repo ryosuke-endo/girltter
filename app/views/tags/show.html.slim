@@ -2,9 +2,9 @@
 .c-heading--section.c-container
   .c-container--sm
     h1 = "「#{@tag.name}」の検索結果"
-  p.u-text--r = "件数は#{@threads.count}件あります"
+  p.text--r = "件数は#{@threads.count}件あります"
 
-.c-frame.c-border
+.c-frame.c-frame--gray
   .c-container.text-center
 
   = render partial: "topic_list", collection: @threads, as: :thread
