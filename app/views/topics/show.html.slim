@@ -13,7 +13,7 @@
         = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
       .p-topic--comment.text--s-sm
         span.text--s-lg.text__c--pink.text--b
-          | 10
+          = @topic.comments.count
         | コメ
     .c-flex--column.c-flex__jc-sb
       .c-flex.c-flex__jc-sb
