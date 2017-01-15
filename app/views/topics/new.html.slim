@@ -14,7 +14,7 @@
           = image_tag('no_image.png', data: { "form-image": true })
           .c-btn__container
             .c-form__file.c-border data-form-file=true
-              i.fa.fa-camera.icon-c-d-gray.c-margin-r-10.text--s-lg
+              i.fa.fa-camera.c-icon-d-gray.c-margin-r-10.text--s-lg
               = f.label :thumbnail
                 | 画像を選択する
                 = f.file_field :thumbnail,
@@ -36,14 +36,14 @@
               placeholder: "本文を入力してください"
             .c-flex.c-flex__jc-sb
               .c-icon__items
-                i.fa.fa-link.icon-c-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item"
+                i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item"
                   .p-topic--icon__description.text--s-sm.text--c.text--b data="icon-description"
                     | 画像/記事を引用する
                 .p-topic--search__form data="search__form"
                   form.search__form display="none"
                     input class="p-search__input-text text--s-md" placeholder="URLを入力してください"
                     button.p-topic--search__btn
-                    i.fa.fa-search.p-topic--search__icon.icon-c-d-gray
+                    i.fa.fa-search.p-topic--search__icon.c-icon-d-gray
               div
                 = f.submit "投稿する",  class: "c-btn c-btn--pink c-btn--md",
                   data: { 'form-submit-comment': true, disable_with: '処理中...' }
