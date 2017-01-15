@@ -10,7 +10,7 @@ ul.c-tabs
   ul data-home-tab-contents="question"
     - threads.each do |thread|
       li.c-container.c-flex
-        .c-frame.c-frame--gray.c-main-grid
+        .c-frame.c-border.c-main-grid
           .c-grid__content.c-container--sm.c-border--bottom-1.c-border--dotted
             .c--label = thread.category.name
             .c-grid__title = link_to thread.title, thread
@@ -26,7 +26,7 @@ ul.c-tabs
   ul data-home-tab-contents="answer" style="display: none;"
     - answers.each do |thread|
       li.c-container.c-flex
-        .c-frame.c-frame--gray.c-main-grid
+        .c-frame.c-border.c-main-grid
           .c-grid__content.c-container--sm.c-border--bottom-1.c-border--dotted
             .c--label = thread.category.name
             .c-grid__title = link_to thread.title, thread
