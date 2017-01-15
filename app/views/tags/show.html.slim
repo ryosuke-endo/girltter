@@ -4,7 +4,7 @@
     h1 = "「#{@tag.name}」の検索結果"
   p.text--r = "件数は#{@threads.count}件あります"
 
-.c-frame.c-frame--gray
+.c-frame.c-border
   .c-container.text-center
 
   = render partial: "topic_list", collection: @threads, as: :thread
