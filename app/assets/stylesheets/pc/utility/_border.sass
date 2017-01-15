@@ -1,0 +1,30 @@
+// base
+
+.c-border
+  border: 1px solid $b-gray
+
+@for $width from 2 through 5
+  .c-boder-#{$width}
+    border: #{$width}px solid $b-gray
+
+.c-border--bottom-dotted
+  border-bottom: 1px dotted $b-gray
+
+.c-border--bottom-1
+  border-bottom: 1px solid $b-gray
+
+.c-border__dotted
+  border-style: dotted
+
+.c-border__c-p
+  border-color: $b-pink
+
+.c-border-r-5
+  border-radius: 5px
+
+.c-border-r-10
+  border-radius: 10px
+
+.c-border__img-r-10
+  img
+    border-radius: 10px
