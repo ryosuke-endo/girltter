@@ -3,6 +3,8 @@ class Topic < ActiveRecord::Base
     styles: { normal: '500x500>',
               thumbnail: '140x140>' }
 
+  has_many :comments, dependent: :destroy
+
   belongs_to :category
 
   before_create :set_topic_view
