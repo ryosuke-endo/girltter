@@ -1,8 +1,8 @@
 - if thread.member == comment.member
   li class="c-container"
-    p.c-main-grid__name-r.u-text--r = comment.member.name
+    p.c-main-grid__name-r.text--r = comment.member.name
     .c-flex
-      .c-frame__comment.c-border.c-main-grid
+      .c-frame__comment.c-frame--gray.c-main-grid
         .c-main-grid
           .c-grid__content.c-container--sm
              = simple_format(comment.body)
@@ -14,7 +14,7 @@
     .c-flex
       .c-main-grid__img--xs
         = image_tag('woman-face.png')
-      .c-frame__comment.c-border.c-main-grid
+      .c-frame__comment.c-frame--gray.c-main-grid
         .c-main-grid
           .c-grid__content.c-container--sm
              = simple_format(comment.body)

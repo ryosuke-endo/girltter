@@ -11,19 +11,19 @@
         = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
       -else
         = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
-      .p-topic--comment.u-text--sm
-        span.u-text--lg.u-text--pink.u-text--b
+      .p-topic--comment.text--s-sm
+        span.text--s-lg.text__c--pink.text--b
           | 10
         | コメ
     .c-flex--column.c-flex__jc-sb
       .c-flex.c-flex__jc-sb
-        .u-text--sm.u-text--d-gray
+        .text--s-sm.text__c--d-gray
           = @topic.created_at.to_s(:Ymd)
-      h1.p-topic--title.u-text--xxlg.u-text--b.c-container--sm
+      h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
         = @topic.title
       .c-flex.c-flex__jc-sb
         .c-category--item
-          .u-text--b.c-margin-reset.u-text--c
+          .text--b.c-margin-reset.text--c
             = @topic.category.name
 
 - if @topic.thumbnail?
@@ -41,7 +41,7 @@
 
 .c-container.p-topic-font
   = @topic.body.html_safe
-  .p-topic-icon.u-text--xlg
+  .p-topic-icon.text--s-x-lg
     ul.c-flex.c-flex__jc-end
       li.p-topic-icon__item.p-topic-icon__smile
         i.fa.fa-smile-o

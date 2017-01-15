@@ -19,7 +19,7 @@ export default class {
 
   displayError() {
     return $('[data=modal-input]').
-      after('<p class="u-text--red" data-modal-submit-error> URLを貼り付けてください')
+      after('<p class="text__c--red" data-modal-submit-error> URLを貼り付けてください')
   }
 
   isSubmitSuccess() {
