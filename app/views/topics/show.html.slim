@@ -16,12 +16,12 @@
           | 10
         | コメ
     .c-flex--column.c-flex__jc-sb
-      .c-flex__content-sb
+      .c-flex.c-flex__jc-sb
         .text--s-sm.text__c--d-gray
           = @topic.created_at.to_s(:Ymd)
       h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
         = @topic.title
-      .c-flex__content-sb
+      .c-flex.c-flex__jc-sb
         .c-category--item
           .text--b.c-margin-reset.text--c
             = @topic.category.name

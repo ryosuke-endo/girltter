@@ -1,13 +1,13 @@
 .u-bg-pink
   .l__header
-    header.c-flex__content-sb-h-100p.c-flex__a-items-c
-      .c-flex__content-sb-h-100p-w-400.c-flex__a-items-c
+    header.c-flex.c-flex__jc-sb.c-flex__ai-c.c-header--h-100p
+      .c-flex.c-flex__jc-sb.c-flex__ai-c.c-header__left-w
         h1.text--s-lg.p-site-title = link_to "Girls Playground", root_path, class: "c-link__text--c-w"
         form.search__form
           input class="search__input-text" placeholder="スレ検索"
           button
             i.fa.fa-search.search__icon
-      ul.c-flex__content-sb-h-100p-w-140.c-flex__a-items-c.p-reset-margin
+      ul.c-flex.c-flex__jc-sb.c-flex__ai-c.c-header__right-w.p-reset-margin
         - if admin?
           li = link_to "管理画面にいく", admin_index_path, class: "c-link__text--c-w"
           li = link_to "ログアウト", :logout, method: :post, class: "c-link__text--c-w"
