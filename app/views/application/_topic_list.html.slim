@@ -10,12 +10,12 @@ ul
       ul.c-tags.c-container--sm
         - thread.tags.each do |tag|
           li.c-tag
-            i.fa.fa-tag.icon-c-pink
+            i.fa.fa-tag.c-icon-pink
             span.c-tag--name = link_to tag.name, tag_path(tag)
       ul.p-post-information
         li
           = thread.member.name
         li
-          i.fa.fa-comment.icon-c-pink
+          i.fa.fa-comment.c-icon-pink
           .c-icon__value
             = thread.comments.count
