@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115133725) do
+ActiveRecord::Schema.define(version: 20170115134414) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",               limit: 255,             null: false
@@ -27,9 +27,12 @@ ActiveRecord::Schema.define(version: 20170115133725) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",       limit: 4294967295, null: false
+    t.integer  "topic_id",   limit: 4,          null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
+
+  add_index "comments", ["topic_id"], name: "index_comments_on_topic_id", using: :btree
 
   create_table "loves", force: :cascade do |t|
     t.string   "title",       limit: 255,                    null: false
@@ -132,5 +135,6 @@ ActiveRecord::Schema.define(version: 20170115133725) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
   add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
+  add_foreign_key "comments", "topics"
   add_foreign_key "topics", "categories"
 end
