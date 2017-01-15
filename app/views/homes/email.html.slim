@@ -1,14 +1,14 @@
 - content_for :side_menu do
   = render "application/common/side_menu"
 
-.c-frame.c-frame--gray
+.c-frame.c-border
   .c-heading--page
     h1
       | メールアドレスを変更する
   = form_for @member, url: { action: :update_email } do |f|
     = render "error_messages", object: @member
 
-    .c-form__item
+    .c-flex--column
       = f.label :email, class: "c-form__input-label"
       = f.text_field :email, class: "c-form__input c-form-w-50p"
 
