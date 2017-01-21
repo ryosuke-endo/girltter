@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
 
   belongs_to :topic
 
+  before_create :process_body
+
   validates :body, presence: true
   validates :name, presence: true
   validates_attachment :image,
@@ -14,4 +16,10 @@ class Comment < ActiveRecord::Base
                                    'image/gif',
                                    'image/bmp'] },
     less_than: 20.megabytes
+
+  private
+
+  def process_body
+    self.body = ContentsView.new(body).processing_display
+  end
 end
