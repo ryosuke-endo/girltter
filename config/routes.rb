@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :complete
     end
+    scope module: :topics do
+      resources :comments, only: %i(create destroy)
+    end
   end
   resources :loves do
     scope module: :loves do
