@@ -11,7 +11,7 @@ const tab = new Tab;
 const form = new Form;
 const file_upload = new FileUpload;
 
-$("[data=icon-item]")
+$("[data=icon-item], [data=icon-item-image]")
   .mouseenter(function() {
     const $this = $(this);
     $this.find("[data=icon-description]").show();
