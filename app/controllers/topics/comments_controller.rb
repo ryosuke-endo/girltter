@@ -3,10 +3,10 @@ class Topics::CommentsController < Topics::ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @topic = @comment.topic
     if @comment.save
-      redirect_to
+      redirect_to @topic
     else
-      @topic = @comment.topic
       render 'topics/show'
     end
   end
