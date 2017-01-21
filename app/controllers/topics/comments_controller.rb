@@ -18,6 +18,7 @@ class Topics::CommentsController < Topics::ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body,
+                                    :image,
                                     :name,
                                     :topic_id)
   end
