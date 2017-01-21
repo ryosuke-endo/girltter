@@ -11,7 +11,7 @@
 
 .c-container.p-topic-font
   .c-container.text--b
-    = comment.body
+    = comment.body.html_safe
   - if comment.image?
     .c-container
       .p-topic__image
