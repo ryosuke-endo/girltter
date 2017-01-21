@@ -50,11 +50,11 @@
       li.p-topic-icon__item
         i.fa.fa-reply
 
-= render partial: "comments", collection: @topic.comments, as: :comment
+= render partial: "topics/comments", collection: @topic.comments, as: :comment
 
 .c-container--sm.text--s-lg.text--b
   | コメントする
-= form_for @comment do |f|
+= form_for @comment, url: topic_comments_path(@topic) do |f|
   .c-container
     .c-flex--column
       = f.label :name
