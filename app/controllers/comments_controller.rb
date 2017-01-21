@@ -1,13 +1,12 @@
 class CommentsController < ApplicationController
+  skip_before_action :require_login
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      content = render_to_string partial: 'comment',
-                                 locals: { comment: @comment,
-                                           thread: @comment.commentable }
-      render text: content
+      redirect_to
     else
-      render text: (@comment.errors.full_messages.each { |m| m } )
+      redirect_to @comment.topic
     end
   end
 
@@ -18,8 +17,7 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body,
-                                    :commentable_id,
-                                    :commentable_type,
-                                    :member_id)
+                                    :name,
+                                    :topic_id)
   end
 end
