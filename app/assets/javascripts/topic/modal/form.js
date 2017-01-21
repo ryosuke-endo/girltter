@@ -10,7 +10,7 @@ export default class {
   }
 
   getInputText(){
-    return $('textarea[name="topic[body]"]');
+    return $('textarea');
   }
 
   submitError(bool) {
