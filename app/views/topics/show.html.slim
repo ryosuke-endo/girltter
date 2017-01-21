@@ -55,6 +55,7 @@
 .c-container--sm.text--s-lg.text--b
   | コメントする
 = form_for @comment, url: topic_comments_path(@topic) do |f|
+  = render "error_messages", object: @comment
   .c-container
     .c-flex--column
       = f.label :name
