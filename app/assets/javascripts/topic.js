@@ -45,3 +45,16 @@ $('[data-modal-close], #p-topic-modal-bg').click(() => {
 $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
   file_upload.upload(e);
 });
+
+$('[data-reply-id]').on('click', function() {
+  const id = $(this).data('reply-id');
+  const reply_text = `>>${id}`;
+  const $inputText = $('textarea')
+  const $text = $inputText.val()
+
+  if($text.length === 0) {
+    $inputText.val(reply_text);
+  } else {
+    $inputText.val(`${reply_text}\n${$text}`);
+  }
+})
