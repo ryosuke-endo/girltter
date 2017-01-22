@@ -12,11 +12,6 @@ Rails.application.routes.draw do
       resources :comments, only: %i(create destroy)
     end
   end
-  resources :loves do
-    scope module: :loves do
-      resources :supplementals, only: %i(new create destroy)
-    end
-  end
   resource :home, only: %i(show edit update) do
     get :email
     get :password

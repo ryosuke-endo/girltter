@@ -20,14 +20,6 @@ ja:
         body: 本文
         name: 名前
 
-      love:
-        body: 本文
-        category_id: カテゴリー名
-        title: タイトル
-
-      supplemental:
-        body: 補足説明
-
       topic:
         body: 本文
         name: 名前
@@ -249,9 +241,6 @@ ja:
   couple: カップル
   divorce: 離婚
   login: ログイン
-  love: 恋愛
-  love_quotations: 恋愛名言
-  love_psychology: 恋愛心理
   marriage: 結婚
   sending: 送信中
   site_title: 'Girls Playground'
@@ -259,13 +248,10 @@ ja:
   login_was_successfully_created: ログインに成功しました
   login_was_failed: ユーザーIDかパスワードが違います
   login_was_successfully_deleted: ログアウトしました
-  love_was_successfully_created: 投稿ありがとうございます
-  love_was_successfully_deleted: 投稿を削除しました
   member_was_successfully_created: 会員登録ありがとうございます
   member_was_successfully_updated: プロフィールを更新しました
   member_was_successfully_updated_email: メールアドレスを更新しました
   member_was_successfully_updated_password: パスワードを更新しました
   member_was_successfully_deleted: 会員を削除しました
-  supplemental_was_successfully_created: 補足説明を投稿しました
   tag_was_successsfully_deleted: タグを削除しました
   admin_tags_associate_with_models_was_successfully_created: タグをモデルに関連づけしました
