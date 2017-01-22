@@ -62,6 +62,40 @@ describe ContentsView do
       end
     end
 
+    context '>>のanchor' do
+      context '返還される' do
+        context '改行' do
+          it '変換される' do
+            contents = ">>123\r\nbar\r\n\r\n\r\nbaz"
+            contents_view = ContentsView.new(contents)
+            expect(contents_view.processing_display.scan(/<\/span>/).size).to eq 1
+          end
+
+          it '真ん中にanchorがある' do
+            contents = "bar\r\n>>123\r\n\r\n\r\nbaz"
+            contents_view = ContentsView.new(contents)
+            expect(contents_view.processing_display.scan(/<\/span>/).size).to eq 1
+          end
+        end
+      end
+
+      context '変換されないパターン' do
+        it '>は変換されない' do
+          contents = ">123\r\nbar\r\n\r\n\r\nbaz"
+          contents_view = ContentsView.new(contents)
+          expect(contents_view.processing_display.scan(/<\/span>/).size).to eq 0
+        end
+
+        context '数値以外' do
+          it '>>アルファベッドは変換されない' do
+            contents = ">>aaa\r\nbar\r\n\r\n\r\nbaz"
+            contents_view = ContentsView.new(contents)
+            expect(contents_view.processing_display.scan(/<\/span>/).size).to eq 0
+          end
+        end
+      end
+    end
+
     it 'script_tagを許可しない' do
       contents_view = ContentsView.new(SCRIPT_TAG)
       expect(!!(contents_view.processing_display.match(/<script>/))).to be_falsey

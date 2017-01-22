@@ -13,11 +13,16 @@ class ContentsView
       link_thumbnail_description if link_urls.present?
       image if image_urls.present?
     end
+    extract_anchor!
     convert_br_tag!
     sanitize_content
   end
 
   private
+
+  def extract_anchor!
+    contents.gsub!(/(\>\>.*\d)/) { "<span data-anchor=true>#{$1}</span>" }
+  end
 
   def convert_br_tag!
     contents.gsub!(/\R/, '<br>')&.gsub(/<\/div><br>/, '</div>')
@@ -51,8 +56,8 @@ class ContentsView
 
   def sanitize_content
     action_view.sanitize(contents,
-                          tags: %w(a div img p br),
-                          attributes: %w(alt class href src target))
+                          tags: %w(a div img p br span),
+                          attributes: %w(alt class href src target data-anchor))
   end
 
   def set_urls
