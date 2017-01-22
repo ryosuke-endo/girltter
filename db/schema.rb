@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121060752) do
+ActiveRecord::Schema.define(version: 20170122083546) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",               limit: 255,             null: false
@@ -71,16 +71,6 @@ ActiveRecord::Schema.define(version: 20170121060752) do
   end
 
   add_index "reads", ["readable_id", "readable_type"], name: "index_reads_on_readable_id_and_readable_type", using: :btree
-
-  create_table "supplementals", force: :cascade do |t|
-    t.text     "body",                limit: 4294967295, null: false
-    t.integer  "supplementable_id",   limit: 4,          null: false
-    t.string   "supplementable_type", limit: 255,        null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-  end
-
-  add_index "supplementals", ["supplementable_id", "supplementable_type"], name: "index_supplementals_on_supplementable_id_and_supplementable_type", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
