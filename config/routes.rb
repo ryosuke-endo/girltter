@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :complete
     end
+    scope module: :topics do
+      resources :comments, only: %i(create destroy)
+    end
   end
   resources :loves do
     scope module: :loves do
@@ -24,7 +27,6 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :members, only: %i(index show new create destroy)
   resources :tags, only: :show
-  resources :comments, only: %i(create destroy)
 
   resources :admin, only: :index
   namespace :admin do

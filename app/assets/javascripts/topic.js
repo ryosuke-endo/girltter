@@ -11,7 +11,7 @@ const tab = new Tab;
 const form = new Form;
 const file_upload = new FileUpload;
 
-$("[data=icon-item]")
+$("[data=icon-item], [data=icon-item-image]")
   .mouseenter(function() {
     const $this = $(this);
     $this.find("[data=icon-description]").show();
@@ -45,3 +45,19 @@ $('[data-modal-close], #p-topic-modal-bg').click(() => {
 $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
   file_upload.upload(e);
 });
+
+$('[data-reply-id]').on('click', function() {
+  const id = $(this).data('reply-id');
+  const reply_text = `>>${id}`;
+  const $inputText = $('textarea')
+  const $text = $inputText.val()
+  const $position = $('label[for="comment_body"]').offset()
+
+  if($text.length === 0) {
+    $inputText.val(reply_text);
+  } else {
+    $inputText.val(`${reply_text}\n${$text}`);
+  }
+
+  window.scroll($position.left, $position.top);
+})

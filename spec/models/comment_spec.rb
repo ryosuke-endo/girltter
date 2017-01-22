@@ -9,5 +9,12 @@ RSpec.describe Comment, type: :model do
         expect(comment).not_to be_valid
       end
     end
+
+    context 'name' do
+      it '存在しないといけない' do
+        comment.name = ''
+        expect(comment).not_to be_valid
+      end
+    end
   end
 end

@@ -32,7 +32,7 @@
   padding: 7px 8px
 
 @for $height from 1 through 5
-  .c-form__text_area-h-#{$height * 100}
+  .c-form--h-#{$height * 100}
     height: #{$height * 100}px
 
 .c-form__file
@@ -40,7 +40,6 @@
   height: 40px
   line-height: 40px
   margin: 0
-  overflow: hidden
   position: relative
 
 .c-form__file__upload
@@ -50,6 +49,7 @@
   margin: 0
   opacity: 0
   padding: 0
+  overflow: hidden
   position: absolute
   right: 0
   top: 0
