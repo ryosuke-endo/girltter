@@ -1,0 +1,24 @@
+- index = comment_counter + 2
+.c-container--sm
+  .c-flex
+    div
+      = index
+      |:
+    .c-margin-l-10
+      = comment.name
+    .p-topic-date
+      = comment.created_at.to_s(:YmdnHM)
+
+.c-container.p-topic-font
+  .c-container.text--b
+    = comment.body.html_safe
+  - if comment.image?
+    .c-container
+      .p-topic__image
+        = image_tag comment.image.url(:normal)
+  .p-topic-icon.text--s-x-lg
+    ul.c-flex.c-flex__jc-end.c-container
+      li.p-topic-icon__item.p-topic-icon__smile
+        i.fa.fa-smile-o
+      li.p-topic-icon__item data-reply-id="#{index}"
+        i.fa.fa-reply

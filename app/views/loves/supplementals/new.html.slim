@@ -25,7 +25,7 @@
   = form_for([@love, @supplemental]) do |f|
     .c-container
       = f.label :body, class: "c-form__label--inline"
-      = f.text_area :body, class: "c-form__text_area c-form__text_area-h-200 c-form-w-100", placeholder: '補足説明を入力してください'
+      = f.text_area :body, class: "c-form__text_area c-form--h-200 c-form-w-100", placeholder: '補足説明を入力してください'
       p
         | ※補足説明は2回まで投稿できます
     .text-center
