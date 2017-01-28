@@ -20,7 +20,7 @@
                 = f.file_field :thumbnail,
                   class: "c-form__file__upload",
                   accept: 'image/jpg,image/jpeg,image/png,image/gif'
-        .c-form
+        #topic-form-vue.c-form
           .c-container
             - category_id = params[:topic].present? ? params[:topic][:category_id] : params[:category_id]
             = f.select :category_id, options_for_select(Category.cached.map { |_, v| [v.name, v.id]}, selected: category_id),
@@ -36,8 +36,8 @@
               placeholder: "本文を入力してください"
             .c-flex.c-flex__jc-sb
               .c-icon__items
-                i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item"
-                  .p-topic--icon__description.text--s-sm.text--c.text--b data="icon-description"
+                i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="LinkIconDescriptionShow" @mouseleave="LinkIconDescriptionHidden"
+                  .p-topic--icon__description.text--s-sm.text--c.text--b v-show="LinkIconActive"
                     | 画像/記事を引用する
                 .p-topic--search__form data="search__form"
                   form.search__form display="none"
