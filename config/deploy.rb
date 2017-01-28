@@ -23,7 +23,7 @@ set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5
+set :keep_releases, 3
 
 # rbenv
 set :rbenv_type, :system
