@@ -7,58 +7,40 @@
      | トピック投稿
   .c-container
     #topic-form-vue
+      div v-show="topic.errors.length"
+        .c-error_explanation
+          h2 = "{{topic.errors.length}}つの入力エラーがあります"
+          ul.c-flash-message__messages
+            li v-for="error in topic.errors" class="c-flash-message__message"
+              = "{{error}}"
       .c-flex
         .c-grid__thumb--form.c-container
-          div v-if="!image"
+          div v-if="!topic.thumbnail"
             = image_tag('no_image.png')
           template v-else=""
-            img :src="image"
+            img :src="topic.thumbnail"
           .c-btn__container
             .c-form__file.c-border data-form-file=true
               i.fa.fa-camera.c-icon-d-gray.c-margin-r-10.text--s-lg
               label
                 | 画像を選択する
                 input type="file" class="c-form__file__upload" accept='image/jpg,image/jpeg,image/png,image/gif' @change="onFileChange"
-
-    /= form_for @topic do |f|
-    /  = render "error_messages", object: @topic
-    /
-    /  .c-flex
-    /    .c-grid__thumb--form.c-container
-    /      = image_tag('no_image.png', data: { "form-image": true })
-    /      .c-btn__container
-    /        .c-form__file.c-border data-form-file=true
-    /          i.fa.fa-camera.c-icon-d-gray.c-margin-r-10.text--s-lg
-    /          = f.label :thumbnail
-    /            | 画像を選択する
-    /            = f.file_field :thumbnail,
-    /              class: "c-form__file__upload",
-    /              accept: 'image/jpg,image/jpeg,image/png,image/gif'
-    /    .c-form
-    /      .c-container
-    /        - category_id = params[:topic].present? ? params[:topic][:category_id] : params[:category_id]
-    /        = f.select :category_id, options_for_select(Category.cached.map { |_, v| [v.name, v.id]}, selected: category_id),
-    /          {}, class: "c-form__select"
-    /      .c-container
-    /        = f.text_field :name, value: '匿子さん', class: "c-form__input c-form-w-100",
-    /          placeholder: "名前を入力してください"
-    /      .c-container
-    /        = f.text_field :title, class: "c-form__input c-form-w-100",
-    /          placeholder: "タイトルを入力してください"
-    /      .c-container
-    /        = f.text_area :body, class: "c-form__text_area c-form--h-200 c-form-w-100",
-    /          placeholder: "本文を入力してください"
-    /        .c-flex.c-flex__jc-sb
-    /          .c-icon__items
-    /            i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="LinkIconDescriptionShow" @mouseleave="LinkIconDescriptionHidden"
-    /              .p-topic--icon__description.text--s-sm.text--c.text--b v-show="LinkIconActive"
-    /                | 画像/記事を引用する
-    /            .p-topic--search__form data="search__form"
-    /              form.search__form display="none"
-    /                input class="p-search__input-text text--s-md" placeholder="URLを入力してください"
-    /                button.p-topic--search__btn
-    /                i.fa.fa-search.p-topic--search__icon.c-icon-d-gray
-    /          div
-    /            = f.submit "投稿する",  class: "c-btn c-btn--pink c-btn--md",
-    /              data: { 'form-submit-comment': true, disable_with: '処理中...' }
+        .c-form
+          .c-container
+            select class="c-form__select" @change="selectCategoryId"
+              option v-for="category in categories" :value="category.id" :selected="isSelected(category.id)"
+                = "{{category.name}}"
+          .c-container
+            input type="text" v-model="topic.name" class="c-form__input c-form-w-100" placeholder="名前を入力してください"
+          .c-container
+            input type="text" v-model="topic.title" class="c-form__input c-form-w-100" placeholder="タイトルを入力してください"
+          .c-container
+            textarea v-model="topic.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください"
+            .c-flex.c-flex__jc-sb
+              .c-icon__items
+                i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="LinkIconDescriptionShow" @mouseleave="LinkIconDescriptionHidden"
+                  .p-topic--icon__description.text--s-sm.text--c.text--b v-show="LinkIconActive"
+                    | 画像/記事を引用する
+              div
+                input type="submit" class="c-btn c-btn--pink c-btn--md" data-disable-with="処理中..." @click="send"
 = render 'modal'

@@ -24,10 +24,32 @@ $(function() {
       return {
         LinkIconActive: false,
         ImageIconActive: false,
-        image: '',
-        reader: new FileReader()
+        reader: new FileReader(),
+        categories: [],
+        topic: {
+          title: '',
+          body: '',
+          category_id: '',
+          name: '匿子さん',
+          thumbnail: '',
+          errors: []
+        }
       }
     },
+
+    created: function()
+    {
+      self = this
+      $.ajax({
+        url: '/api/categories.json',
+      }).done(function(res) {
+          self.categories = res
+        })
+    },
+    mounted: function() {
+      this.getCategoryId()
+    },
+
     methods: {
       LinkIconDescriptionShow: function() {
         return this.LinkIconActive = true
@@ -53,8 +75,33 @@ $(function() {
       previewImage: function(file) {
         this.reader.readAsDataURL(file)
         this.reader.onload = (file) => {
-          this.image = file.target.result
+          this.topic.thumbnail = file.target.result
         }
+      },
+      getCategoryId: function() {
+        const id = parseInt(location.href.match(/\d$/).join(''))
+        return this.topic.category_id = id
+      },
+      selectCategoryId: function(e) {
+        this.topic.category_id = e.target.value
+      },
+      isSelected: function(id) {
+        return this.topic.category_id === id
+      },
+      send: function() {
+        self = this
+        const topic_params = {
+          topic: self.topic
+        }
+        $.ajax({
+          url: "/api/topics",
+          method: "POST",
+          data: topic_params
+        }).done(function(res) {
+          location.href = `/topics/complete?id=${res.id}`
+        }).fail(function(res) {
+          self.topic.errors = res.responseJSON
+        })
       }
     }
   })

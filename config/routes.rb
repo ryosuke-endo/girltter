@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', as: :logout
 
   namespace :api, format: 'json' do
-    resources :topics, only: %i(index show create update destroy)
+    resources :topics
+    resources :categories, only: %i(index)
   end
 
   resources :topics do
