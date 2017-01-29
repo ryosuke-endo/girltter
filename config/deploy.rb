@@ -34,7 +34,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # nodebrew
 set :nodebrew_type, :system # or :system, depends on your nodebrew setup
-set :nodebrew_node, 'v7.0.0'
+set :nodebrew_node, 'v7.4.0'
 
 set :nodebrew_map_bins, %w{npm node iojs} # default values
 set :nodebrew_roles, :all # default value
