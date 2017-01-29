@@ -40,7 +40,6 @@ set :nodebrew_map_bins, %w{npm node iojs} # default values
 set :nodebrew_roles, :app # default value
 
 # yarn
-set :yarn_flags, ''
 set :yarn_roles, :app
 
 # whenever cron update
