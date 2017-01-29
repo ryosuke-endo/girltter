@@ -37,10 +37,10 @@ set :nodebrew_type, :system # or :system, depends on your nodebrew setup
 set :nodebrew_node, 'v7.4.0'
 
 set :nodebrew_map_bins, %w{npm node iojs} # default values
-set :nodebrew_roles, :all # default value
+set :nodebrew_roles, :app # default value
 
 # yarn
-set :yarn_flags, "--prefer-offline --production"
+set :yarn_flags, ''
 set :yarn_roles, :app
 
 # whenever cron update
