@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
 
+  namespace :api, format: 'json' do
+    resources :topics, only: %i(index show create update destroy)
+  end
+
   resources :topics do
     collection do
       get :complete
