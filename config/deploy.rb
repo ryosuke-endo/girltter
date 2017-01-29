@@ -39,6 +39,10 @@ set :nodebrew_node, 'v7.4.0'
 set :nodebrew_map_bins, %w{npm node iojs} # default values
 set :nodebrew_roles, :all # default value
 
+# yarn
+set :yarn_flags, "--prefer-offline --production"
+set :yarn_roles, :app
+
 # whenever cron update
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
