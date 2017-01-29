@@ -2,7 +2,6 @@ import Vue from 'vue/dist/vue'
 import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
-import FileUpload from './file_upload'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
@@ -10,14 +9,23 @@ const params = new Map().set('fadeout', false)
 const modal = new Modal($target, params);
 const tab = new Tab;
 const form = new Form;
-const file_upload = new FileUpload;
+
+const CONTENT_TYPE = [
+  'image/jpg',
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/bmp',
+]
 
 $(function() {
   const topicForm = Vue.extend({
     data: function() {
       return {
         LinkIconActive: false,
-        ImageIconActive: false
+        ImageIconActive: false,
+        image: '',
+        reader: new FileReader()
       }
     },
     methods: {
@@ -32,6 +40,21 @@ $(function() {
       },
       ImageIconDescriptionHidden: function() {
         return this.ImageIconActive = false
+      },
+      onFileChange: function(e) {
+        const file = e.target.files[0]
+        if(this.isContent(CONTENT_TYPE, file)) {
+          this.previewImage(file)
+        }
+      },
+      isContent: function(type, file) {
+        return type.indexOf(file.type) !== -1
+      },
+      previewImage: function(file) {
+        this.reader.readAsDataURL(file)
+        this.reader.onload = (file) => {
+          this.image = file.target.result
+        }
       }
     }
   })
@@ -57,10 +80,6 @@ $(function() {
 
   $('[data-modal-close], #p-topic-modal-bg').click(() => {
     modal.close();
-  });
-
-  $('[data-form-file]').on('change', 'input[type="file"]', (e) => {
-    file_upload.upload(e);
   });
 
   $('[data-reply-id]').on('click', function() {
