@@ -7,12 +7,7 @@
      | トピック投稿
   .c-container
     #topic-form-vue
-      div v-show="topic.errors.count"
-        .c-error_explanation
-          h2 = "{{topic.errors.count}}つの入力エラーがあります"
-          ul.c-flash-message__messages
-            li v-for="error in topic.errors.messages" class="c-flash-message__message"
-              = "{{error}}"
+      form-error :count="topic.errors.count" :messages="topic.errors.messages"
       .c-flex
         .c-grid__thumb--form.c-container
           div v-if="!topic.thumbnail"

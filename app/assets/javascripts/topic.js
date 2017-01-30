@@ -3,6 +3,7 @@ import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
 import FileUploadMixins from './mixins/file_upload.js'
+import formError from './template/form_error.js'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
@@ -54,6 +55,10 @@ $(function() {
     },
     mounted: function() {
       this.getCategoryId()
+    },
+
+    components: {
+      'form-error': formError
     },
 
     methods: {
