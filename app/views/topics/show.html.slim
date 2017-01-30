@@ -69,15 +69,15 @@
         = f.text_area :body, class: "c-form__text_area c-form--h-200 c-form-w-100"
       .c-flex
         .c-form__file data="icon-item-image"
-          i.fa.fa-camera.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item @mouseenter="ImageIconDescriptionShow" @mouseleave="ImageIconDescriptionHidden"
+          i.fa.fa-camera.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item @mouseenter="imageIconDescriptionShow" @mouseleave="imageIconDescriptionHidden"
             = f.file_field :image,
               class: "c-form__file__upload",
               accept: 'image/jpg,image/jpeg,image/png,image/gif'
-            .p-topic--icon__description.text--s-sm.text--c.text--b v-show="ImageIconActive"
+            .p-topic--icon__description.text--s-sm.text--c.text--b v-show="imageIconActive"
               | 画像を投稿する
         .c-icon__items
-          i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="LinkIconDescriptionShow" @mouseleave="LinkIconDescriptionHidden"
-            .p-topic--icon__description.text--s-sm.text--c.text--b v-show="LinkIconActive"
+          i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="linkIconDescriptionShow" @mouseleave="linkIconDescriptionHidden"
+            .p-topic--icon__description.text--s-sm.text--c.text--b v-show="linkIconActive"
               | 画像/記事を引用する
       = f.hidden_field :topic_id
     = f.submit "コメントを投稿する",class: "c-btn c-btn--pink c-btn--w-275 c-btn--h-large"

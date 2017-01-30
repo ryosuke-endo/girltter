@@ -22,8 +22,8 @@ $(function() {
   const topicForm = Vue.extend({
     data: function() {
       return {
-        LinkIconActive: false,
-        ImageIconActive: false,
+        linkIconActive: false,
+        imageIconActive: false,
         reader: new FileReader(),
         categories: [],
         topic: {
@@ -51,17 +51,17 @@ $(function() {
     },
 
     methods: {
-      LinkIconDescriptionShow: function() {
-        return this.LinkIconActive = true
+      linkIconDescriptionShow: function() {
+        return this.linkIconActive = true
       },
-      LinkIconDescriptionHidden: function() {
-        return this.LinkIconActive = false
+      linkIconDescriptionHidden: function() {
+        return this.linkIconActive = false
       },
-      ImageIconDescriptionShow: function() {
-        return this.ImageIconActive = true
+      imageIconDescriptionShow: function() {
+        return this.imageIconActive = true
       },
-      ImageIconDescriptionHidden: function() {
-        return this.ImageIconActive = false
+      imageIconDescriptionHidden: function() {
+        return this.imageIconActive = false
       },
       onFileChange: function(e) {
         const file = e.target.files[0]
