@@ -6,7 +6,9 @@ class Api::TopicsController < ApplicationController
     if @topic.save
       render json: @topic, status: 200
     else
-      render json: @topic.errors.full_messages, status: 400
+      render json: { errors: @topic.errors,
+                     error_messages: @topic.errors.full_messages },
+             status: 400
     end
   end
 

@@ -32,8 +32,12 @@ $(function() {
           category_id: '',
           name: '匿子さん',
           thumbnail: '',
-          errors: []
-        }
+          errors: {
+            count: '',
+            keys: [],
+            messages: []
+          }
+        },
       }
     },
 
@@ -100,8 +104,15 @@ $(function() {
         }).done(function(res) {
           location.href = `/topics/complete?id=${res.id}`
         }).fail(function(res) {
-          self.topic.errors = res.responseJSON
+          self.topic.errors.count = Object.keys(res.responseJSON.errors).length
+          self.topic.errors.keys = res.responseJSON.errors
+          self.topic.errors.messages = res.responseJSON.error_messages
         })
+      },
+      isError: function(name) {
+        if (this.topic.errors.keys[name]) {
+          return "field_with_errors"
+        }
       }
     }
   })
