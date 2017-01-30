@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue'
 import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
+import FileUploadMixins from './mixins/file_upload.js'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
@@ -20,6 +21,7 @@ const CONTENT_TYPE = [
 
 $(function() {
   const topicForm = Vue.extend({
+    mixins: [FileUploadMixins],
     data: function() {
       return {
         linkIconActive: false,
@@ -72,9 +74,6 @@ $(function() {
         if(this.isContent(CONTENT_TYPE, file)) {
           this.previewImage(file)
         }
-      },
-      isContent: function(type, file) {
-        return type.indexOf(file.type) !== -1
       },
       previewImage: function(file) {
         this.reader.readAsDataURL(file)
