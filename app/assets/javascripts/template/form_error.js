@@ -1,7 +1,13 @@
 import Vue from 'vue/dist/vue'
 
 export default Vue.extend({
-  props: ['count', 'messages'],
+  props: {
+    count: {
+      type: Number,
+      default: 0
+    },
+    messages: Array
+  },
   template: `<div v-show="count">
                <div class="c-error_explanation">
                  <h2>

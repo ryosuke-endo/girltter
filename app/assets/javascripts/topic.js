@@ -36,7 +36,7 @@ $(function() {
           name: '匿子さん',
           thumbnail: '',
           errors: {
-            count: '',
+            count: 0,
             keys: [],
             messages: []
           }
@@ -108,7 +108,7 @@ $(function() {
         }).done(function(res) {
           location.href = `/topics/complete?id=${res.id}`
         }).fail(function(res) {
-          self.topic.errors.count = Object.keys(res.responseJSON.errors).length
+          self.topic.errors.count = parseInt(Object.keys(res.responseJSON.errors).length)
           self.topic.errors.keys = res.responseJSON.errors
           self.topic.errors.messages = res.responseJSON.error_messages
         })
