@@ -27,10 +27,7 @@
           .c-container :class="isError('body')"
             textarea v-model="topic.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください"
             .c-flex.c-flex__jc-sb
-              .c-icon__items
-                i.fa.fa-link.c-icon-d-gray.c-margin-r-10.text--s-lg.c-icon__item data="icon-item" @mouseenter="linkIconDescriptionShow" @mouseleave="linkIconDescriptionHidden"
-                  .p-topic--icon__description.text--s-sm.text--c.text--b v-show="linkIconActive"
-                    | 画像/記事を引用する
+              icon
               div
                 input type="submit" class="c-btn c-btn--pink c-btn--md" data-disable-with="処理中..." @click="send"
 = render 'modal'

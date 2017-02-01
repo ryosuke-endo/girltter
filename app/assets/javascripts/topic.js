@@ -4,6 +4,7 @@ import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
 import formError from './components/topic/form_error.js'
 import fileUpload from './components/topic/file_upload.js'
+import icon from './components/topic/icon.js'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
@@ -16,8 +17,6 @@ $(function() {
   const topicForm = Vue.extend({
     data: function() {
       return {
-        linkIconActive: false,
-        imageIconActive: false,
         categories: [],
         topic: {
           title: '',
@@ -49,22 +48,11 @@ $(function() {
 
     components: {
       'form-error': formError,
-      'file-upload': fileUpload
+      'file-upload': fileUpload,
+      'icon': icon
     },
 
     methods: {
-      linkIconDescriptionShow: function() {
-        return this.linkIconActive = true
-      },
-      linkIconDescriptionHidden: function() {
-        return this.linkIconActive = false
-      },
-      imageIconDescriptionShow: function() {
-        return this.imageIconActive = true
-      },
-      imageIconDescriptionHidden: function() {
-        return this.imageIconActive = false
-      },
       getCategoryId: function() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
