@@ -2,8 +2,8 @@ import Vue from 'vue/dist/vue'
 import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
-import formError from './template/form_error.js'
-import fileUpload from './template/file_upload.js'
+import formError from './components/topic/form_error.js'
+import fileUpload from './components/topic/file_upload.js'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
