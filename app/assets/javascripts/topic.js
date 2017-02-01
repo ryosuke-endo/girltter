@@ -2,8 +2,8 @@ import Vue from 'vue/dist/vue'
 import Modal from './topic/modal/modal'
 import Tab from './topic/modal/tab'
 import Form from './topic/modal/form'
-import FileUploadMixins from './mixins/file_upload.js'
 import formError from './template/form_error.js'
+import fileUpload from './template/file_upload.js'
 
 const $target = $('[data-modal__contents]');
 const params = new Map().set('fadeout', false)
@@ -12,17 +12,8 @@ const modal = new Modal($target, params);
 const tab = new Tab;
 const form = new Form;
 
-const CONTENT_TYPE = [
-  'image/jpg',
-  'image/jpeg',
-  'image/png',
-  'image/gif',
-  'image/bmp',
-]
-
 $(function() {
   const topicForm = Vue.extend({
-    mixins: [FileUploadMixins],
     data: function() {
       return {
         linkIconActive: false,
@@ -58,7 +49,8 @@ $(function() {
     },
 
     components: {
-      'form-error': formError
+      'form-error': formError,
+      'file-upload': fileUpload
     },
 
     methods: {
@@ -74,18 +66,6 @@ $(function() {
       imageIconDescriptionHidden: function() {
         return this.imageIconActive = false
       },
-      onFileChange: function(e) {
-        const file = e.target.files[0]
-        if(this.isContent(CONTENT_TYPE, file)) {
-          this.previewImage(file)
-        }
-      },
-      previewImage: function(file) {
-        this.reader.readAsDataURL(file)
-        this.reader.onload = (file) => {
-          this.topic.thumbnail = file.target.result
-        }
-      },
       getCategoryId: function() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
@@ -95,6 +75,9 @@ $(function() {
       },
       isSelected: function(id) {
         return this.topic.category_id === id
+      },
+      previewImage: function(e) {
+        return this.topic.thumbnail = e
       },
       send: function() {
         self = this
