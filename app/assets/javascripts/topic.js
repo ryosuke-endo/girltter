@@ -18,7 +18,6 @@ $(function() {
       return {
         linkIconActive: false,
         imageIconActive: false,
-        reader: new FileReader(),
         categories: [],
         topic: {
           title: '',
