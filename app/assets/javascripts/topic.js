@@ -1,22 +1,14 @@
 import Vue from 'vue/dist/vue'
-import Modal from './topic/modal/modal'
-import Tab from './topic/modal/tab'
-import Form from './topic/modal/form'
 import formError from './components/topic/form_error.js'
 import fileUpload from './components/topic/file_upload.js'
 import icon from './components/topic/icon.js'
-
-const $target = $('[data-modal__contents]');
-const params = new Map().set('fadeout', false)
-
-const modal = new Modal($target, params);
-const tab = new Tab;
-const form = new Form;
+import modal from './components/topic/modal.js'
 
 $(function() {
   const topicForm = Vue.extend({
     data: function() {
       return {
+        modalActive: false,
         categories: [],
         topic: {
           title: '',
@@ -49,10 +41,25 @@ $(function() {
     components: {
       'form-error': formError,
       'file-upload': fileUpload,
-      'icon': icon
+      'icon': icon,
+      'modal': modal
     },
 
     methods: {
+      showModal() {
+        this.modalActive = true;
+        this.scrollFix();
+      },
+      closeModal() {
+        this.modalActive = false;
+        this.releaseFix();
+      },
+      scrollFix() {
+        $('body').addClass('p-topic-modal-is-overflow-hidden')
+      },
+      releaseFix() {
+        $('body').removeClass('p-topic-modal-is-overflow-hidden');
+      },
       getCategoryId: function() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
@@ -92,12 +99,6 @@ $(function() {
   })
 
   new topicForm().$mount('#topic-form-vue')
-
-  $("[data=icon-item]").click(() => {
-    modal.open();
-    form.cleanText();
-    tab.addActive();
-  });
 
   $('[data-modal-submit]').click(() => {
     form.urlSubmit();
