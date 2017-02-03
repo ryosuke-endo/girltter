@@ -70,9 +70,6 @@ $(function() {
       isSelected(id) {
         return this.topic.category_id === id
       },
-      previewImage(e) {
-        return this.topic.thumbnail = e
-      },
       send() {
         self = this
         const topic_params = {

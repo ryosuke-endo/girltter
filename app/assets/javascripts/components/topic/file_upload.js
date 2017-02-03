@@ -29,7 +29,7 @@ export default Vue.extend({
     previewImage: function(file) {
       this.reader.readAsDataURL(file)
       this.reader.onload = (file) => {
-        this.$emit('upload', file.target.result)
+        this.$emit('input', file.target.result)
       }
     }
   },

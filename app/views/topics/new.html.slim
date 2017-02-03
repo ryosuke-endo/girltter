@@ -14,7 +14,7 @@
             = image_tag('no_image.png')
           template v-else=""
             img :src="topic.thumbnail"
-          file-upload v-on:upload="previewImage"
+          file-upload v-model="topic.thumbnail"
         .c-form
           .c-container
             select class="c-form__select" @change="selectCategoryId"
