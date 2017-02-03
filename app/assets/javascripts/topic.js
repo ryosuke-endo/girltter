@@ -60,20 +60,20 @@ $(function() {
       releaseFix() {
         $('body').removeClass('p-topic-modal-is-overflow-hidden');
       },
-      getCategoryId: function() {
+      getCategoryId() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
       },
-      selectCategoryId: function(e) {
+      selectCategoryId(e) {
         this.topic.category_id = e.target.value
       },
-      isSelected: function(id) {
+      isSelected(id) {
         return this.topic.category_id === id
       },
-      previewImage: function(e) {
+      previewImage(e) {
         return this.topic.thumbnail = e
       },
-      send: function() {
+      send() {
         self = this
         const topic_params = {
           topic: self.topic
@@ -90,7 +90,7 @@ $(function() {
           self.topic.errors.messages = res.responseJSON.error_messages
         })
       },
-      isError: function(name) {
+      isError(name) {
         if (this.topic.errors.keys[name]) {
           return "field_with_errors"
         }
