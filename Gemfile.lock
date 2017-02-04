@@ -218,8 +218,6 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
-    parsley-rails (2.4.4.0)
-      railties (>= 3.0.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -427,7 +425,6 @@ DEPENDENCIES
   link_thumbnailer
   mysql2
   paperclip
-  parsley-rails
   pry-byebug
   pry-rails
   rack-mini-profiler
