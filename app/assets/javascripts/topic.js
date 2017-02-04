@@ -105,21 +105,6 @@ $(function() {
 
   new topicForm().$mount('#topic-form-vue')
 
-  $('[data-modal-submit]').click(() => {
-    form.urlSubmit();
-    if(form.isSubmitSuccess()) {
-      modal.close();
-    }
-  });
-
-  $('[data=modal-input]').keyup(() => {
-    form.removeDisplayError();
-  });
-
-  $('[data-modal-close], #p-topic-modal-bg').click(() => {
-    modal.close();
-  });
-
   $('[data-reply-id]').on('click', function() {
     const id = $(this).data('reply-id');
     const reply_text = `>>${id}`;
