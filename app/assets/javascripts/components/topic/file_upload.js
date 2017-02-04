@@ -8,12 +8,9 @@ const CONTENT_TYPE = [
   'image/bmp',
 ]
 export default Vue.extend({
-  props: {
-    reader: {
-      type: FileReader,
-      default: function() {
-        return new FileReader()
-      }
+  data() {
+    return {
+      reader: new FileReader()
     }
   },
   methods: {
