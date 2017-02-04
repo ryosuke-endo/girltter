@@ -1,6 +1,15 @@
 import Vue from 'vue/dist/vue'
+import icon from './components/comment/icon.js'
 
 $(function() {
+  const commentForm = Vue.extend({
+    components: {
+      'icon': icon
+    }
+  })
+
+  new commentForm().$mount('#comment-form-vue')
+
   $('[data-reply-id]').on('click', function() {
     const id = $(this).data('reply-id');
     const reply_text = `>>${id}`;
