@@ -14,16 +14,16 @@ export default Vue.extend({
     }
   },
   methods: {
-    isContent: function(type, file) {
+    isContent(type, file) {
       return type.indexOf(file.type) !== -1
     },
-    onFileChange: function(e) {
+    onFileChange(e) {
       const file = e.target.files[0]
       if(this.isContent(CONTENT_TYPE, file)) {
         this.previewImage(file)
       }
     },
-    previewImage: function(file) {
+    previewImage(file) {
       this.reader.readAsDataURL(file)
       this.reader.onload = (file) => {
         this.$emit('input', file.target.result)

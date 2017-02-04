@@ -6,7 +6,7 @@ import modal from './components/topic/modal.js'
 
 $(function() {
   const topicForm = Vue.extend({
-    data: function() {
+    data() {
       return {
         modalActive: false,
         categories: [],
@@ -25,7 +25,7 @@ $(function() {
       }
     },
 
-    created: function()
+    created()
     {
       self = this
       $.ajax({
@@ -34,7 +34,7 @@ $(function() {
           self.categories = res
         })
     },
-    mounted: function() {
+    mounted() {
       this.getCategoryId()
     },
 
