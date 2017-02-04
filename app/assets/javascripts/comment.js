@@ -1,8 +1,27 @@
 import Vue from 'vue/dist/vue'
+import URI from 'urijs'
 import icon from './components/comment/icon.js'
 
 $(function() {
   const commentForm = Vue.extend({
+    data() {
+      return {
+        comment: {
+          name: '匿子さん',
+          body: '',
+          topic_id: ''
+        }
+      }
+    },
+    mounted() {
+      this.getTopicId()
+    },
+    methods: {
+      getTopicId() {
+        const url = URI(location.href)
+        this.comment.topic_id = url.path().match(/\d.*$/)[0]
+      }
+    },
     components: {
       'icon': icon
     }

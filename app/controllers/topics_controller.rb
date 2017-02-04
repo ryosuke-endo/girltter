@@ -23,7 +23,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(topic_id: @topic.id)
     render layout: 'topic'
   end
 
