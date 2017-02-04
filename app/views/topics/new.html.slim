@@ -30,4 +30,4 @@
               icon v-on:show="showModal"
               div
                 input type="submit" class="c-btn c-btn--pink c-btn--md" data-disable-with="処理中..." @click="send"
-      modal v-show="modalActive" v-on:close="closeModal"
+      modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"

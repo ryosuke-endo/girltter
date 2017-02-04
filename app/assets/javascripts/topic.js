@@ -70,6 +70,14 @@ $(function() {
       isSelected(id) {
         return this.topic.category_id === id
       },
+      addUrl(url) {
+        const text = this.topic.body
+        if(text.length === 0) {
+          this.topic.body = url
+        } else {
+          this.topic.body = (`${text}\n\n${url}`)
+        }
+      },
       send() {
         self = this
         const topic_params = {
