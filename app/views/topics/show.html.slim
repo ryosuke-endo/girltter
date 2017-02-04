@@ -66,5 +66,10 @@
       label
         | 本文
       textarea v-model="comment.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください"
-    icon
-  input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..." @click="send"
+    .c-container--sm
+      div v-show="comment.image"
+        .c-container--sm
+          .p-comment-thumbnail.c-border.c-border-r-4
+            img :src="comment.image"
+    icon v-model="comment.image"
+  input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..."

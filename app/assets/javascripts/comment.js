@@ -9,6 +9,7 @@ $(function() {
         comment: {
           name: '匿子さん',
           body: '',
+          image: '',
           topic_id: ''
         }
       }
