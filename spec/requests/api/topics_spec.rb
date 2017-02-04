@@ -13,12 +13,12 @@ RSpec.describe 'Api::TopicsController', type: :request do
     end
 
     context 'fail' do
-      it 'response 400' do
+      it 'response 422' do
         params = { topic: { title: "foo"} }
         expect {
           post api_topics_path(format: :json), params
         }.to change { Topic.count }.by(0)
-        expect(response.status).to eq 400
+        expect(response.status).to eq 422
       end
     end
   end

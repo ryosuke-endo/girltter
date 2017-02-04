@@ -8,7 +8,7 @@ class Api::TopicsController < ApplicationController
     else
       render json: { errors: @topic.errors,
                      error_messages: @topic.errors.full_messages },
-             status: 400
+             status: 422
     end
   end
 
