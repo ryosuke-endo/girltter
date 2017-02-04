@@ -1,8 +1,12 @@
 import Vue from 'vue/dist/vue'
+import axios from 'axios/dist/axios'
+
 import formError from './components/topic/form_error.js'
 import fileUpload from './components/topic/file_upload.js'
 import icon from './components/topic/icon.js'
 import modal from './components/topic/modal.js'
+
+axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
 $(function() {
   const topicForm = Vue.extend({
@@ -28,11 +32,10 @@ $(function() {
     created()
     {
       self = this
-      $.ajax({
-        url: '/api/categories.json',
-      }).done(function(res) {
-          self.categories = res
-        })
+      axios.get('/api/categories.json')
+      .then(function(res) {
+        self.categories = res.data
+      })
     },
     mounted() {
       this.getCategoryId()
@@ -83,16 +86,18 @@ $(function() {
         const topic_params = {
           topic: self.topic
         }
-        $.ajax({
+        axios({
+          method: "post",
           url: "/api/topics",
-          method: "POST",
           data: topic_params
-        }).done(function(res) {
+        })
+        .then(function(res) {
           location.href = `/topics/complete?id=${res.id}`
-        }).fail(function(res) {
-          self.topic.errors.count = parseInt(Object.keys(res.responseJSON.errors).length)
-          self.topic.errors.keys = res.responseJSON.errors
-          self.topic.errors.messages = res.responseJSON.error_messages
+        })
+        .catch(function(error) {
+          self.topic.errors.count = parseInt(Object.keys(error.response.data.errors).length)
+          self.topic.errors.keys = error.response.data.errors
+          self.topic.errors.messages = error.response.data.error_messages
         })
       },
       isError(name) {
