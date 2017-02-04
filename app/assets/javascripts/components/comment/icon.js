@@ -1,25 +1,9 @@
 import Vue from 'vue/dist/vue'
+import iconData from '../../mixins/icon'
 
 export default Vue.extend({
-  data() {
-    return {
-      cameraActive: false,
-      linkActive: false
-    }
-  },
+  mixins: [iconData],
   methods: {
-    showCamera() {
-      this.cameraActive = true
-    },
-    hiddenCamera() {
-      this.cameraActive = false
-    },
-    showLink() {
-      this.linkActive = true
-    },
-    hiddenLink() {
-      this.linkActive = false
-    },
     showModal() {
       this.$emit('show')
     }
@@ -28,7 +12,7 @@ export default Vue.extend({
     <div class="c-flex">
       <div class="c-form__file">
         <i class="fa fa-camera c-icon-d-gray c-margin-r-10 text--s-lg c-icon__item">
-          <input accept="image/jpg,image/jpeg,image/png,image/gif" type="file" class="c-form__file__upload" @click="showModal" @mouseenter="showCamera" @mouseleave="hiddenCamera">
+          <input accept="image/jpg,image/jpeg,image/png,image/gif" type="file" class="c-form__file__upload--icon" @click="showModal" @mouseenter="showCamera" @mouseleave="hiddenCamera">
           <div class="p-topic--icon__description text--s-sm text--c text--b" v-show="cameraActive">
               画像を投稿する
           </div>
