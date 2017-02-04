@@ -21,6 +21,9 @@ $(function() {
       getTopicId() {
         const url = URI(location.href)
         this.comment.topic_id = url.path().match(/\d.*$/)[0]
+      },
+      imageDelete() {
+        this.comment.image = ''
       }
     },
     components: {

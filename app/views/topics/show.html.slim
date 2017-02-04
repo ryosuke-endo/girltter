@@ -71,5 +71,6 @@
         .c-container--sm
           .p-comment-thumbnail.c-border.c-border-r-4
             img :src="comment.image"
+            i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     icon v-model="comment.image"
   input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..."
