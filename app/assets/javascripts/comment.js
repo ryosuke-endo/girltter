@@ -1,9 +1,13 @@
 import Vue from 'vue/dist/vue'
 import URI from 'urijs'
+
+import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
+import modal from './components/topic/modal'
 
 $(function() {
   const commentForm = Vue.extend({
+    mixins: [modalMixins],
     data() {
       return {
         comment: {
@@ -24,10 +28,19 @@ $(function() {
       },
       imageDelete() {
         this.comment.image = ''
-      }
+      },
+      addUrl(url) {
+        const text = this.comment.body
+        if(text.length === 0) {
+          this.comment.body = url
+        } else {
+          this.comment.body = (`${text}\n\n${url}`)
+        }
+      },
     },
     components: {
-      'icon': icon
+      'icon': icon,
+      'modal': modal
     }
   })
 

@@ -16,8 +16,8 @@ export default Vue.extend({
     }
   },
   methods: {
-    showModal() {
-      this.$emit('show')
+    openModal() {
+      this.$emit('open')
     },
     isContent(type, file) {
       return type.indexOf(file.type) !== -1
@@ -43,7 +43,7 @@ export default Vue.extend({
         </i>
       </div>
       <div class="c-icon__items">
-        <i data="icon-item" class="fa fa-link c-icon-d-gray c-margin-r-10 text--s-lg c-icon__item" @click="showModal" @mouseenter="showLink" @mouseleave="hiddenLink">
+        <i class="fa fa-link c-icon-d-gray c-margin-r-10 text--s-lg c-icon__item" @click="openModal" @mouseenter="showLink" @mouseleave="hiddenLink">
           <div class="p-topic--icon__description text--s-sm text--c text--b" v-show="linkActive">
             画像/記事を引用する
           </div>
