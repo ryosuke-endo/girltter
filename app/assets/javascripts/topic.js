@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue'
 import axios from 'axios/dist/axios'
 
+import modalMixins from './mixins/modal.js'
+
 import formError from './components/topic/form_error.js'
 import fileUpload from './components/topic/file_upload.js'
 import icon from './components/topic/icon.js'
@@ -10,9 +12,9 @@ axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('conten
 
 $(function() {
   const topicForm = Vue.extend({
+    mixins: [modalMixins],
     data() {
       return {
-        modalActive: false,
         categories: [],
         topic: {
           title: '',
@@ -49,20 +51,6 @@ $(function() {
     },
 
     methods: {
-      showModal() {
-        this.modalActive = true;
-        this.scrollFix();
-      },
-      closeModal() {
-        this.modalActive = false;
-        this.releaseFix();
-      },
-      scrollFix() {
-        $('body').addClass('p-topic-modal-is-overflow-hidden')
-      },
-      releaseFix() {
-        $('body').removeClass('p-topic-modal-is-overflow-hidden');
-      },
       getCategoryId() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id

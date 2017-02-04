@@ -27,7 +27,7 @@
           .c-container :class="isError('body')"
             textarea v-model="topic.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください"
             .c-flex.c-flex__jc-sb
-              icon v-on:show="showModal"
+              icon v-on:show="openModal"
               div
                 input type="submit" class="c-btn c-btn--pink c-btn--md" data-disable-with="処理中..." @click="send"
       modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
