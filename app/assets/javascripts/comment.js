@@ -3,7 +3,7 @@ import URI from 'urijs'
 
 import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
-import modal from './components/topic/modal'
+import modal from './components/common/form/modal'
 
 $(function() {
   const commentForm = Vue.extend({
