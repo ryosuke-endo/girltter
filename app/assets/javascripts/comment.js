@@ -5,7 +5,7 @@ import axios from 'axios/dist/axios'
 import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
 import modal from './components/common/form/modal'
-import formError from './components/topic/form_error.js'
+import formError from './components/common/form/error.js'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 

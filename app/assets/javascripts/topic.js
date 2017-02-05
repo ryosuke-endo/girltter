@@ -3,7 +3,7 @@ import axios from 'axios/dist/axios'
 
 import modalMixins from './mixins/modal.js'
 
-import formError from './components/topic/form_error.js'
+import formError from './components/common/form/error.js'
 import fileUpload from './components/topic/file_upload.js'
 import icon from './components/topic/icon.js'
 import modal from './components/common/form/modal.js'
