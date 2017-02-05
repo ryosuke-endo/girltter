@@ -17,9 +17,6 @@ Rails.application.routes.draw do
     collection do
       get :complete
     end
-    scope module: :topics do
-      resources :comments, only: %i(create destroy)
-    end
   end
   resource :home, only: %i(show edit update) do
     get :email
