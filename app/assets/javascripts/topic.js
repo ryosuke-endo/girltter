@@ -69,7 +69,7 @@ $(function() {
           this.topic.body = (`${text}\n\n${url}`)
         }
       },
-      send() {
+      submit() {
         self = this
         const topic_params = {
           topic: self.topic
