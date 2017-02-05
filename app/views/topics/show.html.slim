@@ -61,7 +61,7 @@
     .c-flex--column.c-container--sm
       label
         | 本文
-      textarea v-model="comment.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください"
+      textarea v-model="comment.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください" data-text-area=true
     .c-container--sm
       div v-show="comment.image"
         .c-container--sm

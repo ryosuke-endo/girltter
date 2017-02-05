@@ -55,7 +55,7 @@ $(function() {
       },
       reply(id) {
         const text = this.comment.body
-        const $position = $('.c-form__text_area').offset()
+        const $position = $('[data-text-area]').offset()
 
         if(text.length === 0) {
           this.comment.body = `>>${id}`
