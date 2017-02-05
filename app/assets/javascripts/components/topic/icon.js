@@ -1,8 +1,8 @@
 import Vue from 'vue/dist/vue'
-import iconData from '../../mixins/icon'
+import iconMixins from '../../mixins/icon'
 
 export default Vue.extend({
-  mixins: [iconData],
+  mixins: [iconMixins],
   methods: {
     showModal() {
       this.$emit('show')
