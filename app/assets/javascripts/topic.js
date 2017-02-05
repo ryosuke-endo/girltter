@@ -1,18 +1,20 @@
 import Vue from 'vue/dist/vue'
 import axios from 'axios/dist/axios'
 
-import formError from './components/topic/form_error.js'
+import modalMixins from './mixins/modal.js'
+
+import formError from './components/common/form/error.js'
 import fileUpload from './components/topic/file_upload.js'
 import icon from './components/topic/icon.js'
-import modal from './components/topic/modal.js'
+import modal from './components/common/form/modal.js'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
 $(function() {
   const topicForm = Vue.extend({
+    mixins: [modalMixins],
     data() {
       return {
-        modalActive: false,
         categories: [],
         topic: {
           title: '',
@@ -49,20 +51,6 @@ $(function() {
     },
 
     methods: {
-      showModal() {
-        this.modalActive = true;
-        this.scrollFix();
-      },
-      closeModal() {
-        this.modalActive = false;
-        this.releaseFix();
-      },
-      scrollFix() {
-        $('body').addClass('p-topic-modal-is-overflow-hidden')
-      },
-      releaseFix() {
-        $('body').removeClass('p-topic-modal-is-overflow-hidden');
-      },
       getCategoryId() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
@@ -81,7 +69,7 @@ $(function() {
           this.topic.body = (`${text}\n\n${url}`)
         }
       },
-      send() {
+      submit() {
         self = this
         const topic_params = {
           topic: self.topic
@@ -92,7 +80,7 @@ $(function() {
           data: topic_params
         })
         .then(function(res) {
-          location.href = `/topics/complete?id=${res.id}`
+          location.href = `/topics/complete?id=${res.data.id}`
         })
         .catch(function(error) {
           self.topic.errors.count = parseInt(Object.keys(error.response.data.errors).length)
@@ -107,23 +95,5 @@ $(function() {
       }
     }
   })
-
   new topicForm().$mount('#topic-form-vue')
-
-  $('[data-reply-id]').on('click', function() {
-    const id = $(this).data('reply-id');
-    const reply_text = `>>${id}`;
-    const $inputText = $('textarea')
-    const $text = $inputText.val()
-    const $position = $('label[for="comment_body"]').offset()
-
-    if($text.length === 0) {
-      $inputText.val(reply_text);
-    } else {
-      $inputText.val(`${reply_text}\n${$text}`);
-    }
-
-    window.scroll($position.left, $position.top);
-  })
-
 });

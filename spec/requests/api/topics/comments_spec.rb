@@ -1,22 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe 'Api::TopicsController', type: :request do
+RSpec.describe Api::Topics::CommentsController, type: :request do
   describe '#create' do
     context 'success' do
       it 'response 200' do
-        params = { topic: build(:topic).attributes }
+        params = { comment: build(:comment).attributes }
         expect {
-          post api_topics_path(format: :json), params
-        }.to change { Topic.count }.by(1)
+          post api_topic_comments_path(topic_id: 1, form: :json), params
+        }.to change { Comment.count }.by(1)
         expect(response.status).to eq 200
       end
     end
 
     context 'fail' do
       it 'response 422' do
-        params = { topic: { title: "foo"} }
+        params = { comment: { name: ''} }
         expect {
-          post api_topics_path(format: :json), params
+          post api_topic_comments_path(topic_id: 1, form: :json), params
         }.to change { Topic.count }.by(0)
         expect(response.status).to eq 422
       end

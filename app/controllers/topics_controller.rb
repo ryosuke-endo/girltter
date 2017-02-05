@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: :show
 
   def new
-    @topic = Topic.new
   end
 
   def create
@@ -23,7 +22,6 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(topic_id: @topic.id)
     render layout: 'topic'
   end
 

@@ -1,18 +1,9 @@
 import Vue from 'vue/dist/vue'
+import iconMixins from '../../mixins/icon'
 
 export default Vue.extend({
-  data() {
-    return {
-      linkActive: false
-    }
-  },
+  mixins: [iconMixins],
   methods: {
-    showLink() {
-      this.linkActive = true
-    },
-    hiddenLink() {
-      this.linkActive = false
-    },
     showModal() {
       this.$emit('show')
     }
