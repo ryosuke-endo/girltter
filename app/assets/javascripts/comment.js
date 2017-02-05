@@ -53,6 +53,18 @@ $(function() {
           this.comment.body = (`${text}\n\n${url}`)
         }
       },
+      reply(id) {
+        const text = this.comment.body
+        const $position = $('.c-form__text_area').offset()
+
+        if(text.length === 0) {
+          this.comment.body = `>>${id}`
+        } else {
+          this.comment.body = `${text}\n>>${id}`
+        }
+
+        window.scroll($position.left, $position.top);
+      },
       submit() {
         self = this
         const comment_params = {
@@ -77,20 +89,4 @@ $(function() {
   })
 
   new commentForm().$mount('#vue')
-
-  $('[data-reply-id]').on('click', function() {
-    const id = $(this).data('reply-id');
-    const reply_text = `>>${id}`;
-    const $inputText = $('textarea')
-    const $text = $inputText.val()
-    const $position = $('label[for="comment_body"]').offset()
-
-    if($text.length === 0) {
-      $inputText.val(reply_text);
-    } else {
-      $inputText.val(`${reply_text}\n${$text}`);
-    }
-
-    window.scroll($position.left, $position.top);
-  })
 })

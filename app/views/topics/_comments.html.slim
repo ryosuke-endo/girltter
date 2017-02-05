@@ -17,8 +17,4 @@
       .p-topic__image
         = image_tag comment.image.url(:normal)
   .p-topic-icon.text--s-x-lg
-    ul.c-flex.c-flex__jc-end.c-container
-      li.p-topic-icon__item.p-topic-icon__smile
-        i.fa.fa-smile-o
-      li.p-topic-icon__item data-reply-id="#{index}"
-        i.fa.fa-reply
+    reaction reply_id="#{index}" v-on:reply="reply"

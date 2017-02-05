@@ -46,7 +46,7 @@
   .c-container.p-topic-font
     .c-container.text--b
       = @topic.body.html_safe
-    reaction
+    reaction reply_id="1" v-on:reply="reply"
 
   = render partial: "topics/comments", collection: @topic.comments, as: :comment
 
