@@ -80,7 +80,7 @@ $(function() {
           data: topic_params
         })
         .then(function(res) {
-          location.href = `/topics/complete?id=${res.id}`
+          location.href = `/topics/complete?id=${res.data.id}`
         })
         .catch(function(error) {
           self.topic.errors.count = parseInt(Object.keys(error.response.data.errors).length)

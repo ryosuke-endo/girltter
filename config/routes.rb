@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', as: :logout
 
   namespace :api, format: 'json' do
-    resources :topics, only: %i(create)
-    scope module: :topics do
-      resources :comments, only: %i(create)
+    resources :topics, only: %i(create) do
+      scope module: :topics do
+        resources :comments, only: %i(create)
+      end
     end
     resources :categories, only: %i(index)
   end

@@ -14,10 +14,10 @@ class Api::Topics::CommentsController < ApplicationController
 
   private
 
-  def comments_params
-    params.require(:comments).permit(:body,
-                                     :name,
-                                     :image,
-                                     :topic_id)
+  def comment_params
+    params.require(:comment).permit(:body,
+                                    :name,
+                                    :image,
+                                    :topic_id)
   end
 end
