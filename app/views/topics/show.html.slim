@@ -74,4 +74,5 @@
             i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     icon v-model="comment.image" v-on:open="openModal"
     modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
-  input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..."
+  .text--c
+    input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..."
