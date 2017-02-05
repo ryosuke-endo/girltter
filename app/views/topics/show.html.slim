@@ -4,59 +4,54 @@
   = javascript_include_tag "comment"
 - breadcrumb :thread, @topic
 
-.c-container
-  .c-flex.p-topic--title__border
-    .c-flex--column
-      - if @topic.thumbnail?
-        = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
-      - elsif @topic.thumbnails_first
-        = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
-      -else
-        = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
-      .p-topic--comment.text--s-sm
-        span.text--s-lg.text__c--pink.text--b
-          = @topic.comments.count
-        | コメ
-    .c-flex--column.c-flex__jc-sb
-      .c-flex.c-flex__jc-sb
-        .text--s-sm.text__c--d-gray
-          = @topic.created_at.to_s(:Ymd)
-      h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
-        = @topic.title
-      .c-flex.c-flex__jc-sb
-        .c-category--item
-          .text--b.c-margin-reset.text--c
-            = @topic.category.name
-
-- if @topic.thumbnail?
+#vue
   .c-container
-    .p-topic__image
-      = image_tag(@topic.thumbnail.url(:normal))
+    .c-flex.p-topic--title__border
+      .c-flex--column
+        - if @topic.thumbnail?
+          = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
+        - elsif @topic.thumbnails_first
+          = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
+        -else
+          = image_tag('no_image.png', class: "p-topic__thumbnail c-border-r-10")
+        .p-topic--comment.text--s-sm
+          span.text--s-lg.text__c--pink.text--b
+            = @topic.comments.count
+          | コメ
+      .c-flex--column.c-flex__jc-sb
+        .c-flex.c-flex__jc-sb
+          .text--s-sm.text__c--d-gray
+            = @topic.created_at.to_s(:Ymd)
+        h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
+          = @topic.title
+        .c-flex.c-flex__jc-sb
+          .c-category--item
+            .text--b.c-margin-reset.text--c
+              = @topic.category.name
 
-.c-container--sm
-  .c-flex
-    div
-      | 1:
-    .c-margin-l-10
-      = @topic.name
-    .p-topic-date
-      = @topic.created_at.to_s(:YmdnHM)
+  - if @topic.thumbnail?
+    .c-container
+      .p-topic__image
+        = image_tag(@topic.thumbnail.url(:normal))
 
-.c-container.p-topic-font
-  .c-container.text--b
-    = @topic.body.html_safe
-  .p-topic-icon.text--s-x-lg
-    ul.c-flex.c-flex__jc-end.c-container
-      li.p-topic-icon__item.p-topic-icon__smile
-        i.fa.fa-smile-o
-      li.p-topic-icon__item data-reply-id="1"
-        i.fa.fa-reply
+  .c-container--sm
+    .c-flex
+      div
+        | 1:
+      .c-margin-l-10
+        = @topic.name
+      .p-topic-date
+        = @topic.created_at.to_s(:YmdnHM)
 
-= render partial: "topics/comments", collection: @topic.comments, as: :comment
+  .c-container.p-topic-font
+    .c-container.text--b
+      = @topic.body.html_safe
+    reaction
 
-.c-container--sm.text--s-lg.text--b
-  | コメントする
-#comment-form-vue
+  = render partial: "topics/comments", collection: @topic.comments, as: :comment
+
+  .c-container--sm.text--s-lg.text--b
+    | コメントする
   .c-container
     form-error :count="comment.errors.count" :messages="comment.errors.messages"
     .c-flex--column.c-container--sm
