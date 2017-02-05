@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: :show
 
   def new
-    @topic = Topic.new
   end
 
   def create
