@@ -105,7 +105,10 @@ $(function() {
           this.remove()
         })
     }).fail(function(res) {
-      console.log("fail")
+        $(e.target).after(res.responseText)
+        $('#p-anchor').on('mouseleave', function() {
+          this.remove()
+        })
     })
   })
 })
