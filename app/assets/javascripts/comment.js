@@ -89,4 +89,23 @@ $(function() {
   })
 
   new commentForm().$mount('#vue')
+
+  $('[data-anchor]').on('click', function(e) {
+    const no = e.target.textContent.replace(/\>/g, '')
+    const url = `${URI(location.href).path()}/comments/${no}/anchor`
+    $.ajax({
+      type: "GET",
+      url: url,
+      data: {
+        no: no
+      }
+    }).done(function(res) {
+        $(e.target).after(res)
+        $('#p-anchor').on('mouseleave', function() {
+          this.remove()
+        })
+    }).fail(function(res) {
+      console.log("fail")
+    })
+  })
 })

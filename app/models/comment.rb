@@ -17,6 +17,10 @@ class Comment < ActiveRecord::Base
                                    'image/bmp'] },
     less_than: 20.megabytes
 
+  def display_body
+    body.gsub(/<\/a><br>/, '</a>')
+  end
+
   private
 
   def process_body

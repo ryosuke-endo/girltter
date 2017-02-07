@@ -1,0 +1,11 @@
+#p-anchor
+  .p-anchor--container
+    .c-flex.c-container--sm
+      div
+        = no
+        |:
+      .c-margin-l-10
+        = anchor.name
+      .p-topic-date
+        = anchor.created_at.to_s(:YmdnHM)
+    = anchor.display_body.html_safe
