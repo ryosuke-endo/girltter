@@ -9,14 +9,10 @@ class Topics::CommentsController < Topics::ApplicationController
       else
         topic.comments[no - 2]
       end
-    if anchor.present?
-      text = render_to_string partial: 'anchor',
-                              locals: { no: no,
-                                        anchor: anchor }
-      render text: text
-    else
-      text = render_to_string partial: 'anchor_error'
-      render text: text, status: 404
-    end
+    partial = anchor.present? ? 'anchor' : 'anchor_error'
+    text = render_to_string partial: partial,
+                            locals: { no: no,
+                                      anchor: anchor }
+    render text: text
   end
 end
