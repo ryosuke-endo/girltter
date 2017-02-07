@@ -91,7 +91,8 @@ $(function() {
   new commentForm().$mount('#vue')
 
   $('[data-anchor]').on('click', function(e) {
-    const no = e.target.textContent.replace(/\>/g, '')
+    const self = e.target
+    const no = self.textContent.replace(/\>/g, '')
     const url = `${URI(location.href).path()}/comments/${no}/anchor`
     $.ajax({
       type: "GET",
@@ -100,14 +101,18 @@ $(function() {
         no: no
       }
     }).done(function(res) {
-        $(e.target).after(res)
+        $(self).after(res)
+        $(self).addClass('is-disable')
         $('#p-anchor').on('mouseleave', function() {
           this.remove()
+          $(self).removeClass('is-disable')
         })
     }).fail(function(res) {
-        $(e.target).after(res.responseText)
+        $(self).after(res.responseText)
+        $(self).addClass('is-disable')
         $('#p-anchor').on('mouseleave', function() {
           this.remove()
+          $(self).removeClass('is-disable')
         })
     })
   })

@@ -1,3 +1,6 @@
+- no = anchor.present? ? no : '404'
+- name = anchor.present? ? anchor.name : 'エラー'
+- time = anchor.present? ? anchor.created_at.to_s(:YmdnHM) : Time.now.to_s(:YmdnHM)
 #p-anchor
   .p-anchor--container
     .c-flex.c-container--sm
@@ -5,7 +8,10 @@
         = no
         |:
       .c-margin-l-10
-        = anchor.name
+        = name
       .p-topic-date
-        = anchor.created_at.to_s(:YmdnHM)
-    = anchor.display_body.html_safe
+        = time
+    - if anchor.present?
+      = anchor.display_body.html_safe
+    - else
+      | コメントが存在していないため、表示できません
