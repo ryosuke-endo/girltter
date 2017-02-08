@@ -12,6 +12,6 @@
       .p-topic-date
         = time
     - if anchor.present?
-      = anchor.display_body.html_safe
+      = anchor.body.html_safe
     - else
       | コメントが存在していないため、表示できません

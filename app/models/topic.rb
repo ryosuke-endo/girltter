@@ -24,10 +24,6 @@ class Topic < ActiveRecord::Base
     thumbnails_urls.first
   end
 
-  def display_body
-    body.gsub(/<\/a><br>/, '</a>')
-  end
-
   private
 
   def thumbnails_urls

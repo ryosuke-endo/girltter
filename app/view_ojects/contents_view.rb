@@ -25,7 +25,7 @@ class ContentsView
   end
 
   def convert_br_tag!
-    contents.gsub!(/\R/, '<br>')&.gsub(/<\/div><br>/, '</div>')
+    contents.gsub!(%r{(?<!</a>|</div>|-->)\R}, '<br>')
   end
 
   def convert_url_to_html!(url, html)
