@@ -8,6 +8,8 @@ import modal from './components/common/form/modal'
 import reaction from './components/comment/reaction.js'
 import formError from './components/common/form/error.js'
 
+import anchorRes from './anchor_res.js'
+
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
 $(function() {
@@ -91,26 +93,6 @@ $(function() {
   new commentForm().$mount('#vue')
 
   $('[data-anchor]').on('click', function(e) {
-    const self = e.target
-    const no = self.textContent.replace(/\>/g, '')
-    const url = `${URI(location.href).path()}/comments/${no}/anchor`
-    $.ajax({
-      type: "GET",
-      url: url
-    }).done(function(res) {
-        $(self).after(res)
-        $(self).addClass('is-disable')
-        $('#p-anchor').on('mouseleave', function() {
-          this.remove()
-          $(self).removeClass('is-disable')
-        })
-    }).fail(function(res) {
-        $(self).after(res.responseText)
-        $(self).addClass('is-disable')
-        $('#p-anchor').on('mouseleave', function() {
-          this.remove()
-          $(self).removeClass('is-disable')
-        })
-    })
+    new anchorRes(e).send()
   })
 })
