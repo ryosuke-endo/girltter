@@ -96,10 +96,7 @@ $(function() {
     const url = `${URI(location.href).path()}/comments/${no}/anchor`
     $.ajax({
       type: "GET",
-      url: url,
-      data: {
-        no: no
-      }
+      url: url
     }).done(function(res) {
         $(self).after(res)
         $(self).addClass('is-disable')

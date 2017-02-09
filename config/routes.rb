@@ -18,9 +18,7 @@ Rails.application.routes.draw do
       get :complete
     end
     scope module: :topics do
-      resources :comments, only: [] do
-        get :anchor
-      end
+      get 'comments/:no/anchor' => 'comments#anchor', as: 'anchor'
     end
   end
   resource :home, only: %i(show edit update) do
