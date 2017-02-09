@@ -1,4 +1,5 @@
 import URI from 'urijs'
+import axios from 'axios/dist/axios'
 
 export default class {
   constructor(e) {
@@ -9,13 +10,13 @@ export default class {
 
   send() {
     const self = this
-    $.ajax({
-      type: "GET",
+    axios({
+      method: "GET",
       url: this.url
-    }).done(function(res) {
-      self.showRes(res)
-    }).fail(function(res) {
-      self.showRes(res.responseText)
+    }).then(function(res) {
+      self.showRes(res.data)
+    }).catch(function(error) {
+      self.showRes(error.response.data)
     })
   }
 
