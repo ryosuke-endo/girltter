@@ -8,7 +8,7 @@ import modal from './components/common/form/modal'
 import reaction from './components/comment/reaction.js'
 import formError from './components/common/form/error.js'
 
-import anchorRes from './anchor_res.js'
+import AnchorRes from './anchor_res.js'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
@@ -93,6 +93,6 @@ $(function() {
   new commentForm().$mount('#vue')
 
   $('[data-anchor]').on('click', function(e) {
-    new anchorRes(e).send()
+    new AnchorRes(e).send()
   })
 })
