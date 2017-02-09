@@ -1,5 +1,4 @@
 class Topics::CommentsController < Topics::ApplicationController
-
   def anchor
     topic = Topic.find(params[:topic_id])
     no = params[:no].to_i
