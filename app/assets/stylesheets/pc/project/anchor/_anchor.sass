@@ -1,0 +1,48 @@
+#p-anchor-res
+  cursor: pointer
+#p-anchor-res.is-disable
+  pointer-events: none
+
+#p-anchor
+  position: absolute
+  width: 500px
+  &:before
+    content: ""
+    position: absolute
+    top: -3px
+    margin-left: 15px
+    border-style: solid
+    border-width: 0 9px 9px 9px
+    border-color: transparent transparent $b-gray transparent
+  &:after
+    content: ""
+    position: absolute
+    top: -2px
+    margin-left: 15px
+    border-style: solid
+    border-width: 0 9px 9px 9px
+    border-color: transparent transparent $b-l-gray transparent
+  .c-grid__quotation
+    background: $b-white
+  .c-grid__quotation--side-title
+    width: 300px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+  .text--s-md
+    font-size: 1.2rem
+  #p-anchor-res
+    cursor: default
+
+.p-anchor--container
+  background: $b-l-gray
+  border: 1px solid $b-gray
+  border-radius: 10px
+  color: #19283C
+  font-size: 1.3rem
+  letter-spacing: 1.3px
+  line-height: 1.2
+  position: relative
+  padding: 10px 16px
+  top: 4px
+  z-index: 0

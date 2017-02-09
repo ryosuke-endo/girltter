@@ -1,12 +1,11 @@
 = link_to site.url.to_s, class: "c-grid__quotation--link", target: '_blank' do
   .c-grid__quotation.text--s-md.p-topic__quotation__border.c-border-r-5
-    .c-flex
-      .c-grid__quotation--main
-        = image_tag(url)
-      .c-grid__quotation--side
-        .c-grid__quotation--side-title.text--b
-          = site.title
-        .c-grid__quotation--side-description.text--n
-          = site.description
-        .c-grid__quotation--side-url
-          = site.url.host
+    .c-grid__quotation--main
+      = image_tag(url)
+    .c-grid__quotation--side
+      .c-grid__quotation--side-title.text--b
+        = site.title
+      .c-grid__quotation--side-description.text--n
+        = site.description
+      .c-grid__quotation--side-url
+        = site.url.host

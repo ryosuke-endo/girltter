@@ -21,11 +21,11 @@ class ContentsView
   private
 
   def extract_anchor!
-    contents.gsub!(/(\>\>.*\d)/) { "<span data-anchor=true>#{$1}</span>" }
+    contents.gsub!(/(\>\>.*\d)/) { "<span id='p-anchor-res' data-anchor=true>#{$1}</span>" }
   end
 
   def convert_br_tag!
-    contents.gsub!(/\R/, '<br>')&.gsub(/<\/div><br>/, '</div>')
+    contents.gsub!(%r{(?<!</a>|</div>|-->)\R}, '<br>')
   end
 
   def convert_url_to_html!(url, html)
@@ -57,7 +57,7 @@ class ContentsView
   def sanitize_content
     action_view.sanitize(contents,
                           tags: %w(a div img p br span),
-                          attributes: %w(alt class href src target data-anchor))
+                          attributes: %w(alt id class href src target data-anchor))
   end
 
   def set_urls
