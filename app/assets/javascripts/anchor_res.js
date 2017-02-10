@@ -12,11 +12,19 @@ export default class {
     const self = this
     axios({
       method: "GET",
-      url: this.url
+      url: this.url,
+      timeout: 10000
     }).then(function(res) {
       self.showRes(res.data)
     }).catch(function(error) {
-      self.showRes(error.response.data)
+      const message = `
+      <div id="p-anchor">
+        <div class="p-anchor--container">
+          タイムアウトしたため、コメントを取得できませんでした
+        </div>
+      </div>
+      `
+      self.showRes(message)
     })
   }
 
