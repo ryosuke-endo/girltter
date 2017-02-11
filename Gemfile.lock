@@ -143,7 +143,8 @@ GEM
     ffi (1.9.14)
     font-awesome-rails (4.6.3.0)
       railties (>= 3.2, < 5.1)
-    gemoji (2.1.0)
+    gemojione (3.2.0)
+      json
     get_process_mem (0.2.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -416,7 +417,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-rails
-  gemoji
+  gemojione
   gretel
   jbuilder (~> 2.0)
   jquery-rails
