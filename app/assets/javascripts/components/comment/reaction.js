@@ -1,5 +1,7 @@
 import Vue from 'vue/dist/vue'
+import axios from 'axios/dist/axios'
 
+axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 export default Vue.extend({
   props: {
     reply_id: {
@@ -8,9 +10,30 @@ export default Vue.extend({
   },
   data() {
     return {
+      iconListActive: true,
       replyActive: false,
-      reactionActive: false
+      reactionActive: false,
+      emojis: []
     }
+  },
+  mounted() {
+    self = this
+    const query = {
+      query: {
+        name: "thumbsup"
+      }
+    }
+    axios({
+      method: 'GET',
+      url: "/api/emoji",
+      params: query
+    })
+    .then(function(res) {
+      console.log(res.data)
+      self.emojis = res.data
+    }).catch(function(error) {
+      console.log(error)
+    })
   },
   methods: {
     submitReply() {
@@ -27,15 +50,25 @@ export default Vue.extend({
     },
     hiddenReaction() {
       this.reactionActive = false
+    },
+    showIconList() {
+      this.iconListActive = true
+    },
+    hiddenIconList() {
+      this.iconListActive = false
     }
   },
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">
-      <li class="p-topic-icon__item" @mouseenter="showReaction" @mouseleave="hiddenReaction">
+      <li class="p-topic-icon__item" @click="showIconList "@mouseenter="showReaction" @mouseleave="hiddenReaction">
         <i class="fa fa-smile-o"></i>
           <div class="p-topic--icon__description text--s-sm text--c " v-show="reactionActive">
             絵文字をつける
+          </div>
+          <div class="p-topic--icon-list" v-show="iconListActive">
+          <ul v-for="emoji in emojis">
+            <li>{{emoji["moji"]}}</li>
           </div>
         </i>
       </li>
