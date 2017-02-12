@@ -44,6 +44,7 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
 
 # emoji
+gem 'gemoji'
 gem 'gemojione'
 
 # breadcrumbs
