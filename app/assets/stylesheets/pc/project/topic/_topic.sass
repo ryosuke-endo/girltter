@@ -96,10 +96,13 @@
     border-color: $b-black transparent transparent transparent
 
 // iconのmodal
-.p-topic--icon--modal
-  left: 0
+.p-topic--icon--modal__base
   position: absolute
-  top: 40px
+
+.p-topic--icon--modal
+  left: -85px
+  position: absolute
+  top: 50px
   width: 360px
 
 .p-topic--icon--modal__head
@@ -108,7 +111,20 @@
   border-radius: 8px 8px 0 0
   padding: 5px 10px
 
+.p-topic--icon--modal__container
+  background: $b-white
+  border-bottom: 1px solid $b-gray
+  border-left: 1px solid $b-gray
+  border-right: 1px solid $b-gray
+  border-radius: 0 0 8px 8px
+  height: 300px
+  padding: 5px 0 5px 10px
+  overflow: auto
+
+.p-topic--icon--modal__heading
+
 .p-topic--icon__list
+  width: 30px
 
 .p-topic--search__form
   border: 1px solid $b-gray

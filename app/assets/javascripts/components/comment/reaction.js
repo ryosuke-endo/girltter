@@ -45,7 +45,11 @@ export default Vue.extend({
       self = this
       const query = {
         query: {
-          category: "people"
+          category: "people",
+          except: {
+            unicode_version: '9.0',
+            ios_version: '10.0'
+          }
         }
       }
       axios({
@@ -69,26 +73,89 @@ export default Vue.extend({
           <div class="p-topic--icon__description text--s-sm text--c" v-show="reactionActive">
             絵文字をつける
           </div>
-          <div class="p-topic--icon--modal" v-show="iconListActive">
-            <div class="p-topic--icon--modal__head">
-              <ul class="c-flex c-flex__jc-sb">
-                <li><i class="fa fa-clock-o"></i></li>
-                <li><i class="fa fa-smile-o"></i></li>
-                <li><i class="fa fa-leaf"></i></li>
-                <li><i class="fa fa-cutlery"></i></li>
-                <li><i class="fa fa-futbol-o"></i></li>
-                <li><i class="fa fa-plane"></i></li>
-                <li><i class="fa fa-lightbulb-o"></i></li>
-                <li><i class="fa fa-heart"></i></li>
-                <li><i class="fa fa-flag"></i></li>
-              </ul>
-            </div>
+      </li>
+      <li class="p-topic--icon--modal__base" v-show="iconListActive">
+        <div class="p-topic--icon--modal">
+          <div class="p-topic--icon--modal__head">
+            <ul class="c-flex c-flex__jc-sb">
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-clock-o"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-smile-o"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-leaf"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-cutlery"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-futbol-o"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-plane"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-lightbulb-o"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-heart"></i></li>
+              <li class="p-topic--icon--modal__item--group"><i class="fa fa-flag"></i></li>
+            </ul>
+          </div>
+          <div class="p-topic--icon--modal__container">
+            <h3 class="text--s-md">
+              スマイリーと人々
+            </h3>
             <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              動物と自然
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              食べ物と飲み物
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              活動
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              旅行と場所
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              物
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              記号
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
+                {{emoji.unicode_aliases[0]}}
+              </li>
+            </ul>
+            <h3 class="text--s-md">
+              旗
+            </h3>
+            <ul class="c-flex c-flex__wrap">
+              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
                 {{emoji.unicode_aliases[0]}}
               </li>
             </ul>
           </div>
+        </div>
       </li>
       <li class="p-topic-icon__item" @click=submitReply @mouseenter="showReply" @mouseleave="hiddenReply">
         <i class="fa fa-reply">

@@ -8,33 +8,20 @@ module Api
     end
 
     def result
-      # filter_category
-      # filter_name
-      # filter_blank_keywords
-      # order_unicode
-      # collection.values
+      except!
       collection
     end
 
     private
 
-    def filter_category
-      return collection if query[:category].blank?
-      collection.select! { |_, value| value[:category] == query[:category] }
-    end
-
-    def filter_name
-      return collection if query[:name].blank?
-      collection.select! { |_, value| value[:name] == query[:name] }
-    end
-
-    def filter_blank_keywords
-      collection.select! { |_, value| value[:keywords].present? }
-    end
-
-    def order_unicode
-      collection.each do |key, value|
-        value.sort { |(k, v), (k2, v2)| k[1] <=> k2[1] }
+    def except!
+      if query[:except].present?
+        if query[:except][:unicode_version]
+          collection.select! { |x| x.unicode_version != query[:except][:unicode_version] }
+        end
+        if query[:except][:ios_version]
+          collection.select! { |x| x.ios_version != query[:except][:ios_version] }
+        end
       end
     end
   end

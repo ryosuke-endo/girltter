@@ -3,6 +3,6 @@ class Api::EmojiController < ApplicationController
 
   def index
     query = JSON.parse(params[:query]).with_indifferent_access
-    @emojis = Api::EmojiIndexService.new(query).result.first(100)
+    @emojis = Api::EmojiIndexService.new(query).result
   end
 end
