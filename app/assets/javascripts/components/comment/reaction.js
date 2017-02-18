@@ -77,16 +77,16 @@ export default Vue.extend({
       <li class="p-topic--icon--modal__base" v-show="iconListActive">
         <div class="p-topic--icon--modal">
           <div class="p-topic--icon--modal__head">
-            <ul class="c-flex c-flex__jc-sb">
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-clock-o"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-smile-o"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-leaf"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-cutlery"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-futbol-o"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-plane"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-lightbulb-o"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-heart"></i></li>
-              <li class="p-topic--icon--modal__item--group"><i class="fa fa-flag"></i></li>
+            <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--groups">
+              <li class="p-topic--icon--modal__item--group text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-smile-o"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-leaf"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-cutlery"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-futbol-o"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-plane"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-lightbulb-o"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-heart"></i></li>
+              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-flag"></i></li>
             </ul>
           </div>
           <div class="p-topic--icon--modal__container">
@@ -95,7 +95,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -103,7 +103,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -111,7 +111,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -119,7 +119,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -127,7 +127,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -135,7 +135,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -143,7 +143,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -151,7 +151,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
-                {{emoji.unicode_aliases[0]}}
+                <img :src="emoji.image_path">
               </li>
             </ul>
           </div>
