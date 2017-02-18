@@ -42,6 +42,7 @@ gem 'whenever', require: false
 gem 'sass-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'compass-rails'
 
 # emoji
 gem 'gemoji'
