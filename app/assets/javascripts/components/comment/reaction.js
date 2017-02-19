@@ -17,9 +17,6 @@ export default Vue.extend({
       categoryHeaders: {}
     }
   },
-  mounted() {
-    this.getEmoji();
-  },
   methods: {
     submitReply() {
       this.$emit('reply', this.reply_id)
@@ -32,6 +29,7 @@ export default Vue.extend({
     },
     showReaction() {
       this.reactionActive = true
+      this.getEmoji()
     },
     hiddenReaction() {
       this.reactionActive = false
@@ -47,7 +45,8 @@ export default Vue.extend({
       const $target = $(".p-topic--icon--modal__container")
       $target.scrollTop(0)
       this.getCategoryHeaderPosition()
-      $target.scrollTop(this.categoryHeaders[category].top)
+      const top = this.categoryHeaders[category].top - 40
+      $target.scrollTop(top)
     },
     getCategoryHeaderPosition() {
       const targets = $('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
@@ -76,7 +75,7 @@ export default Vue.extend({
         params: query
       })
       .then(function(res) {
-        self.emojis = res.data
+        return self.emojis = res.data
       }).catch(function(error) {
         console.log(error)
       })
