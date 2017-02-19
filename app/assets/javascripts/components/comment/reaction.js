@@ -10,14 +10,15 @@ export default Vue.extend({
   },
   data() {
     return {
-      iconListActive: true,
+      iconListActive: false,
       replyActive: false,
       reactionActive: false,
-      emojis: []
+      emojis: [],
+      categoryHeaders: {}
     }
   },
   mounted() {
-    this.getEmoji()
+    this.getEmoji();
   },
   methods: {
     submitReply() {
@@ -41,6 +42,23 @@ export default Vue.extend({
     hiddenIconList() {
       this.iconListActive = false
     },
+    scrollCategoryHeader(category, event) {
+      event.preventDefault()
+      const $target = $(".p-topic--icon--modal__container")
+      $target.scrollTop(0)
+      this.getCategoryHeaderPosition()
+      $target.scrollTop(this.categoryHeaders[category].top)
+    },
+    getCategoryHeaderPosition() {
+      const targets = $('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
+      const categories = {}
+      targets.each(function(i, target) {
+        const $target = $(target)
+        const key = $target.context.id
+        categories[key] = $target.position()
+      })
+      return this.categoryHeaders = categories
+    },
     getEmoji() {
       self = this
       const query = {
@@ -58,7 +76,6 @@ export default Vue.extend({
         params: query
       })
       .then(function(res) {
-        console.log(res.data)
         self.emojis = res.data
       }).catch(function(error) {
         console.log(error)
@@ -77,20 +94,60 @@ export default Vue.extend({
       <li class="p-topic--icon--modal__base" v-show="iconListActive">
         <div class="p-topic--icon--modal">
           <div class="p-topic--icon--modal__head">
-            <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--groups">
-              <li class="p-topic--icon--modal__item--group text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-smile-o"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-leaf"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-cutlery"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-futbol-o"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-plane"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-lightbulb-o"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-heart"></i></li>
-              <li class="p-topic--icon--modal__item--group c-icon-d-gray text--c"><i class="fa fa-flag"></i></li>
+            <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--tabs">
+              <li class="p-topic--icon--modal__item--tab text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
+              <a href="#" @click="scrollCategoryHeader('people', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-smile-o">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('nature', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-leaf">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('foods', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-cutlery">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('activity', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-futbol-o">
+                  </i>
+                </li>
+              </a>
+              <a href="#"  @click="scrollCategoryHeader('places', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-plane">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('objects', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-lightbulb-o">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('symbols', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-heart">
+                  </i>
+                </li>
+              </a>
+              <a href="#" @click="scrollCategoryHeader('flags', $event)">
+                <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
+                  <i class="fa fa-flag">
+                  </i>
+                </li>
+              </a>
             </ul>
           </div>
           <div class="p-topic--icon--modal__container">
-            <h3 class="text--s-md">
+            <h3 id="people" class="text--s-md">
               スマイリーと人々
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -98,7 +155,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="nature" class="text--s-md">
               動物と自然
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -106,7 +163,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="foods" class="text--s-md">
               食べ物と飲み物
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -114,7 +171,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="activity"class="text--s-md">
               活動
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -122,7 +179,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="places" class="text--s-md">
               旅行と場所
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -130,7 +187,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="objects" class="text--s-md">
               物
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -138,7 +195,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="symbols" class="text--s-md">
               記号
             </h3>
             <ul class="c-flex c-flex__wrap">
@@ -146,7 +203,7 @@ export default Vue.extend({
                 <div :class="emoji.style_class">
               </li>
             </ul>
-            <h3 class="text--s-md">
+            <h3 id="flags" class="text--s-md">
               旗
             </h3>
             <ul class="c-flex c-flex__wrap">
