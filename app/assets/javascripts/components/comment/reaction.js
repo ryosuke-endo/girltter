@@ -95,7 +95,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -103,7 +103,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -111,7 +111,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -119,7 +119,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -127,7 +127,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -135,7 +135,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -143,7 +143,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
             <h3 class="text--s-md">
@@ -151,7 +151,7 @@ export default Vue.extend({
             </h3>
             <ul class="c-flex c-flex__wrap">
               <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
-                <img :src="emoji.image_path">
+                <div :class="emoji.style_class">
               </li>
             </ul>
           </div>
