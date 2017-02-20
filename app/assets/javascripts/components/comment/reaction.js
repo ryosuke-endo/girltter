@@ -43,8 +43,7 @@ export default Vue.extend({
     hiddenIconList() {
       this.iconListActive = false
     },
-    scrollCategoryHeader(category, event) {
-      event.preventDefault()
+    scrollCategoryHeader(category) {
       const $target = $(".p-topic--icon--modal__container")
       $target.scrollTop(0)
       const top = this.categoryHeaders[category].top - 40
@@ -108,49 +107,49 @@ export default Vue.extend({
           <div class="p-topic--icon--modal__head">
             <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--tabs">
               <li class="p-topic--icon--modal__item--tab text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
-              <a href="#" @click="scrollCategoryHeader('people', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('people')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-smile-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('nature', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('nature')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-leaf">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('foods', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('foods')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-cutlery">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('activity', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('activity')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-futbol-o">
                   </i>
                 </li>
               </a>
-              <a href="#"  @click="scrollCategoryHeader('places', $event)">
+              <a href="#"  @click.prevent="scrollCategoryHeader('places')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-plane">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('objects', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('objects')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-lightbulb-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('symbols', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('symbols')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-heart">
                   </i>
                 </li>
               </a>
-              <a href="#" @click="scrollCategoryHeader('flags', $event)">
+              <a href="#" @click.prevent="scrollCategoryHeader('flags')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-flag">
                   </i>
