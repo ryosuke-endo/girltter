@@ -44,12 +44,14 @@ export default Vue.extend({
       event.preventDefault()
       const $target = $(".p-topic--icon--modal__container")
       $target.scrollTop(0)
-      this.getCategoryHeaderPosition()
+      this.getCategoryHeaderPosition(event)
       const top = this.categoryHeaders[category].top - 40
       $target.scrollTop(top)
     },
-    getCategoryHeaderPosition() {
-      const targets = $('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
+    getCategoryHeaderPosition(event) {
+      const targets = $(event.target).
+        closest('.p-topic--icon--modal').
+        find('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
       const categories = {}
       targets.each(function(i, target) {
         const $target = $(target)
