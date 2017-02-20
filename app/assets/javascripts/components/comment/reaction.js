@@ -6,6 +6,9 @@ export default Vue.extend({
   props: {
     reply_id: {
       type: String
+    },
+    emoji_path: {
+      type: String
     }
   },
   data() {
@@ -29,13 +32,13 @@ export default Vue.extend({
     },
     showReaction() {
       this.reactionActive = true
-      this.getEmoji()
     },
     hiddenReaction() {
       this.reactionActive = false
     },
-    showIconList() {
+    showIconList(e) {
       this.iconListActive = true
+      this.getEmoji(e)
     },
     hiddenIconList() {
       this.iconListActive = false
@@ -44,13 +47,13 @@ export default Vue.extend({
       event.preventDefault()
       const $target = $(".p-topic--icon--modal__container")
       $target.scrollTop(0)
-      this.getCategoryHeaderPosition(event)
       const top = this.categoryHeaders[category].top - 40
       $target.scrollTop(top)
     },
     getCategoryHeaderPosition(event) {
       const targets = $(event.target).
-        closest('.p-topic--icon--modal').
+        parent().
+        next().
         find('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
       const categories = {}
       targets.each(function(i, target) {
@@ -60,8 +63,9 @@ export default Vue.extend({
       })
       return this.categoryHeaders = categories
     },
-    getEmoji() {
+    getEmoji(e) {
       self = this
+      const event = e
       const query = {
         query: {
           category: "people",
@@ -77,7 +81,14 @@ export default Vue.extend({
         params: query
       })
       .then(function(res) {
-        return self.emojis = res.data
+        if(Object.keys(self.categoryHeaders).length === 0) {
+          const image = new Image();
+          image.onload = function() {
+            self.getCategoryHeaderPosition(event)
+          }
+          image.src = self.emoji_path
+        }
+        self.emojis = res.data
       }).catch(function(error) {
         console.log(error)
       })
@@ -86,7 +97,7 @@ export default Vue.extend({
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">
-      <li class="p-topic-icon__item" @click="showIconList "@mouseenter="showReaction" @mouseleave="hiddenReaction">
+      <li class="p-topic-icon__item" @click="showIconList($event)"@mouseenter="showReaction" @mouseleave="hiddenReaction">
         <i class="fa fa-smile-o"></i>
           <div class="p-topic--icon__description text--s-sm text--c" v-show="reactionActive">
             絵文字をつける

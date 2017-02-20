@@ -46,7 +46,7 @@
   .c-container.p-topic-font
     .c-container.text--b
       = @topic.body.html_safe
-    reaction reply_id="1" v-on:reply="reply"
+    reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png')
 
   = render partial: "topics/comments", collection: @topic.comments, as: :comment
 
