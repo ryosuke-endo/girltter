@@ -45,6 +45,9 @@ export default Vue.extend({
         self.getEmojiImage(event)
         .then(function() {
           self.iconListActive = true
+          self.$nextTick(function() {
+            self.getCategoryHeaderPosition(event)
+          })
         })
       })
     },
@@ -102,10 +105,9 @@ export default Vue.extend({
           const image = new Image();
           image.src = self.emoji_path;
           image.onload = function() {
-            self.getCategoryHeaderPosition(event)
+            return resolve(image)
           }
         }
-        return resolve()
       })
     }
   },
