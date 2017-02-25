@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue'
 import axios from 'axios/dist/axios'
+import 'babel-polyfill'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 export default Vue.extend({
@@ -37,14 +38,21 @@ export default Vue.extend({
       this.reactionActive = false
     },
     showIconList(e) {
-      this.iconListActive = true
-      this.getEmoji(e)
+      self = this
+      const event = e
+      self.getEmoji()
+      .then(function() {
+        self.getEmojiImage(event)
+        .then(function() {
+          self.iconListActive = true
+        })
+      })
     },
     hiddenIconList() {
       this.iconListActive = false
     },
-    scrollCategoryHeader(category) {
-      const $target = $(".p-topic--icon--modal__container")
+    scrollCategoryHeader(category, e) {
+      const $target = $(e.target).closest(".p-topic--icon--modal__head").next()
       $target.scrollTop(0)
       const top = this.categoryHeaders[category].top - 40
       $target.scrollTop(top)
@@ -62,34 +70,42 @@ export default Vue.extend({
       })
       return this.categoryHeaders = categories
     },
-    getEmoji(e) {
-      self = this
-      const event = e
-      const query = {
-        query: {
-          category: "people",
-          except: {
-            unicode_version: '9.0',
-            ios_version: '10.0'
+    getEmoji() {
+      return new Promise((resolve, reject) => {
+        self = this
+        const query = {
+          query: {
+            category: "people",
+            except: {
+              unicode_version: '9.0',
+              ios_version: '10.0'
+            }
           }
         }
-      }
-      axios({
-        method: 'GET',
-        url: "/api/emoji",
-        params: query
-      })
-      .then(function(res) {
+        axios({
+          method: 'GET',
+          url: "/api/emoji",
+          params: query
+        })
+        .then(function(res) {
+          self.emojis = res.data;
+          return resolve()
+        }).catch(function(error) {
+          console.log(error);
+        });
+      });
+    },
+    getEmojiImage(event) {
+      const self = this
+      return new Promise((resolve, reject) => {
         if(Object.keys(self.categoryHeaders).length === 0) {
           const image = new Image();
+          image.src = self.emoji_path;
           image.onload = function() {
             self.getCategoryHeaderPosition(event)
           }
-          image.src = self.emoji_path
         }
-        self.emojis = res.data
-      }).catch(function(error) {
-        console.log(error)
+        return resolve()
       })
     }
   },
@@ -107,49 +123,49 @@ export default Vue.extend({
           <div class="p-topic--icon--modal__head">
             <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--tabs">
               <li class="p-topic--icon--modal__item--tab text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
-              <a href="#" @click.prevent="scrollCategoryHeader('people')">
+              <a href="#" @click.prevent="scrollCategoryHeader('people', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-smile-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('nature')">
+              <a href="#" @click.prevent="scrollCategoryHeader('nature', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-leaf">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('foods')">
+              <a href="#" @click.prevent="scrollCategoryHeader('foods', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-cutlery">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('activity')">
+              <a href="#" @click.prevent="scrollCategoryHeader('activity', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-futbol-o">
                   </i>
                 </li>
               </a>
-              <a href="#"  @click.prevent="scrollCategoryHeader('places')">
+              <a href="#"  @click.prevent="scrollCategoryHeader('places', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-plane">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('objects')">
+              <a href="#" @click.prevent="scrollCategoryHeader('objects', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-lightbulb-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('symbols')">
+              <a href="#" @click.prevent="scrollCategoryHeader('symbols', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-heart">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('flags')">
+              <a href="#" @click.prevent="scrollCategoryHeader('flags', $event)">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-flag">
                   </i>
