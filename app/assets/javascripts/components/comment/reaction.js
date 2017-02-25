@@ -37,16 +37,15 @@ export default Vue.extend({
     hiddenReaction() {
       this.reactionActive = false
     },
-    showIconList(e) {
+    showIconList() {
       self = this
-      const event = e
       self.getEmoji()
       .then(function() {
-        self.getEmojiImage(event)
+        self.getEmojiImage()
         .then(function() {
           self.iconListActive = true
           self.$nextTick(function() {
-            self.getCategoryHeaderPosition(event)
+            self.getCategoryHeaderPosition()
           })
         })
       })
@@ -60,11 +59,8 @@ export default Vue.extend({
       const top = this.categoryHeaders[category].top - 40
       $target.scrollTop(top)
     },
-    getCategoryHeaderPosition(event) {
-      const targets = $(event.target).
-        parent().
-        next().
-        find('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags')
+    getCategoryHeaderPosition() {
+      const targets = $(this.$el.querySelectorAll('#people, #nature, #foods, #activity, #places, #objects, #symbols, #flags'))
       const categories = {}
       targets.each(function(i, target) {
         const $target = $(target)
@@ -98,7 +94,7 @@ export default Vue.extend({
         });
       });
     },
-    getEmojiImage(event) {
+    getEmojiImage() {
       const self = this
       return new Promise((resolve, reject) => {
         if(Object.keys(self.categoryHeaders).length === 0) {
@@ -109,12 +105,15 @@ export default Vue.extend({
           }
         }
       })
+    },
+    watchPosition() {
+      console.log("foo")
     }
   },
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">
-      <li class="p-topic-icon__item" @click="showIconList($event)"@mouseenter="showReaction" @mouseleave="hiddenReaction">
+      <li class="p-topic-icon__item" @click="showIconList" @mouseenter="showReaction" @mouseleave="hiddenReaction">
         <i class="fa fa-smile-o"></i>
           <div class="p-topic--icon__description text--s-sm text--c" v-show="reactionActive">
             絵文字をつける
