@@ -112,9 +112,10 @@ export default Vue.extend({
       const $point = $(self.$el.querySelector(".p-topic--icon--modal__container"))
       $point.on('scroll', function() {
         for(let category in self.categoryHeaders) {
-          const categoryPosition = self.categoryHeaders[category].top
-          const height = $(self.$el.querySelector(`#${category}`)).height()
-          if( categoryPosition < $point.scrollTop() && $point.scrollTop() < categoryPosition + height) {
+          const categoryPosition = self.categoryHeaders[category].top - 45
+          const $height = $(self.$el.querySelector(`#${category}`)).height() - 45
+          const $position = $point.scrollTop()
+          if( categoryPosition < $position && $position < categoryPosition + $height) {
             $('.p-topic--icon--modal__head a').removeClass("is-active")
             $('.p-topic--icon--modal__head a').filter(function(index) {
               return this.hash === `#${category}`
