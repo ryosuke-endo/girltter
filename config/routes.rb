@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       end
     end
     resources :categories, only: %i(index)
+    resources :emoji, only: :index
   end
 
   resources :topics do
