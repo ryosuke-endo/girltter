@@ -39,6 +39,7 @@ export default Vue.extend({
     },
     showIconList() {
       const self = this
+      $('body').addClass('js-menu-active')
       Promise.all([self.getEmoji(), self.getEmojiImage()])
       .then(function() {
         self.iconListActive = true
@@ -98,9 +99,10 @@ export default Vue.extend({
           const image = new Image();
           image.src = self.emoji_path;
           image.onload = function() {
-            return resolve(image)
+            return resolve()
           }
         }
+        return resolve()
       })
     },
     watchPosition() {
