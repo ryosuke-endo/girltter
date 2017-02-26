@@ -75,7 +75,6 @@ export default Vue.extend({
         self = this
         const query = {
           query: {
-            category: "people",
             except: {
               unicode_version: '9.0',
               ios_version: '10.0'
