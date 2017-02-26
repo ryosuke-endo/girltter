@@ -38,7 +38,7 @@ export default Vue.extend({
       this.reactionActive = false
     },
     showIconList() {
-      self = this
+      const self = this
       Promise.all([self.getEmoji(), self.getEmojiImage()])
       .then(function() {
         self.iconListActive = true
@@ -69,7 +69,7 @@ export default Vue.extend({
     },
     getEmoji() {
       return new Promise((resolve, reject) => {
-        self = this
+        const self = this
         const query = {
           query: {
             except: {
