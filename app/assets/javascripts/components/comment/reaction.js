@@ -46,6 +46,7 @@ export default Vue.extend({
           self.iconListActive = true
           self.$nextTick(function() {
             self.getCategoryHeaderPosition()
+            self.watchPosition()
           })
         })
       })
@@ -107,7 +108,21 @@ export default Vue.extend({
       })
     },
     watchPosition() {
-      console.log("foo")
+      const self = this
+      const $point = $(self.$el.querySelector(".p-topic--icon--modal__container"))
+      $point.on('scroll', function() {
+        for(let category in self.categoryHeaders) {
+          const categoryPosition = self.categoryHeaders[category].top
+          const height = $(self.$el.querySelector(`#${category}`)).height()
+          if( categoryPosition < $point.scrollTop() && $point.scrollTop() < categoryPosition + height) {
+            $('.p-topic--icon--modal__head a').removeClass("is-active")
+            $('.p-topic--icon--modal__head a').filter(function(index) {
+              return this.hash === `#${category}`
+            })
+            .addClass("is-active");
+          }
+        }
+      })
     }
   },
   template: `
@@ -123,50 +138,52 @@ export default Vue.extend({
         <div class="p-topic--icon--modal">
           <div class="p-topic--icon--modal__head">
             <ul class="c-flex c-flex__jc-sb p-topic--icon--modal__item--tabs">
-              <li class="p-topic--icon--modal__item--tab text--c c-icon-d-gray is-active"><i class="fa fa-clock-o"></i></li>
-              <a href="#" @click.prevent="scrollCategoryHeader('people')">
+              <li class="p-topic--icon--modal__item--tab text--c c-icon-d-gray is-active">
+                <i class="fa fa-clock-o"></i>
+              </li>
+              <a href="#people" class="is-active" @click.prevent="scrollCategoryHeader('people')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-smile-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('nature')">
+              <a href="#nature" @click.prevent="scrollCategoryHeader('nature')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-leaf">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('foods')">
+              <a href="#foods" @click.prevent="scrollCategoryHeader('foods')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-cutlery">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('activity')">
+              <a href="#activity" @click.prevent="scrollCategoryHeader('activity')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-futbol-o">
                   </i>
                 </li>
               </a>
-              <a href="#"  @click.prevent="scrollCategoryHeader('places')">
+              <a href="#places"  @click.prevent="scrollCategoryHeader('places')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-plane">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('objects')">
+              <a href="#objects" @click.prevent="scrollCategoryHeader('objects')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-lightbulb-o">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('symbols')">
+              <a href="#symbols" @click.prevent="scrollCategoryHeader('symbols')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-heart">
                   </i>
                 </li>
               </a>
-              <a href="#" @click.prevent="scrollCategoryHeader('flags')">
+              <a href="#flags" @click.prevent="scrollCategoryHeader('flags')">
                 <li class="p-topic--icon--modal__item--tab c-icon-d-gray text--c">
                   <i class="fa fa-flag">
                   </i>
@@ -175,70 +192,86 @@ export default Vue.extend({
             </ul>
           </div>
           <div class="p-topic--icon--modal__container">
-            <h3 id="people" class="text--s-md">
-              スマイリーと人々
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="nature" class="text--s-md">
-              動物と自然
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="foods" class="text--s-md">
-              食べ物と飲み物
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="activity"class="text--s-md">
-              活動
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="places" class="text--s-md">
-              旅行と場所
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="objects" class="text--s-md">
-              物
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="symbols" class="text--s-md">
-              記号
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
-            <h3 id="flags" class="text--s-md">
-              旗
-            </h3>
-            <ul class="c-flex c-flex__wrap">
-              <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
-                <div :class="emoji.style_class">
-              </li>
-            </ul>
+            <div id="people">
+              <h3 class="text--s-md">
+                スマイリーと人々
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id ="nature">
+              <h3 class="text--s-md">
+                動物と自然
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="foods">
+              <h3 class="text--s-md">
+                食べ物と飲み物
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="activity">
+              <h3 class="text--s-md">
+                活動
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="places">
+              <h3 class="text--s-md">
+                旅行と場所
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="objects">
+              <h3 class="text--s-md">
+                物
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="symbols">
+              <h3 class="text--s-md">
+                記号
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
+            <div id="flags">
+              <h3 class="text--s-md">
+                旗
+              </h3>
+              <ul class="c-flex c-flex__wrap">
+                <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
+                  <div :class="emoji.style_class">
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </li>
