@@ -39,15 +39,12 @@ export default Vue.extend({
     },
     showIconList() {
       self = this
-      self.getEmoji()
+      Promise.all([self.getEmoji(), self.getEmojiImage()])
       .then(function() {
-        self.getEmojiImage()
-        .then(function() {
-          self.iconListActive = true
-          self.$nextTick(function() {
-            self.getCategoryHeaderPosition()
-            self.watchPosition()
-          })
+        self.iconListActive = true
+        self.$nextTick(function() {
+          self.getCategoryHeaderPosition()
+          self.watchPosition()
         })
       })
     },
