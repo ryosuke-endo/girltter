@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228124822) do
+ActiveRecord::Schema.define(version: 20170228135244) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",               limit: 255,             null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20170228124822) do
     t.integer  "image_file_size",    limit: 4,               null: false
     t.datetime "image_updated_at",                           null: false
   end
+
+  create_table "comment_reactions", force: :cascade do |t|
+    t.integer  "comment_id",  limit: 4, null: false
+    t.integer  "reaction_id", limit: 4, null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "comment_reactions", ["comment_id"], name: "index_comment_reactions_on_comment_id", using: :btree
+  add_index "comment_reactions", ["reaction_id"], name: "index_comment_reactions_on_reaction_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",               limit: 65535, null: false
@@ -126,6 +136,8 @@ ActiveRecord::Schema.define(version: 20170228124822) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
   add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
+  add_foreign_key "comment_reactions", "comments"
+  add_foreign_key "comment_reactions", "reactions"
   add_foreign_key "comments", "topics"
   add_foreign_key "topics", "categories"
 end
