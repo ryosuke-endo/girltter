@@ -26,15 +26,15 @@ ActiveRecord::Schema.define(version: 20170228124822) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "body",               limit: 4294967295, null: false
-    t.string   "name",               limit: 255,        null: false
-    t.integer  "topic_id",           limit: 4,          null: false
+    t.text     "body",               limit: 65535, null: false
+    t.string   "name",               limit: 255,   null: false
+    t.integer  "topic_id",           limit: 4,     null: false
     t.datetime "image_updated_at"
     t.integer  "image_file_size",    limit: 4
     t.string   "image_content_type", limit: 255
     t.string   "image_file_name",    limit: 255
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id", using: :btree
@@ -96,16 +96,16 @@ ActiveRecord::Schema.define(version: 20170228124822) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title",                  limit: 255,        null: false
-    t.text     "body",                   limit: 4294967295, null: false
-    t.string   "name",                   limit: 255,        null: false
-    t.integer  "category_id",            limit: 4,          null: false
+    t.string   "title",                  limit: 255,   null: false
+    t.text     "body",                   limit: 65535, null: false
+    t.string   "name",                   limit: 255,   null: false
+    t.integer  "category_id",            limit: 4,     null: false
     t.datetime "thumbnail_updated_at"
     t.integer  "thumbnail_file_size",    limit: 4
     t.string   "thumbnail_content_type", limit: 255
     t.string   "thumbnail_file_name",    limit: 255
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "topics", ["category_id"], name: "index_topics_on_category_id", using: :btree
