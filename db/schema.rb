@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228135244) do
+ActiveRecord::Schema.define(version: 20170302140437) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",               limit: 255,             null: false
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20170228135244) do
   end
 
   add_index "rankings", ["rankable_id", "rankable_type"], name: "index_rankings_on_rankable_id_and_rankable_type", using: :btree
+
+  create_table "reaction_icons", force: :cascade do |t|
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
 
   create_table "reactions", force: :cascade do |t|
     t.datetime "image_updated_at"
