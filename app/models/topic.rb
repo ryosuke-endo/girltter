@@ -4,6 +4,7 @@ class Topic < ActiveRecord::Base
               thumbnail: '140x140>' }
 
   has_many :comments, dependent: :destroy
+  has_many :comment_reactions, through: :comments
 
   belongs_to :category
 
@@ -22,6 +23,10 @@ class Topic < ActiveRecord::Base
 
   def thumbnails_first
     thumbnails_urls.first
+  end
+
+  def comment_reactions_count_map
+    comment_reactions.group(:comment_id, :reaction_id).count
   end
 
   private

@@ -36,5 +36,15 @@ topics.each do |_, topic|
                body: body)
 end
 
+puts 'import emoji'
+Emoji.all.each do |emoji|
+  begin
+    image_path = "#{Rails.root}/app/assets/images/#{emoji.image_filename}"
+    Reaction.create(image: open(image_path))
+  rescue => e
+    puts e
+  end
+end
+
 import_fixture(:members)
 import_fixture(:tags)

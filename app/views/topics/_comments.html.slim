@@ -16,5 +16,9 @@
     .c-container
       .p-topic__image
         = image_tag comment.image.url(:normal)
+  - if comment.reactions.present?
+    - comment.reactions.group(:id).each do |reaction|
+      = image_tag reaction.image.url
+      = @count_map[[comment.id, reaction.id]]
   .p-topic-icon.text--s-x-lg
     reaction reply_id="#{index}" v-on:reply="reply" emoji_path=image_path('emoji.png') ref="reaction"

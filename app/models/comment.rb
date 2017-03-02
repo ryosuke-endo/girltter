@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
               thumbnail: '140x140>' }
 
   belongs_to :topic
+  has_many :comment_reactions
+  has_many :reactions, through: :comment_reactions
 
   before_create :process_body
 
