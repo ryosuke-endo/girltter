@@ -48,7 +48,7 @@
       = @topic.body.html_safe
     reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') ref="reaction"
 
-  = render partial: "topics/comments", collection: @topic.comments.includes(:reactions), as: :comment
+  = render partial: "topics/comments", collection: @topic.comments.includes(:reaction_icons), as: :comment
 
   .c-container--sm.text--s-lg.text--b
     | コメントする

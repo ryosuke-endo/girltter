@@ -22,7 +22,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @count_map = @topic.comment_reactions_count_map
+    @count_map = @topic.comment_reaction_icons_count_map
     render layout: 'topic'
   end
 
