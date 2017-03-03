@@ -192,7 +192,7 @@ export default Vue.extend({
           </div>
           <div class="p-topic--icon--modal__container">
             <div id="people">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 スマイリーと人々
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -202,7 +202,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id ="nature">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 動物と自然
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -212,7 +212,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="foods">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 食べ物と飲み物
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -222,7 +222,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="activity">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 活動
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -232,7 +232,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="places">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 旅行と場所
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -242,7 +242,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="objects">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 物
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -252,7 +252,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="symbols">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 記号
               </h3>
               <ul class="c-flex c-flex__wrap">
@@ -262,7 +262,7 @@ export default Vue.extend({
               </ul>
             </div>
             <div id="flags">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 旗
               </h3>
               <ul class="c-flex c-flex__wrap">
