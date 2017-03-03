@@ -8,4 +8,8 @@ class ReactionIcon < ActiveRecord::Base
                                                       'image/jpeg',
                                                       'image/png',
                                                       'image/gif'] }
+
+  def style_class
+    "emoji-#{image_file_name.gsub(/(unicode\/|\.png)/, '')}"
+  end
 end
