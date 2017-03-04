@@ -10,6 +10,12 @@ export default Vue.extend({
     },
     emoji_path: {
       type: String
+    },
+    reactionable_id: {
+      type: String
+    },
+    type: {
+      type: String
     }
   },
   data() {
@@ -37,6 +43,27 @@ export default Vue.extend({
     hiddenReaction() {
       this.reactionActive = false
     },
+    hiddenIconList() {
+      this.iconListActive = false
+    },
+    sendIcon(emoji) {
+      const params = {
+        reactionable_id: this.reactionable_id,
+        type: this.type,
+        icon: emoji
+      }
+      axios({
+        method: "POST",
+        url: `/api/reactions/${this.type}`,
+        data: params
+      })
+      .then(function(res) {
+        console.log("success")
+      })
+      .catch(function(err) {
+        console.log("fail")
+      })
+    },
     showIconList() {
       const self = this
       $('body').addClass('js-menu-active')
@@ -48,9 +75,6 @@ export default Vue.extend({
           self.watchPosition()
         })
       })
-    },
-    hiddenIconList() {
-      this.iconListActive = false
     },
     scrollCategoryHeader(category) {
       const $target = $(this.$el.querySelector(".p-topic--icon--modal__container"))
@@ -197,7 +221,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                  <div :class="emoji.style_class">
+                  <div :class="emoji.style_class" @click="sendIcon(emoji)">
                 </li>
               </ul>
             </div>
