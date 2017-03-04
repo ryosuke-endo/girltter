@@ -3,8 +3,10 @@ class Api::ReactionsController < ApplicationController
 
   def create
     reactionable =
-      if params[:type].constantize == Comment
+      if params[:type] == 'Comment'
         Comment.find(params[:reactionable_id])
+      elsif params[:type] == 'Topic'
+        Topic.find(params[:reactionable_id])
       end
     icon = Icon.find_by_hexname(params[:icon][:name])
     reaction = reactionable.reactions.build(icon_id: icon.id,

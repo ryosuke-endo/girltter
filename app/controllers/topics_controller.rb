@@ -22,7 +22,10 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @count_map = @topic.comment_reactions_count_map
+    @count_map = {
+      topic: @topic.icons.group(:id).count,
+      comment: @topic.comment_reactions.group(:reactionable_id, :icon_id).count
+    }
     render layout: 'topic'
   end
 

@@ -5,6 +5,8 @@ class Topic < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
   has_many :comment_reactions, through: :comments, source: :reactions
+  has_many :reactions, dependent: :destroy, as: :reactionable
+  has_many :icons, through: :reactions
 
   belongs_to :category
 
@@ -23,10 +25,6 @@ class Topic < ActiveRecord::Base
 
   def thumbnails_first
     thumbnails_urls.first
-  end
-
-  def comment_reactions_count_map
-    comment_reactions.group(:reactionable_id, :icon_id).count
   end
 
   private
