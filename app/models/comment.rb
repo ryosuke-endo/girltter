@@ -4,8 +4,6 @@ class Comment < ActiveRecord::Base
               thumbnail: '140x140>' }
 
   belongs_to :topic
-  has_many :comment_reaction_icons
-  has_many :reaction_icons, through: :comment_reaction_icons
   has_many :reactions, as: :reactionable
   has_many :icons, through: :reactions
 
