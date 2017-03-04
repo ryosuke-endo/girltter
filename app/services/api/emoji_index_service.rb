@@ -23,6 +23,7 @@ module Api
           collection.select! { |x| x.ios_version != query[:except][:ios_version] }
         end
       end
+      collection.select! { |x| !x.custom? }
     end
   end
 end

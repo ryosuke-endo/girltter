@@ -38,13 +38,23 @@ end
 
 puts 'import emoji'
 Emoji.all.each do |emoji|
-  begin
-    image_path = "#{Rails.root}/app/assets/images/#{emoji.image_filename}"
-    Icon.create(image: open(image_path))
-  rescue => e
-    puts e
-  end
+  next if emoji.custom?
+  image_path = "#{Rails.root}/app/assets/images/#{emoji.image_filename}"
+  Icon.create(image: open(image_path))
 end
 
 import_fixture(:members)
 import_fixture(:tags)
+
+name = "匿子"
+body = "パフォーマー"
+
+50.times { Comment.create(topic_id: 14, name: name, body: body)}
+50.times do |id|
+  id += 1
+  comment = Comment.find(id)
+  icon_ids = Icon.ids.sample(15)
+  icon_ids.each do |icon_id|
+    comment.reactions.create(icon_id: icon_id)
+  end
+end
