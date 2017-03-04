@@ -6,6 +6,7 @@ import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
 import modal from './components/common/form/modal'
 import reaction from './components/comment/reaction.js'
+import reactionCounter from './components/comment/reaction_counter.js'
 import formError from './components/common/form/error.js'
 
 import AnchorRes from './anchor_res.js'
@@ -34,7 +35,8 @@ $(function() {
       'icon': icon,
       'modal': modal,
       'form-error': formError,
-      'reaction': reaction
+      'reaction': reaction,
+      'reaction-counter': reactionCounter
     },
     mounted() {
       this.getTopicId()

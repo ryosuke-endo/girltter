@@ -51,10 +51,7 @@
   - if @topic.icons.present?
     .c-container.c-flex.c-flex__wrap
       - @topic.icons.group_by { |x| x.id }.each do |_, icon|
-        .p-emoji__container.c-flex.c-border.c-border-r-5
-          div class="#{icon.first.style_class}"
-          .p-emoji__counter
-            = @count_map[:topic][icon.first.id]
+        reaction-counter count="#{@count_map[:topic][icon.first.id]}" after="#{icon.first.style_class}"
 
   = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 
