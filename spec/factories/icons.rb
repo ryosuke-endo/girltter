@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :reaction_icon do
+  factory :icon do
     
   end
 end

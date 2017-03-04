@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302141218) do
+ActiveRecord::Schema.define(version: 20170304034014) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",               limit: 255,             null: false
@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20170302141218) do
     t.integer  "image_file_size",    limit: 4,               null: false
     t.datetime "image_updated_at",                           null: false
   end
-
-  create_table "comment_reaction_icons", force: :cascade do |t|
-    t.integer  "comment_id",       limit: 4
-    t.integer  "reaction_icon_id", limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "comment_reaction_icons", ["comment_id"], name: "index_comment_reaction_icons_on_comment_id", using: :btree
-  add_index "comment_reaction_icons", ["reaction_icon_id"], name: "index_comment_reaction_icons_on_reaction_icon_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",               limit: 65535, null: false
@@ -49,6 +39,15 @@ ActiveRecord::Schema.define(version: 20170302141218) do
 
   add_index "comments", ["topic_id"], name: "index_comments_on_topic_id", using: :btree
 
+  create_table "icons", force: :cascade do |t|
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   create_table "rankings", force: :cascade do |t|
     t.integer  "rankable_id",   limit: 4,               null: false
     t.string   "rankable_type", limit: 255,             null: false
@@ -60,14 +59,16 @@ ActiveRecord::Schema.define(version: 20170302141218) do
 
   add_index "rankings", ["rankable_id", "rankable_type"], name: "index_rankings_on_rankable_id_and_rankable_type", using: :btree
 
-  create_table "reaction_icons", force: :cascade do |t|
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+  create_table "reactions", force: :cascade do |t|
+    t.integer  "icon_id",           limit: 4,   null: false
+    t.integer  "reactionable_id",   limit: 4,   null: false
+    t.string   "reactionable_type", limit: 255, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
+
+  add_index "reactions", ["icon_id"], name: "index_reactions_on_icon_id", using: :btree
+  add_index "reactions", ["reactionable_id", "reactionable_type"], name: "index_reactions_on_reactionable_id_and_reactionable_type", using: :btree
 
   create_table "reads", force: :cascade do |t|
     t.integer "readable_id",    limit: 4,               null: false
@@ -136,8 +137,7 @@ ActiveRecord::Schema.define(version: 20170302141218) do
   add_index "users", ["login"], name: "index_users_on_login", unique: true, using: :btree
   add_index "users", ["type"], name: "index_users_on_type", using: :btree
 
-  add_foreign_key "comment_reaction_icons", "comments"
-  add_foreign_key "comment_reaction_icons", "reaction_icons"
   add_foreign_key "comments", "topics"
+  add_foreign_key "reactions", "icons"
   add_foreign_key "topics", "categories"
 end

@@ -16,9 +16,9 @@
     .c-container
       .p-topic__image
         = image_tag comment.image.url(:normal)
-  - if comment.reaction_icons.present?
+  - if comment.icons.present?
     .c-container.c-flex.c-flex__wrap
-      - comment.reaction_icons.group_by { |x| x.id }.each do |_, reaction_icon|
+      - comment.icons.group_by { |x| x.id }.each do |_, reaction_icon|
         .p-emoji__container.c-flex.c-border.c-border-r-5
           div class="#{reaction_icon.first.style_class}"
           .p-emoji__counter

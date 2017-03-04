@@ -40,7 +40,7 @@ puts 'import emoji'
 Emoji.all.each do |emoji|
   begin
     image_path = "#{Rails.root}/app/assets/images/#{emoji.image_filename}"
-    ReactionIcon.create(image: open(image_path))
+    Icon.create(image: open(image_path))
   rescue => e
     puts e
   end
