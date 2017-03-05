@@ -49,9 +49,8 @@
     reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{@topic.id}" type="#{@topic.class.name}" ref="reaction"
 
   - if @topic.icons.present?
-    .c-container.c-flex.c-flex__wrap
-      - @topic.icons.group_by { |x| x.id }.each do |_, icon|
-        reaction-counter count="#{@count_map[:topic][icon.first.id]}" after="#{icon.first.style_class}"
+    - icons = @topic.icons.group_by { |x| x.id }.to_json
+    reaction-counter count=@count_map[:topic].to_json icons=icons
 
   = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 
