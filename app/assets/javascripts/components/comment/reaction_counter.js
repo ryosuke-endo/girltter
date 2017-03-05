@@ -25,9 +25,11 @@ export default Vue.extend({
     }
   },
   methods: {
+    hexName(icon) {
+      return icon.image_file_name.replace(/(unicode\/|\.png)/, '')
+    },
     spriteClass(icon) {
-      const hexName = icon.image_file_name.replace(/(unicode\/|\.png)/, '')
-      return `emoji-${hexName}`
+      return `emoji-${this.hexName(icon)}`
     },
     reactionCount(icon) {
       if (this.type === "Comment") {
@@ -35,11 +37,33 @@ export default Vue.extend({
       } else if (this.type === "Topic") {
         return this.localCount.topic[icon.id]
       }
+    },
+    submit(icon) {
+      const self = this
+      const params = {
+        reactionable_id: this.reactionable_id,
+        type: this.type,
+        icon: {
+          name: this.hexName(icon)
+        }
+      }
+      axios({
+        method: "POST",
+        url: `/api/reactions/${this.type}`,
+        data: params
+      })
+      .then(function(res) {
+        console.log("success")
+        return self.localCount.comment[`[${self.reactionable_id}, ${icon.id}]`] += 1
+      })
+      .catch(function(err) {
+        console.log("fail")
+      })
     }
   },
   template: `
   <div class="c-container c-flex c-flex__wrap">
-    <div class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons">
+    <div class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons" @click="submit(icon[0])">
       <div :class="spriteClass(icon[0])">
       </div>
       <div class="p-emoji__counter">
