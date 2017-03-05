@@ -10,6 +10,12 @@ export default Vue.extend({
     },
     count: {
       type: String
+    },
+    reactionable_id: {
+      type: String
+    },
+    type: {
+      type: String
     }
   },
   data() {
@@ -22,6 +28,13 @@ export default Vue.extend({
     spriteClass(icon) {
       const hexName = icon.image_file_name.replace(/(unicode\/|\.png)/, '')
       return `emoji-${hexName}`
+    },
+    reactionCount(icon) {
+      if (this.type === "Comment") {
+        return this.localCount.comment[`[${this.reactionable_id}, ${icon.id}]`]
+      } else if (this.type === "Topic") {
+        return this.localCount.topic[icon.id]
+      }
     }
   },
   template: `
@@ -30,7 +43,7 @@ export default Vue.extend({
       <div :class="spriteClass(icon[0])">
       </div>
       <div class="p-emoji__counter">
-        {{localCount[icon[0].id]}}
+        {{reactionCount(icon[0])}}
       </div>
     </div>
   </div>

@@ -50,7 +50,7 @@
 
   - if @topic.icons.present?
     - icons = @topic.icons.group_by { |x| x.id }.to_json
-    reaction-counter count=@count_map[:topic].to_json icons=icons
+    reaction-counter count=@count_map icons=icons reactionable_id=@topic.id type="#{@topic.class.name}"
 
   = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 

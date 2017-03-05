@@ -17,11 +17,7 @@
       .p-topic__image
         = image_tag comment.image.url(:normal)
   - if comment.icons.present?
-    .c-container.c-flex.c-flex__wrap
-      - comment.icons.group_by { |x| x.id }.each do |_, icon|
-        .p-emoji__container.c-flex.c-border.c-border-r-5
-          div class="#{icon.first.style_class}"
-          .p-emoji__counter
-            = @count_map[:comment][[comment.id, icon.first.id]]
+    - icons = comment.icons.group_by { |x| x.id }.to_json
+    reaction-counter count=@count_map icons=icons reactionable_id=comment.id type="#{comment.class.name}"
   .p-topic-icon.text--s-x-lg
     reaction reply_id="#{index}" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{comment.id}" type="#{comment.class.name}" ref="reaction"
