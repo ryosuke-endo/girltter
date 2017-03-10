@@ -212,6 +212,7 @@ GEM
     oga (2.7)
       ast
       ruby-ll (~> 2.1)
+    oj (2.18.2)
     paperclip (4.3.7)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -424,6 +425,7 @@ DEPENDENCIES
   launchy
   link_thumbnailer
   mysql2
+  oj
   paperclip
   pry-byebug
   pry-rails
