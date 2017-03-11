@@ -22,11 +22,16 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @count_map = {
+    render layout: 'topic'
+  end
+
+  def count_map
+    @topic = Topic.find(params[:topic_id])
+    render json: {
       topic: @topic.icons.group(:id).count,
       comment: @topic.comment_reactions.group(:reactionable_id, :icon_id).count
-    }.to_json
-    render layout: 'topic'
+    },
+           status: 200
   end
 
   private

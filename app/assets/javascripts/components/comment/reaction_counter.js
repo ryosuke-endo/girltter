@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue'
+import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
@@ -6,9 +7,6 @@ axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('conten
 export default Vue.extend({
   props: {
     icons: {
-      type: String
-    },
-    count: {
       type: String
     },
     reactionable_id: {
@@ -21,7 +19,6 @@ export default Vue.extend({
   data() {
     return {
       localIcons: JSON.parse(this.icons),
-      localCount: JSON.parse(this.count)
     }
   },
   methods: {
@@ -33,9 +30,9 @@ export default Vue.extend({
     },
     reactionCount(icon) {
       if (this.type === "Comment") {
-        return this.localCount.comment[`[${this.reactionable_id}, ${icon.id}]`]
+        return this.count.comment[`[${this.reactionable_id}, ${icon.id}]`]
       } else if (this.type === "Topic") {
-        return this.localCount.topic[icon.id]
+        return this.count.topic[icon.id]
       }
     },
     submit(icon) {
@@ -54,15 +51,19 @@ export default Vue.extend({
       })
       .then(function(res) {
         console.log("success")
-        return self.localCount.comment[`[${self.reactionable_id}, ${icon.id}]`] += 1
+        return self.count.comment[`[${self.reactionable_id}, ${icon.id}]`] += 1
       })
       .catch(function(err) {
         console.log("fail")
       })
-    }
+    },
   },
+  computed: mapState([
+    'count',
+    'visiable'
+  ]),
   template: `
-  <div class="c-container c-flex c-flex__wrap">
+  <div class="c-container c-flex c-flex__wrap" v-if="visiable">
     <div class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons" @click="submit(icon[0])">
       <div :class="spriteClass(icon[0])">
       </div>

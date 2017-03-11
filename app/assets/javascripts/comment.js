@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue'
+import { mapState } from 'vuex/dist/vuex'
 import URI from 'urijs'
 import axios from 'axios/dist/axios'
+import store from 'store.js'
 
 import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
@@ -15,6 +17,7 @@ axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('conten
 
 $(function() {
   const commentForm = Vue.extend({
+    store,
     mixins: [modalMixins],
     data() {
       return {
@@ -38,9 +41,15 @@ $(function() {
       'reaction': reaction,
       'reaction-counter': reactionCounter
     },
-    mounted() {
+    created() {
+      this.$store.dispatch('fetchCount').then(() =>
+        this.$store.dispatch('canVisiable')
+      )
       this.getTopicId()
     },
+    computed: mapState([
+      'visiable'
+    ]),
     methods: {
       getTopicId() {
         const url = URI(location.href)
