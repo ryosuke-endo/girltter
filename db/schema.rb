@@ -63,12 +63,14 @@ ActiveRecord::Schema.define(version: 20170304034014) do
     t.integer  "icon_id",           limit: 4,   null: false
     t.integer  "reactionable_id",   limit: 4,   null: false
     t.string   "reactionable_type", limit: 255, null: false
+    t.string   "user_cookie_value", limit: 255, null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
 
   add_index "reactions", ["icon_id"], name: "index_reactions_on_icon_id", using: :btree
   add_index "reactions", ["reactionable_id", "reactionable_type"], name: "index_reactions_on_reactionable_id_and_reactionable_type", using: :btree
+  add_index "reactions", ["user_cookie_value", "icon_id", "reactionable_id", "reactionable_type"], name: "index_reactions_on_uniq_cookie_and_ids", unique: true, using: :btree
 
   create_table "reads", force: :cascade do |t|
     t.integer "readable_id",    limit: 4,               null: false
