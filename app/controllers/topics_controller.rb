@@ -44,11 +44,18 @@ class TopicsController < ApplicationController
 
   def count_map
     @topic = Topic.find(params[:topic_id])
-    render json: {
+    map = {
       topic: @topic.icons.group(:id).count,
-      comment: @topic.comment_reactions.group(:reactionable_id, :icon_id).count
-    },
-           status: 200
+      comment: {}
+    }
+    map_ids = @topic.comment_reactions.group(:reactionable_id, :icon_id).count
+    map_ids.each do |ids, count|
+      reactionable_id = ids.first
+      icon_id = ids.last
+      map[:comment][reactionable_id] = {} if map[:comment][reactionable_id].blank?
+      map[:comment][reactionable_id][icon_id] = count
+    end
+    render json: map, status: 200
   end
 
   private

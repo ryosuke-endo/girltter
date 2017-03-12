@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue'
+import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
 import 'babel-polyfill'
 
@@ -47,6 +48,7 @@ export default Vue.extend({
       this.iconListActive = false
     },
     sendIcon(emoji) {
+      const self = this
       const params = {
         reactionable_id: this.reactionable_id,
         type: this.type,
@@ -58,6 +60,23 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
+        const icon_id = res.data.icon_id
+        const reactionable_id = res.data.reactionable_id
+        const type = res.data.type.toLowerCase()
+        const emojiClass = res.data.emoji_class
+        if (self.count[`${type}`][`${reactionable_id}`][`${icon_id}`]) {
+          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] += 1
+          $(self.$el).parent().prev().find(`.${emojiClass}`).parent().addClass('is-active')
+        } else {
+          $(self.$el).parent().prev().children().last().after(`
+            <div class="p-emoji__container c-flex c-border c-border-r-5 is-active">
+              <div class=${emojiClass}></div>
+              <div class="p-emoji__counter">
+                1
+              </div>
+            </div>`)
+          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] = 1
+        }
         console.log("success")
       })
       .catch(function(err) {
@@ -146,8 +165,11 @@ export default Vue.extend({
           }
         }
       })
-    }
+    },
   },
+  computed: mapState([
+    'count'
+  ]),
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">

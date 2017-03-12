@@ -34,7 +34,7 @@ export default Vue.extend({
     },
     reactionCount(icon) {
       if (this.type === "Comment") {
-        return this.count.comment[`[${this.reactionable_id}, ${icon.id}]`]
+        return this.count.comment[`${this.reactionable_id}`][`${icon.id}`]
       } else if (this.type === "Topic") {
         return this.count.topic[icon.id]
       }
@@ -54,10 +54,10 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        console.log("reactionedr success")
+        console.log("reactioned success")
         self.localReactionedIds.push(icon.id)
         self.isReactioned(icon)
-        return self.count.comment[`[${self.reactionable_id}, ${icon.id}]`] += 1
+        return self.count.comment[`${self.reactionable_id}`][`${icon.id}`] += 1
       })
       .catch(function(err) {
         console.log("reactioned fail")
