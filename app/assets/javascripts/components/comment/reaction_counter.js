@@ -54,11 +54,13 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        console.log("success")
+        console.log("reactionedr success")
+        self.localReactionedIds.push(icon.id)
+        self.isReactioned(icon)
         return self.count.comment[`[${self.reactionable_id}, ${icon.id}]`] += 1
       })
       .catch(function(err) {
-        console.log("fail")
+        console.log("reactioned fail")
       })
     },
     isReactioned(icon) {
