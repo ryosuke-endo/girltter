@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  include Cookie
   layout 'one_column'
   skip_before_action :require_login
 
@@ -22,6 +23,22 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @reactioned_ids = {
+      topic: @topic.reactions.pluck(:icon_id),
+      comment: {}
+    }
+    ids = @topic.comment_reactions.ids
+    icon_ids = @topic.comment_reactions.pluck(:icon_id).uniq
+    map_ids = @topic.comment_reactions.where(id: ids,
+                                             icon_id: icon_ids,
+                                             user_cookie_value: identity_id).
+                                             pluck(:reactionable_id, :icon_id)
+    map_ids.each do |ids|
+      reactionable_id = ids.first
+      icon_id = ids.last
+      @reactioned_ids[:comment][reactionable_id] = [] if @reactioned_ids[:comment][reactionable_id].blank?
+      @reactioned_ids[:comment][reactionable_id].push(icon_id)
+    end
     render layout: 'topic'
   end
 

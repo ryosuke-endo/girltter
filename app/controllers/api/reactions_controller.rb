@@ -12,7 +12,7 @@ class Api::ReactionsController < ApplicationController
     icon = Icon.find_by_hexname(params[:icon][:name])
     reaction = reactionable.reactions.build(icon_id: icon.id,
                                             reactionable_id: reactionable.id,
-                                            identity_id: identity_id)
+                                            user_cookie_value: identity_id)
     if reaction.save
       head :ok
     else

@@ -49,8 +49,9 @@
     reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{@topic.id}" type="#{@topic.class.name}" ref="reaction"
 
   - if @topic.icons.present?
-    - icons = @topic.icons.group_by { |x| x.id }.to_json
-    reaction-counter icons=icons reactionable_id=@topic.id type="#{@topic.class.name}"
+    - icons = @topic.icons.group_by { |x| x.id }
+    - user_reactioned_ids = icons.keys & [*@reactioned_ids[:topic]]
+    reaction-counter icons=icons.to_json reactionable_id=@topic.id type="#{@topic.class.name}" reactioned_ids=Oj.dump(user_reactioned_ids)
 
   = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 

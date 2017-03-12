@@ -14,11 +14,15 @@ export default Vue.extend({
     },
     type: {
       type: String
+    },
+    reactioned_ids: {
+      type: String
     }
   },
   data() {
     return {
       localIcons: JSON.parse(this.icons),
+      localReactionedIds: JSON.parse(this.reactioned_ids)
     }
   },
   methods: {
@@ -57,6 +61,11 @@ export default Vue.extend({
         console.log("fail")
       })
     },
+    isReactioned(icon) {
+      if(this.localReactionedIds.indexOf(icon.id) >= 0) {
+        return "is-active"
+      }
+    }
   },
   computed: mapState([
     'count',
@@ -64,7 +73,7 @@ export default Vue.extend({
   ]),
   template: `
   <div class="c-container c-flex c-flex__wrap" v-if="visiable">
-    <div class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons" @click="submit(icon[0])">
+    <div :class="isReactioned(icon[0])" class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons" @click="submit(icon[0])">
       <div :class="spriteClass(icon[0])">
       </div>
       <div class="p-emoji__counter">
