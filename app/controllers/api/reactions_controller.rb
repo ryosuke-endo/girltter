@@ -1,4 +1,5 @@
 class Api::ReactionsController < ApplicationController
+  include Cookie
   skip_before_action :require_login
 
   def create
@@ -10,7 +11,8 @@ class Api::ReactionsController < ApplicationController
       end
     icon = Icon.find_by_hexname(params[:icon][:name])
     reaction = reactionable.reactions.build(icon_id: icon.id,
-                                            reactionable_id: reactionable.id)
+                                            reactionable_id: reactionable.id,
+                                            identity_id: identity_id)
     if reaction.save
       head :ok
     else
