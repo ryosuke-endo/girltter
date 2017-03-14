@@ -55,6 +55,6 @@ body = "パフォーマー"
   comment = Comment.find(id)
   icon_ids = Icon.ids.sample(15)
   icon_ids.each do |icon_id|
-    comment.reactions.create(icon_id: icon_id)
+    comment.reactions.create(icon_id: icon_id, user_cookie_value: "hoge")
   end
 end
