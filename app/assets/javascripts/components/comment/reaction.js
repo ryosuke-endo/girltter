@@ -64,8 +64,14 @@ export default Vue.extend({
         const reactionable_id = res.data.reactionable_id
         const type = res.data.type.toLowerCase()
         const emojiClass = res.data.emoji_class
-        if (self.count[`${type}`][`${reactionable_id}`][`${icon_id}`]) {
-          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] += 1
+        let count = (type === "comment") ?
+          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] :
+          self.count[`${type}`][`${icon_id}`]
+        console.log(count)
+        if (count) {
+          // countだと、更新されない
+          count += 1
+          console.log(count)
           $(self.$el).parent().prev().find(`.${emojiClass}`).parent().addClass('is-active')
         } else {
           $(self.$el).parent().prev().children().last().after(`
@@ -75,7 +81,7 @@ export default Vue.extend({
                 1
               </div>
             </div>`)
-          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] = 1
+          count = 1
         }
         console.log("success")
       })

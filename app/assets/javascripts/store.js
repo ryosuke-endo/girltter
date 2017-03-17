@@ -6,16 +6,26 @@ import URI from 'urijs'
 Vue.use(Vuex)
 
 const state = {
-  count: {},
+  icons: {},
   visiable: false
 }
 
 const mutations = {
-  setCount(state, count) {
-    state.count = count
+  setIcons(state, icons) {
+    state.icons = icons
   },
   canVisiable(state) {
     state.visiable = true
+  },
+  addIcon(state, res) {
+    const reactionable = res.type === "Topic" ?
+      state.icons.topic : state.icons.comment[res.reactionable_id]
+    reactionable[res.icon.id].push(res.icon)
+    if(reactionable.user_reactioned_ids !== undefined) {
+      reactionable.user_reactioned_ids.push(res.icon.id)
+    } else {
+      reactionable.user_reactioned_ids = [res.icon.id]
+    }
   }
 }
 
@@ -23,7 +33,10 @@ const actions = {
   canVisiable({commit}) {
     commit('canVisiable')
   },
-  fetchCount({commit}) {
+  addIcon({commit}, res) {
+    commit('addIcon', res)
+  },
+  fetchIcon({commit}) {
     return new Promise((resolve, reject) => {
       const path = URI(location.href).path()
       const url = `${path}/count_map`
@@ -32,7 +45,7 @@ const actions = {
         url: url
       })
       .then(function(res){
-        commit('setCount', res.data)
+        commit('setIcons', res.data)
         resolve()
       })
       .catch(function(error) {

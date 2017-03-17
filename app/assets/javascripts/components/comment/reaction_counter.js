@@ -6,23 +6,11 @@ axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('conten
 
 export default Vue.extend({
   props: {
-    icons: {
-      type: String
-    },
     reactionable_id: {
       type: String
     },
     type: {
       type: String
-    },
-    reactioned_ids: {
-      type: String
-    }
-  },
-  data() {
-    return {
-      localIcons: JSON.parse(this.icons),
-      localReactionedIds: JSON.parse(this.reactioned_ids)
     }
   },
   methods: {
@@ -33,11 +21,9 @@ export default Vue.extend({
       return `emoji-${this.hexName(icon)}`
     },
     reactionCount(icon) {
-      if (this.type === "Comment") {
-        return this.count.comment[`${this.reactionable_id}`][`${icon.id}`]
-      } else if (this.type === "Topic") {
-        return this.count.topic[icon.id]
-      }
+      const count = this.type === "Topic" ?
+        this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
+      return count
     },
     submit(icon) {
       const self = this
@@ -54,28 +40,42 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        console.log("reactioned success")
-        self.localReactionedIds.push(icon.id)
+        self.$store.dispatch('addIcon', res.data)
         self.isReactioned(icon)
-        return self.count.comment[`${self.reactionable_id}`][`${icon.id}`] += 1
       })
       .catch(function(err) {
         console.log("reactioned fail")
       })
     },
     isReactioned(icon) {
-      if(this.localReactionedIds.indexOf(icon.id) >= 0) {
+      const ids = this.type === "Topic" ?
+        this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
+      if (ids === undefined) {
+        return
+      }
+      if (ids.indexOf(icon.id) >= 0) {
         return "is-active"
+      }
+    },
+    filterIcons() {
+      if (this.type == "Topic") {
+        const keys = Object.keys(this.icons.topic).filter((x) => parseInt(x))
+        const mapIcon = keys.map((x) => this.icons.topic[x])
+        return mapIcon
+      } else {
+        const keys = Object.keys(this.icons.comment[this.reactionable_id]).filter((x) => parseInt(x))
+        const mapIcon = keys.map((x) => this.icons.comment[this.reactionable_id][x])
+        return mapIcon
       }
     }
   },
   computed: mapState([
-    'count',
+    'icons',
     'visiable'
   ]),
   template: `
   <div class="c-container c-flex c-flex__wrap" v-if="visiable">
-    <div :class="isReactioned(icon[0])" class="p-emoji__container c-flex c-border c-border-r-5" v-for="icon in localIcons" @click="submit(icon[0])">
+    <div v-for="icon in filterIcons()" class="p-emoji__container c-flex c-border c-border-r-5" :class="isReactioned(icon[0])" @click="submit(icon[0])">
       <div :class="spriteClass(icon[0])">
       </div>
       <div class="p-emoji__counter">

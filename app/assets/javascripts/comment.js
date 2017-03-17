@@ -42,7 +42,7 @@ $(function() {
       'reaction-counter': reactionCounter
     },
     created() {
-      this.$store.dispatch('fetchCount').then(() =>
+      this.$store.dispatch('fetchIcon').then(() =>
         this.$store.dispatch('canVisiable')
       )
       this.getTopicId()

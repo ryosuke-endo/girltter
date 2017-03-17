@@ -15,7 +15,7 @@ class Api::ReactionsController < ApplicationController
                                             user_cookie_value: identity_id)
     if reaction.save
       render json: {
-        icon_id: reaction.icon_id,
+        icon: icon,
         reactionable_id: reaction.reactionable_id,
         type: reaction.reactionable_type,
         emoji_class: icon.style_class

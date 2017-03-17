@@ -23,37 +23,32 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @reactioned_ids = {
-      topic: @topic.reactions.pluck(:icon_id),
-      comment: {}
-    }
-    ids = @topic.comment_reactions.ids
-    icon_ids = @topic.comment_reactions.pluck(:icon_id).uniq
-    map_ids = @topic.comment_reactions.where(id: ids,
-                                             icon_id: icon_ids,
-                                             user_cookie_value: identity_id).
-                                             pluck(:reactionable_id, :icon_id)
-    map_ids.each do |ids|
-      reactionable_id = ids.first
-      icon_id = ids.last
-      @reactioned_ids[:comment][reactionable_id] = [] if @reactioned_ids[:comment][reactionable_id].blank?
-      @reactioned_ids[:comment][reactionable_id].push(icon_id)
-    end
     render layout: 'topic'
   end
 
   def count_map
     @topic = Topic.find(params[:topic_id])
     map = {
-      topic: @topic.icons.group(:id).count,
+      topic: @topic.icons.group_by(&:id),
       comment: {}
     }
-    map_ids = @topic.comment_reactions.group(:reactionable_id, :icon_id).count
-    map_ids.each do |ids, count|
-      reactionable_id = ids.first
-      icon_id = ids.last
-      map[:comment][reactionable_id] = {} if map[:comment][reactionable_id].blank?
-      map[:comment][reactionable_id][icon_id] = count
+
+    map[:topic][:user_reactioned_ids] = @topic.reactions.where(user_cookie_value: identity_id).pluck(:icon_id)
+
+    @topic.comments.includes(:icons).each do |comment|
+      map[:comment][comment.id] = comment.icons.group_by(&:id)
+    end
+
+    ids = @topic.comment_reactions.ids
+    icon_ids = @topic.comment_reactions.pluck(:icon_id).uniq
+    map_ids = @topic.comment_reactions.where(id: ids,
+                                             icon_id: icon_ids,
+                                             user_cookie_value: identity_id).
+                                             pluck(:reactionable_id, :icon_id)
+
+    map_ids.each do |reactionable_id, icon_id|
+      map[:comment][reactionable_id][:user_reactioned_ids] ||= []
+      map[:comment][reactionable_id][:user_reactioned_ids] << icon_id
     end
     render json: map, status: 200
   end
