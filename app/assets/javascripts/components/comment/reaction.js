@@ -60,29 +60,7 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        const icon_id = res.data.icon_id
-        const reactionable_id = res.data.reactionable_id
-        const type = res.data.type.toLowerCase()
-        const emojiClass = res.data.emoji_class
-        let count = (type === "comment") ?
-          self.count[`${type}`][`${reactionable_id}`][`${icon_id}`] :
-          self.count[`${type}`][`${icon_id}`]
-        console.log(count)
-        if (count) {
-          // countだと、更新されない
-          count += 1
-          console.log(count)
-          $(self.$el).parent().prev().find(`.${emojiClass}`).parent().addClass('is-active')
-        } else {
-          $(self.$el).parent().prev().children().last().after(`
-            <div class="p-emoji__container c-flex c-border c-border-r-5 is-active">
-              <div class=${emojiClass}></div>
-              <div class="p-emoji__counter">
-                1
-              </div>
-            </div>`)
-          count = 1
-        }
+        self.$store.dispatch('addIcon', res.data)
         console.log("success")
       })
       .catch(function(err) {

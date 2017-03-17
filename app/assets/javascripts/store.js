@@ -20,7 +20,16 @@ const mutations = {
   addIcon(state, res) {
     const reactionable = res.type === "Topic" ?
       state.icons.topic : state.icons.comment[res.reactionable_id]
-    reactionable[res.icon.id].push(res.icon)
+    if(reactionable === undefined) {
+      reactionable[res.icon.id] = []
+    }
+
+    if(reactionable[res.icon.id] !== undefined) {
+      reactionable[res.icon.id].push(res.icon)
+    } else {
+      reactionable[res.icon.id] = [res.icon]
+    }
+
     if(reactionable.user_reactioned_ids !== undefined) {
       reactionable.user_reactioned_ids.push(res.icon.id)
     } else {
