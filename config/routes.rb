@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :topics do
-    get :count_map
+    get :reaction_count_map
     collection do
       get :complete
     end

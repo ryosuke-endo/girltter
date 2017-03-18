@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
     render layout: 'topic'
   end
 
-  def count_map
+  def reaction_count_map
     @topic = Topic.find(params[:topic_id])
     map = { topic: {}, comment: {} }
     map[:topic] = @topic.icons.group_by(&:id)
