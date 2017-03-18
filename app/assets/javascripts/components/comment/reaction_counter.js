@@ -32,7 +32,7 @@ export default Vue.extend({
         this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
       return count
     },
-    create(icon) {
+    createReaction(icon) {
       const self = this
       const params = {
         reactionable_id: this.reactionable_id,
@@ -47,14 +47,14 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        self.$store.dispatch('addIcon', res.data)
+        self.$store.dispatch('createReaction', res.data)
         self.isReactioned(icon)
       })
       .catch(function(err) {
-        console.log("reactioned fail")
+        console.log("createReaction fail")
       })
     },
-    destroy(icon) {
+    destroyReaction(icon) {
       const self = this
       const params = {
         reactionable_id: this.reactionable_id,
@@ -69,20 +69,19 @@ export default Vue.extend({
       })
       .then(function(res) {
         console.log("reactioned destroy success")
-        self.$store.dispatch('destroyIcon', res.data)
+        self.$store.dispatch('destroyReaction', res.data)
       })
       .catch(function(err) {
-        console.log("reactioned fail")
+        console.log("reactioned destroy fail")
       })
-      console.log("delete")
     },
     submit(icon) {
       const user_reactioned_ids = this.type === "Topic" ?
         this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
       if(user_reactioned_ids.indexOf(icon.id) >= 0) {
-        this.destroy(icon)
+        this.destroyReaction(icon)
       } else {
-        this.create(icon)
+        this.createReaction(icon)
       }
     },
     isReactioned(icon) {

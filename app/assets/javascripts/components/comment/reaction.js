@@ -47,12 +47,12 @@ export default Vue.extend({
     hiddenIconList() {
       this.iconListActive = false
     },
-    sendIcon(emoji) {
+    submit(icon) {
       const self = this
       const params = {
         reactionable_id: this.reactionable_id,
         type: this.type,
-        icon: emoji
+        icon: icon
       }
       axios({
         method: "POST",
@@ -60,7 +60,7 @@ export default Vue.extend({
         data: params
       })
       .then(function(res) {
-        self.$store.dispatch('addIcon', res.data)
+        self.$store.dispatch('createReaction', res.data)
         console.log("success")
       })
       .catch(function(err) {
@@ -149,7 +149,7 @@ export default Vue.extend({
           }
         }
       })
-    },
+    }
   },
   computed: mapState([
     'count'
@@ -227,7 +227,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                  <div :class="emoji.style_class" @click="sendIcon(emoji)">
+                  <div :class="emoji.style_class" @click="submit(emoji)">
                 </li>
               </ul>
             </div>

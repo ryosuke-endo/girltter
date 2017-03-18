@@ -17,7 +17,7 @@ const mutations = {
   canVisiable(state) {
     state.visiable = true
   },
-  addIcon(state, res) {
+  createReaction(state, res) {
     const reactionable = res.type === "Topic" ?
       state.icons.topic : state.icons.comment[res.reactionable_id]
     if(reactionable === undefined) {
@@ -36,7 +36,7 @@ const mutations = {
       reactionable.user_reactioned_ids = [res.icon.id]
     }
   },
-  destroyIcon(state, res) {
+  destroyReaction(state, res) {
     const reactionable = res.type === "Topic" ?
       state.icons.topic : state.icons.comment[res.reactionable_id]
     reactionable[res.icon.id].shift()
@@ -49,16 +49,16 @@ const actions = {
   canVisiable({commit}) {
     commit('canVisiable')
   },
-  addIcon({commit}, res) {
-    commit('addIcon', res)
+  createReaction({commit}, res) {
+    commit('createReaction', res)
   },
-  destroyIcon({commit}, res) {
-    commit('destroyIcon', res)
+  destroyReaction({commit}, res) {
+    commit('destroyReaction', res)
   },
-  fetchIcon({commit}) {
+  fetchReaction({commit}) {
     return new Promise((resolve, reject) => {
       const path = URI(location.href).path()
-      const url = `${path}/count_map`
+      const url = `${path}/reaction_count_map`
       axios({
         method: "get",
         url: url
@@ -68,7 +68,7 @@ const actions = {
         resolve()
       })
       .catch(function(error) {
-        console.log("action fail")
+        console.log("fetchReaction fail")
       })
     })
   }
