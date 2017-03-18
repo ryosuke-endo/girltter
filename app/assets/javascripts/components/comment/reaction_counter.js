@@ -15,23 +15,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    hexName(icon) {
-      return icon.image_file_name.replace(/(unicode\/|\.png)/, '')
-    },
-    spriteClass(icon) {
-      if(typeof(icon) !== "object") {
-        return
-      }
-      return `emoji-${this.hexName(icon)}`
-    },
-    reactionCount(icon) {
-      if(typeof(icon) !== "object") {
-        return
-      }
-      const count = this.type === "Topic" ?
-        this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
-      return count
-    },
     createReaction(icon) {
       const self = this
       const params = {
@@ -74,14 +57,15 @@ export default Vue.extend({
         console.log("reactioned destroy fail")
       })
     },
-    submit(icon) {
-      const user_reactioned_ids = this.type === "Topic" ?
-        this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
-      if(user_reactioned_ids.indexOf(icon.id) >= 0) {
-        this.destroyReaction(icon)
+    filterIcons() {
+      if (this.type == "Topic") {
+        return this.icons.topic
       } else {
-        this.createReaction(icon)
+        return this.icons.comment[this.reactionable_id]
       }
+    },
+    hexName(icon) {
+      return icon.image_file_name.replace(/(unicode\/|\.png)/, '')
     },
     isReactioned(icon) {
       if(typeof(icon) !== "object") {
@@ -96,11 +80,27 @@ export default Vue.extend({
         return "is-active"
       }
     },
-    filterIcons() {
-      if (this.type == "Topic") {
-        return this.icons.topic
+    reactionCount(icon) {
+      if(typeof(icon) !== "object") {
+        return
+      }
+      const count = this.type === "Topic" ?
+        this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
+      return count
+    },
+    spriteClass(icon) {
+      if(typeof(icon) !== "object") {
+        return
+      }
+      return `emoji-${this.hexName(icon)}`
+    },
+    submit(icon) {
+      const user_reactioned_ids = this.type === "Topic" ?
+        this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
+      if(user_reactioned_ids.indexOf(icon.id) >= 0) {
+        this.destroyReaction(icon)
       } else {
-        return this.icons.comment[this.reactionable_id]
+        this.createReaction(icon)
       }
     }
   },
