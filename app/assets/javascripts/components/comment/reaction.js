@@ -70,7 +70,7 @@ export default Vue.extend({
     showIconList() {
       const self = this
       $('body').addClass('js-menu-active')
-      Promise.all([self.getEmoji(), self.getEmojiImage()])
+      Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
       .then(function() {
         self.iconListActive = true
         self.$nextTick(function() {
@@ -95,7 +95,7 @@ export default Vue.extend({
       })
       return this.categoryHeaders = categories
     },
-    getEmoji() {
+    fetchEmoji() {
       return new Promise((resolve, reject) => {
         const self = this
         const query = {
@@ -119,7 +119,7 @@ export default Vue.extend({
         });
       });
     },
-    getEmojiImage() {
+    fetchEmojiImage() {
       const self = this
       return new Promise((resolve, reject) => {
         if(Object.keys(self.categoryHeaders).length === 0) {
