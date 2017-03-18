@@ -20,9 +20,7 @@ export default Vue.extend({
       const params = {
         reactionable_id: this.reactionable_id,
         type: this.type,
-        icon: {
-          name: this.hexName(icon)
-        }
+        icon: icon
       }
       axios({
         method: "POST",

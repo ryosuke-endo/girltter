@@ -152,7 +152,7 @@ export default Vue.extend({
     }
   },
   computed: mapState([
-    'count'
+    'icons'
   ]),
   template: `
   <div class="p-topic-icon text--s-x-lg">
