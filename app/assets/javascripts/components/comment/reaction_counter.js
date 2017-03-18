@@ -18,9 +18,15 @@ export default Vue.extend({
       return icon.image_file_name.replace(/(unicode\/|\.png)/, '')
     },
     spriteClass(icon) {
+      if(typeof(icon) !== "object") {
+        return
+      }
       return `emoji-${this.hexName(icon)}`
     },
     reactionCount(icon) {
+      if(typeof(icon) !== "object") {
+        return
+      }
       const count = this.type === "Topic" ?
         this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
       return count
@@ -48,6 +54,9 @@ export default Vue.extend({
       })
     },
     isReactioned(icon) {
+      if(typeof(icon) !== "object") {
+        return "none"
+      }
       const ids = this.type === "Topic" ?
         this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
       if (ids === undefined) {
@@ -59,13 +68,9 @@ export default Vue.extend({
     },
     filterIcons() {
       if (this.type == "Topic") {
-        const keys = Object.keys(this.icons.topic).filter((x) => parseInt(x))
-        const mapIcon = keys.map((x) => this.icons.topic[x])
-        return mapIcon
+        return this.icons.topic
       } else {
-        const keys = Object.keys(this.icons.comment[this.reactionable_id]).filter((x) => parseInt(x))
-        const mapIcon = keys.map((x) => this.icons.comment[this.reactionable_id][x])
-        return mapIcon
+        return this.icons.comment[this.reactionable_id]
       }
     }
   },

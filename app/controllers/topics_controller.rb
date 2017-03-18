@@ -40,6 +40,8 @@ class TopicsController < ApplicationController
     end
 
     ids = @topic.comment_reactions.ids
+    comment_ids = @topic.comments.pluck(:id)
+    comment_ids.each { |id| map[:comment][id][:user_reactioned_ids] = [] }
     icon_ids = @topic.comment_reactions.pluck(:icon_id).uniq
     map_ids = @topic.comment_reactions.where(id: ids,
                                              icon_id: icon_ids,
@@ -47,7 +49,6 @@ class TopicsController < ApplicationController
                                              pluck(:reactionable_id, :icon_id)
 
     map_ids.each do |reactionable_id, icon_id|
-      map[:comment][reactionable_id][:user_reactioned_ids] ||= []
       map[:comment][reactionable_id][:user_reactioned_ids] << icon_id
     end
     render json: map, status: 200
