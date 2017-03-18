@@ -17,8 +17,7 @@ class Api::ReactionsController < ApplicationController
       render json: {
         icon: icon,
         reactionable_id: reaction.reactionable_id,
-        type: reaction.reactionable_type,
-        emoji_class: icon.style_class
+        type: reaction.reactionable_type
       },
              status: 200
     else
