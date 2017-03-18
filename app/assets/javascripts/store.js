@@ -35,6 +35,13 @@ const mutations = {
     } else {
       reactionable.user_reactioned_ids = [res.icon.id]
     }
+  },
+  destroyIcon(state, res) {
+    const reactionable = res.type === "Topic" ?
+      state.icons.topic : state.icons.comment[res.reactionable_id]
+    reactionable[res.icon.id].shift()
+    const index = reactionable.user_reactioned_ids.indexOf(res.icon.id)
+    reactionable.user_reactioned_ids.splice(index, 1)
   }
 }
 
@@ -44,6 +51,9 @@ const actions = {
   },
   addIcon({commit}, res) {
     commit('addIcon', res)
+  },
+  destroyIcon({commit}, res) {
+    commit('destroyIcon', res)
   },
   fetchIcon({commit}) {
     return new Promise((resolve, reject) => {

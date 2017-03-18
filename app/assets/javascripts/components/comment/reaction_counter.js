@@ -1,6 +1,7 @@
 import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
+import Cookies from 'js-cookie'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
@@ -31,7 +32,7 @@ export default Vue.extend({
         this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
       return count
     },
-    submit(icon) {
+    create(icon) {
       const self = this
       const params = {
         reactionable_id: this.reactionable_id,
@@ -52,6 +53,37 @@ export default Vue.extend({
       .catch(function(err) {
         console.log("reactioned fail")
       })
+    },
+    destroy(icon) {
+      const self = this
+      const params = {
+        reactionable_id: this.reactionable_id,
+        type: this.type,
+        icon_id: icon.id,
+        identity_id: Cookies.get("_cadr")
+      }
+      axios({
+        method: "POST",
+        url: `/api/reactions/${this.type}/${this.reactionable_id}`,
+        data: params
+      })
+      .then(function(res) {
+        console.log("reactioned destroy success")
+        self.$store.dispatch('destroyIcon', res.data)
+      })
+      .catch(function(err) {
+        console.log("reactioned fail")
+      })
+      console.log("delete")
+    },
+    submit(icon) {
+      const user_reactioned_ids = this.type === "Topic" ?
+        this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
+      if(user_reactioned_ids.indexOf(icon.id) >= 0) {
+        this.destroy(icon)
+      } else {
+        this.create(icon)
+      }
     },
     isReactioned(icon) {
       if(typeof(icon) !== "object") {

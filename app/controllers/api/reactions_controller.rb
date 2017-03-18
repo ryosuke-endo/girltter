@@ -25,4 +25,22 @@ class Api::ReactionsController < ApplicationController
       head :not_found
     end
   end
+
+  def destroy
+    reaction = Reaction.find_by(icon_id: params[:icon_id],
+                                reactionable_id: params[:reactionable_id],
+                                reactionable_type: params[:type],
+                               user_cookie_value: params[:identity_id])
+    icon = Icon.find(params[:icon_id])
+    if reaction.destroy
+    render json: {
+      icon: icon,
+      reactionable_id: params[:reactionable_id],
+      type: params[:reactionable_type]
+    },
+           status: 200
+    else
+      head :not_found
+    end
+  end
 end

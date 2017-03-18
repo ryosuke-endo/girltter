@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :categories, only: %i(index)
     resources :emoji, only: :index
     post 'reactions/:type/' => 'reactions#create'
+    post 'reactions/:type/:reactionable_id' => 'reactions#destroy'
   end
 
   resources :topics do
