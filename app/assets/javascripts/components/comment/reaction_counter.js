@@ -48,7 +48,6 @@ export default Vue.extend({
       })
       .then(function(res) {
         self.$store.dispatch('createReaction', res.data)
-        self.isReactioned(icon)
       })
       .catch(function(err) {
         console.log("createReaction fail")
