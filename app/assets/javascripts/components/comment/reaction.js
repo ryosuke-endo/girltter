@@ -1,10 +1,12 @@
 import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
+import reactionMixins from './../../mixins/reaction.js'
 import 'babel-polyfill'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 export default Vue.extend({
+  mixins: [reactionMixins],
   props: {
     reply_id: {
       type: String
@@ -47,26 +49,6 @@ export default Vue.extend({
     hiddenIconList() {
       this.iconListActive = false
     },
-    submit(icon) {
-      const self = this
-      const params = {
-        reactionable_id: this.reactionable_id,
-        type: this.type,
-        icon: icon
-      }
-      axios({
-        method: "POST",
-        url: `/api/reactions/${this.type}`,
-        data: params
-      })
-      .then(function(res) {
-        self.$store.dispatch('createReaction', res.data)
-        console.log("success")
-      })
-      .catch(function(err) {
-        console.log("fail")
-      })
-    },
     showIconList() {
       const self = this
       $('body').addClass('js-menu-active')
@@ -108,7 +90,7 @@ export default Vue.extend({
         }
         axios({
           method: 'GET',
-          url: "/api/emoji",
+          url: "/api/icon",
           params: query
         })
         .then(function(res) {

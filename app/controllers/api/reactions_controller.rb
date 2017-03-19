@@ -9,7 +9,7 @@ class Api::ReactionsController < ApplicationController
       elsif params[:type] == 'Topic'
         Topic.find(params[:reactionable_id])
       end
-    icon = Icon.find_by_hexname(params[:icon][:name])
+    icon = Icon.find(params[:icon][:id])
     reaction = reactionable.reactions.build(icon_id: icon.id,
                                             reactionable_id: reactionable.id,
                                             user_cookie_value: identity_id)
@@ -35,7 +35,7 @@ class Api::ReactionsController < ApplicationController
     render json: {
       icon: icon,
       reactionable_id: params[:reactionable_id],
-      type: params[:reactionable_type]
+      type: params[:type]
     },
            status: 200
     else

@@ -1,11 +1,9 @@
 import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
-import axios from 'axios/dist/axios'
-import Cookies from 'js-cookie'
-
-axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
+import reactionMixins from './../../mixins/reaction.js'
 
 export default Vue.extend({
+  mixins: [reactionMixins],
   props: {
     reactionable_id: {
       type: String
@@ -15,46 +13,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    createReaction(icon) {
-      const self = this
-      const params = {
-        reactionable_id: this.reactionable_id,
-        type: this.type,
-        icon: icon
-      }
-      axios({
-        method: "POST",
-        url: `/api/reactions/${this.type}`,
-        data: params
-      })
-      .then(function(res) {
-        self.$store.dispatch('createReaction', res.data)
-      })
-      .catch(function(err) {
-        console.log("createReaction fail")
-      })
-    },
-    destroyReaction(icon) {
-      const self = this
-      const params = {
-        reactionable_id: this.reactionable_id,
-        type: this.type,
-        icon_id: icon.id,
-        identity_id: Cookies.get("_cadr")
-      }
-      axios({
-        method: "POST",
-        url: `/api/reactions/${this.type}/${this.reactionable_id}`,
-        data: params
-      })
-      .then(function(res) {
-        console.log("reactioned destroy success")
-        self.$store.dispatch('destroyReaction', res.data)
-      })
-      .catch(function(err) {
-        console.log("reactioned destroy fail")
-      })
-    },
     filterIcons() {
       if (this.type == "Topic") {
         return this.icons.topic
@@ -91,15 +49,6 @@ export default Vue.extend({
         return
       }
       return `emoji-${this.hexName(icon)}`
-    },
-    submit(icon) {
-      const user_reactioned_ids = this.type === "Topic" ?
-        this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
-      if(user_reactioned_ids.indexOf(icon.id) >= 0) {
-        this.destroyReaction(icon)
-      } else {
-        this.createReaction(icon)
-      }
     }
   },
   computed: mapState([
