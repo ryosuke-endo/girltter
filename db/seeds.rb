@@ -40,12 +40,13 @@ puts 'import emoji'
 Emoji.all.each do |emoji|
   next if emoji.custom?
   image_path = "#{Rails.root}/app/assets/images/#{emoji.image_filename}"
-  Icon.create(image: open(image_path))
+  category = IconCategory.find_by(name: emoji.category)
+  Icon.create(image: open(image_path), icon_category_id: category.id)
 end
 
 import_fixture(:members)
 import_fixture(:tags)
-import_fixture(:icon_category)
+import_fixture(:icon_categories)
 
 name = "匿子"
 body = "パフォーマー"
