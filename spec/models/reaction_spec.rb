@@ -26,6 +26,32 @@ RSpec.describe Reaction, type: :model do
     end
   end
 
+  describe '#limit_reaction' do
+    context '絵文字を20個つけた場合' do
+      before do
+        19.times { |i| create(:reaction, user_cookie_value: i) }
+      end
+
+      it '保存できる' do
+        reaction = build(:reaction)
+        reaction.save
+        expect(reaction.errors[:reactionable_id].size).to eq 0
+      end
+    end
+
+    context '絵文字を20個以上つけた場合' do
+      before do
+        20.times { |i| create(:reaction, user_cookie_value: i) }
+      end
+
+      it '保存できない' do
+        reaction = build(:reaction)
+        reaction.save
+        expect(reaction.errors[:reactionable_id].size).to eq 1
+      end
+    end
+  end
+
   describe '#user_limit_reaction' do
     context '一人のユーザーは5個リアクションをつけた場合' do
       before do
@@ -44,7 +70,7 @@ RSpec.describe Reaction, type: :model do
         5.times { create(:reaction) }
       end
 
-      it '保存できる' do
+      it '保存できない' do
         reaction = build(:reaction)
         reaction.save
         expect(reaction.errors[:reactionable_id].size).to eq 1

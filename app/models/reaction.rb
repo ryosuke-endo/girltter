@@ -5,8 +5,18 @@ class Reaction < ActiveRecord::Base
   validates :reactionable_id,
             uniqueness: { scope: [:icon_id, :user_cookie_value, :reactionable_type] }
   validate :user_limit_reaction
+  validate :limit_reaction
 
   private
+
+  def limit_reaction
+    count = Reaction.where(reactionable_id: reactionable_id,
+                           reactionable_type: reactionable_type).
+                           size
+    if 20 <= count
+      errors.add(:reactionable_id, "絵文字をつけれるのは、最大20個までです。")
+    end
+  end
 
   def user_limit_reaction
     count = Reaction.where(reactionable_id: reactionable_id,
