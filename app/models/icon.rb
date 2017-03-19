@@ -9,16 +9,7 @@ class Icon < ActiveRecord::Base
                                                       'image/png',
                                                       'image/gif'] }
 
-  def style_class
-    "emoji-#{image_file_name.gsub(/(unicode\/|\.png)/, '')}"
-  end
-
   def hex_name
     image_file_name.gsub(/(unicode\/|\.png)/, '')
-  end
-
-  def self.find_by_hexname(name)
-    name << '.png'
-    find_by(image_file_name: name)
   end
 end
