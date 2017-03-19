@@ -12,6 +12,8 @@ class Reaction < ActiveRecord::Base
   def limit_reaction
     count = Reaction.where(reactionable_id: reactionable_id,
                            reactionable_type: reactionable_type).
+                           pluck(:icon_id).
+                           uniq.
                            size
     if 20 <= count
       errors.add(:reactionable_id, "絵文字をつけれるのは、最大20個までです。")
