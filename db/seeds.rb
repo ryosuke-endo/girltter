@@ -45,6 +45,7 @@ end
 
 import_fixture(:members)
 import_fixture(:tags)
+import_fixture(:icon_category)
 
 name = "匿子"
 body = "パフォーマー"
