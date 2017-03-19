@@ -25,4 +25,30 @@ RSpec.describe Reaction, type: :model do
       end
     end
   end
+
+  describe '#user_limit_reaction' do
+    context '一人のユーザーは5個リアクションをつけた場合' do
+      before do
+        4.times { create(:reaction) }
+      end
+
+      it '保存できる' do
+        reaction = build(:reaction)
+        reaction.save
+        expect(reaction.errors[:reactionable_id].size).to eq 0
+      end
+    end
+
+    context '一人のユーザーは5個以上リアクションをつけた場合' do
+      before do
+        5.times { create(:reaction) }
+      end
+
+      it '保存できる' do
+        reaction = build(:reaction)
+        reaction.save
+        expect(reaction.errors[:reactionable_id].size).to eq 1
+      end
+    end
+  end
 end
