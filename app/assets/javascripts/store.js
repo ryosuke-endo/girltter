@@ -7,7 +7,11 @@ Vue.use(Vuex)
 
 const state = {
   icons: {},
-  visiable: false
+  visiable: false,
+  errorReaction: {
+    visiable: false,
+    messages: []
+  }
 }
 
 const mutations = {
@@ -42,6 +46,13 @@ const mutations = {
     reactionable[res.icon.id].shift()
     const index = reactionable.user_reactioned_ids.indexOf(res.icon.id)
     reactionable.user_reactioned_ids.splice(index, 1)
+  },
+  closeModal(state) {
+    state.errorReaction.visiable = false
+  },
+  errorReaction(state, err) {
+    state.errorReaction.visiable = true
+    state.errorReaction.messages = err.error_messages.reactionable_id
   }
 }
 
@@ -52,8 +63,14 @@ const actions = {
   createReaction({commit}, res) {
     commit('createReaction', res)
   },
+  closeModal({commit}) {
+    commit('closeModal')
+  },
   destroyReaction({commit}, res) {
     commit('destroyReaction', res)
+  },
+  errorReaction({commit}, err) {
+    commit('errorReaction', err)
   },
   fetchReaction({commit}) {
     return new Promise((resolve, reject) => {

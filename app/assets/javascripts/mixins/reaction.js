@@ -21,6 +21,7 @@ export default {
         self.$store.dispatch('createReaction', res.data)
       })
       .catch(function(err) {
+        self.$store.dispatch('errorReaction', err.response.data)
         console.log("createReaction fail")
       })
     },

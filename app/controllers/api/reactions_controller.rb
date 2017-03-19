@@ -21,7 +21,11 @@ class Api::ReactionsController < ApplicationController
       },
              status: 200
     else
-      head :not_found
+      render json: {
+        errors: reaction.errors,
+        error_messages: reaction.errors.messages
+      },
+             status: 422
     end
   end
 

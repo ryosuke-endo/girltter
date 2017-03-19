@@ -53,7 +53,8 @@ export default Vue.extend({
   },
   computed: mapState([
     'icons',
-    'visiable'
+    'visiable',
+    'errorReaction'
   ]),
   template: `
   <div class="c-container c-flex c-flex__wrap" v-if="visiable">

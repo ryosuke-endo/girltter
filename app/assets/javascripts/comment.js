@@ -9,6 +9,7 @@ import icon from './components/comment/icon.js'
 import modal from './components/common/form/modal'
 import reaction from './components/comment/reaction.js'
 import reactionCounter from './components/comment/reaction_counter.js'
+import reactionError from './components/comment/reaction_error.js'
 import formError from './components/common/form/error.js'
 
 import AnchorRes from './anchor_res.js'
@@ -39,7 +40,8 @@ $(function() {
       'modal': modal,
       'form-error': formError,
       'reaction': reaction,
-      'reaction-counter': reactionCounter
+      'reaction-counter': reactionCounter,
+      'reaction-error': reactionError
     },
     created() {
       this.$store.dispatch('fetchReaction').then(() =>
@@ -48,7 +50,8 @@ $(function() {
       this.getTopicId()
     },
     computed: mapState([
-      'visiable'
+      'visiable',
+      'errorReaction'
     ]),
     methods: {
       getTopicId() {

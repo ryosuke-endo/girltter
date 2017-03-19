@@ -134,7 +134,8 @@ export default Vue.extend({
     }
   },
   computed: mapState([
-    'icons'
+    'icons',
+    'errorReaction'
   ]),
   template: `
   <div class="p-topic-icon text--s-x-lg">
