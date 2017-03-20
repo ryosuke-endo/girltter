@@ -64,6 +64,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # json
 gem 'jbuilder', '~> 2.0'
+gem 'oj'
 
 # document
 gem 'sdoc', '~> 0.4.0', group: :doc

@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  include Cookie
   layout 'one_column'
   skip_before_action :require_login
 
@@ -23,6 +24,31 @@ class TopicsController < ApplicationController
 
   def show
     render layout: 'topic'
+  end
+
+  def reaction_count_map
+    @topic = Topic.find(params[:topic_id])
+    map = { topic: {}, comment: {} }
+    map[:topic] = @topic.icons.group_by(&:id)
+    @topic.comments.includes(:icons).each do |comment|
+      map[:comment][comment.id] = comment.icons.group_by(&:id)
+    end
+
+    map[:topic][:user_reactioned_ids] = @topic.reactions.where(user_cookie_value: identity_id).pluck(:icon_id)
+    comment_ids = @topic.comments.pluck(:id)
+    comment_ids.each { |comment_id| map[:comment][comment_id][:user_reactioned_ids] = [] }
+
+    ids = @topic.comment_reactions.ids
+    icon_ids = @topic.comment_reactions.pluck(:icon_id).uniq
+    map_ids = @topic.comment_reactions.where(id: ids,
+                                             icon_id: icon_ids,
+                                             user_cookie_value: identity_id).
+                                             pluck(:reactionable_id, :icon_id)
+
+    map_ids.each do |comment_id, icon_id|
+      map[:comment][comment_id][:user_reactioned_ids] << icon_id
+    end
+    render json: map, status: 200
   end
 
   private

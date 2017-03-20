@@ -46,9 +46,12 @@
   .c-container.p-topic-font
     .c-container.text--b
       = @topic.body.html_safe
-    reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') ref="reaction"
 
-  = render partial: "topics/comments", collection: @topic.comments, as: :comment
+  reaction-counter reactionable_id=@topic.id type="#{@topic.class.name}"
+  .p-topic-icon.text--s-x-lg
+    reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{@topic.id}" type="#{@topic.class.name}" ref="reaction"
+
+  = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 
   .c-container--sm.text--s-lg.text--b
     | コメントする
@@ -70,5 +73,6 @@
             i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     icon v-model="comment.image" v-on:open="openModal"
     modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
+    reaction-error v-show="errorReaction.visiable"
   .text--c
     input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..." @click="submit"

@@ -1,14 +1,23 @@
 import Vue from 'vue/dist/vue'
+import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
+import reactionMixins from './../../mixins/reaction.js'
 import 'babel-polyfill'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 export default Vue.extend({
+  mixins: [reactionMixins],
   props: {
     reply_id: {
       type: String
     },
     emoji_path: {
+      type: String
+    },
+    reactionable_id: {
+      type: String
+    },
+    type: {
       type: String
     }
   },
@@ -37,10 +46,13 @@ export default Vue.extend({
     hiddenReaction() {
       this.reactionActive = false
     },
+    hiddenIconList() {
+      this.iconListActive = false
+    },
     showIconList() {
       const self = this
       $('body').addClass('js-menu-active')
-      Promise.all([self.getEmoji(), self.getEmojiImage()])
+      Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
       .then(function() {
         self.iconListActive = true
         self.$nextTick(function() {
@@ -48,9 +60,6 @@ export default Vue.extend({
           self.watchPosition()
         })
       })
-    },
-    hiddenIconList() {
-      this.iconListActive = false
     },
     scrollCategoryHeader(category) {
       const $target = $(this.$el.querySelector(".p-topic--icon--modal__container"))
@@ -68,21 +77,12 @@ export default Vue.extend({
       })
       return this.categoryHeaders = categories
     },
-    getEmoji() {
+    fetchEmoji() {
       return new Promise((resolve, reject) => {
         const self = this
-        const query = {
-          query: {
-            except: {
-              unicode_version: '9.0',
-              ios_version: '10.0'
-            }
-          }
-        }
         axios({
           method: 'GET',
-          url: "/api/emoji",
-          params: query
+          url: "/api/icon"
         })
         .then(function(res) {
           self.emojis = res.data;
@@ -92,7 +92,7 @@ export default Vue.extend({
         });
       });
     },
-    getEmojiImage() {
+    fetchEmojiImage() {
       const self = this
       return new Promise((resolve, reject) => {
         if(Object.keys(self.categoryHeaders).length === 0) {
@@ -124,6 +124,10 @@ export default Vue.extend({
       })
     }
   },
+  computed: mapState([
+    'icons',
+    'errorReaction'
+  ]),
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">
@@ -192,82 +196,82 @@ export default Vue.extend({
           </div>
           <div class="p-topic--icon--modal__container">
             <div id="people">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 スマイリーと人々
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id ="nature">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 動物と自然
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="foods">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 食べ物と飲み物
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="activity">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 活動
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="places">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 旅行と場所
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="objects">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 物
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="symbols">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 記号
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
             <div id="flags">
-              <h3 class="text--s-md">
+              <h3 class="c-container--sm text--s-md">
                 旗
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
-                  <div :class="emoji.style_class">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>

@@ -4,6 +4,9 @@ class Topic < ActiveRecord::Base
               thumbnail: '140x140>' }
 
   has_many :comments, dependent: :destroy
+  has_many :reactions, dependent: :destroy, as: :reactionable
+  has_many :comment_reactions, through: :comments, source: :reactions
+  has_many :icons, through: :reactions
 
   belongs_to :category
 

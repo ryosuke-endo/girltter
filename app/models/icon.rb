@@ -1,16 +1,11 @@
-class Category < ActiveRecord::Base
-  include CachedMap
+class Icon < ActiveRecord::Base
+  has_many :reactions, as: :reactionable
+  belongs_to :category, class_name: 'IconCategory', foreign_key: :icon_category_id
+  has_attached_file :image
 
-  has_attached_file :image, styles: { medium: '300x300>', thumb: '140x140>' }
-  has_many :topics
-
-  validates :name, presence: true
-  validates :description, presence: true
   validates_attachment :image,
                        content_type: { content_type: ['image/jpg',
                                                       'image/jpeg',
                                                       'image/png',
                                                       'image/gif'] }
-
-  scope :ordered_position, -> { order(position: :asc) }
 end
