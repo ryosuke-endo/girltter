@@ -47,16 +47,3 @@ end
 import_fixture(:members)
 import_fixture(:tags)
 import_fixture(:icon_categories)
-
-name = "匿子"
-body = "パフォーマー"
-
-50.times { Comment.create(topic_id: 14, name: name, body: body)}
-50.times do |id|
-  id += 1
-  comment = Comment.find(id)
-  icon_ids = Icon.ids.sample(15)
-  icon_ids.each do |icon_id|
-    comment.reactions.create(icon_id: icon_id, user_cookie_value: "hoge")
-  end
-end
