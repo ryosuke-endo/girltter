@@ -46,6 +46,9 @@ export default {
         console.log("reactioned destroy fail")
       })
     },
+    hexName(name) {
+      return name.replace(/(unicode\/|\.png)/, '')
+    },
     submit(icon) {
       const user_reactioned_ids = this.type === "Topic" ?
         this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
@@ -54,6 +57,12 @@ export default {
       } else {
         this.createReaction(icon)
       }
+    },
+    spriteClass(icon) {
+      if(typeof(icon) !== "object") {
+        return
+      }
+      return `emoji-${this.hexName(icon.image_file_name)}`
     }
   }
 }

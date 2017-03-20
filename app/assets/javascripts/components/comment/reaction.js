@@ -210,7 +210,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'People'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -220,7 +220,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Nature'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -230,7 +230,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Foods'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -240,7 +240,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Activity'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -250,7 +250,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Places'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -260,7 +260,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Objects'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -270,7 +270,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Symbols'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>
@@ -280,7 +280,7 @@ export default Vue.extend({
               </h3>
               <ul class="c-flex c-flex__wrap">
                 <li class="p-topic--icon__list" v-for="emoji in emojis" v-if="emoji.category == 'Flags'">
-                  <div :class="emoji.style_class" @click="submit(emoji)">
+                  <div :class="spriteClass(emoji)" @click="submit(emoji)">
                 </li>
               </ul>
             </div>

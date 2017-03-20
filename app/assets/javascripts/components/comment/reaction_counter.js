@@ -20,9 +20,6 @@ export default Vue.extend({
         return this.icons.comment[this.reactionable_id]
       }
     },
-    hexName(icon) {
-      return icon.image_file_name.replace(/(unicode\/|\.png)/, '')
-    },
     isReactioned(icon) {
       if(typeof(icon) !== "object") {
         return "none"
@@ -44,12 +41,6 @@ export default Vue.extend({
         this.icons.topic[icon.id].length : this.icons.comment[this.reactionable_id][icon.id].length
       return count
     },
-    spriteClass(icon) {
-      if(typeof(icon) !== "object") {
-        return
-      }
-      return `emoji-${this.hexName(icon)}`
-    }
   },
   computed: mapState([
     'icons',

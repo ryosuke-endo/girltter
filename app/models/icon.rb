@@ -8,8 +8,4 @@ class Icon < ActiveRecord::Base
                                                       'image/jpeg',
                                                       'image/png',
                                                       'image/gif'] }
-
-  def hex_name
-    image_file_name.gsub(/(unicode\/|\.png)/, '')
-  end
 end
