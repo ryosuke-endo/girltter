@@ -34,7 +34,7 @@ const mutations = {
       reactionable[res.icon.id] = [res.icon]
     }
 
-    if(reactionable.user_reactioned_ids !== undefined) {
+    if(0 < reactionable.user_reactioned_ids.length) {
       reactionable.user_reactioned_ids.push(res.icon.id)
     } else {
       reactionable.user_reactioned_ids = [res.icon.id]
