@@ -14,7 +14,7 @@ export default Vue.extend({
   },
   methods: {
     filterIcons() {
-      if (this.type == "Topic") {
+      if (this.type === "Topic") {
         return this.icons.topic
       } else {
         return this.icons.comment[this.reactionable_id]
