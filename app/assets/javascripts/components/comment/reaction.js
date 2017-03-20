@@ -80,18 +80,9 @@ export default Vue.extend({
     fetchEmoji() {
       return new Promise((resolve, reject) => {
         const self = this
-        const query = {
-          query: {
-            except: {
-              unicode_version: '9.0',
-              ios_version: '10.0'
-            }
-          }
-        }
         axios({
           method: 'GET',
-          url: "/api/icon",
-          params: query
+          url: "/api/icon"
         })
         .then(function(res) {
           self.emojis = res.data;
