@@ -16,7 +16,7 @@ module CachedMap
 
     def fetch_cached_map
       if cached_map.blank?
-        self.cached_map = order(:id).map.map { |x| [x.id, x] }.to_h
+        self.cached_map = order(:id).map { |x| [x.id, x] }.to_h
       else
         cached_map
       end
