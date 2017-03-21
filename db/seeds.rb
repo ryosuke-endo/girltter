@@ -7,20 +7,9 @@ def import_fixture(fixture)
   ActiveRecord::FixtureSet.create_fixtures(PATH, fixture)
 end
 
-# categoryの画像を保存するために、importしない
-puts 'import category'
-categories = YAML.load(File.open("#{PATH}/categories.yml"))
-categories.each do |_, category|
-  id = category['id']
-  name = category['name']
-  description = category['description']
-  position =  category['position']
-  image_path = "#{PATH}/categories/image/#{id}.jpg"
-  Category.create(name: name,
-                  description: description,
-                  position: position,
-                  image: open(image_path))
-end
+import_fixture(:icon_categories)
+import_fixture(:members)
+import_fixture(:tags)
 
 # URL変換されないため、直接createする
 puts 'import topics'
@@ -36,6 +25,21 @@ topics.each do |_, topic|
                body: body)
 end
 
+# categoryの画像を保存するために、importしない
+puts 'import category'
+categories = YAML.load(File.open("#{PATH}/categories.yml"))
+categories.each do |_, category|
+  id = category['id']
+  name = category['name']
+  description = category['description']
+  position =  category['position']
+  image_path = "#{PATH}/categories/image/#{id}.jpg"
+  Category.create(name: name,
+                  description: description,
+                  position: position,
+                  image: open(image_path))
+end
+
 puts 'import emoji'
 Emoji.all.each do |emoji|
   next if emoji.custom?
@@ -43,7 +47,3 @@ Emoji.all.each do |emoji|
   category = IconCategory.find_by(name: emoji.category)
   Icon.create(image: open(image_path), icon_category_id: category.id)
 end
-
-import_fixture(:members)
-import_fixture(:tags)
-import_fixture(:icon_categories)
