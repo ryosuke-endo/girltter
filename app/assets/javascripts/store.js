@@ -34,6 +34,12 @@ const mutations = {
       reactionable[res.icon.id] = [res.icon]
     }
 
+    const index = reactionable.order.indexOf(res.icon.id)
+
+    if(index === -1) {
+      reactionable.order.push(res.icon.id)
+    }
+
     if(0 < reactionable.user_reactioned_ids.length) {
       reactionable.user_reactioned_ids.push(res.icon.id)
     } else {
@@ -46,6 +52,11 @@ const mutations = {
     reactionable[res.icon.id].shift()
     const index = reactionable.user_reactioned_ids.indexOf(res.icon.id)
     reactionable.user_reactioned_ids.splice(index, 1)
+
+    if(reactionable[res.icon.id].length === 0) {
+      const orderIndex = reactionable.order.indexOf(res.icon.id)
+      reactionable.order.splice(orderIndex, 1)
+    }
   },
   closeModal(state) {
     state.errorReaction.visiable = false

@@ -52,10 +52,10 @@ export default {
     submit(icon) {
       const user_reactioned_ids = this.type === "Topic" ?
         this.icons.topic.user_reactioned_ids : this.icons.comment[this.reactionable_id].user_reactioned_ids
-      if(user_reactioned_ids.indexOf(icon.id) >= 0) {
-        this.destroyReaction(icon)
-      } else {
+      if(user_reactioned_ids.indexOf(icon.id) === -1) {
         this.createReaction(icon)
+      } else {
+        this.destroyReaction(icon)
       }
     },
     spriteClass(icon) {
