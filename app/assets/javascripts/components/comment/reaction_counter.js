@@ -14,10 +14,18 @@ export default Vue.extend({
   },
   methods: {
     filterIcons() {
-      if (this.type === "Topic") {
-        return this.icons.topic
+      const self = this
+      if (self.type === "Topic") {
+        return self.icons.topic.order.map(function(id) {
+          return self.icons.topic[id]
+        })
       } else {
-        return this.icons.comment[this.reactionable_id]
+        if (self.icons.comment[self.reactionable_id].order === undefined) {
+          return self.icons.comment[self.reactionable_id]
+        }
+        return self.icons.comment[self.reactionable_id].order.map(function(id) {
+          return self.icons.comment[self.reactionable_id][id]
+        })
       }
     },
     isReactioned(icon) {
