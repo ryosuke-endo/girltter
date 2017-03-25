@@ -10,8 +10,11 @@ module LoginSpecHelper
       fill_in 'email', with: user.email
       fill_in 'password', with: 'password'
       find('#login-btn').click
-    else
+    elsif defined?(session)
       session[:user_id] = user.id
+    else
+      post user_sessions_path, params: { email: user.email,
+                                         password: 'password' }
     end
   end
 
