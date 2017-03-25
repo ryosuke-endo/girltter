@@ -102,6 +102,7 @@ group :test do
 
   # helper
   gem 'active_decorator-rspec'
+  gem 'rails-controller-testing'
 
   # mock
   gem 'webmock'
