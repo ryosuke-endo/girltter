@@ -1,9 +1,10 @@
 class ContentsView
-  attr_reader :contents, :action_view, :urls, :image_urls, :link_urls
+  include ActionView::Helpers::SanitizeHelper
+  attr_reader :contents, :renderer, :urls, :image_urls, :link_urls
 
   def initialize(contents)
     @contents = contents
-    @action_view = Renderer.new.renderer
+    @renderer = ApplicationController.renderer
     @urls = URI.extract(contents, Constants::URL_SCHEMES)
     set_urls if urls
   end
@@ -37,7 +38,7 @@ class ContentsView
   def image
     image_urls.uniq.each do |url|
       host_name = URI.parse(url).hostname
-      html = action_view.render 'topics/image', url: url, host_name: host_name
+      html = renderer.render partial: 'topics/image', locals: { url: url, host_name: host_name }
       convert_url_to_html!(url, html)
     end
   end
@@ -47,17 +48,16 @@ class ContentsView
       site = LinkThumbnailer.generate(url)
       image_url = site.images.present? ?
         site.images.first.src.to_s : 'no_image.png'
-      html = action_view.render 'topics/link_thumbnail_description',
-                                 site: site,
-                                 url: image_url
+      html = renderer.render partial: 'topics/link_thumbnail_description',
+                                locals: { site: site, url: image_url }
       convert_url_to_html!(url, html)
     end
   end
 
   def sanitize_content
-    action_view.sanitize(contents,
-                          tags: %w(a div img p br span),
-                          attributes: %w(alt id class href src target data-anchor))
+    sanitize(contents,
+             tags: %w(a div img p br span),
+             attributes: %w(alt id class href src target data-anchor))
   end
 
   def set_urls
