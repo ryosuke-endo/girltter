@@ -127,11 +127,12 @@ group :development do
 end
 
 group :production do
-  gem 'capistrano', '3.4.0'
+  gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-yarn'
-  gem 'capistrano-nodebrew'
+  gem 'capistrano-nvm'
+  gem 'capistrano-nvm-install'
   gem 'capistrano3-unicorn'
 end
