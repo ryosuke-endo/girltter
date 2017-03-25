@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -20,12 +20,6 @@ module Kijochannel
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ja
 
-    # autoload_path
-    config.autoload_paths = %W(#{config.root}/lib)
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-    # template generators's configuration
     config.sass.preferred_syntax :sass
     config.generators do |g|
       g.template_engine :slim
