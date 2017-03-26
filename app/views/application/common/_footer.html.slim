@@ -2,30 +2,16 @@
   .l__footer
     footer.c-flex
       .footer-col
-        p みんなの恋愛
+        p Girls Playground
       .footer-col
         .footer__pages-title
           | カテゴリー一覧
         ul.footer__pages
-          li
-            | 恋愛
-          li
-            | 結婚
-          li
-            | カップル
-          li
-            | 浮気
-          li
-            | 離婚
-          li
-            | コンプレックス
-          li
-            | 恋愛心理
-          li
-            | 恋愛名言
+          - @categories.each do |category|
+            li = link_to category.name, category
       .footer-col
         .footer__pages-title
-          | みんなの恋愛について
+          | Girls Playground
         ul.footer__pages
           li
             | 開発者
