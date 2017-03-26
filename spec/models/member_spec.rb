@@ -96,17 +96,6 @@ RSpec.describe Member, type: :model do
               end
             end
 
-            it '全角を含む' do
-              value =  '🅰aaaaaaa'
-              if column_name == :password
-                expect(record.update(password: value,
-                                     password_confirmation: value)).not_to be_truthy
-              else
-                record[column_name] = value
-                expect(record).not_to be_valid
-              end
-            end
-
             it '@を含む' do
               value = 'kijochannel@'
               if column_name == :password
@@ -181,11 +170,6 @@ RSpec.describe Member, type: :model do
       context '登録できない' do
         it '日本語は登録できない' do
           other_member = build(:member, email: 'みんなの恋愛@example.com')
-          expect(other_member).not_to be_valid
-        end
-
-        it '全角を含む' do
-          other_member = build(:member, login: '🅰aaaaaaa@example.com')
           expect(other_member).not_to be_valid
         end
       end
