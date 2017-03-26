@@ -270,9 +270,6 @@ GEM
     raindrops (0.18.0)
     rake (12.0.0)
     rdoc (4.3.0)
-    redis (3.3.3)
-    redis-namespace (1.5.3)
-      redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
@@ -442,8 +439,6 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 5.0.2)
   rails-controller-testing
-  redis
-  redis-namespace
   rspec-rails
   sass-rails
   sdoc (~> 0.4.0)
@@ -465,4 +460,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.12.5
+   1.14.6

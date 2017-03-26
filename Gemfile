@@ -4,13 +4,9 @@ gem 'rails', '5.0.2'
 
 # DB
 gem 'mysql2'
-gem 'redis'
 
 # bulk insert
 gem 'activerecord-import'
-
-# redis
-gem 'redis-namespace'
 
 # memcached
 gem 'dalli'
