@@ -19,9 +19,14 @@ export default {
       })
       .then(function(res) {
         self.$store.dispatch('createReaction', res.data)
+        console.log("createReaction success")
       })
       .catch(function(err) {
-        self.$store.dispatch('errorReaction', err.response.data)
+        if(err.response !== undefined) {
+          self.$store.dispatch('errorReaction', err.response.data)
+        } else {
+          console.log(err)
+        }
         console.log("createReaction fail")
       })
     },
