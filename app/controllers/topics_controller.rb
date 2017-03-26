@@ -51,8 +51,11 @@ class TopicsController < ApplicationController
 
     map[:topic][:order] = @topic.reactions.pluck(:icon_id).uniq
     map_ids = @topic.comment_reactions.pluck(:reactionable_id, :icon_id).uniq
+    comment_ids = @topic.comments.ids
+    comment_ids.each do |comment_id|
+      map[:comment][comment_id][:order] = []
+    end
     map_ids.each do |comment_id, icon_id|
-      map[:comment][comment_id][:order] ||= []
       map[:comment][comment_id][:order] << icon_id
     end
     render json: map, status: 200
