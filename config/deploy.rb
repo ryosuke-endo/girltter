@@ -37,6 +37,11 @@ set :nvm_type, :user # or :system, depends on your nvm setup
 set :nvm_node, 'v7.7.4'
 set :nvm_map_bins, %w{node npm yarn}
 
+# yarn
+set :yarn_roles, :app
+set :yarn_flags, "--prefer-offline --production --no-progress"
+set :yarn_env_variables, fetch(:yarn_env_variables, {})
+
 # whenever cron update
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 

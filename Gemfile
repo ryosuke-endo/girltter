@@ -131,6 +131,7 @@ group :production do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+  gem 'capistrano-yarn'
   gem 'capistrano-nvm'
   gem 'capistrano3-unicorn'
 end
