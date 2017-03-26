@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
 import URI from 'urijs'
 import axios from 'axios/dist/axios'
-import store from 'store.js'
+import store from './store.js'
 
 import modalMixins from './mixins/modal.js'
 import icon from './components/comment/icon.js'
