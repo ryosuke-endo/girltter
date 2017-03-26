@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   layout 'home'
+  before_action :set_categories
   before_action :set_member
 
   def show
@@ -46,6 +47,10 @@ class HomesController < ApplicationController
   end
 
   private
+
+  def set_categories
+    @categories = Category.all.ordered_position
+  end
 
   def set_member
     @member = Member.find(current_user.id)
