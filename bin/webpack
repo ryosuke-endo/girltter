@@ -18,7 +18,7 @@ begin
   paths            = YAML.load(File.read(CONFIG_PATH))
   dev_server = YAML.load(File.read(DEV_SERVER_CONFIG_PATH))
 
-  NODE_MODULES_PATH   = File.join(APP_PATH.shellescape, paths["node_modules"])
+  NODE_MODULES_PATH   = File.join(APP_PATH.shellescape)
   WEBPACK_CONFIG_PATH = File.join(APP_PATH.shellescape, paths["config"])
 
   if NODE_ENV == "development" && dev_server["enabled"]
@@ -31,7 +31,7 @@ rescue Errno::ENOENT, NoMethodError
   exit!
 end
 
-WEBPACK_BIN    = "#{NODE_MODULES_PATH}/.bin/webpack"
+WEBPACK_BIN    = "#{NODE_MODULES_PATH}/bin/webpack"
 WEBPACK_CONFIG = "#{WEBPACK_CONFIG_PATH}/#{NODE_ENV}.js"
 
 Dir.chdir(APP_PATH) do
