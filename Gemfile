@@ -58,6 +58,7 @@ gem 'font-awesome-rails'
 # javascript
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'webpacker'
 
 gem 'uglifier', '>= 1.3.0'
 
