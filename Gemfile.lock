@@ -82,15 +82,12 @@ GEM
       sshkit (~> 1.2)
     capistrano-nvm (0.0.7)
       capistrano (~> 3.1)
-    capistrano-nvm-install (0.1.1)
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rbenv (2.1.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
-    capistrano-yarn (2.0.2)
-      capistrano (~> 3.0)
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
     capybara (2.12.1)
@@ -415,10 +412,8 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-nvm
-  capistrano-nvm-install
   capistrano-rails
   capistrano-rbenv
-  capistrano-yarn
   capistrano3-unicorn
   capybara
   capybara-webkit
