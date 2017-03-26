@@ -6,7 +6,7 @@ RSpec.describe 'Api::TopicsController', type: :request do
       it 'response 200' do
         params = { topic: build(:topic).attributes }
         expect {
-          post api_topics_path(format: :json), params
+          post api_topics_path(format: :json), params: params
         }.to change { Topic.count }.by(1)
         expect(response.status).to eq 200
       end
@@ -16,7 +16,7 @@ RSpec.describe 'Api::TopicsController', type: :request do
       it 'response 422' do
         params = { topic: { title: "foo"} }
         expect {
-          post api_topics_path(format: :json), params
+          post api_topics_path(format: :json), params: params
         }.to change { Topic.count }.by(0)
         expect(response.status).to eq 422
       end
