@@ -7,7 +7,7 @@
         .footer__pages-title
           | カテゴリー一覧
         ul.footer__pages
-          - @categories.each do |category|
+          - Category.cached.values.each do |category|
             li = link_to category.name, category
       .footer-col
         .footer__pages-title

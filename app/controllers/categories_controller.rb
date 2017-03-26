@@ -12,8 +12,8 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
-    @categories = Category.all
+    @category = Category.find_cached(params[:id])
+    @categories = Category.cached.values
   end
 
   def set_tag_ranking
