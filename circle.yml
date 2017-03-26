@@ -22,6 +22,7 @@ dependencies:
     - mv config/secrets.ci.yml config/secrets.yml
     - yarn --version
     - bundle -j4 --path=vendor/bundle
+    - sh ./script/circle_ci/mysql5.7.17.sh
 
   cache_directories:
     - ~/.yarn
@@ -39,6 +40,6 @@ deployment:
   deploy:
     branch: master
     commands:
-      - sh ./script/production_deploy.sh
+      - sh ./script/circle_ci/production_deploy.sh
       - bundle exec cap production deploy:
           timeout: 1200
