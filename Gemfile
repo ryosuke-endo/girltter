@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '5.0.2'
-gem 'sprockets-commoner'
 
 # DB
 gem 'mysql2'
@@ -58,6 +57,7 @@ gem 'font-awesome-rails'
 # javascript
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'webpacker'
 
 gem 'uglifier', '>= 1.3.0'
 
