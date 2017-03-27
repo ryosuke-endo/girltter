@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326115018) do
+ActiveRecord::Schema.define(version: 20170327224132) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
@@ -52,16 +52,6 @@ ActiveRecord::Schema.define(version: 20170326115018) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.index ["icon_category_id"], name: "index_icons_on_icon_category_id", using: :btree
-  end
-
-  create_table "rankings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.integer  "rankable_id",               null: false
-    t.string   "rankable_type",             null: false
-    t.integer  "read_count",    default: 0, null: false
-    t.date     "start_date",                null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.index ["rankable_id", "rankable_type"], name: "index_rankings_on_rankable_id_and_rankable_type", using: :btree
   end
 
   create_table "reactions", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
