@@ -4,8 +4,6 @@ machine:
     version: 2.4.1
   node:
     version: 7.4.0
-  services:
-    - redis
   environment:
     YARN_VERSION: 0.18.1
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"

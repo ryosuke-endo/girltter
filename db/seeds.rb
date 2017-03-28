@@ -8,7 +8,6 @@ def import_fixture(fixture)
 end
 
 import_fixture(:icon_categories)
-import_fixture(:members)
 import_fixture(:tags)
 
 # URL変換されないため、直接createする

@@ -1,7 +1,5 @@
 class Api::ReactionsController < ApplicationController
   include Cookie
-  skip_before_action :require_login
-
   def create
     reactionable =
       if params[:type] == 'Comment'

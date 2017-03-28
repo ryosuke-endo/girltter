@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe Reaction, type: :model do
   describe '#validation' do
     context 'reactionable_id, icon_id, user_cookie_value, reactionable_typeの複合unique' do
-      let(:reaction) { create(:reaction) }
+      let(:topic) { create(:topic) }
+      let(:reaction) { create(:reaction,
+                              reactionable_id: topic.id,
+                              reactionable_type: topic.class.name) }
 
       context '同一の値のデータが作成される場合' do
         it '保存できない' do
@@ -27,13 +30,21 @@ RSpec.describe Reaction, type: :model do
   end
 
   describe '#limit_reaction' do
+    let(:topic) { create(:topic) }
+
     context '絵文字を20個つけた場合' do
       before do
-        19.times { |i| create(:reaction, user_cookie_value: i) }
+        19.times { |i| create(:reaction,
+                              user_cookie_value: i,
+                              reactionable_id: topic.id,
+                              reactionable_type: topic.class.name)
+        }
       end
 
       it '保存できる' do
-        reaction = build(:reaction)
+        reaction = build(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
         reaction.save
         expect(reaction.errors[:reactionable_id].size).to eq 0
       end
@@ -41,11 +52,17 @@ RSpec.describe Reaction, type: :model do
 
     context '絵文字を20個以上つけた場合' do
       before do
-        20.times { |i| create(:reaction, user_cookie_value: i) }
+        20.times { |i| create(:reaction,
+                              user_cookie_value: i,
+                              reactionable_id: topic.id,
+                              reactionable_type: topic.class.name)
+        }
       end
 
       it '保存できない' do
-        reaction = build(:reaction)
+        reaction = build(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
         reaction.save
         expect(reaction.errors[:reactionable_id].size).to eq 1
       end
@@ -53,13 +70,20 @@ RSpec.describe Reaction, type: :model do
   end
 
   describe '#user_limit_reaction' do
+    let(:topic) { create(:topic) }
+
     context '一人のユーザーは5個リアクションをつけた場合' do
       before do
-        4.times { create(:reaction) }
+        4.times { create(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
+        }
       end
 
       it '保存できる' do
-        reaction = build(:reaction)
+        reaction = build(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
         reaction.save
         expect(reaction.errors[:reactionable_id].size).to eq 0
       end
@@ -67,11 +91,16 @@ RSpec.describe Reaction, type: :model do
 
     context '一人のユーザーは5個以上リアクションをつけた場合' do
       before do
-        5.times { create(:reaction) }
+        5.times { create(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
+        }
       end
 
       it '保存できない' do
-        reaction = build(:reaction)
+        reaction = build(:reaction,
+                         reactionable_id: topic.id,
+                         reactionable_type: topic.class.name)
         reaction.save
         expect(reaction.errors[:reactionable_id].size).to eq 1
       end

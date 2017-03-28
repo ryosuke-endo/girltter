@@ -53,7 +53,6 @@ RSpec.configure do |config|
 
   config.append_after(:each) do
     DatabaseCleaner.clean
-    DatabaseCleaner[:redis].clean
   end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
@@ -75,7 +74,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  # include helper
-  config.include LoginSpecHelper
 end

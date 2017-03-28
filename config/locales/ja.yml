@@ -9,7 +9,6 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
 
     models:
-      user: ユーザー
       comment: コメント
 
     attributes:
@@ -25,20 +24,6 @@ ja:
         name: 名前
         thumbnail: 画像
         title: タイトル
-
-      user:
-        email: メールアドレス
-        login: ログインID
-        name: ユーザー名
-        password: パスワード
-        password_confirmation: パスワード確認
-        sex: 性別
-
-  enums:
-    user:
-      sex:
-        man: 男性
-        woman: 女性
 
   date:
     abbr_day_names:
@@ -236,22 +221,10 @@ ja:
       short: "%y/%m/%d"
     pm: 午後
 
-  cheating: 浮気
-  complex: コンプレックス
-  couple: カップル
-  divorce: 離婚
-  login: ログイン
-  marriage: 結婚
   sending: 送信中
   site_title: 'Girls Playground'
 
   login_was_successfully_created: ログインに成功しました
   login_was_failed: ユーザーIDかパスワードが違います
   login_was_successfully_deleted: ログアウトしました
-  member_was_successfully_created: 会員登録ありがとうございます
-  member_was_successfully_updated: プロフィールを更新しました
-  member_was_successfully_updated_email: メールアドレスを更新しました
-  member_was_successfully_updated_password: パスワードを更新しました
-  member_was_successfully_deleted: 会員を削除しました
   tag_was_successsfully_deleted: タグを削除しました
-  admin_tags_associate_with_models_was_successfully_created: タグをモデルに関連づけしました

@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :require_login
   before_action :set_identity_cookie
 
   protect_from_forgery with: :exception
@@ -16,11 +15,5 @@ class ApplicationController < ActionController::Base
     cookies.permanent['_cadr'] = {
       value: Time.zone.now.to_s(:yyyymmdd) + hash_ip
     }
-  end
-
-  def authenticate_admin!
-    if current_user.class != Admin
-      redirect_to root_path
-    end
   end
 end

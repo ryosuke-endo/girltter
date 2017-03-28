@@ -1,6 +1,4 @@
 class Api::TopicsController < ApplicationController
-  skip_before_action :require_login
-
   def create
     @topic = Topic.new(topic_params)
     if @topic.save
