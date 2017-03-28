@@ -17,10 +17,4 @@ class ApplicationController < ActionController::Base
       value: Time.zone.now.to_s(:yyyymmdd) + hash_ip
     }
   end
-
-  def authenticate_admin!
-    if current_user.class != Admin
-      redirect_to root_path
-    end
-  end
 end

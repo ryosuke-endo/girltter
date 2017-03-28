@@ -8,10 +8,7 @@
           button
             i.fa.fa-search.c-search__icon
       ul.c-flex.c-flex__jc-sb.c-flex__ai-c.c-header__right-w.c-reset-margin
-        - if admin?
-          li = link_to "管理画面にいく", admin_index_path, class: "c-link--c-w"
-          li = link_to "ログアウト", :logout, method: :post, class: "c-link--c-w"
-        - elsif current_user
+        - if current_user
           li = link_to "マイページ", home_path, class: "c-link--c-w"
           li = link_to "ログアウト", :logout, method: :post, class: "c-link--c-w"
         - else

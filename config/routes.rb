@@ -35,9 +35,4 @@ Rails.application.routes.draw do
   resources :user_sessions
   resources :members, only: %i(index show new create destroy)
   resources :tags, only: :show
-
-  resources :admin, only: :index
-  namespace :admin do
-    resources :tags
-  end
 end
