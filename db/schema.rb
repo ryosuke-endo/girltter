@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328143556) do
+ActiveRecord::Schema.define(version: 20170328150920) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
@@ -64,14 +64,6 @@ ActiveRecord::Schema.define(version: 20170328143556) do
     t.index ["icon_id"], name: "index_reactions_on_icon_id", using: :btree
     t.index ["reactionable_id", "reactionable_type"], name: "index_reactions_on_reactionable_id_and_reactionable_type", using: :btree
     t.index ["user_cookie_value", "icon_id", "reactionable_id", "reactionable_type"], name: "index_reactions_on_uniq_cookie_and_ids", unique: true, using: :btree
-  end
-
-  create_table "reads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.integer "readable_id",                null: false
-    t.string  "readable_type",              null: false
-    t.integer "read_count",     default: 0, null: false
-    t.date    "recording_date",             null: false
-    t.index ["readable_id", "readable_type"], name: "index_reads_on_readable_id_and_readable_type", using: :btree
   end
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|

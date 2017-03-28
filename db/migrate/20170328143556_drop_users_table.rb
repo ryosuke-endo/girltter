@@ -1,5 +1,5 @@
 class DropUsersTable < ActiveRecord::Migration[5.0]
-  def change
+  def up
     drop_table :users if table_exists?(:users)
   end
 
