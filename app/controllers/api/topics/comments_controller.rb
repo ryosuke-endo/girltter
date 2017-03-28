@@ -1,6 +1,4 @@
 class Api::Topics::CommentsController < ApplicationController
-  skip_before_action :require_login
-
   def create
     @comment = Comment.new(comment_params)
     if @comment.save

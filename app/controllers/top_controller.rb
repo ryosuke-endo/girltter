@@ -1,7 +1,6 @@
 class TopController < ApplicationController
   layout 'top'
 
-  skip_before_action :require_login
   before_action :set_topics
   before_action :set_tag_ranking
 

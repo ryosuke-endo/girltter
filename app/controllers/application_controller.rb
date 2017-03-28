@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :require_login
   before_action :set_identity_cookie
 
   protect_from_forgery with: :exception
