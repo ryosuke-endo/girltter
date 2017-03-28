@@ -242,9 +242,4 @@ ja:
   login_was_successfully_created: ログインに成功しました
   login_was_failed: ユーザーIDかパスワードが違います
   login_was_successfully_deleted: ログアウトしました
-  member_was_successfully_created: 会員登録ありがとうございます
-  member_was_successfully_updated: プロフィールを更新しました
-  member_was_successfully_updated_email: メールアドレスを更新しました
-  member_was_successfully_updated_password: パスワードを更新しました
-  member_was_successfully_deleted: 会員を削除しました
   tag_was_successsfully_deleted: タグを削除しました

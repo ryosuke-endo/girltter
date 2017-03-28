@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327224132) do
+ActiveRecord::Schema.define(version: 20170328143556) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
@@ -111,21 +111,6 @@ ActiveRecord::Schema.define(version: 20170327224132) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.index ["category_id"], name: "index_topics_on_category_id", using: :btree
-  end
-
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.string   "email",                        null: false
-    t.string   "crypted_password"
-    t.string   "salt"
-    t.string   "type",                         null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "login",                        null: false
-    t.string   "name",                         null: false
-    t.integer  "sex",              default: 0, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
-    t.index ["type"], name: "index_users_on_type", using: :btree
   end
 
   add_foreign_key "comments", "topics"
