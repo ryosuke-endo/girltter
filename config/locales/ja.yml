@@ -9,7 +9,6 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
 
     models:
-      user: ユーザー
       comment: コメント
 
     attributes:
@@ -25,20 +24,6 @@ ja:
         name: 名前
         thumbnail: 画像
         title: タイトル
-
-      user:
-        email: メールアドレス
-        login: ログインID
-        name: ユーザー名
-        password: パスワード
-        password_confirmation: パスワード確認
-        sex: 性別
-
-  enums:
-    user:
-      sex:
-        man: 男性
-        woman: 女性
 
   date:
     abbr_day_names:
