@@ -14,8 +14,6 @@ gem 'dalli'
 # image
 gem 'paperclip'
 
-# Authentication library
-gem 'sorcery'
 gem 'bcrypt', '~> 3.1.7'
 
 # pagination
@@ -69,9 +67,6 @@ gem 'active_decorator'
 
 # tags
 gem 'acts-as-taggable-on'
-
-# validation
-gem 'simple_email_validation'
 
 group :development, :test do
   gem 'pry-rails'
