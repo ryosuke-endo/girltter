@@ -68,6 +68,9 @@ gem 'active_decorator'
 # tags
 gem 'acts-as-taggable-on'
 
+# SEO
+gem 'meta-tags'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
