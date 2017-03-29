@@ -6,6 +6,6 @@ class Topics::CommentsController < Topics::ApplicationController
     text = render_to_string partial: 'anchor',
                             locals: { no: no,
                                       anchor: anchor }
-    render text: text, status: 200
+    render plain: text, status: 200
   end
 end
