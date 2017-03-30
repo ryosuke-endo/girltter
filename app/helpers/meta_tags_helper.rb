@@ -1,0 +1,24 @@
+module MetaTagsHelper
+  def default_meta_tags(options = {})
+    title = options[:title] || page_title
+    description = t("meta_tags.#{controller_name}.#{action_name}.description")
+    keywords = t("meta_tags.#{controller_name}.#{action_name}.keywords")
+    separator = options[:separator] || '|'
+
+    set_meta_tags title: title,
+                  separator: separator,
+                  description: description,
+                  keywords: keywords
+  end
+
+  def page_title
+    [t('site_title')]
+  end
+
+  def top_meta_tags
+    options = {}
+    options[:title] = [t('site_title'), t("meta_tags.#{controller_name}.#{action_name}.title")]
+    options[:separator] = '-'
+    default_meta_tags(options)
+  end
+end
