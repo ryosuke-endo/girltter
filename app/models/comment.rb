@@ -22,6 +22,7 @@ class Comment < ActiveRecord::Base
   private
 
   def process_body
-    self.body = ContentsView.new(body).processing_display
+    options = { nofollow: true }
+    self.body = ContentsView.new(body).processing_display(options)
   end
 end

@@ -115,6 +115,36 @@ describe ContentsView do
       end
     end
 
+    context 'nofollow' do
+      before do
+        stub_request(:get, 'http://www.example.com/hl?a=20170107-00000000-jct-soci').
+          to_return(status: 200, body: OG_BODY, headers: {})
+      end
+
+      context 'options[:nofollow] = true' do
+        it 'rel="nofollow"が含まれる' do
+          options = { nofollow: true }
+          url = 'http://www.example.com/hl?a=20170107-00000000-jct-soci'
+          contents_view = ContentsView.new("#{url}")
+          contents_view.processing_display(options)
+          expect(contents_view.contents.match?(/Title from og/)).to be_truthy
+          expect(contents_view.contents.match?(/Description from og/)).to be_truthy
+          expect(contents_view.contents.match?(/rel=\"nofollow\"/)).to be_truthy
+        end
+      end
+
+      context 'optionsなし' do
+        it 'rel="nofollow"が含まれない' do
+          url = 'http://www.example.com/hl?a=20170107-00000000-jct-soci'
+          contents_view = ContentsView.new("#{url}")
+          contents_view.processing_display
+          expect(contents_view.contents.match?(/Title from og/)).to be_truthy
+          expect(contents_view.contents.match?(/Description from og/)).to be_truthy
+          expect(contents_view.contents.match?(/rel=\"nofollow\"/)).to be_falsey
+        end
+      end
+    end
+
     context '引用URLにOGが含まれる場合' do
       context '?が含まれる場合' do
         before do
