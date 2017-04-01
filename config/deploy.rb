@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.8.0'
 
-set :application, 'kijochannel'
-set :repo_url, 'git@github.com:ryosuke-endo/kijochannel.git'
+set :application, 'girltter'
+set :repo_url, 'git@github.com:ryosuke-endo/girltter.git'
 set :user, 'mikami'
 
 set :user_sudo, false
