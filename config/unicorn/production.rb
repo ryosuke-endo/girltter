@@ -1,5 +1,5 @@
 # paths
-app_name = 'kijochannel'
+app_name = 'girltter'
 app_path = "/var/www/#{app_name}"
 working_directory "#{app_path}/current"
 

@@ -2,7 +2,7 @@
   .l__footer
     footer.c-flex
       .footer-col
-        p Girls Playground
+        p = t('site_title')
       .footer-col
         .footer__pages-title
           | カテゴリー一覧
@@ -11,7 +11,7 @@
             li = link_to category.name, category
       .footer-col
         .footer__pages-title
-          | Girls Playground
+          = t('site_title')
         ul.footer__pages
           li
             | 開発者
