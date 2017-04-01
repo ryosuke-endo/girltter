@@ -9,9 +9,9 @@ class ContentsView
     set_urls if urls
   end
 
-  def processing_display
+  def processing_display(options = {})
     if urls.present?
-      link_thumbnail_description if link_urls.present?
+      link_thumbnail_description(options[:nofollow]) if link_urls.present?
       image if image_urls.present?
     end
     extract_anchor!
@@ -43,13 +43,13 @@ class ContentsView
     end
   end
 
-  def link_thumbnail_description
+  def link_thumbnail_description(nofollow = false)
     link_urls.uniq.each do |url|
       site = LinkThumbnailer.generate(url)
       image_url = site.images.present? ?
         site.images.first.src.to_s : 'no_image.png'
       html = renderer.render partial: 'topics/link_thumbnail_description',
-                                locals: { site: site, url: image_url }
+                             locals: { site: site, url: image_url , nofollow: nofollow}
       convert_url_to_html!(url, html)
     end
   end
@@ -57,7 +57,7 @@ class ContentsView
   def sanitize_content
     sanitize(contents,
              tags: %w(a div img p br span),
-             attributes: %w(alt id class href src target data-anchor))
+             attributes: %w(alt id class href src target data-anchor rel))
   end
 
   def set_urls
