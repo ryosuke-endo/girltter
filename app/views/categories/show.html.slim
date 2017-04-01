@@ -1,3 +1,5 @@
+- content_for :meta_tags do
+  = display_meta_tags(category_meta_tags(@category))
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
 - breadcrumb :category, @category
