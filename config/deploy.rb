@@ -3,7 +3,7 @@ lock '3.8.0'
 
 set :application, 'girltter'
 set :repo_url, 'git@github.com:ryosuke-endo/girltter.git'
-set :user, 'mikami'
+set :user, 'deployer'
 
 set :user_sudo, false
 set :branch, 'master'

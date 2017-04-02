@@ -1,5 +1,5 @@
 cat <<EOF >> $HOME/.ssh/config
-Host sakura
+Host girltter
     HostName       $IP
     IdentityFile   ~/.ssh/id_$IP
     User           id_$USER
