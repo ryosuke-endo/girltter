@@ -1,7 +1,7 @@
 category_1:
   id: 1
   name: ニュース
-  description:|-
+  description:
     最新のニュース・面白いニュース・話題のニュース・経済のニュース・国外のニュースを取り扱っております。
     女性同士でニュースについて語り合いましょう。
   position: 1
@@ -9,7 +9,7 @@ category_1:
 category_2:
   id: 2
   name: 芸能人
-  description:|-
+  description:
     芸能人・アイドル・タレント・俳優・女優の最新のニュースについて取り扱っております。
     話題の芸能人から、裏話までとことん語り合いましょう。
   position: 2
@@ -17,7 +17,7 @@ category_2:
 category_3:
   id: 3
   name: 生活
-  description:|-
+  description:
     ライフハッキング・雑学・豆知識・うんちく・トリビア・ためになる知識を取り扱っております。
     女性のために知識を共有していきましょう。
   position: 3
@@ -25,7 +25,7 @@ category_3:
 category_4:
   id: 4
   name: 恋愛・結婚
-  description:|-
+  description:
     結婚・片思い・男性の心理・失恋・恋愛・カップルに関する話題を取り扱っております。
     女性の恋愛話で盛り上がりましょう。
   position: 4
@@ -33,7 +33,7 @@ category_4:
 category_5:
   id: 5
   name: 雑談
-  description:|-
+  description:
     雑談・話のネタになるおもしろ話を取り扱っております。
     暇つぶしになる話題で盛り上がりましょう。
   position: 5
