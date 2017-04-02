@@ -71,6 +71,9 @@ gem 'acts-as-taggable-on'
 # SEO
 gem 'meta-tags'
 
+# error mail
+gem 'exception_notification'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
