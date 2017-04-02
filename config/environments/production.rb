@@ -63,7 +63,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host:  'girltter.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: local_host,
+    address: 'localhost'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
