@@ -62,7 +62,7 @@ class TopicsController < ApplicationController
   private
 
   def set_category
-    @category = Category.find_cached(params[:category_id])
+    @category = Category.find(params[:category_id])
   end
 
   def set_tag_ranking
