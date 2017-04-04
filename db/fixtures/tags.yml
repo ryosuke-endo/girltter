@@ -4,276 +4,80 @@ tag_1:
 
 tag_2:
   id: 2
-  name: サークル
+  name: ママ友
 
 tag_3:
   id: 3
-  name: ツーショット
+  name: ママ友地獄
 
 tag_4:
   id: 4
-  name: 初デート
+  name: 近所付き合い
 
 tag_5:
   id: 5
-  name: プライベートな質問
+  name: ママ友トラブル
 
 tag_6:
   id: 6
-  name: お酒
+  name: 子育て
 
 tag_7:
   id: 7
-  name: 他の女の話題
+  name: 結婚指輪
 
 tag_8:
   id: 8
-  name: 結婚
+  name: 婚約指輪
 
 tag_9:
   id: 9
-  name: ズルズル
+  name: 新人
 
 tag_10:
   id: 10
-  name: 客観的
+  name: 職場
 
 tag_11:
   id: 11
-  name: 意気投合
+  name: 修羅場
 
 tag_12:
   id: 12
-  name: 予備校
+  name: 恋が冷めた瞬間
 
 tag_13:
   id: 13
-  name: 校舎
+  name: 人造人間
 
 tag_14:
   id: 14
-  name: 彼氏募集中
+  name: 婚活
 
 tag_15:
   id: 15
-  name: 曖昧な関係
+  name: ヲタ
 
 tag_16:
   id: 16
-  name: お台場
+  name: オタク
 
 tag_17:
   id: 17
-  name: 告白
+  name: トラブル
 
 tag_18:
   id: 18
-  name: 社会人
+  name: 冷めた瞬間
 
 tag_19:
   id: 19
-  name: 遠距離
+  name: 恋
 
 tag_20:
   id: 20
-  name: 遊園地
+  name: 恋愛
 
 tag_21:
   id: 21
-  name: 水族館
-
-tag_22:
-  id: 22
-  name: 大好き
-
-tag_23:
-  id: 23
-  name: 自然消滅
-
-tag_24:
-  id: 24
-  name: 愛情表現
-
-tag_25:
-  id: 25
-  name: 別れますか？
-
-tag_26:
-  id: 26
-  name: 大学
-
-tag_27:
-  id: 27
-  name: 両思い
-
-tag_28:
-  id: 28
-  name: アプローチの仕方
-
-tag_29:
-  id: 29
-  name: 一人暮らし
-
-tag_30:
-  id: 30
-  name: 社会人サークル
-
-tag_31:
-  id: 31
-  name: 子供っぽい
-
-tag_32:
-  id: 32
-  name: 不機嫌
-
-tag_33:
-  id: 33
-  name: 親友の恋
-
-tag_34:
-  id: 34
-  name: 険悪
-
-tag_35:
-  id: 35
-  name: ネガティブ
-
-tag_36:
-  id: 36
-  name: 恋人の作り方
-
-tag_37:
-  id: 37
-  name: 好みのタイプ
-
-tag_38:
-  id: 38
-  name: 夏休み恋
-
-tag_39:
-  id: 39
-  name: お家デート
-
-tag_40:
-  id: 40
-  name: キス
-
-tag_41:
-  id: 41
-  name: 元カノ
-
-tag_42:
-  id: 42
-  name: 独占欲
-
-tag_43:
-  id: 43
-  name: 嫉妬心
-
-tag_44:
-  id: 44
-  name: 恋愛漫画
-
-tag_45:
-  id: 45
-  name: ドラマ
-
-tag_46:
-  id: 46
-  name: 恋愛パターン
-
-tag_47:
-  id: 47
-  name: 年下
-
-tag_48:
-  id: 48
-  name: 年上
-
-tag_49:
-  id: 49
-  name: 未練
-
-tag_50:
-  id: 50
-  name: 破局
-
-tag_51:
-  id: 51
-  name: 立ち直る
-
-tag_52:
-  id: 52
-  name: デート代
-
-tag_53:
-  id: 53
-  name: レストラン
-
-tag_54:
-  id: 54
-  name: 男が全額支払う
-
-tag_55:
-  id: 55
-  name: 男のプライド
-
-tag_56:
-  id: 56
-  name: 彼女がインドア
-
-tag_57:
-  id: 57
-  name: ガードが固そう
-
-tag_58:
-  id: 58
-  name: 女子大生
-
-tag_59:
-  id: 59
-  name: 年上彼氏
-
-tag_60:
-  id: 60
-  name: ベタベタ
-
-tag_61:
-  id: 61
-  name: ジレンマ
-
-tag_62:
-  id: 62
-  name: 脈あり
-
-tag_63:
-  id: 63
-  name: 体育祭
-
-tag_64:
-  id: 64
-  name: 愚痴
-
-tag_65:
-  id: 65
-  name: コーチ
-
-tag_66:
-  id: 66
-  name: テニス
-
-tag_67:
-  id: 67
-  name: 先生
-
-tag_68:
-  id: 68
-  name: 浮気
-
-tag_69:
-  id: 69
-  name: イライラ
-
-tag_70:
-  id: 70
-  name: 2回目のデート
+  name: 結婚
