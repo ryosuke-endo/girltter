@@ -1,6 +1,4 @@
 class Category < ActiveRecord::Base
-  include CachedMap
-
   has_attached_file :image, styles: { medium: '300x300>', thumb: '140x140>' }
   has_many :topics, dependent: :destroy
 
