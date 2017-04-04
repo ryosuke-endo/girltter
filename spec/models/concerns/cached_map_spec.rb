@@ -9,10 +9,4 @@ RSpec.describe CachedMap, type: :model do
       expect(IconCategory.cached).to eq result
     end
   end
-
-  describe '#find_cached' do
-    it 'modelの中身を返す' do
-      expect(IconCategory.find_cached(category.id)).to eq category
-    end
-  end
 end
