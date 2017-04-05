@@ -1,7 +1,7 @@
 - content_for :meta_tags do
   = display_meta_tags(topic_meta_tags(@topic))
 - content_for :tag_ranking do
-  = render "application/common/tag_ranking", title: "恋愛の人気タグ", tags: @tag_ranking
+  = render "application/common/tag_ranking", tags: @tag_ranking
 - content_for :javascript do
   = javascript_pack_tag "comment"
 - breadcrumb :thread, @topic
@@ -55,7 +55,16 @@
 
   = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
 
-  .c-container--sm.text--s-lg.text--b
+  - if @topic.tags.present?
+    .c-container--sm.c-heading--section.text--s-lg.text--b
+      | 関連キーワード
+    ul.c-tags
+      - @topic.tags.each do |tag|
+        li.c-tag
+          i.fa.fa-tag.c-icon-pink
+          span.c-tag--name = link_to tag.name, tag_path(tag.name)
+
+  .c-container--sm.c-heading--section.text--s-lg.text--b
     | コメントする
   .c-container
     form-error :count="comment.errors.count" :messages="comment.errors.messages"

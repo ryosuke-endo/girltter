@@ -15,7 +15,6 @@ class CategoriesController < ApplicationController
   end
 
   def set_tag_ranking
-    ranking_ids = Tagging.ranking_ids("Love", 20)
-    @tag_ranking = ActsAsTaggableOn::Tag.find(ranking_ids)
+    @tag_ranking = ActsAsTaggableOn::Tag.most_used
   end
 end
