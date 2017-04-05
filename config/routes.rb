@@ -23,5 +23,5 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: :show, path: 'category'
-  resources :tags, only: :show
+  get 'tags/:name' => 'tags#index', as: :tags
 end

@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-  layout 'category'
   before_action :set_category
   before_action :set_tag_ranking
 

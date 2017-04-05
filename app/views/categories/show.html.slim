@@ -1,3 +1,5 @@
+- content_for :description do
+  = render "description", category: @category
 - content_for :meta_tags do
   = display_meta_tags(category_meta_tags(@category))
 - content_for :tag_ranking do

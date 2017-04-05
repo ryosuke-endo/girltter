@@ -7,4 +7,4 @@
     - tags.each do |tag|
       li.c-tag
         i.fa.fa-tag.c-icon-pink
-        span.c-tag--name = link_to tag.name, tag_path(tag)
+        span.c-tag--name = link_to tag.name, tags_path(tag.name)

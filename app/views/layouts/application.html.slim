@@ -1,24 +1,21 @@
 doctype html
 html
   head
-    title
-      = t('site_title')
-    meta name="robots" content="noindex, nofollow"
+    = yield :meta_tags
     = stylesheet_link_tag    'pc/application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = render "application/google_analytics"
   body
     = render "application/common/header"
-    .u-bg-lll-gray.c-border--bottom-1
-      .l__breadcrumbs
-        = render "breadcrumbs"
+    = yield :eyecatch
+    = yield :breadcrumbs
+    = yield :description
     .l__content.c-flex.c-flex__jc-sb
       .l__l-side
         = render "application/column/left"
       .l__main
         = yield
       .l__r-side
-        = yield :tag_ranking
     = render "application/common/footer"
     = yield :javascript

@@ -1,6 +1,4 @@
 class TopController < ApplicationController
-  layout 'top'
-
   before_action :set_topics
   before_action :set_tag_ranking
 
