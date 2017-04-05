@@ -17,5 +17,10 @@ html
       .l__main
         = yield
       .l__r-side
+        - if controller_path == "categories" && params[:action] == "show"
+          .c-container.text-center
+            = link_to "トピックを投稿する", new_topic_path(category_id: params[:id]),
+              class: "c-btn c-btn--pink c-btn--w-100p c-btn--h-large"
+        = yield :tag_ranking
     = render "application/common/footer"
     = yield :javascript
