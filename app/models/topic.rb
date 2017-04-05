@@ -1,4 +1,5 @@
 class Topic < ActiveRecord::Base
+  acts_as_taggable
   has_attached_file :thumbnail,
     styles: { normal: '500x500>',
               thumbnail: '140x140>' }
@@ -11,6 +12,8 @@ class Topic < ActiveRecord::Base
   belongs_to :category
 
   before_create :process_body
+
+  after_create :add_tags
 
   validates :title, presence: true
   validates :body, presence: true
@@ -25,6 +28,21 @@ class Topic < ActiveRecord::Base
 
   def thumbnails_first
     thumbnails_urls.first
+  end
+
+  def add_tags
+    tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
+    tag_list.each do |tag|
+      if title.include?(tag)
+        self.tag_list << tag
+      end
+    end
+
+    tag_list.each do |tag|
+      if body.include?(tag)
+        self.tag_list << tag
+      end
+    end
   end
 
   private

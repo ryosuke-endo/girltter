@@ -1,8 +1,24 @@
 module MetaTagsHelper
   def category_meta_tags(category)
-    title = [category.name, t('site_title')]
+    title = ["「#{category.name}」に関するトピック", t('site_title')]
     description = category.description
     keywords = [category.name]
+
+    set_meta_tags title: title,
+                  description: description,
+                  keywords: keywords
+  end
+
+  def tags_meta_tags(tag)
+    name = tag.name
+    title = ["「#{name}」に関するトピック", t('site_title')]
+    description =
+    <<~"EOS"
+    「#{name}」に関するトピックです。
+    女性目線の本音で語られている「#{name}」の話題です。
+    「#{name}」のおしゃべりに参加しよう！
+    EOS
+    keywords = [name]
 
     set_meta_tags title: title,
                   description: description,

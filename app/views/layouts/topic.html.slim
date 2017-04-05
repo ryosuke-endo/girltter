@@ -14,7 +14,7 @@ html
       .l__topic_main.c-border.c-border-r-10
         = yield
       .l__r-side
-        = render "application/column/right"
+        = yield :tag_ranking
     = render "application/common/footer"
     .js-modal-backdrop
     = yield :javascript

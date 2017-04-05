@@ -1,26 +1,13 @@
 class TagsController < ApplicationController
-  before_action :set_tag
+  before_action :set_tag_ranking
 
-  def show
-    @threads = Kaminari.paginate_array(threads).page(params[:page])
+  def index
+    @tag = ActsAsTaggableOn::Tag.find_by(name: params[:name])
+    topics = Topic.tagged_with(@tag.name)
+    @topics = Kaminari.paginate_array(topics).page(params[:page])
   end
 
-  private
-
-  def set_tag
-    @tag = ActsAsTaggableOn::Tag.find(params[:id])
-  end
-
-  def threads
-    threads = []
-    tags_type = Tagging.where(tag_id: @tag.id)
-                       .pluck(:taggable_type).uniq
-    tags_type.each do |type|
-      case type
-      when 'Love'
-        threads << Love.tagged_with(@tag.name)
-      end
-    end
-    threads.flatten!
+  def set_tag_ranking
+    @tag_ranking = ActsAsTaggableOn::Tag.most_used
   end
 end

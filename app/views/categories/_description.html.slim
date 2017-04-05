@@ -1,6 +1,8 @@
-.c-flex
-  .p-category__image
-    = image_tag(category.image.url(:medium))
-  .p-category__description
-    h1 = @category.name
-    .c-heading--lead = @category.description
+.c-container.u-bg-lll-gray.c-border--bottom-1.c-border--top-1
+  .l__category__description
+    .c-flex
+      .p-category__image
+        = image_tag(category.image.url(:medium))
+      .p-category__description
+        h1 = @category.name
+        .c-heading--lead = @category.description
