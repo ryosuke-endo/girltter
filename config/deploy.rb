@@ -34,7 +34,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # nvm
 set :nvm_type, :user # or :system, depends on your nvm setup
-set :nvm_node, 'v7.7.4'
+set :nvm_node, 'v7.8.0'
 set :nvm_map_bins, %w{node npm yarn}
 
 # yarn
