@@ -5,6 +5,8 @@
 - content_for :tag_ranking do
   = render "application/common/tag_ranking", tags: @tag_ranking
 - breadcrumb :category, @category
+- content_for :breadcrumbs do
+  = render "breadcrumbs"
 
 ul.c-list
   = render partial: "application/common/topics", collection: @topics, as: :topic

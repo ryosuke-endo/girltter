@@ -3,7 +3,9 @@ class CategoriesController < ApplicationController
   before_action :set_tag_ranking
 
   def show
-    @topics = @category.topics
+    @topics = @category.topics.
+      order(created_at: :desc).
+      page(params[:page])
   end
 
   private
