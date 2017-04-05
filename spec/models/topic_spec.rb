@@ -2,6 +2,36 @@ require 'rails_helper'
 require 'webmock/rspec'
 
 RSpec.describe Topic, type: :model do
+  describe 'add_tags' do
+    let!(:tag) { create(:tag) }
+    let(:topic) { build(:topic) }
+
+    context 'タイトルにtag名が含んでいる場合' do
+      it 'タグを増やす' do
+        topic.title = 'ママ友トラブル'
+        topic.save
+        expect(topic.tag_list).to eq [tag.name]
+      end
+    end
+
+    context '本文にtag名が含んでいる場合' do
+      it 'タグを増やす' do
+        topic.body = 'ママ友トラブル'
+        topic.save
+        expect(topic.tag_list).to eq [tag.name]
+      end
+    end
+
+    context 'タイトル・本文に同一のタグが含んでいる場合' do
+      it '一つのタグしか増やさない' do
+        topic.title = 'ママ友トラブル'
+        topic.body = 'ママ友トラブル'
+        topic.save
+        expect(topic.tag_list).to eq [tag.name]
+      end
+    end
+  end
+
   describe 'thumbnails_first' do
     let(:topic) { build(:topic) }
 
