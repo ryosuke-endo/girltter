@@ -22,7 +22,7 @@ ja:
       topic:
         body: 本文
         name: 名前
-        thumbnail: 画像
+        image: 画像
         title: タイトル
 
   date:

@@ -78,6 +78,6 @@ class TopicsController < ApplicationController
                                   :body,
                                   :category_id,
                                   :name,
-                                  :thumbnail)
+                                  :image)
   end
 end

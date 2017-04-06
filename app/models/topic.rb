@@ -1,6 +1,6 @@
 class Topic < ActiveRecord::Base
   acts_as_taggable
-  has_attached_file :thumbnail,
+  has_attached_file :image,
     styles: { normal: '500x500>',
               thumbnail: '140x140>' }
 
@@ -18,7 +18,7 @@ class Topic < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
   validates :name, presence: true
-  validates_attachment :thumbnail,
+  validates_attachment :image,
     content_type: { content_type: ['image/jpg',
                                    'image/jpeg',
                                    'image/png',
