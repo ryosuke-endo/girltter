@@ -10,11 +10,11 @@
       form-error :count="topic.errors.count" :messages="topic.errors.messages"
       .c-flex
         .c-grid__thumb--form.c-container
-          div v-if="!topic.thumbnail"
+          div v-if="!topic.image"
             = image_tag('no_image.png')
           template v-else=""
-            img :src="topic.thumbnail"
-          file-upload v-model="topic.thumbnail"
+            img :src="topic.image"
+          file-upload v-model="topic.image"
         .c-form
           .c-container
             select class="c-form__select" @change="selectCategoryId"

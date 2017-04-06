@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328150920) do
+ActiveRecord::Schema.define(version: 20170406133611) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 20170328150920) do
 
   create_table "taggings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.integer  "tagger_id"
+    t.integer  "taggable_id"
     t.string   "tagger_type"
+    t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -92,16 +92,16 @@ ActiveRecord::Schema.define(version: 20170328150920) do
   end
 
   create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.string   "title",                                null: false
-    t.text     "body",                   limit: 65535, null: false
-    t.string   "name",                                 null: false
-    t.integer  "category_id",                          null: false
-    t.datetime "thumbnail_updated_at"
-    t.integer  "thumbnail_file_size"
-    t.string   "thumbnail_content_type"
-    t.string   "thumbnail_file_name"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.string   "title",                            null: false
+    t.text     "body",               limit: 65535, null: false
+    t.string   "name",                             null: false
+    t.integer  "category_id",                      null: false
+    t.datetime "image_updated_at"
+    t.integer  "image_file_size"
+    t.string   "image_content_type"
+    t.string   "image_file_name"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["category_id"], name: "index_topics_on_category_id", using: :btree
   end
 

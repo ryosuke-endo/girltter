@@ -21,7 +21,7 @@ $(function() {
           body: '',
           category_id: '',
           name: '匿子さん',
-          thumbnail: '',
+          image: '',
           errors: {
             count: 0,
             keys: [],

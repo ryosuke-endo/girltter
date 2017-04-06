@@ -10,8 +10,8 @@
   .c-container
     .c-flex.p-topic--title__border
       .c-flex--column
-        - if @topic.thumbnail?
-          = image_tag(@topic.thumbnail.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
+        - if @topic.image?
+          = image_tag(@topic.image.url(:thumbnail), class: "p-topic__thumbnail c-border-r-10")
         - elsif @topic.thumbnails_first
           = image_tag(@topic.thumbnails_first, class: "p-topic__thumbnail c-border-r-10")
         -else
@@ -31,10 +31,10 @@
             .text--b.c-margin-reset.text--c
               = @topic.category.name
 
-  - if @topic.thumbnail?
+  - if @topic.image?
     .c-container
       .p-topic__image
-        = image_tag(@topic.thumbnail.url(:normal))
+        = image_tag(@topic.image.url(:normal))
 
   .c-container--sm
     .c-flex
