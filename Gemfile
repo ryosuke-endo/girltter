@@ -51,7 +51,7 @@ gem 'font-awesome-rails'
 # javascript
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'webpacker', github: 'rails/webpacker', branch: 'master'
+gem 'webpacker'
 
 gem 'uglifier', '>= 1.3.0'
 
@@ -74,10 +74,12 @@ gem 'meta-tags'
 # error mail
 gem 'exception_notification'
 
+# device sort
+gem 'jpmobile'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
-
   gem 'faker'
 
   # test coverage
