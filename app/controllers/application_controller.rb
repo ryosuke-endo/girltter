@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def not_authenticated
-    redirect_to login_path, alert: 'ログインしてください'
-  end
-
   def set_identity_cookie
     return if cookies['_cadr'].present?
     hash_ip = Digest::MD5.hexdigest(request.remote_ip)
