@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Jpmobile::ViewSelector
   before_action :set_identity_cookie
 
   protect_from_forgery with: :exception
