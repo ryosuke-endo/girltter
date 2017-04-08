@@ -51,7 +51,7 @@ gem 'font-awesome-rails'
 # javascript
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
-gem 'webpacker'
+gem 'webpacker', github: 'rails/webpacker', branch: 'master'
 
 gem 'uglifier', '>= 1.3.0'
 
