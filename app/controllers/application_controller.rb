@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def pc?
+    !request.smart_phone?
+  end
+
   def set_identity_cookie
     return if cookies['_cadr'].present?
     hash_ip = Digest::MD5.hexdigest(request.remote_ip)

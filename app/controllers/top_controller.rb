@@ -1,6 +1,6 @@
 class TopController < ApplicationController
   before_action :set_topics
-  before_action :set_tag_ranking
+  before_action :set_tag_ranking, if: :pc?
 
   def index
   end
