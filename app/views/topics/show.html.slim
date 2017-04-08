@@ -53,7 +53,7 @@
   .p-topic-icon.text--s-x-lg
     reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{@topic.id}" type="#{@topic.class.name}" ref="reaction"
 
-  = render partial: "topics/comments", collection: @topic.comments.includes(:icons), as: :comment
+  = render partial: "comments", collection: @topic.comments.includes(:icons), as: :comment
 
   - if @topic.tags.present?
     .c-container--sm.c-heading--section.text--s-lg.text--b
