@@ -1,0 +1,10 @@
+- content_for :meta_tags do
+  = display_meta_tags(category_meta_tags(@category))
+- breadcrumb :category, @category
+- content_for :breadcrumbs do
+  = render "application/s/breadcrumbs"
+
+ul.c-list
+  = render partial: "application/s/common/topics", collection: @topics, as: :topic
+
+= paginate @topics
