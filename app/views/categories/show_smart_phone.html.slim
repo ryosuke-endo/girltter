@@ -4,6 +4,10 @@
 - content_for :breadcrumbs do
   = render "application/s/breadcrumbs"
 
+.text-center.c-padding-l-10.c-padding-r-10
+  = link_to "トピックを投稿する", new_topic_path(category_id: params[:id]),
+    class: "c-btn c-btn--pink u-w-100p"
+
 ul.c-list
   = render partial: "application/s/common/topics", collection: @topics, as: :topic
 
