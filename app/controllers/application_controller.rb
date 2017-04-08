@@ -1,13 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Jpmobile::ViewSelector
   before_action :set_identity_cookie
 
   protect_from_forgery with: :exception
 
   private
-
-  def not_authenticated
-    redirect_to login_path, alert: 'ログインしてください'
-  end
 
   def set_identity_cookie
     return if cookies['_cadr'].present?

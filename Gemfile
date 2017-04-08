@@ -74,10 +74,12 @@ gem 'meta-tags'
 # error mail
 gem 'exception_notification'
 
+# device sort
+gem 'jpmobile'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
-
   gem 'faker'
 
   # test coverage

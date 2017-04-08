@@ -5,7 +5,7 @@ machine:
   node:
     version: 7.4.0
   environment:
-    YARN_VERSION: 0.18.1
+    YARN_VERSION: 0.21.3
     PATH: "${PATH}:${HOME}/.yarn/bin:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
 dependencies:
@@ -18,17 +18,12 @@ dependencies:
         echo "The correct version of Yarn is already installed."
       fi
     - mv config/secrets.ci.yml config/secrets.yml
-    - yarn --version
     - bundle -j4 --path=vendor/bundle
-    - sh ./script/circle_ci/mysql5.7.17.sh
 
   cache_directories:
     - ~/.yarn
     - ~/.cache/yarn
     - "vendor/bundle"
-
-  override:
-    - yarn install
 
 test:
   post:

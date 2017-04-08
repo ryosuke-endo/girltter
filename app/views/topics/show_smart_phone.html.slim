@@ -1,0 +1,28 @@
+- content_for :meta_tags do
+  = display_meta_tags(topic_meta_tags(@topic))
+
+.c-padding-10
+  .c-flex.c-flex__jc-sb.c-container--sm
+    div
+      = @topic.updated_at.to_s(:YmdnHM)
+    div
+      = @topic.comments.count
+      | コメント
+  .c-container--sm
+    h1.text--s-x-lg.text--b
+      = @topic.title
+
+  .c-container--sm
+    .c-flex
+      div
+        | 1:
+      .c-margin-l-10
+        = @topic.name
+      .p-topic-date
+        = @topic.created_at.to_s(:YmdnHM)
+
+  .c-container.p-topic-font
+    .c-container.text--b
+      = @topic.body.html_safe
+
+  = render partial: "comments", collection: @topic.comments.includes(:icons), as: :comment
