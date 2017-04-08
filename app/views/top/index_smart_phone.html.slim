@@ -1,0 +1,17 @@
+ul.c-list
+  - @topics.each do |topic|
+    = link_to topic, class: 'c-link__block' do
+      li.c-list__item.c-flex.c-border--bottom-1
+        .c-grid__thumb.c-border__img-r-10
+          - if topic.image?
+            = image_tag topic.image.url(:thumbnail)
+          - elsif topic.thumbnails_first
+            = image_tag topic.thumbnails_first
+          - else
+            = image_tag('no_image.png')
+        .c-grid__content.c-margin-l-10.c-flex--column.c-flex__jc-sb
+          .c-grid__title.text--b
+            = topic.title
+          .c-grid__info
+            = topic.comments.count
+            | コメント
