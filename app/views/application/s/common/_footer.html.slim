@@ -1,0 +1,5 @@
+.u-bg-pink
+  footer.l__footer
+    ul.c-flex.c-flex__wrap
+      - Category.all.each do |category|
+        li.u-w-50p.c-footer__list = link_to category.name, '', class: "c-link--c-w text--b"

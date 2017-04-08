@@ -1,3 +1,5 @@
+- content_for :meta_tags do
+  = display_meta_tags(top_meta_tags)
 ul.c-list
   - @topics.each do |topic|
     = link_to topic, class: "c-link__block" do
@@ -15,9 +17,3 @@ ul.c-list
           .c-grid__info
             = topic.comments.count
             | コメント
-
-.u-bg-pink
-  footer.l__footer
-    ul.c-flex.c-flex__wrap
-      - Category.all.each do |category|
-        li.u-w-50p.c-footer__list = link_to category.name, '', class: "c-link--c-w text--b"
