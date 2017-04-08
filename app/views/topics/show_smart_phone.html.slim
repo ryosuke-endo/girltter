@@ -24,3 +24,5 @@
   .c-container.p-topic-font
     .c-container.text--b
       = @topic.body.html_safe
+
+  = render partial: "comments", collection: @topic.comments.includes(:icons), as: :comment
