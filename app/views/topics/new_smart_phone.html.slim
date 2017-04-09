@@ -26,6 +26,7 @@
           input type="text" v-model="topic.title" class="c-form__input u-w-100p" placeholder="タイトルを入力してください"
         .c-container--sm :class="isError('body')"
           textarea v-model="topic.body" class="c-form__text_area c-form--h-200 u-w-100p" placeholder="本文を入力してください"
-          .c-flex.c-flex__jc-sb
+          .c-flex
             file-upload v-model="topic.image"
+            icon v-on:show="openModal"
         input type="submit" class="c-btn c-btn--pink u-w-100p" data-disable-with="処理中..." @click="submit"
