@@ -30,3 +30,4 @@
             file-upload v-model="topic.image"
             icon v-on:show="openModal"
         input type="submit" class="c-btn c-btn--pink u-w-100p" data-disable-with="処理中..." @click="submit"
+      modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"

@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue'
+import iconMixins from '../../../mixins/icon'
 
 export default Vue.extend({
+  mixins: [iconMixins],
   methods: {
     showModal() {
       this.$emit('show')

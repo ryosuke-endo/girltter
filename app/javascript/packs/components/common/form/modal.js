@@ -42,7 +42,7 @@ export default Vue.extend({
               </i>
             </li>
           </ul>
-          <div class="c-flex--column">
+          <div class="c-flex--column u-w-100p">
             <div class="p-topic-modal__contents c-flex--column c-flex__ai-c c-flex--jc-c">
               <p>画像/記事引用URLを貼り付けてください</p>
                 <input type="text" class="c-form__input c-form-w-100" v-on:input="updateUrl">
