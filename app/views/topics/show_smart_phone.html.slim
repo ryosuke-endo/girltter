@@ -1,7 +1,10 @@
 - content_for :meta_tags do
   = display_meta_tags(topic_meta_tags(@topic))
+- breadcrumb :thread, @topic
+- content_for :breadcrumbs do
+  = render "application/s/breadcrumbs"
 
-.c-padding-10
+.p-topic-container
   .c-flex.c-flex__jc-sb.c-container--sm
     div
       = @topic.updated_at.to_s(:YmdnHM)
@@ -12,11 +15,11 @@
     h1.text--s-x-lg.text--b
       = @topic.title
 
-  .c-container--sm
+  .c-container--sm.text__c--d-gray.text--s-sm
     .c-flex
       div
         | 1:
-      .c-margin-l-10
+      div
         = @topic.name
       .p-topic-date
         = @topic.created_at.to_s(:YmdnHM)

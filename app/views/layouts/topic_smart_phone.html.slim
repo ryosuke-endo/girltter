@@ -9,6 +9,7 @@ html
     = render "application/google_analytics"
   body
     = render "application/s/common/header"
+    = yield :breadcrumbs
     = yield
     = yield :javascript
     = render "application/s/common/footer"

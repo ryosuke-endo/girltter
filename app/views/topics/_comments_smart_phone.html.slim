@@ -1,10 +1,10 @@
 - index = comment_counter + 2
-.c-container--sm
+.c-container--sm.text__c--d-gray.text--s-sm
   .c-flex
     div
       = index
       |:
-    .c-margin-l-10
+    div
       = comment.name
     .p-topic-date
       = comment.created_at.to_s(:YmdnHM)
