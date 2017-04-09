@@ -1,9 +1,9 @@
 - content_for :javascript do
-  = javascript_pack_tag 'topic'
+  = javascript_pack_tag 'sp/topic'
 
 .c-padding-10
   .c-container--sm
-    h1.text--s-lg.text--b
+    h1.text--s-md.text--b
       | トピックを投稿する
   .c-container
     #topic-form-vue
@@ -26,5 +26,6 @@
         .c-container--sm :class="isError('body')"
           textarea v-model="topic.body" class="c-form__text_area c-form--h-200 u-w-100p" placeholder="本文を入力してください"
           .c-flex.c-flex__jc-sb
+            file-upload v-model="topic.image"
             div
               input type="submit" class="c-btn c-btn--pink c-btn--md" data-disable-with="処理中..." @click="submit"
