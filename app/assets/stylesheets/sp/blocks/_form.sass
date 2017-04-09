@@ -1,0 +1,42 @@
+.c-form
+  width: 100%
+
+.c-form__select
+  appearance: none
+  border: 1px solid $b-gray
+  cursor: pointer
+  display: inherit
+  padding: 7px 8px
+
+.c-form__input
+  border: 1px solid $b-gray
+  border-radius: 4px
+  padding: 7px 8px
+
+.c-form__text_area
+  border: 1px solid $b-gray
+  border-radius: 4px
+  padding: 7px 8px
+
+@for $height from 1 through 5
+  .c-form--h-#{$height * 100}
+    height: #{$height * 100}px
+
+.c-form__file
+  border-radius: 4px
+  height: 40px
+  line-height: 40px
+  margin: 0
+  position: relative
+  width: 40px
+
+.c-form__file__upload
+  cursor: pointer
+  filter: alpha(opacity=0)
+  margin: 0
+  opacity: 0
+  padding: 0
+  overflow: hidden
+  position: absolute
+  right: 0
+  top: 0

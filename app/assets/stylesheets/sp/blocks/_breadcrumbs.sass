@@ -1,0 +1,32 @@
+.c-breadcrumbs
+  display: flex
+  padding: 0 10px
+  margin: 0
+  li
+    position: relative
+    span
+      display: block
+      font-weight: bold
+      padding: 6px 0
+    a
+      color: $b-d-gray
+      display: block
+      &:after
+        content: ""
+        color: $b-d-gray
+        display: inline-block
+        font-size: 1.1rem
+        position: absolute
+        top: 10px
+        right: 8px
+        bottom: 0
+        width: 10px
+        height: 10px
+        border: 1px solid transparent
+        border-right-color: $b-gray
+        border-bottom-color: $b-gray
+        transform: rotate(-45deg)
+      &:first-child
+        padding: 6px 20px 6px 0
+    &:last-child:after
+      content: none

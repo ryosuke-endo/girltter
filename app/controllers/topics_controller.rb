@@ -1,11 +1,13 @@
 class TopicsController < ApplicationController
   include Cookie
-  layout 'one_column'
   before_action :set_category, only: :new
   before_action :set_tag_ranking, only: :show
   before_action :set_topic, only: :show
 
   def new
+    if pc?
+      render layout: 'one_column'
+    end
   end
 
   def create
@@ -18,6 +20,9 @@ class TopicsController < ApplicationController
   end
 
   def complete
+    if pc?
+      render layout: 'one_column'
+    end
   end
 
   def show
