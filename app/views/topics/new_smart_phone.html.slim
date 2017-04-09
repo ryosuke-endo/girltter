@@ -5,8 +5,9 @@
   .c-container--sm
     h1.text--s-md.text--b
       | トピックを投稿する
-  .c-container
+  .c-container--sm
     #topic-form-vue
+      form-error :count="topic.errors.count" :messages="topic.errors.messages"
       .c-flex
         .c-grid__thumb.c-container--sm
           div v-if="!topic.image"
