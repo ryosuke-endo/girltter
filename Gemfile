@@ -70,6 +70,7 @@ gem 'acts-as-taggable-on'
 
 # SEO
 gem 'meta-tags'
+gem 'sitemap_generator'
 
 # error mail
 gem 'exception_notification'

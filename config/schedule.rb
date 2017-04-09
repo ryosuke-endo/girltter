@@ -7,6 +7,10 @@ set :output, 'var/log/cron/cron_log.log'
 
 set :environment, :production
 
+every 1.day, at: '5:00 am' do
+  rake '-s sitemap:refresh'
+end
+
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
