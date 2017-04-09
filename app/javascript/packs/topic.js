@@ -31,18 +31,14 @@ $(function() {
       }
     },
 
-    created()
-    {
+    created() {
       self = this
       axios.get('/api/categories.json')
       .then(function(res) {
         self.categories = res.data
+        self.getCategoryId()
       })
     },
-    mounted() {
-      this.getCategoryId()
-    },
-
     components: {
       'form-error': formError,
       'file-upload': fileUpload,
@@ -54,12 +50,6 @@ $(function() {
       getCategoryId() {
         const id = parseInt(location.href.match(/\d$/).join(''))
         return this.topic.category_id = id
-      },
-      selectCategoryId(e) {
-        this.topic.category_id = e.target.value
-      },
-      isSelected(id) {
-        return this.topic.category_id === id
       },
       addUrl(url) {
         const text = this.topic.body
