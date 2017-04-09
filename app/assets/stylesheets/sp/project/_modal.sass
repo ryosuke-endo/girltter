@@ -1,0 +1,78 @@
+// topic
+
+#topic-modal
+  position: fixed
+  z-index: 1
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0,0,0,0.4)
+
+.topic-modal__content
+  $modal-width: 95%
+  background: $b-white
+  box-shadow: rgba(0,0,0,0.25) 0px 1px 3px 1px
+  position: fixed
+  z-index: 2
+  width: $modal-width
+  top: 25%
+  left: 50%
+  margin-left: -($modal-width / 2)
+
+.topic-modal-fade-enter-active, .topic-modal-fade-leave-active
+  transition: opacity .5s
+
+.topic-modal-fade-enter, .topic-modal-fade-leave-to
+  opacity: 0
+
+.p-topic-modal__head
+  background: $b-l-gray
+  border-top: 1px solid $b-gray
+  border-bottom: 1px solid $b-gray
+  padding: 10px 20px
+
+.p-topic-modal__nav
+  border-right: 1px solid $b-gray
+  margin: 0
+  .is-active
+    border-top: 1px solid $b-gray
+    border-bottom: 1px solid $b-gray
+    background: $b-l-gray
+
+.p-topic-modal__nav
+  li.is-active
+    &:first-child
+      border-top: 0
+      border-bottom: 1px solid $b-gray
+      background: $b-l-gray
+
+.p-topic-modal__contents
+  height: 250px
+  padding: 0 20px
+
+.p-topic-modal__icon
+  cursor: pointer
+  padding: 10px
+
+.p-topic-modal__icon__close
+  cursor: pointer
+  float: right
+  line-height: 20px
+
+.p-topic-modal__form
+  border-top: 1px solid $b-gray
+  padding: 10px
+
+#p-topic-modal-bg
+  display: none
+  width: 100%
+  height: 100%
+  background-color: rgba(0,0,0,0.5)
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 1
+
+.p-topic-modal-is-overflow-hidden
+  overflow: hidden
