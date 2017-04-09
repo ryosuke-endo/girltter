@@ -32,13 +32,10 @@ export default Vue.extend({
     }
   },
   template: `<div class="c-btn__container">
-               <div class="c-form__file c-border">
-                 <i class="fa fa-camera c-icon-d-gray c-margin-r-10 text--s-lg">
+               <div class="c-form__file c-border text--c">
+                 <i class="fa fa-camera c-icon-d-gray text--s-lg">
                  </i>
-                 <label>
-                   画像を選択する
-                   <input accept="image/jpg,image/jpeg,image/png,image/gif" type="file" class="c-form__file__upload" @change="onFileChange">
-                 </label>
+                 <input accept="image/jpg,image/jpeg,image/png,image/gif" type="file" class="c-form__file__upload" @change="onFileChange">
                </div>
              </div>`
 })
