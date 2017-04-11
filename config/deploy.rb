@@ -43,7 +43,7 @@ set :yarn_flags, "--prefer-offline --production --no-progress"
 set :yarn_env_variables, fetch(:yarn_env_variables, {})
 
 # whenever cron update
-set :whenever_command, "bundle exec whenever"
+set :whenever_identifier
 
 # ssh
 set :ssh_options, {
