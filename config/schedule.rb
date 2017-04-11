@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-set :output, 'var/log/cron/cron_log.log'
+set :output, 'var/log/crontab.log'
 
 set :environment, :production
 
