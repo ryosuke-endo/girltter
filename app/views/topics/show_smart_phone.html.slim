@@ -37,24 +37,25 @@
 
     .c-container--sm.c-heading--section.text--s-lg.text--b
       | コメントを投稿する
-    .c-container
+    form-error :count="comment.errors.count" :messages="comment.errors.messages"
+    .c-container--sm
       .c-flex--column.c-container--sm
         label
           | 名前
-        input type="text" v-model="comment.name" class="c-form__input c-form-w-50p" placeholder="名前を入力してください"
+        input type="text" v-model="comment.name" class="c-form__input u-w-100p" placeholder="名前を入力してください"
       .c-flex--column.c-container--sm
         label
-          | 本文
-        textarea v-model="comment.body" class="c-form__text_area c-form--h-200 c-form-w-100" placeholder="本文を入力してください" data-text-area=true
+          | コメント
+        textarea v-model="comment.body" class="c-form__text_area c-form--h-200 u-w-100p" placeholder="コメントを入力してください" data-text-area=true
       .c-flex
         file-upload v-model="comment.image"
         icon v-on:show="openModal"
-      .c-container--sm
-        div v-show="comment.image"
-          .c-container--sm
-            .p-comment-thumbnail.c-border.c-border-r-4
-              img :src="comment.image"
-              i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
+    .c-container--sm
+      div v-show="comment.image"
+        .c-container--sm
+          .c-grid__thumb.c-border-r-4
+            img :src="comment.image"
+            i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     .text--c
-      input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..." @click="submit"
+      input type="submit" class="c-btn c-btn--pink u-w-100p" data-disable-with="処理中..." @click="submit"
   modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"

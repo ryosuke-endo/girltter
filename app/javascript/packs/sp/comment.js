@@ -29,6 +29,9 @@ $(function() {
         }
       }
     },
+    created() {
+      this.getTopicId()
+    },
     components: {
       'form-error': formError,
       'file-upload': fileUpload,
