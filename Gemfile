@@ -78,6 +78,9 @@ gem 'exception_notification'
 # device sort
 gem 'jpmobile'
 
+# aws
+gem 'aws-sdk'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

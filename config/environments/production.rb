@@ -97,4 +97,16 @@ Rails.application.configure do
     sender_address: %{"notifier" <notifier@griltter.com>},
     exception_recipients: %w{girltterjp@gmail.com}
   }
+
+  # paperclip
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: Rails.application.secrets[:s3_host_name],
+    s3_region: Rails.application.secrets[:s3_region],
+    s3_credentials: {
+      bucket: Rails.application.secrets[:bucket_name],
+      access_key_id: Rails.application.secrets[:s3_access_key_id],
+      secret_access_key: Rails.application.secrets[:s3_secret_access_key]
+    }
+  }
 end
