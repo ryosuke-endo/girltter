@@ -18,18 +18,18 @@
             img :src="topic.image"
         .c-form.c-margin-l-10
           .c-container--sm
-            select class="c-form__select" v-model="topic.category_id"
+            select class="c-form__select text--s-slg" v-model="topic.category_id"
               option v-for="category in categories" :value="category.id"
                 = "{{category.name}}"
           .c-container--sm :class="isError('name')"
-            input type="text" v-model="topic.name" class="c-form__input u-w-100p" placeholder="名前を入力してください"
+            input type="text" v-model="topic.name" class="c-form__input u-w-100p text--s-slg" placeholder="名前を入力してください"
       .c-form
         .c-container--sm :class="isError('title')"
-          input type="text" v-model="topic.title" class="c-form__input u-w-100p" placeholder="タイトルを入力してください"
+          input type="text" v-model="topic.title" class="c-form__input u-w-100p text--s-slg" placeholder="タイトルを入力してください"
         .c-container--sm :class="isError('body')"
-          textarea v-model="topic.body" class="c-form__text_area c-form--h-200 u-w-100p" placeholder="本文を入力してください"
+          textarea v-model="topic.body" class="c-form__text_area c-form--h-200 u-w-100p text--s-slg" placeholder="本文を入力してください"
           .c-flex
             file-upload v-model="topic.image"
             icon v-on:show="openModal"
-        input type="submit" class="c-btn c-btn--pink u-w-100p" data-disable-with="処理中..." @click="submit"
+        input type="submit" class="c-btn c-btn--pink u-w-100p text--s-slg" data-disable-with="処理中..." @click="submit"
       modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"

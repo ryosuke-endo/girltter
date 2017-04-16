@@ -8,7 +8,6 @@
 
 #vue
   .p-topic__image
-    = image_tag('sample10.jpg')
   .p-topic-container
     .c-container--sm
       h1.text--s-x-lg.text--b
@@ -27,7 +26,7 @@
         div
           = @topic.name
         .p-topic-date
-          = @topic.created_at.to_s(:YmdnHM)
+          = @topic.updated_at.to_s(:YmdnHM)
 
     .c-container.p-topic-font
       .c-container.text--b
@@ -46,11 +45,11 @@
       .c-flex--column.c-container--sm
         label
           | 名前
-        input type="text" v-model="comment.name" class="c-form__input u-w-100p" placeholder="名前を入力してください"
+        input type="text" v-model="comment.name" class="c-form__input text--s-slg u-w-100p" placeholder="名前を入力してください"
       .c-flex--column.c-container--sm
         label
           | 本文
-        textarea v-model="comment.body" class="c-form__text_area c-form--h-200 u-w-100p" placeholder="本文を入力してください" data-text-area=true
+        textarea v-model="comment.body" class="c-form__text_area text--s-slg c-form--h-200 u-w-100p" placeholder="本文を入力してください" data-text-area=true
       .c-flex
         file-upload v-model="comment.image"
         icon v-on:show="openModal"
@@ -61,6 +60,6 @@
             img :src="comment.image"
             i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     .text--c
-      input type="submit" class="c-btn c-btn--pink u-w-100p" data-disable-with="処理中..." @click="submit"
+      input type="submit" class="c-btn c-btn--pink u-w-100p text--s-slg" data-disable-with="処理中..." @click="submit"
     modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
     reaction-error v-show="errorReaction.visiable"
