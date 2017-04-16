@@ -7,9 +7,12 @@
         = image_tag topic.thumbnails_first
       - else
         = image_tag("no_image.png")
-    .c-grid__content.c-margin-l-10.c-flex--column.c-flex__jc-sb
+    .c-grid__content.u-w-100p.c-margin-l-10.c-margin-r-10.c-flex--column.c-flex__jc-sb
       .c-grid__title.text--b
         = topic.title
-      .c-grid__info
-        = topic.comments.count
-        | コメント
+      .c-grid__info.c-flex.c-flex__jc-sb
+        div
+          = topic.comments.count
+          | コメント
+        div
+          = topic.updated_at.to_s(:Ymd)

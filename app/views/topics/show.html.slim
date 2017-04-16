@@ -23,7 +23,7 @@
       .c-flex--column.c-flex__jc-sb
         .c-flex.c-flex__jc-sb
           .text--s-sm.text__c--d-gray
-            = @topic.created_at.to_s(:Ymd)
+            = @topic.updated_at.to_s(:YmdnHM)
         h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
           = @topic.title
         .c-flex.c-flex__jc-sb
