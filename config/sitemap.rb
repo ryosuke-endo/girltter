@@ -1,5 +1,16 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://girltter.com"
+bucket_name = Rails.application.secrets.bucket_name
+host_name = Rails.application.secrets.s3_host_name
+region = Rails.application.secrets.s3_region
+aws_access_key_id = Rails.application.secrets.s3_access_key_id
+aws_secret_access_key = Rails.application.secrets.s3_secret_access_key
+
+SitemapGenerator::Sitemap.default_host = 'http://girltter.com'
+SitemapGenerator::Sitemap.sitemaps_host = "http://#{host_name}/#{bucket_name}"
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(bucket_name,
+                                                                        aws_region: region,
+                                                                        aws_access_key_id: aws_access_key_id,
+                                                                        aws_secret_access_key: aws_secret_access_key)
 
 SitemapGenerator::Sitemap.create do
   Topic.find_each do |topic|
