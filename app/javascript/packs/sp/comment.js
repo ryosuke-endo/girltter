@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue'
+import { mapState } from 'vuex/dist/vuex'
 import URI from 'urijs'
 import axios from 'axios/dist/axios'
+import store from '../store.js'
 
 import modalMixins from '../mixins/modal.js'
 
@@ -8,11 +10,15 @@ import formError from '../components/common/form/error.js'
 import fileUpload from '../components/common/sp/file_upload.js'
 import icon from '../components/common/sp/icon.js'
 import modal from '../components/common/form/modal.js'
+import reaction from '../components/sp/comment/reaction.js'
+
+import AnchorRes from '../anchor_res.js'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
 
 $(function() {
   const commentForm = Vue.extend({
+    store,
     mixins: [modalMixins],
     data() {
       return {
@@ -30,13 +36,17 @@ $(function() {
       }
     },
     created() {
+      this.$store.dispatch('fetchReaction').then(() =>
+        this.$store.dispatch('canVisiable')
+      )
       this.getTopicId()
     },
     components: {
-      'form-error': formError,
       'file-upload': fileUpload,
+      'form-error': formError,
       'icon': icon,
-      'modal': modal
+      'modal': modal,
+      'reaction': reaction,
     },
     methods: {
       getTopicId() {
@@ -90,4 +100,8 @@ $(function() {
   })
 
   const vueDom = new commentForm().$mount('#vue')
+
+  $('[data-anchor]').on('click', function(e) {
+    new AnchorRes(e).send()
+  })
 })

@@ -36,9 +36,9 @@ $(function() {
       }
     },
     components: {
+      'form-error': formError,
       'icon': icon,
       'modal': modal,
-      'form-error': formError,
       'reaction': reaction,
       'reaction-counter': reactionCounter,
       'reaction-error': reactionError
