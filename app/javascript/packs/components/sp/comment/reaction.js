@@ -51,7 +51,7 @@ export default Vue.extend({
     },
     showIconList() {
       const self = this
-      const width = $(window).width() - 15
+      const width = $(window).width() - 20
       $(".p-topic--icon--modal").css('width', width)
       $('body').addClass('js-menu-active')
       Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
