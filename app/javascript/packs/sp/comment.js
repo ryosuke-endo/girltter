@@ -11,6 +11,8 @@ import fileUpload from '../components/common/sp/file_upload.js'
 import icon from '../components/common/sp/icon.js'
 import modal from '../components/common/form/modal.js'
 import reaction from '../components/sp/comment/reaction.js'
+import reactionCounter from '../components/comment/reaction_counter.js'
+import reactionError from '../components/comment/reaction_error.js'
 
 import AnchorRes from '../anchor_res.js'
 
@@ -41,12 +43,18 @@ $(function() {
       )
       this.getTopicId()
     },
+    computed: mapState([
+      'visiable',
+      'errorReaction'
+    ]),
     components: {
       'file-upload': fileUpload,
       'form-error': formError,
       'icon': icon,
       'modal': modal,
       'reaction': reaction,
+      'reaction-counter': reactionCounter,
+      'reaction-error': reactionError
     },
     methods: {
       getTopicId() {
@@ -100,6 +108,15 @@ $(function() {
   })
 
   const vueDom = new commentForm().$mount('#vue')
+
+  $('.js-modal-backdrop').on('click', function() {
+    vueDom.$root.$children.forEach(function(val) {
+      if (val.$data.iconListActive === true) {
+        val.$data.iconListActive = false
+      }
+    })
+    $('body').removeClass('js-menu-active')
+  })
 
   $('[data-anchor]').on('click', function(e) {
     new AnchorRes(e).send()
