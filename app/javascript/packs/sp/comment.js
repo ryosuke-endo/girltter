@@ -103,6 +103,15 @@ $(function() {
 
   const vueDom = new commentForm().$mount('#vue')
 
+  $('.js-modal-backdrop').on('click', function() {
+    vueDom.$root.$children.forEach(function(val) {
+      if (val.$data.iconListActive === true) {
+        val.$data.iconListActive = false
+      }
+    })
+    $('body').removeClass('js-menu-active')
+  })
+
   $('[data-anchor]').on('click', function(e) {
     new AnchorRes(e).send()
   })

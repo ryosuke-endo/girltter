@@ -51,6 +51,8 @@ export default Vue.extend({
     },
     showIconList() {
       const self = this
+      const width = $(window).width() - 15
+      $(".p-topic--icon--modal").css('width', width)
       $('body').addClass('js-menu-active')
       Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
       .then(function() {
@@ -131,7 +133,7 @@ export default Vue.extend({
   template: `
   <div class="p-topic-icon text--s-x-lg">
     <ul class="c-flex c-flex__jc-end c-container">
-      <li class="p-topic-icon__item" @click="showIconList" @mouseenter="showReaction" @mouseleave="hiddenReaction">
+      <li class="p-topic-icon__item" @click="showIconList">
         <i class="fa fa-smile-o"></i>
       </li>
       <li class="p-topic--icon--modal__base" v-show="iconListActive">
