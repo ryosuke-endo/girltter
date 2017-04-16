@@ -11,6 +11,7 @@ import fileUpload from '../components/common/sp/file_upload.js'
 import icon from '../components/common/sp/icon.js'
 import modal from '../components/common/form/modal.js'
 import reaction from '../components/sp/comment/reaction.js'
+import reactionCounter from '../components/comment/reaction_counter.js'
 
 import AnchorRes from '../anchor_res.js'
 
@@ -47,6 +48,7 @@ $(function() {
       'icon': icon,
       'modal': modal,
       'reaction': reaction,
+      'reaction-counter': reactionCounter,
     },
     methods: {
       getTopicId() {
