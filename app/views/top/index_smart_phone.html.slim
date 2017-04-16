@@ -1,5 +1,5 @@
 - content_for :meta_tags do
-  = display_meta_tags(default_meta_tags)
+  = display_meta_tags(default_meta_tags({ reverse: true }))
 ul.c-list
   = render partial: "application/s/common/topics", collection: @topics, as: :topic
 
