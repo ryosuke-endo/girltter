@@ -15,3 +15,18 @@
 .p-topic__image
   img
     width: 100%
+
+.p-topic-icon__item
+  border: 1px solid $b-d-gray
+  border-collapse: collapse
+  cursor: pointer
+  padding: 0 10px
+  position: relative
+  &:first-child
+    border-radius: 8px 0 0 8px
+  &:last-child
+    border-left: none
+    border-radius: 0 8px 8px 0
+  &:hover
+    color: $b-pink
+    opacity: 0.8

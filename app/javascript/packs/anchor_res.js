@@ -32,9 +32,13 @@ export default class {
     const self = this.target
     $(self).after(res)
     $(self).addClass('is-disable')
-    $('#p-anchor').on('mouseleave', function() {
+    this.hiddenRes(self)
+  }
+
+  hiddenRes(target) {
+    $('#p-anchor').on('click mouseleave', function() {
       this.remove()
-      $(self).removeClass('is-disable')
+      $(target).removeClass('is-disable')
     })
   }
 }
