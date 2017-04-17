@@ -19,7 +19,10 @@
   .p-topic-container
     .c-flex.c-flex__jc-sb.c-container--sm
       div
-        = @topic.updated_at.to_s(:YmdnHM)
+        - if @topic.comments.present?
+          = @topic.comments.last.updated_at.to_s(:YmdnHM)
+        - else
+          = @topic.updated_at.to_s(:YmdnHM)
       div
         = @topic.comments.count
         | コメント
@@ -30,6 +33,8 @@
           | 1:
         div.c-margin-l-5.text__c--green.text--b
           = @topic.name
+        div.c-margin-l-5.text__c--d-gray
+          = @topic.created_at.to_s(:YmdnHM)
 
     .c-container.p-topic-font
       .c-container.text--b

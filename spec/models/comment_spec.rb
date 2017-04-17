@@ -17,14 +17,4 @@ RSpec.describe Comment, type: :model do
       end
     end
   end
-
-  describe 'topic_update_time' do
-    it '作成後にtopicの更新時間を更新する' do
-      topic = comment.topic
-      topic.updated_at = 1.day.ago
-      topic.save
-      comment.save
-      expect(topic.updated_at).to eq comment.updated_at
-    end
-  end
 end

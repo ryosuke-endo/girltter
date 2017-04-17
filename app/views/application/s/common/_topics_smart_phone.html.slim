@@ -15,4 +15,7 @@
           = topic.comments.count
           | コメント
         div.text__c--d-gray
-          = topic.updated_at.to_s(:Ymd)
+          - if topic.comments.present?
+            = topic.comments.last.updated_at.to_s(:Ymd)
+          - else
+            = topic.updated_at.to_s(:Ymd)

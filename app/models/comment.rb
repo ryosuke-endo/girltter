@@ -8,7 +8,6 @@ class Comment < ActiveRecord::Base
   has_many :icons, through: :reactions
 
   before_create :process_body
-  after_create :topic_update_time
 
   validates :body, presence: true
   validates :name, presence: true
@@ -25,10 +24,5 @@ class Comment < ActiveRecord::Base
   def process_body
     options = { nofollow: true }
     self.body = ContentsView.new(body).processing_display(options)
-  end
-
-  def topic_update_time
-    topic.updated_at = updated_at
-    topic.save
   end
 end
