@@ -1,12 +1,12 @@
 - index = comment_counter + 2
-.c-container--sm.text__c--d-gray.text--s-sm
+.c-container--sm
   .c-flex
     div
       = index
       |:
-    div
+    div.c-margin-l-5.text__c--green.text--b
       = comment.name
-    .p-topic-date
+    div.c-margin-l-5.text__c--d-gray
       = comment.created_at.to_s(:YmdnHM)
 
 .c-container.p-topic-font

@@ -75,7 +75,7 @@ topics_7:
     http://s3-ap-northeast-1.amazonaws.com/topicks/article_thumb/3297_original.jpg
 
 topics_8:
-  category_id: 5
+  category_id: 3
   title: 旦那、彼氏がアイドル好きだったら引きますか？
   name: 匿子
   body:
@@ -97,7 +97,7 @@ topics_9:
     外面がよい。
 
 topics_10:
-  category_id: 5
+  category_id: 3
   title: 「もしかしてこの人、私のこと好きなのかも」と思うとき
   name: 匿子
   body:
@@ -147,7 +147,7 @@ topics_15:
     インナーが毛玉だらけですが着心地がすごくいいもの捨てますか？
 
 topics_16:
-  category_id: 5
+  category_id: 3
   title: 旦那の家族から嫁として実際どう思われてると思いますか⁇
   name: 匿子
   body:

@@ -7,26 +7,34 @@
   = render "application/s/breadcrumbs"
 
 #vue
-  .p-topic__image
+  - if @topic.image?
+    .c-container--sm.p-topic__image
+      = image_tag(@topic.image.url(:normal))
+  - elsif @topic.thumbnails_first
+    .c-container--sm.p-topic__image
+      = image_tag(@topic.thumbnails_first)
+  .c-container--sm
+    h1.p-topic__title.text--s-x-lg.text--b.c-border--bottom-3.c-border__c-p
+      = @topic.title
   .p-topic-container
-    .c-container--sm
-      h1.text--s-x-lg.text--b
-        = @topic.title
     .c-flex.c-flex__jc-sb.c-container--sm
       div
-        = @topic.updated_at.to_s(:YmdnHM)
+        - if @topic.comments.present?
+          = @topic.comments.last.updated_at.to_s(:YmdnHM)
+        - else
+          = @topic.updated_at.to_s(:YmdnHM)
       div
         = @topic.comments.count
         | コメント
 
-    .c-container--sm.text__c--d-gray.text--s-sm
+    .c-container--sm
       .c-flex
         div
           | 1:
-        div
+        div.c-margin-l-5.text__c--green.text--b
           = @topic.name
-        .p-topic-date
-          = @topic.updated_at.to_s(:YmdnHM)
+        div.c-margin-l-5.text__c--d-gray
+          = @topic.created_at.to_s(:YmdnHM)
 
     .c-container.p-topic-font
       .c-container.text--b

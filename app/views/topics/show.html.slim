@@ -23,7 +23,10 @@
       .c-flex--column.c-flex__jc-sb
         .c-flex.c-flex__jc-sb
           .text--s-sm.text__c--d-gray
-            = @topic.updated_at.to_s(:YmdnHM)
+            - if @topic.comments.present?
+              = @topic.comments.last.updated_at.to_s(:YmdnHM)
+            - else
+              = @topic.updated_at.to_s(:YmdnHM)
         h1.p-topic--title.text--s-xx-lg.text--b.c-container--sm
           = @topic.title
         .c-flex.c-flex__jc-sb
