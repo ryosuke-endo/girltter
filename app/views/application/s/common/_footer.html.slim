@@ -1,5 +1,19 @@
-.u-bg-pink
-  footer.l__footer
-    ul.c-flex.c-flex__wrap
-      - Category.all.each do |category|
-        li.u-w-50p.c-footer__list = link_to category.name, category_path(category), class: "c-link--c-w text--b"
+footer.l__footer.u-bg-pink
+  ul.c-flex.c-flex__wrap.c-border--top-1.c-border--left-1.c-border__c-l-p
+    - Category.all.each do |category|
+      - case category.id
+      - when 1
+        li.u-w-50p.c-footer__list.c-padding-l-10
+          i.fa.fa-cutlery.text--s-lg.text__c--white
+          = link_to category.name, category_path(category),
+                                      class: "text--b text__c--white c-padding-l-10"
+      - when 2
+        li.u-w-50p.c-footer__list.c-padding-l-10
+          i.fa.fa-heart.text--s-lg.text__c--white
+          = link_to category.name, category_path(category),
+                                      class: "text--b text__c--white c-padding-l-10"
+      - when 3
+        li.u-w-50p.c-footer__list.c-padding-l-10
+          i.fa.fa-female.text--s-lg.text__c--white
+          = link_to category.name, category_path(category),
+                                      class: "text--b text__c--white c-padding-l-10"
