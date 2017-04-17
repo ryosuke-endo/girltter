@@ -11,8 +11,8 @@
       .c-grid__title.text--b
         = topic.title
       .c-grid__info.c-flex.c-flex__jc-sb
-        div
+        div.text__c--pink
           = topic.comments.count
           | コメント
-        div
+        div.text__c--d-gray
           = topic.updated_at.to_s(:Ymd)
