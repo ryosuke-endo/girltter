@@ -20,7 +20,8 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(bucket_n
 
 SitemapGenerator::Sitemap.create do
   Topic.find_each do |topic|
-    add topic_path(topic), lastmod: topic.updated_at
+    lastmod = topic.comments.present? ? topic.comments.last.updated_at : topic.updated_at
+    add topic_path(topic), lastmod: lastmod
   end
   ActsAsTaggableOn::Tag.where("taggings_count > 0").find_each do |tag|
     add tags_path(name: tag.name)
