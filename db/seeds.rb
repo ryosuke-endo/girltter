@@ -10,20 +10,6 @@ end
 import_fixture(:icon_categories)
 import_fixture(:tags)
 
-# URL変換されないため、直接createする
-puts 'import topics'
-topics = YAML.load(File.open("#{PATH}/topics.yml"))
-topics.each do |_, topic|
-  category_id = topic['category_id']
-  title = topic['title']
-  name = topic['name']
-  body = topic['body']
-  Topic.create(category_id: category_id,
-               title: title,
-               name: name,
-               body: body)
-end
-
 # categoryの画像を保存するために、importしない
 puts 'import category'
 categories = YAML.load(File.open("#{PATH}/categories.yml"))
@@ -37,6 +23,20 @@ categories.each do |_, category|
                   description: description,
                   position: position,
                   image: open(image_path))
+end
+
+# URL変換されないため、直接createする
+puts 'import topics'
+topics = YAML.load(File.open("#{PATH}/topics.yml"))
+topics.each do |_, topic|
+  category_id = topic['category_id']
+  title = topic['title']
+  name = topic['name']
+  body = topic['body']
+  Topic.create(category_id: category_id,
+               title: title,
+               name: name,
+               body: body)
 end
 
 puts 'import emoji'
