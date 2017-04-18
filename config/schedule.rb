@@ -7,6 +7,13 @@ set :output, '/var/log/crontab.log'
 
 set :environment, :production
 
+# Whenever config
+if defined? rbenv_root
+  job_type :rake,    %{cd :path && :environment_variable=:environment :rbenv_root/bin/rbenv exec bundle exec rake :task --silent :output}
+  job_type :runner,  %{cd :path && :rbenv_root/bin/rbenv exec bundle exec rails runner -e :environment ':task' :output}
+  job_type :script,  %{cd :path && :environment_variable=:environment :rbenv_root/bin/rbenv exec bundle exec script/:task :output}
+end
+
 every 1.day, at: '5:00 am' do
   rake '-s sitemap:refresh'
 end
