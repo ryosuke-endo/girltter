@@ -1,6 +1,6 @@
 - content_for :meta_tags do
   = display_meta_tags(topic_meta_tags(@topic))
-- breadcrumb :thread, @topic
+- breadcrumb :topic, @topic
 - content_for :javascript do
   = javascript_pack_tag 'sp/comment'
 - content_for :breadcrumbs do

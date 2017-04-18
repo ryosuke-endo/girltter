@@ -4,7 +4,7 @@
   = render "application/common/tag_ranking", tags: @tag_ranking
 - content_for :javascript do
   = javascript_pack_tag "comment"
-- breadcrumb :thread, @topic
+- breadcrumb :topic, @topic
 
 #vue
   .c-container
