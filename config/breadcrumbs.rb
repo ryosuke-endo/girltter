@@ -19,3 +19,8 @@ crumb :topic do |topic|
   link "#{category.name}", category_path(category.id)
   link "#{topic.title}"
 end
+
+crumb :terms do
+  link '利用規約'
+  parent :root
+end

@@ -1,0 +1,12 @@
+- content_for :meta_tags do
+  = display_meta_tags(default_meta_tags)
+- content_for :tag_ranking do
+  = render "application/common/tag_ranking", tags: @tag_ranking
+- breadcrumb :terms
+- content_for :breadcrumbs do
+  = render "breadcrumbs"
+
+.c-border.c-border-r-10
+  p
+    | test
+
