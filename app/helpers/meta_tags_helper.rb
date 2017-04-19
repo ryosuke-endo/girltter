@@ -1,8 +1,8 @@
 module MetaTagsHelper
   def default_meta_tags(opts = {})
-    title = [t("meta_tags.#{controller_name}.#{action_name}.title"), t('site_name')]
-    description = t("meta_tags.#{controller_name}.#{action_name}.description")
-    keywords = t("meta_tags.#{controller_name}.#{action_name}.keywords")
+    title = opts[:title] || [t("meta_tags.#{controller_name}.#{action_name}.title"), t('site_name')]
+    description = opts[:description] || t("meta_tags.#{controller_name}.#{action_name}.description")
+    keywords = opts[:keywords] || t("meta_tags.#{controller_name}.#{action_name}.keywords")
     icon = opts[:icon] || '/favicon.ico'
     type = opts[:type] || 'article'
     url = opts[:url] || request.original_url
@@ -35,13 +35,12 @@ module MetaTagsHelper
   end
 
   def category_meta_tags(category)
-    title = ["「#{category.name}」に関するトピック", t('site_name')]
-    description = category.description
-    keywords = [category.name]
-
-    set_meta_tags title: title,
-      description: description,
-      keywords: keywords
+    opts = {
+      title: ["「#{category.name}」に関するトピック", t('site_name')],
+      description: category.description,
+      keywords: [category.name]
+    }
+    default_meta_tags(opts)
   end
 
   def tags_meta_tags(tag)
@@ -55,16 +54,20 @@ module MetaTagsHelper
     EOS
     keywords = [name]
 
-    set_meta_tags title: title,
-                  description: description,
-                  keywords: keywords
+    opts = {
+      title: title,
+      description: description,
+      keywords: keywords
+    }
+    default_meta_tags(opts)
   end
 
   def topic_meta_tags(topic)
-    title = [topic.title, t('site_name')]
-    description = topic.body
+    opts = {
+      title: [topic.title, t('site_name')],
+      description: topic.body
+    }
 
-    set_meta_tags title: title,
-                  description: description
+    default_meta_tags(opts)
   end
 end
