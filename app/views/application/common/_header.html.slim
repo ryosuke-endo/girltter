@@ -3,9 +3,9 @@
     header.c-flex.c-flex__jc-sb.c-flex__ai-c.u-h-100p
       .c-flex.c-flex__jc-sb.c-flex__ai-c.c-header__left-w
         - if params[:controller] == 'top'
-          h1.text--s-xx-lg.u-font--nunito = link_to t('site_title'), root_path, class: "c-link--c-w"
+          h1.text--s-xx-lg.u-font--nunito = link_to t('site_name'), root_path, class: "c-link--c-w"
         - else
-          .text--s-xx-lg.u-font--nunito = link_to t('site_title'), root_path, class: "c-link--c-w"
+          .text--s-xx-lg.u-font--nunito = link_to t('site_name'), root_path, class: "c-link--c-w"
         form
           input class="c-search__form" placeholder="スレ検索"
           button

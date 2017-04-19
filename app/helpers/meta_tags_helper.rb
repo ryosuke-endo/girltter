@@ -1,6 +1,6 @@
 module MetaTagsHelper
   def default_meta_tags(opts = {})
-    title = [t("meta_tags.#{controller_name}.#{action_name}.title"), t('site_title')]
+    title = [t("meta_tags.#{controller_name}.#{action_name}.title"), t('site_name')]
     description = t("meta_tags.#{controller_name}.#{action_name}.description")
     keywords = t("meta_tags.#{controller_name}.#{action_name}.keywords")
 
@@ -11,7 +11,7 @@ module MetaTagsHelper
   end
 
     def category_meta_tags(category)
-    title = ["「#{category.name}」に関するトピック", t('site_title')]
+    title = ["「#{category.name}」に関するトピック", t('site_name')]
     description = category.description
     keywords = [category.name]
 
@@ -22,7 +22,7 @@ module MetaTagsHelper
 
   def tags_meta_tags(tag)
     name = tag.name
-    title = ["「#{name}」に関するトピック", t('site_title')]
+    title = ["「#{name}」に関するトピック", t('site_name')]
     description =
     <<~"EOS"
     「#{name}」に関するトピックです。
@@ -37,7 +37,7 @@ module MetaTagsHelper
   end
 
   def topic_meta_tags(topic)
-    title = [topic.title, t('site_title')]
+    title = [topic.title, t('site_name')]
     description = topic.body
 
     set_meta_tags title: title,

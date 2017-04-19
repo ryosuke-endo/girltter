@@ -3,7 +3,7 @@
     header.u-h-100p
       - if params[:controller] == 'top'
         h1.u-font--nunito.text--s-xx-lg.text--c.c-header__title
-          = link_to t('site_title'), root_path, class: "c-link--c-w"
+          = link_to t('site_name'), root_path, class: "c-link--c-w"
       - else
         .u-font--nunito.text--s-xx-lg.text--c.c-header__title
-          = link_to t('site_title'), root_path, class: "c-link--c-w"
+          = link_to t('site_name'), root_path, class: "c-link--c-w"
