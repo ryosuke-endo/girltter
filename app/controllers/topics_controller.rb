@@ -25,6 +25,9 @@ class TopicsController < ApplicationController
     end
   end
 
+  def search
+  end
+
   def show
     render layout: 'topic'
   end

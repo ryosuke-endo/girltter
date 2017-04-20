@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get :reaction_count_map
     collection do
       get :complete
+      get :search
     end
     scope module: :topics do
       get 'comments/:no/anchor' => 'comments#anchor', as: 'anchor'
