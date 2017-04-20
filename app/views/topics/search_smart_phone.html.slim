@@ -1,0 +1,12 @@
+- content_for :meta_tags do
+  = display_meta_tags(default_meta_tags)
+- breadcrumb :search_topics, @topic
+- content_for :breadcrumbs do
+  = render "application/s/breadcrumbs"
+h1.c-heading.text--s-x-lg.text--b.c-border--bottom-3.c-border__c-p.c-container
+  | 人気のキーワード
+ul.c-tags.c-padding-l-10.c-padding-r-10
+  - @tag_ranking.each do |tag|
+    li.c-tag
+      i.fa.fa-tag.c-icon-pink
+      span.c-tag--name = link_to tag.name, tags_path(tag.name)

@@ -26,6 +26,7 @@ class TopicsController < ApplicationController
   end
 
   def search
+    @tag_ranking = ActsAsTaggableOn::Tag.most_used
   end
 
   def show
