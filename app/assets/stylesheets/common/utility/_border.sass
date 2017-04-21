@@ -10,8 +10,9 @@
 .c-border--top-1
   border-top: 1px solid $b-gray
 
-.c-border--left-1
-  border-left: 1px solid $b-gray
+@for $width from 1 through 5
+  .c-border--left-#{$width}
+    border-left: #{$width}px solid $b-gray
 
 @for $width from 1 through 5
   .c-border--bottom-#{$width}

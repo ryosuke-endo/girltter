@@ -30,6 +30,11 @@ class TopicsController < ApplicationController
   end
 
   def show
+    category = @topic.category
+    @topics = category.topics.
+              where.not(id: @topic.id).
+              order(id: :desc).
+              limit(3)
     render layout: 'topic'
   end
 
