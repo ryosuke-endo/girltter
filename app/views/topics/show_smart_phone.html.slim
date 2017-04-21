@@ -45,8 +45,15 @@
       reaction reply_id="1" v-on:reply="reply" emoji_path=image_path('emoji.png') reactionable_id="#{@topic.id}" type="#{@topic.class.name}" ref="reaction"
 
     = render partial: "comments", collection: @topic.comments.includes(:icons), as: :comment
+    .c-container--sm.c-padding-l-10.text--s-lg.text--b.c-border--left-3.c-border__c-p
+      | 関連タグ
+    ul.c-tags
+      - @topic.tags.each do |tag|
+        li.c-tag
+          i.fa.fa-tag.c-icon-pink
+          span.c-tag--name = link_to tag.name, tags_path(tag.name)
 
-    .c-container--sm.c-heading--section.text--s-lg.text--b
+    .c-container--sm.c-padding-l-10.text--s-lg.text--b.c-border--left-3.c-border__c-p
       | コメントを投稿する
     form-error :count="comment.errors.count" :messages="comment.errors.messages"
     .c-container--sm
