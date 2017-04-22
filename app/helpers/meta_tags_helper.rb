@@ -7,6 +7,8 @@ module MetaTagsHelper
     type = opts[:type] || 'article'
     url = opts[:url] || request.original_url
     image = opts[:image_url] || image_url('og.png')
+    nofollow = opts[:nofollow] || nil
+    noindex = opts[:noindex] || nil
 
     configs = {
       title: title,
@@ -14,6 +16,8 @@ module MetaTagsHelper
       keywords: keywords,
       reverse: opts[:reverse],
       icon: icon,
+      nofollow: nofollow,
+      noindex: noindex,
       og: {
         title: title.join(' | '),
         site_name: t('site_name'),

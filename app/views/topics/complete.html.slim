@@ -1,4 +1,7 @@
 - title = request.referrer.include?("new") ? "トピック" : "コメント"
+- opts = { noindex: true, nofollow: true }
+- content_for :meta_tags do
+  = display_meta_tags(default_meta_tags(opts))
 .l__topic__form.c-border-2
   .c-container
     h1.c-heading--title.text--s-lg

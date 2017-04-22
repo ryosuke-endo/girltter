@@ -8,6 +8,8 @@ ja:
         keywords:
           - girltter 女性コミュニティサイト
     topics:
+      complete:
+        title: 投稿が完了しました
       new:
         title: トピックを投稿する
         description: 匿名だから本音で語れる女性のためのコミュニティサイト。
