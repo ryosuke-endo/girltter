@@ -81,6 +81,7 @@ namespace :deploy do
       end
       upload!('config/database.yml', "#{shared_path}/config/database.yml")
       upload!('config/secrets.yml', "#{shared_path}/config/secrets.yml")
+      upload!('config/newrelic.yml', "#{shared_path}/config/newrelic.yml")
     end
   end
 
