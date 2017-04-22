@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
 import reactionMixins from '../../../mixins/reaction.js'
+import eventTracking from '../../../event_tracking.js'
 import 'babel-polyfill'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
@@ -52,6 +53,7 @@ export default Vue.extend({
     showIconList() {
       const self = this
       const width = $(window).width() - 20
+      eventTracking.send('emoji', 'sp')
       $(".p-topic--icon--modal").css('width', width)
       $('body').addClass('js-menu-active')
       Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
@@ -277,7 +279,7 @@ export default Vue.extend({
           </div>
         </div>
       </li>
-      <li class="p-topic-icon__item" @click=submitReply @mouseenter="showReply" @mouseleave="hiddenReply">
+      <li class="p-topic-icon__item" @click=submitReply>
         <i class="fa fa-reply">
         </i>
       </li>
