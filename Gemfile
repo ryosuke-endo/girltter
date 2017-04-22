@@ -81,6 +81,9 @@ gem 'jpmobile'
 # aws
 gem 'aws-sdk'
 
+# new relic
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
