@@ -13,6 +13,7 @@ node_modules/
 # Ignore config
 config/secrets.yml
 config/database.yml
+config/newrelic.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
