@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue'
 import { mapState } from 'vuex/dist/vuex'
 import axios from 'axios/dist/axios'
 import reactionMixins from './../../mixins/reaction.js'
+import eventTracking from '../../event_tracking.js'
 import 'babel-polyfill'
 
 axios.defaults.headers['X-CSRF-TOKEN'] = $('meta[name=csrf-token]').attr('content')
@@ -52,6 +53,7 @@ export default Vue.extend({
     showIconList() {
       const self = this
       $('body').addClass('js-menu-active')
+      eventTracking.send('emoji', 'pc')
       Promise.all([self.fetchEmoji(), self.fetchEmojiImage()])
       .then(function() {
         self.iconListActive = true
