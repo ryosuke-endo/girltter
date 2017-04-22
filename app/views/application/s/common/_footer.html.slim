@@ -1,19 +1,18 @@
 footer.l__footer.u-bg-pink
-  ul.c-flex.c-flex__wrap.c-border--top-1.c-border--left-1.c-border__c-l-p
+  ul.c-flex.c-margin-reset.c-flex__wrap.c-border--top-1.c-border--left-1.c-border--bottom-1.c-border__c-l-p
     - Category.all.each do |category|
       - case category.id
       - when 1
-        li.u-w-50p.c-footer__list.c-padding-l-10
-          i.fa.fa-cutlery.text--s-lg.text__c--white
-          = link_to category.name, category_path(category),
-                                      class: "text--b text__c--white c-padding-l-10"
+        = link_to category, class: "u-w-50p c-footer__list" do
+          i.fa.fa-cutlery.text--s-lg.text__c--white.c-flex.c-padding-l-10.c-fotter__list--name
+            li.c-padding-l-10.text--b.text__c--white.text--s-slg  = category.name
       - when 2
-        li.u-w-50p.c-footer__list.c-padding-l-10
-          i.fa.fa-heart.text--s-lg.text__c--white
-          = link_to category.name, category_path(category),
-                                      class: "text--b text__c--white c-padding-l-10"
+        = link_to category, class: "u-w-50p c-footer__list" do
+          i.fa.fa-heart.text--s-lg.text__c--white.c-flex.c-padding-l-10.c-fotter__list--name
+            li.c-padding-l-10.text--b.text__c--white.text--s-slg  = category.name
       - when 3
-        li.u-w-50p.c-footer__list.c-padding-l-10
-          i.fa.fa-female.text--s-lg.text__c--white
-          = link_to category.name, category_path(category),
-                                      class: "text--b text__c--white c-padding-l-10"
+        = link_to category, class: "u-w-50p c-footer__list" do
+          i.fa.fa-female.text--s-lg.text__c--white.c-flex.c-padding-l-10.c-fotter__list--name
+            li.c-padding-l-10.text--b.text__c--white.text--s-slg  = category.name
+  p.text--s-lg.text--c.c-fotter__title
+    = link_to 'girllter', root_path, class: "u-w-100p text--b text__c--white c-padding-l-10"
