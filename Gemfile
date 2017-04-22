@@ -84,6 +84,9 @@ gem 'aws-sdk'
 # new relic
 gem 'newrelic_rpm'
 
+# google analytics api
+gem 'google-api-client'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
