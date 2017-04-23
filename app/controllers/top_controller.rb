@@ -4,7 +4,7 @@ class TopController < ApplicationController
 
   def index
     date = Analysis.last.date
-    @rankings = Analysis.topic_ranking(date).limit(5)
+    @rankings = Analysis.topic_ranking(date).limit(5).map(&:analysisable)
   end
 
   private

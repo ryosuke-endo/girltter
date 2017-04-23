@@ -1,7 +1,7 @@
 - content_for :meta_tags do
   = display_meta_tags(default_meta_tags({ reverse: true }))
 - if @rankings.present?
-  - topic = @rankings.first.analysisable
+  - topic = @rankings.first
   = link_to topic do
     - if topic.image?
       .c-container--sm.p-topic__image
