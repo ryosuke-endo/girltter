@@ -28,7 +28,7 @@ module MetaTagsHelper
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@girltter_',
+        site: '@girltter_com',
         title: title.join(' | '),
         description: description,
         image: image
