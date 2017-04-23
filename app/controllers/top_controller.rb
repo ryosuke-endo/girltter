@@ -3,6 +3,10 @@ class TopController < ApplicationController
   before_action :set_tag_ranking, if: :pc?
 
   def index
+    @rankings = Analysis.topic_ranking(Date.yesterday).limit(5)
+    if @rankins.blank?
+      @rankings = Analysis.topic_ranking(Date.yesterday - 1.day).limit(5)
+    end
   end
 
   private

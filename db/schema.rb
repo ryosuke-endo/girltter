@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406133611) do
+ActiveRecord::Schema.define(version: 20170423041111) do
+
+  create_table "analyses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.bigint  "analysisable_id",               null: false
+    t.string  "analysisable_type",             null: false
+    t.integer "pageview",          default: 0, null: false
+    t.date    "date",                          null: false
+    t.index ["analysisable_id", "analysisable_type"], name: "index_analyses_on_analysisable_id_and_analysisable_type", using: :btree
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
@@ -25,25 +33,25 @@ ActiveRecord::Schema.define(version: 20170406133611) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.text     "body",               limit: 65535, null: false
-    t.string   "name",                             null: false
-    t.integer  "topic_id",                         null: false
+    t.text     "body",               limit: 16777215, null: false
+    t.string   "name",                                null: false
+    t.integer  "topic_id",                            null: false
     t.datetime "image_updated_at"
     t.integer  "image_file_size"
     t.string   "image_content_type"
     t.string   "image_file_name"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["topic_id"], name: "index_comments_on_topic_id", using: :btree
   end
 
-  create_table "icon_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+  create_table "icon_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "icons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+  create_table "icons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "icon_category_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -54,7 +62,7 @@ ActiveRecord::Schema.define(version: 20170406133611) do
     t.index ["icon_category_id"], name: "index_icons_on_icon_category_id", using: :btree
   end
 
-  create_table "reactions", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+  create_table "reactions", id: :bigint, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "icon_id",           null: false
     t.integer  "reactionable_id",   null: false
     t.string   "reactionable_type", null: false
@@ -92,16 +100,16 @@ ActiveRecord::Schema.define(version: 20170406133611) do
   end
 
   create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
-    t.string   "title",                            null: false
-    t.text     "body",               limit: 65535, null: false
-    t.string   "name",                             null: false
-    t.integer  "category_id",                      null: false
+    t.string   "title",                               null: false
+    t.text     "body",               limit: 16777215, null: false
+    t.string   "name",                                null: false
+    t.integer  "category_id",                         null: false
     t.datetime "image_updated_at"
     t.integer  "image_file_size"
     t.string   "image_content_type"
     t.string   "image_file_name"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["category_id"], name: "index_topics_on_category_id", using: :btree
   end
 

@@ -1,6 +1,22 @@
 - content_for :meta_tags do
   = display_meta_tags(default_meta_tags({ reverse: true }))
+- if @rankings.present?
+  - topic = @rankings.first.analysisable
+  = link_to topic do
+    - if topic.image?
+      .c-container--sm.p-topic__image
+        = image_tag(topic.image.url(:normal))
+        p.p-topic__image-title.text--s-xx-lg.text--b.text__c--white = topic.title
+    - elsif topic.thumbnails_first
+      .c-container--sm.p-topic__image
+        = image_tag(topic.thumbnails_first)
+        p.p-topic__image-title.text--s-xx-lg.text--b.text__c--white = topic.title
+    - else
+      .c-container--sm.p-topic__image
+        = image_tag('no_image.png')
+        p.p-topic__image-title.text--s-xx-lg.text--b.text__c--white = topic.title
 ul.c-list
+
   = render partial: "application/s/common/topics", collection: @topics, as: :topic
 
 = paginate @topics

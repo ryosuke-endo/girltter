@@ -8,7 +8,12 @@ html
     = render "application/google_analytics"
   body
     = render "application/common/header"
-    = yield :eyecatch
+    - if content_for?(:eyecatch_left) && content_for?(:eyecatch_right)
+      .l__eyecatch.p-eye-frame.c-flex.c-flex__jc-sb
+        .l__eyecatch-l.c-flex.c-flex__jc-sb
+          = yield :eyecatch_left
+        .l__eyecatch-r
+          = yield :eyecatch_right
     = yield :breadcrumbs
     = yield :description
     .l__content.c-flex.c-flex__jc-sb
