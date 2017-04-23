@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406133611) do
+ActiveRecord::Schema.define(version: 20170423041111) do
+
+  create_table "analyses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
+    t.bigint  "analysisable_id",               null: false
+    t.string  "analysisable_type",             null: false
+    t.integer "pageview",          default: 0, null: false
+    t.date    "date",                          null: false
+    t.index ["analysisable_id", "analysisable_type"], name: "index_analyses_on_analysisable_id_and_analysisable_type", using: :btree
+  end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin" do |t|
     t.string   "name",                           null: false
