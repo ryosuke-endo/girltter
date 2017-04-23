@@ -44,7 +44,6 @@ set :yarn_env_variables, fetch(:yarn_env_variables, {})
 
 # whenever cron update
 set :whenever_environment, fetch(:stage)
-set :whenever_identifier, "#{fetch(:application)}_#{fetch(:stage)}"
 set :whenever_variables, -> do
   "'environment=#{fetch :whenever_environment}" \
   "&rbenv_root=#{fetch :rbenv_path}'"
