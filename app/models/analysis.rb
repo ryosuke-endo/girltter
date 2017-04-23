@@ -1,7 +1,7 @@
 class Analysis < ApplicationRecord
-  scope :yesterday_topic_ranking, -> { where(analysisable_type: 'Topic',
-                                             date: Date.yesterday).
-                                       order(pageview: :desc) }
+  scope :topic_ranking, ->(date) { where(analysisable_type: 'Topic',
+                                         date: date).
+                                         order(pageview: :desc) }
 
   belongs_to :analysisable, polymorphic: true
 end
