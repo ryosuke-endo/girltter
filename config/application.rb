@@ -32,6 +32,8 @@ module Girltter
       g.javascripts false
       g.helper false
     end
+    config.enable_dependency_loading = true
+
     config.autoload_paths += %W(#{config.root}/lib)
   end
 end
