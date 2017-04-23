@@ -3,6 +3,7 @@ class TopController < ApplicationController
   before_action :set_tag_ranking, if: :pc?
 
   def index
+    @rankings = Analysis.yesterday_topic_ranking.limit(5)
   end
 
   private

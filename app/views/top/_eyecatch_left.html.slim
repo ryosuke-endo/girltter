@@ -1,0 +1,11 @@
+- topic = ranking.analysisable
+= link_to topic, class: "c-link__block" do
+  .p-eye-grid__img--lg.c-border__img-r-10
+    - if topic.image?
+      = image_tag topic.image.url(:thumbnail)
+    - elsif topic.thumbnails_first
+      = image_tag topic.thumbnails_first
+    - else
+      = image_tag('no_image.png')
+    .p-eye-grid-text
+      = topic.title
