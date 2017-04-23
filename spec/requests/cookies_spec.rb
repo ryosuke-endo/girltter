@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "cookies", type: :request do
-  fixtures :topics
+  fixtures :topics, :analysis
 
   context '#set_identity_cookie' do
     it '_cadrが設定される' do
