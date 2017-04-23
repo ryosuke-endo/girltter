@@ -9,8 +9,6 @@ class GoogleAnalyticsService
   VIEW_ID = "147114068"
   SCOPE = 'https://www.googleapis.com/auth/analytics.readonly'
 
-  attr_reader :reports
-
   def initialize
     @client = AnalyticsReportingService.new
     @client.authorization = creds
@@ -19,21 +17,35 @@ class GoogleAnalyticsService
     @date_range = DateRange.new
   end
 
-  def report
+  def fetch_pageview(klass, start_date, end_date)
+    type = klass.name
+    path = klass.table_name
+    filters_expression = "ga:pagePath=~^/#{path}/[0-9]*$"
     @metric.expression = "ga:pageviews"
     @dimension.name = "ga:pagePath"
-    @date_range.start_date = Date.yesterday
-    @date_range.end_date = Date.today
-    report = ReportRequest.new(view_id: VIEW_ID,
-                               metrics: [@metric],
-                               dimensions: [@dimension],
-                               date_ranges: [@date_range],
-                               filters_expression: 'ga:pagePath=~^/topics\/\d*$')
-    request = GetReportsRequest.new(
-      report_requests: [report]
-    )
-    response = @client.batch_get_reports(request)
-    @reports = response.reports
+
+    (start_date..end_date).each do |date|
+      @date_range.start_date = date
+      @date_range.end_date = date
+      report = ReportRequest.new(view_id: VIEW_ID,
+                                 metrics: [@metric],
+                                 dimensions: [@dimension],
+                                 date_ranges: [@date_range],
+                                 filters_expression: filters_expression)
+      request = GetReportsRequest.new(report_requests: [report])
+      response = @client.batch_get_reports(request)
+      reports = response.reports
+      reports.first.data.rows.each do |row|
+        row.dimensions.first.match(/([0-9]+$)/)
+        analysisable_id = $1
+        analysisable_type = type
+        pageview = row.metrics.first.values.first.to_i
+        Analysis.create(analysisable_id: analysisable_id,
+                        analysisable_type: analysisable_type,
+                        pageview: pageview,
+                        date: date)
+      end
+    end
   end
 
   private
