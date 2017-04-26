@@ -1,7 +1,7 @@
 - content_for :eyecatch_left do
-  = render partial: "eyecatch_left", collection: @rankings[0..1], as: :ranking
+  = render partial: "eyecatch_left", collection: @rankings[0..1], as: :topic
 - content_for :eyecatch_right do
-  = render partial: "eyecatch_right", collection: @rankings[2..4], as: :ranking
+  = render partial: "eyecatch_right", collection: @rankings[2..4], as: :topic
 - content_for :meta_tags do
   = display_meta_tags(default_meta_tags({ reverse: true }))
 - content_for :tag_ranking do

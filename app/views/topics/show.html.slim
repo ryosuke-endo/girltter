@@ -88,5 +88,10 @@
     icon v-model="comment.image" v-on:open="openModal"
     modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
     reaction-error v-show="errorReaction.visiable"
-  .text--c
+  .text--c.c-container
     input type="submit" class="c-btn c-btn--pink c-btn--w-275 c-btn--h-large" data-disable-with="処理中..." @click="submit"
+
+  .c-container--sm.c-heading--section.text--s-lg.text--b
+    | 人気のトピック
+  ul.c-list
+    = render partial: "application/common/topics", collection: @rankings, as: :topic

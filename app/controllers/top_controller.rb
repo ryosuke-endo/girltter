@@ -3,8 +3,10 @@ class TopController < ApplicationController
   before_action :set_tag_ranking, if: :pc?
 
   def index
-    date = Analysis.last.date
-    @rankings = Analysis.topic_ranking(date).limit(5)
+    if pc?
+      date = Analysis.last.date
+      @rankings = Analysis.topic_ranking(date).limit(5).map(&:analysisable)
+    end
   end
 
   private

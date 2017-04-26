@@ -14,5 +14,9 @@ footer.l__footer.u-bg-pink
         = link_to category, class: "u-w-50p c-footer__list" do
           i.fa.fa-female.text--s-lg.text__c--white.c-flex.c-padding-l-10.c-fotter__list--name
             li.c-padding-l-10.text--b.text__c--white.text--s-slg  = category.name
-  p.text--s-lg.text--c.c-fotter__title
-    = link_to 'girllter', root_path, class: "u-w-100p text--b text__c--white c-padding-l-10"
+  .c-flex.c-flex__ai-c.c-flex--jc-c
+    p.text--s-lg.text--c.c-fotter__title
+      = link_to t('site_name'), root_path, class: "u-w-100p text--b text__c--white c-padding-l-10"
+    div
+      = link_to 'https://twitter.com/girltter_com' do
+        i.fa.fa-twitter.text--s-lg.text__c--white.c-flex.c-padding-l-10
