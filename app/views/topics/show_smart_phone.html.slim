@@ -77,8 +77,13 @@
             i class="fa fa-close c-icon-white p-comment__img--close" @click="imageDelete"
     .text--c.c-container
       input type="submit" class="c-btn c-btn--pink u-w-100p text--s-slg" data-disable-with="処理中..." @click="submit"
-    .c-container--sm.c-padding-l-10.text--s-lg.text--b.c-border--left-3.c-border__c-p
+    .text--s-lg.text--b.c-border--bottom-1.c-border__c-p
+      | 人気トピック
+    .c-container--sm
+       = render partial: "application/s/common/topics", collection: @rankings, as: :topic
+    .text--s-lg.text--b.c-border--bottom-1.c-border__c-p
       | 関連トピック
-    = render partial: "application/s/common/topics", collection: @topics, as: :topic
+    .c-container--sm
+      = render partial: "application/s/common/topics", collection: @topics, as: :topic
     modal v-show="modalActive" v-on:close="closeModal" v-on:url="addUrl"
     reaction-error v-show="errorReaction.visiable"
