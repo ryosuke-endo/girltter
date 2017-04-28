@@ -80,7 +80,7 @@
     .text--s-lg.text--b.c-border--bottom-1.c-border__c-p
       | 人気トピック
     .c-container--sm
-       = render partial: "application/s/common/topics", collection: @rankings, as: :topic
+      = render partial: "application/s/common/topics", collection: @rankings, as: :topic, locals: { ranking: true }
     .text--s-lg.text--b.c-border--bottom-1.c-border__c-p
       | 関連トピック
     .c-container--sm
